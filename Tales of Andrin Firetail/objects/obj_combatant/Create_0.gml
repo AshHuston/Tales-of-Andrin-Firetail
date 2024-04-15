@@ -5,6 +5,7 @@
 /// @description              Runs the attack. Calculating if hit, adjusting target HP, applying effects, etc.
 function attack(details){
 //Ensure struct elements are present
+
 	//@TODO Insert try catch block checking it and returning an error if something is missing.	
 	
 	
@@ -43,17 +44,21 @@ function attack(details){
 	}
 
 //Apply attack to the bonus target.
-	//Adjust targets.
-	bonusHitDetails = {
-		targetID: details.bonus_targetID, 
-		bonus_targetID: "", 
-		dmg_type: details.dmg_type, 
-		min_dmg: details.min_dmg, 
-		max_dmg: details.max_dmg, 
-		hit_chance: details.hit_chance, 
-		effect_chance: details.effect_chance, 
-		effect_type: details.effect_type
+	if details.bonus_targetID != ""{
+		
+		//Adjust targets.
+		var bonusHitDetails = {
+			targetID: details.bonus_targetID, 
+			bonus_targetID: "", 
+			dmg_type: details.dmg_type, 
+			min_dmg: details.min_dmg, 
+			max_dmg: details.max_dmg, 
+			hit_chance: details.hit_chance, 
+			effect_chance: details.effect_chance, 
+			effect_type: details.effect_type
+		}
+		
+		//Recur the function for the bonus hit.
+		attack(bonusHitDetails);
 	}
-	//Recur the function for the bonus hit.
-	attack(bonusHitDetails);
 }
