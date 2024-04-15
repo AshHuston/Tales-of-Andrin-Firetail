@@ -29,18 +29,33 @@ function attack(details){
 	if string_pos(details.dmg_type, details.target.immunities) != 0 {immune = true}
 	
 	//Adjust the chance.
-	var effectPercent = effect_chance
-	if immune{effectPercent -= 100}
-	if resistant{effectPercent -= 50}
+	var effectPercent = details.effect_chance;
+	var isEffected = false;
+	if immune{effectPercent -= 100;}
+	if resistant{effectPercent -= 50;}
 	if random_range(1, 100) <= effectPercent{
-		//Apply the effect to the target
-		details.target.statusEffect += (" "+ details.effect_type);
+		isEffected = true;
 	}
 	
-//Checks if attack hits
+//Checks if attack hits. If so, resolve the attack.
 	var hitPercent = details.hit_chance - defenseStat;
 	if random_range(0, 100) <= hitPercent{
-		//@TODO Resolve the hit.
+		//Determine damage
+		var dmg = random_range(details.min_dmg, details.max_dmg);
+		
+		//Apply damage
+		details.targetID.HP -= dmg;
+		
+		//Run damage animation.
+			//@TODO Run damage animation. Should display dmg.
+		
+		//If effected, apply effect.
+		if isEffected{
+			//Apply the effect to the target
+			details.target.statusEffect += (" "+ details.effect_type);
+			//Run effect animation.
+				//@TODO Run effect animation
+		}
 	}
 
 //Apply attack to the bonus target.
