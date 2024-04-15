@@ -23,6 +23,8 @@ swipe = {
 }
 
 bite = {
+	display_name: "bite",	//Only really needed for playable characters. Will show up on menu.
+	description: "bites at target. Low chance to poison.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
 	dmg_type: "physical", 
