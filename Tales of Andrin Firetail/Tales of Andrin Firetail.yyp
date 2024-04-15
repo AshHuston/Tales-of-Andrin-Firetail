@@ -35,6 +35,8 @@
   },
   "resources": [
     {"id":{"name":"spr_smiley","path":"sprites/spr_smiley/spr_smiley.yy",},},
+    {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
+    {"id":{"name":"obj_zombie","path":"objects/obj_zombie/obj_zombie.yy",},},
     {"id":{"name":"obj_pauser","path":"objects/obj_pauser/obj_pauser.yy",},},
     {"id":{"name":"scr_globalVars","path":"scripts/scr_globalVars/scr_globalVars.yy",},},
     {"id":{"name":"obj_combatant","path":"objects/obj_combatant/obj_combatant.yy",},},
