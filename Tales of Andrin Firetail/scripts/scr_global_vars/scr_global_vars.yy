@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "scr_globalVars",
+  "name": "scr_global_vars",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
