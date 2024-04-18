@@ -11,32 +11,33 @@
 		// Key enemies
 		// Random enemies created by their own function. Overworld enemy will generate it.
 
+
 	//Determine positioning
 		//Look at globalvar for party
-		//Receive from monster struct
+		var charAaron = global.OVERWORLD_ID_AARON;
+		var charA = global.OVERWORLD_ID_A;
+		var charB = global.OVERWORLD_ID_B;
+		var charC = global.OVERWORLD_ID_C;
+		var IDsorder = [];
+		
+		//Make sure group size is accurate.
+		var partyIDs = [charAaron, charA, charB, charC];
+		for (var i=0;i<array_length(partyIDs);i++;){
+			if 	partyIDs[i] == 0{
+				array_delete(partyIDs, i, 1);	
+			}
+		}
+		
+		//Fill out IDorder[]
+		for(var i=0;i<array_length(global.COMBAT_ORDERING);i++;){
+			switch(string_upper(global.COMBAT_ORDERING[i])){
+				case "AARON": IDorder[i] = charAaron; break;
+				case "A": IDorder[i] = charA; break;
+				case "B": IDorder[i] = charB; break;
+				case "C": IDorder[i] = charC; break;
+			}
+		}
+		
+		//Receive ids/positions from monster struct
 	
 	//Start combat clock
-
-
-//-------------------COMBAT CLOCK----------------------
-
-	//Determine who’s turn it is. 
-		//List all combatants that are not 0HP and have not yet acted this round.
-		//Iterate, comparing speed to highestSpeed. 
-		//Highest who has not yet gone can now go.
-		
-	//On a turn:
-		//Set an indicator flag that this combatant is active
-		//Set hasActed flag to true.
-		//Reduce their counters by 1. (Statuses/cooldowns)
-		//Display character menu, select action/target(s).
-			//If enemy, determine action based on AI rules.
-		//Perform action. (spell, ability, attack, item, etc.)
-
-	//Check for anyone below 0HP.
-		//If so, animate death/down and set flag.
-
-	//Check if everyone has gone, if so,
-		//Set all hasActed flags to false.
-		//Check for any round count events from struct. (i.e. a round-limited battle.)
-		//Repeat from the top

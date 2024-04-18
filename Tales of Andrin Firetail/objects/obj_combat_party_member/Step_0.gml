@@ -18,14 +18,6 @@ bite.targetID = instance_find(obj_enemy, 0);
 
 attacks = [bite];
 
-var results = inventory[0].use(self);
 
-struct_foreach(inventory[0], function(_name, _value)
-{
-    if _name != "useItem" && _name != "use" {show_debug_message($"{_name}: {_value}");}
-});
-//var results = attack(bite);
-
-//if results != 0{
-//show_debug_message("Hit: "+string(results)+" dmg.")}
-//else{show_debug_message("Miss: 0 dmg.")}
+//-------------TESTS ONLY -> DELETE LATER-------------------
+//var results = inventory[0].use(self);

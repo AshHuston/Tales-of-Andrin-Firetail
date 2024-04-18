@@ -4,3 +4,8 @@ if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
 if !instance_exists(obj_combat_aaron){
 	instance_create_depth(x,y,0,obj_combat_aaron);
 }
+
+
+if !instance_exists(obj_combat_manager){
+	instance_create_depth(x,y,0,obj_combat_manager);
+}
