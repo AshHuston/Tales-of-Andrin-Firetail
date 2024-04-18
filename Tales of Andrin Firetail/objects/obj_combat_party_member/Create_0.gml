@@ -1,3 +1,5 @@
+event_inherited();
+
 baseHP = associatedCharacterID.HP;
 baseSpeed = associatedCharacterID.combatSpeed;
 baseArmor = associatedCharacterID.armor;
@@ -107,6 +109,9 @@ totalArmor = baseArmor + itemBonusArmor+ effectBonusArmor;
 totalMagicResist = baseMagicResist + itemBonusMagicResist + effectBonusMagicResist;
 
 
+
+
+
 attacks = [];
 	//@TODO Add a for loop adding attacks. Attacks should be a struct detailing at minimum, 'Name', 'damage', and "hitChance'.
 
@@ -117,19 +122,3 @@ spells = [];
 specialActions = []; //@TODO Special action names. Will figure this out later.
 
 //----------------------THEY WORKKKKKKKK-----------------------------
-show_debug_message(baseHP);
-show_debug_message(baseArmor);
-show_debug_message(baseMagicResist);
-show_debug_message(baseSpeed);
-show_debug_message(skillEdged);
-show_debug_message(skillMagic);
-show_debug_message(skillMelee);
-show_debug_message(skillRanged);
-show_debug_message(itemBonusArmor);
-show_debug_message(itemBonusMagicResist);
-show_debug_message(effectBonusSpeed);
-show_debug_message(effectBonusMagicResist);
-show_debug_message(totalMagicResist);
-
-
-
