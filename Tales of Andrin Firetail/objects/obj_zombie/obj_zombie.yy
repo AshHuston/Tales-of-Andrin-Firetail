@@ -8,8 +8,8 @@
   "name":"obj_zombie",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Enemies",
+    "path":"folders/Objects/Combat/Enemies.yy",
   },
   "parentObjectId":{
     "name":"obj_enemy",
