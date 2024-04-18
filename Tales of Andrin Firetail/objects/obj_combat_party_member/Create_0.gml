@@ -108,7 +108,7 @@ totalSpeed = baseSpeed + itemBonusSpeed + effectBonusSpeed;
 totalArmor = baseArmor + itemBonusArmor+ effectBonusArmor;
 totalMagicResist = baseMagicResist + itemBonusMagicResist + effectBonusMagicResist;
 
-
+currentHP = totalHP;
 
 
 
