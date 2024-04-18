@@ -7,7 +7,7 @@
 	//move to combat room
 
 	//Create list of combat object IDs.
-		// Aaron = 0-3 party members.
+		// Aaron + 0-3 party members.
 		// Key enemies
 		// Random enemies created by their own function. Overworld enemy will generate it.
 
@@ -38,5 +38,5 @@
 
 	//Check if everyone has gone, if so,
 		//Set all hasActed flags to false.
-		//Check for any round count events. (i.e. a round-limited battle.)
+		//Check for any round count events from struct. (i.e. a round-limited battle.)
 		//Repeat from the top
