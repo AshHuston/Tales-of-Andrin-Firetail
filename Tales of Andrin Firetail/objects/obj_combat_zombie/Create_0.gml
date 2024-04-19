@@ -1,15 +1,16 @@
-HP = 25;
-statusEffect = "";
-resistances = "";
-immunities = "poison tired";
-armor = 3;
+baseHP = round(random_range(22,29));
+currentHP = baseHP;
+statusEffect = [];
+resistances = ["physical", "poison"];
+immunities = ["poison", "tired"];
+armor = round(random_range(3,4));
 magicResist = 1;
 
 // Inherit the parent event
 event_inherited();
 
 swipe = {
-	display_name: "Swipe",	//Only really needed for playable characters. Will show up on menu.
+	display_name: "Swipe",
 	description: "Swpies at target with claws. Low chance to poison.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
@@ -19,11 +20,11 @@ swipe = {
 	hit_chance: 90, 
 	effect_chance: 10, 
 	effect_type: "poison",
-	frequency: 10	//@TODO Figure out what kind of frequency numbers actually make sense.
+	frequency: round(random_range(8,12))	//@TODO Figure out what kind of frequency numbers actually make sense.
 }
 
 bite = {
-	display_name: "bite",	//Only really needed for playable characters. Will show up on menu.
+	display_name: "bite",
 	description: "bites at target. Low chance to poison.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
@@ -33,7 +34,7 @@ bite = {
 	hit_chance: 75, 
 	effect_chance: 30, 
 	effect_type: "poison",
-	frequency: 5
+	frequency: round(random_range(4,8))
 }
 
 attacks = [swipe, bite]

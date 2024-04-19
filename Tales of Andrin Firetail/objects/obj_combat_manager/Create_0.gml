@@ -13,6 +13,7 @@
 		var charB = global.OVERWORLD_ID_B;			// they will need to be the actual combat objects.
 		var charC = global.OVERWORLD_ID_C;			// Right?
 		
+		
 		//Make sure group size is accurate.
 		var partyIDs = [charAaron, charA, charB, charC];
 		for (var i=0;i<array_length(partyIDs);i++;){
@@ -21,8 +22,11 @@
 			}
 		}
 		
+		createPartyCombatObjects(partyIDs);
+		
 		// Enemies are either premade or created by their own function. Overworld enemy will generate it.
-		// Either way, theyll get passed in via the struct.
+		// Either way, their ids will get passed in via the struct.
+
 
 	//Determine positioning
 		//Look at globalvar for party
