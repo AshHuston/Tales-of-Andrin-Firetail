@@ -11,23 +11,29 @@
 		}
 		
 		//Iterate, comparing speed to highestSpeed.
-		var topSpeed = 0;
+		var highestSpeed = 0;
 		var fastestCombatant = "";
 		for (var i=0;i<array_length(combatants);i++;){
-			if 	combatants[i].totalSpeed >= topSpeed{
-				topSpeed = combatants[i].totalSpeed;
+			if 	combatants[i].totalSpeed >= highestSpeed{
+				highestSpeed = combatants[i].totalSpeed;
 				fastestCombatant = combatants[i];
 			}
 		}
 	
 		//Highest who has not yet gone can now go.
-		var actingCombatant = fastestCombatant;
+		var activeCombatant = fastestCombatant;
 		
 	//On a turn:
 		//Set an indicator flag that this combatant is active
+		activeCombatant.isActive = true;
 		//Set hasActed flag to true.
+		activeCombatant.hasActed = true;
+		
 		//Reduce their counters by 1. (Statuses/cooldowns)
+			//@TODO Figure this out.
+		
 		//Display character menu, select action/target(s).
+			// Will somehow utilize -> activeCombatant.menuTexture
 			//If enemy, determine action based on AI rules.
 		//Perform action. (spell, ability, attack, item, etc.)
 

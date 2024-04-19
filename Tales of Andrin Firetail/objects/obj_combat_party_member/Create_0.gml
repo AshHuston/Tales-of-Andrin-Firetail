@@ -1,5 +1,7 @@
 event_inherited();
 
+menuTexture = ""; //@TODO Add menu texture per character.
+
 baseHP = associatedCharacterID.HP;
 baseSpeed = associatedCharacterID.combatSpeed;
 baseArmor = associatedCharacterID.armor;
@@ -115,10 +117,7 @@ currentHP = totalHP;
 attacks = [];
 	//@TODO Add a for loop adding attacks. Attacks should be a struct detailing at minimum, 'Name', 'damage', and "hitChance'.
 
-
 spells = [];
 	//@TODO Add a for loop adding spells. Spells should be a struct detailing at minimum, 'Name' and other important spell stuff.
 
 specialActions = []; //@TODO Special action names. Will figure this out later.
-
-//----------------------THEY WORKKKKKKKK-----------------------------

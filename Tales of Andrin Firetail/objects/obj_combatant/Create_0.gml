@@ -1,2 +1,2 @@
 hasActed = false;
-
+isActive = false;
