@@ -24,7 +24,7 @@ function createPartyCombatObjects(partyIDs){
 	//move to combat room
 
 	//Create list of combat object IDs.
-		var combatants = []
+		combatants = []
 		// Aaron + 0-3 party members.
 		var charAaron = global.OVERWORLD_ID_AARON;
 		var charA = global.OVERWORLD_ID_A;			// Currently these all are the overworld IDs,
@@ -48,10 +48,8 @@ function createPartyCombatObjects(partyIDs){
 
 	//Determine positioning
 		//Look at globalvar for party
-		var IDsorder = [];
-		
-		
-		
+		IDsorder = [];
+				
 		//Fill out IDorder[]
 		for(var i=0;i<array_length(global.COMBAT_ORDERING);i++;){
 			switch(string_upper(global.COMBAT_ORDERING[i])){

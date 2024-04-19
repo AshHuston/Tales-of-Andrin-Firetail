@@ -1,2 +1,2 @@
-hasTakenTurn = false;
+hasActed = false;
 

@@ -3,8 +3,25 @@
 
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
-		//Iterate, comparing speed to highestSpeed. 
+		var canStillGo = combatants;
+		for (var i=0;i<array_length(combatants);i++;){
+			if 	combatants[i].currentHP <= 0 || combatants[i].hasActed{
+				array_delete(combatants, i, 1);	
+			}
+		}
+		
+		//Iterate, comparing speed to highestSpeed.
+		var topSpeed = 0;
+		var fastestCombatant = "";
+		for (var i=0;i<array_length(combatants);i++;){
+			if 	combatants[i].totalSpeed >= topSpeed{
+				topSpeed = combatants[i].totalSpeed;
+				fastestCombatant = combatants[i];
+			}
+		}
+	
 		//Highest who has not yet gone can now go.
+		var actingCombatant = fastestCombatant;
 		
 	//On a turn:
 		//Set an indicator flag that this combatant is active
