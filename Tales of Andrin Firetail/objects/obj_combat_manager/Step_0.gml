@@ -1,6 +1,9 @@
-	
-	//-------------------COMBAT CLOCK----------------------
+var step = "Determine active combatant";	
 
+	//-------------------COMBAT CLOCK----------------------
+switch(step){
+	
+	case "Determine active combatant":
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
 		var canStillGo = combatants;
@@ -22,25 +25,63 @@
 	
 		//Highest who has not yet gone can now go.
 		var activeCombatant = fastestCombatant;
-		
+		step = "Run turn";
+	break;
+	
+	case "Run turn":
 	//On a turn:
-		//Set an indicator flag that this combatant is active
 		activeCombatant.isActive = true;
-		//Set hasActed flag to true.
-		activeCombatant.hasActed = true;
 		
 		//Reduce their counters by 1. (Statuses/cooldowns)
 			//@TODO Figure this out.
 		
-		//Display character menu, select action/target(s).
+		//@TODO Display character menu, select action/target(s).
 			// Will somehow utilize -> activeCombatant.menuTexture
 			//If enemy, determine action based on AI rules.
-		//Perform action. (spell, ability, attack, item, etc.)
-
+			
+		//Perform selected action. (spell, ability, attack, item, etc.)
+			//@TODO 
+			
+		activeCombatant.hasActed = true;	
+		
+		step = "Bring our yer dead";
+		
+	case "Bring our yer dead":	
 	//Check for anyone below 0HP.
-		//If so, animate death/down and set flag.
-
-	//Check if everyone has gone, if so,
-		//Set all hasActed flags to false.
-		//Check for any round count events from struct. (i.e. a round-limited battle.)
-		//Repeat from the top
+		for (var i=0;i<array_length(combatants);i++;){
+			if combatants[i].currentHP <= 0{
+				combatants[i].isConscious = false;
+			}
+		}
+		
+		//If so, animate death/down.
+			//@TODO Figure out how to do this. 
+			//Probably just setting their sprite to a death animation then a sprite speed/index to do the last frame.
+		
+		step = "Reset check";
+	break;
+	
+	case "Reset check":
+	//Check if everyone has gone,
+		var resetCycle = false;
+		var totActed = 0
+		for (var i=0;i<array_length(combatants);i++;){
+			if combatants[i].hasActed == true{
+				totActed++;
+				if totActed == array_length(combatants){
+					resetCycle = true;
+				}
+			}
+		}
+		
+		if resetCycle == true{
+			for (var i=0;i<array_length(combatants);i++;){
+				combatants[i].hasActed = false;
+			}
+		
+			//@TODO Check for any round count events from struct. (i.e. a round-limited battle.)
+				// if roundEvents[] not empty, check for trigger rounds.
+		
+		}
+		step = "Determine active combatant";
+}
