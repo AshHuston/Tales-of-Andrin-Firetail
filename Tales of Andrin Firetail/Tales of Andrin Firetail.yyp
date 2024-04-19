@@ -54,7 +54,6 @@
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},
     {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
-    {"id":{"name":"scr_create_party_combat_objects","path":"scripts/scr_create_party_combat_objects/scr_create_party_combat_objects.yy",},},
     {"id":{"name":"Screenshot","path":"sprites/Screenshot/Screenshot.yy",},},
     {"id":{"name":"spr_smiley","path":"sprites/spr_smiley/spr_smiley.yy",},},
   ],

@@ -1,5 +1,22 @@
 //CombatDetailStruct should contain enemy ids [], enemy positioning, round timer events, [MORE?]
 
+/**
+ * Creates the combat characters for party members.
+ * @param {any*} partyIDs overworld object IDs for party members.
+ * @returns {array} object IDs, in the order the overworld ids were provided.
+ */
+function createPartyCombatObjects(partyIDs){
+	var combatObjectIDs = [];
+	
+	for (var i=0; i<array_length(partyIDs); i++;){
+		var combatCharID = instance_create_depth(x,y, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});
+		array_push(combatObjectIDs, combatCharID);
+	}
+	
+	return combatObjectIDs;
+}
+
+
 //-------------------COMBAT START----------------------
 
 	//Begin transition animation
