@@ -16,6 +16,7 @@ switch(step){
 		//Iterate, comparing speed to highestSpeed.
 		var highestSpeed = 0;
 		var fastestRemainingCombatant = "";
+		//@TODO Determine how to handle ties on speed.
 		for (var i=0;i<array_length(canStillGo);i++;){
 			if 	canStillGo[i].totalSpeed >= highestSpeed{
 				highestSpeed = canStillGo[i].totalSpeed;
@@ -55,7 +56,7 @@ switch(step){
 		
 		//If so, animate death/down.
 			//@TODO Figure out how to do this. 
-			//Probably just setting their sprite to a death animation then a sprite speed/index to do the last frame.
+			//Probably setting the sprite to a death animation then a speed/index to do the last frame.
 		
 		step = "Reset check";
 	break;
