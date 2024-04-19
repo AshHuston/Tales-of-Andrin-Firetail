@@ -9,22 +9,21 @@ switch(step){
 		var canStillGo = combatants;
 		for (var i=0;i<array_length(combatants);i++;){
 			if 	combatants[i].currentHP <= 0 || combatants[i].hasActed{
-				array_delete(combatants, i, 1);	
+				array_delete(canStillGo, i, 1);	
 			}
 		}
 		
 		//Iterate, comparing speed to highestSpeed.
 		var highestSpeed = 0;
-		var fastestCombatant = "";
-		for (var i=0;i<array_length(combatants);i++;){
-			if 	combatants[i].totalSpeed >= highestSpeed{
-				highestSpeed = combatants[i].totalSpeed;
-				fastestCombatant = combatants[i];
+		var fastestRemainingCombatant = "";
+		for (var i=0;i<array_length(canStillGo);i++;){
+			if 	canStillGo[i].totalSpeed >= highestSpeed{
+				highestSpeed = canStillGo[i].totalSpeed;
+				fastestRemainingCombatant = canStillGo[i];
 			}
 		}
 	
-		//Highest who has not yet gone can now go.
-		var activeCombatant = fastestCombatant;
+		var activeCombatant = fastestRemainingCombatant;
 		step = "Run turn";
 	break;
 	
