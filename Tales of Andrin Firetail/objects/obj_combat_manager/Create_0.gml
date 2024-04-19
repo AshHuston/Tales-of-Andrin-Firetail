@@ -3,7 +3,7 @@
 /**
  * Creates the combat characters for party members.
  * @param {any*} partyIDs overworld object IDs for party members.
- * @returns {array} object IDs, in the order the overworld ids were provided.
+ * @returns {array} obj_combat_party_member object IDs, in the order the overworld ids were provided.
  */
 function createPartyCombatObjects(partyIDs){
 	var combatObjectIDs = [];
@@ -24,6 +24,7 @@ function createPartyCombatObjects(partyIDs){
 	//move to combat room
 
 	//Create list of combat object IDs.
+		var combatants = []
 		// Aaron + 0-3 party members.
 		var charAaron = global.OVERWORLD_ID_AARON;
 		var charA = global.OVERWORLD_ID_A;			// Currently these all are the overworld IDs,
@@ -39,7 +40,7 @@ function createPartyCombatObjects(partyIDs){
 			}
 		}
 		
-		createPartyCombatObjects(partyIDs);
+		partyIDs = createPartyCombatObjects(partyIDs);
 		
 		// Enemies are either premade or created by their own function. Overworld enemy will generate it.
 		// Either way, their ids will get passed in via the struct.
@@ -62,5 +63,14 @@ function createPartyCombatObjects(partyIDs){
 		}
 		
 		//Receive ids/positions from monster struct
-	
+		var mobs = [mob1, mob2, mob3, mob4, mob5];
+		
+		//Combine combatants
+		for (var i=0;i<array_length(partyIDs);i++;){
+			array_push(combatants, partyIDs[i]);
+		}
+		for (var i=0;i<array_length(mobs);i++;){
+			array_push(combatants, mobs[i]);
+		}
+		
 	//Start combat clock
