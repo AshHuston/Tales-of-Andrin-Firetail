@@ -14,12 +14,10 @@ switch(step){
 		}
 		
 		//Iterate, comparing speed to highestSpeed.
-		var highestSpeed = 0;
-		var fastestRemainingCombatant = "";
+		var fastestRemainingCombatant = canStillGo[0];
 		//@TODO Determine how to handle ties on speed.
 		for (var i=0;i<array_length(canStillGo);i++;){
-			if 	canStillGo[i].totalSpeed >= highestSpeed{
-				highestSpeed = canStillGo[i].totalSpeed;
+			if 	canStillGo[i].totalSpeed > fastestRemainingCombatant.totalSpeed{
 				fastestRemainingCombatant = canStillGo[i];
 			}
 		}
@@ -36,11 +34,21 @@ switch(step){
 			//@TODO Figure this out.
 		
 		//@TODO Display character menu, select action/target(s).
+			var action = {};
+			var attacks = activeCombatant.listAttacks();
+			var items = activeCombatant.listItems();
+			var spells = activeCombatant.listSpells();
+			
 			// Will somehow utilize -> activeCombatant.menuTexture
+				// Uses attacks, items, and spells to build menu.
+			
 			//If enemy, determine action based on AI rules.
+			if activeCombatant.object_index == obj_enemy || activeCombatant.parent.object_index == obj_enemy{
+				action = activeCombatant.getAction();
+			}
 			
 		//Perform selected action. (spell, ability, attack, item, etc.)
-			//@TODO 
+			//@TODO Return the chosen action and target(s) to the combatant's master fuction doAction() or something like that.
 			
 		activeCombatant.hasActed = true;	
 		
