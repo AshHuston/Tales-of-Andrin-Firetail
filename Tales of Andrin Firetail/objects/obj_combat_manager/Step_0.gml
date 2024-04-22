@@ -34,10 +34,15 @@ switch(step){
 			//@TODO Figure this out.
 		
 		//@TODO Display character menu, select action/target(s).
+			//@TODO move all the functionaility of obj_title_menu to this object
 			var action = {};
-			var attacks = activeCombatant.listAttacks();
-			var items = activeCombatant.listItems();
-			var spells = activeCombatant.listSpells();
+			
+			if activeCombatant.object_index == obj_combat_party_member || activeCombatant.parent.object_index == obj_combat_party_member{
+				var attacks = activeCombatant.listAttacks();
+				var specialActions = activeCombatant.listSpecialActions();
+				var items = activeCombatant.listItems();
+				var spells = activeCombatant.listSpells();
+			}
 			
 			// Will somehow utilize -> activeCombatant.menuTexture
 				// Uses attacks, items, and spells to build menu.

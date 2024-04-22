@@ -1,3 +1,5 @@
+///@description
+
 event_inherited();
 
 menuTexture = ""; //@TODO Add menu texture per character.
@@ -121,3 +123,31 @@ spells = [];
 	//@TODO Add a for loop adding spells. Spells should be a struct detailing at minimum, 'Name' and other important spell stuff.
 
 specialActions = []; //@TODO Special action names. Will figure this out later.
+
+function listAttacks(){
+	return attacks;	
+}
+
+function listSpecialActions(){
+	return specialActions;	
+}
+
+function listItems(){
+	var outputItems = [];
+	for (var i=0; i<array_length(inventory);i++;){
+		if inventory[i].combatMenu == true{
+			array_push(outputItems, inventory[i]);
+		}
+	}
+	return outputItems;
+}
+
+function listSpells(){
+	var outputSpells = [];
+	for (var i=0; i<array_length(spells);i++;){
+		if spells[i].combatMenu == true{
+			array_push(outputItems, spells[i]);
+		}
+	}
+	return outputSpells;
+}
