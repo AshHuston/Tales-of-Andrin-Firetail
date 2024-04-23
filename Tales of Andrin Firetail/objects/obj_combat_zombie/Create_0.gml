@@ -20,7 +20,8 @@ swipe = {
 	hit_chance: 90, 
 	effect_chance: 10, 
 	effect_type: "poison",
-	frequency: round(random_range(8,12))	//@TODO Figure out what kind of frequency numbers actually make sense.
+	frequency: round(random_range(8,12)),	//@TODO Figure out what kind of frequency numbers actually make sense.
+	actionType:"attack"
 }
 
 bite = {
@@ -34,7 +35,8 @@ bite = {
 	hit_chance: 75, 
 	effect_chance: 30, 
 	effect_type: "poison",
-	frequency: round(random_range(4,8))
+	frequency: round(random_range(4,8)),
+	actionType:"attack"
 }
 
 attacks = [swipe, bite]

@@ -1,12 +1,15 @@
-var step = "Determine active combatant";	
+	
 
 	//-------------------COMBAT CLOCK----------------------
 switch(step){
+	case "Awaiting player input":
+	break;
 	
 	case "Determine active combatant":
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
 		var canStillGo = combatants;
+		//show_debug_message(combatants)
 		for (var i=0;i<array_length(combatants);i++;){
 			if 	combatants[i].currentHP <= 0 || combatants[i].hasActed{
 				array_delete(canStillGo, i, 1);	
@@ -22,11 +25,11 @@ switch(step){
 			}
 		}
 	
-		var activeCombatant = fastestRemainingCombatant;
-		step = "Run turn";
+		activeCombatant = fastestRemainingCombatant;
+		step = "Open menu";
 	break;
 	
-	case "Run turn":
+	case "Open menu":
 	//On a turn:
 		activeCombatant.isActive = true;
 		
@@ -35,37 +38,51 @@ switch(step){
 		
 		//@TODO Display character menu, select action/target(s).
 			//@TODO move all the functionaility of obj_title_menu to this object
-			var action = {};
-			
-			if activeCombatant.object_index == obj_combat_party_member || activeCombatant.parent.object_index == obj_combat_party_member{
+			action = {name:"empty"};
+			targets = [];
+			if activeCombatant.object_index == obj_combat_party_member || object_get_parent(activeCombatant.object_index) == obj_combat_party_member{
 				var attacks = activeCombatant.listAttacks();
 				var specialActions = activeCombatant.listSpecialActions();
-				var items = activeCombatant.listItems();
+				var inventory = activeCombatant.listItems();
 				var spells = activeCombatant.listSpells();
-			}
 			
-			// Will somehow utilize -> activeCombatant.menuTexture
-				// Uses attacks, items, and spells to build menu.
+			
+			// Might somehow utilize -> activeCombatant.menuTexture   \/
+				instance_create_depth(x,y,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
+				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
+			}
 			
 			//If enemy, determine action based on AI rules.
-			if activeCombatant.object_index == obj_enemy || activeCombatant.parent.object_index == obj_enemy{
+			if activeCombatant.object_index == obj_enemy || object_get_parent(activeCombatant.object_index) == obj_enemy{
 				action = activeCombatant.getAction();
+				step = "Do action";
 			}
+	break;
+	
+	case "Do action":
+		if action.name != "empty" && array_length(targets) != 0 {
+			action.targetID = targets[0]; //Could be an ID or "all" or "self"
+			if array_length(targets) == 2 {action.bonus_targetID = targets[1];}
 			
-		//Perform selected action. (spell, ability, attack, item, etc.)
-			//@TODO Return the chosen action and target(s) to the combatant's master fuction doAction() or something like that.
-			
-		activeCombatant.hasActed = true;	
+			activeCombatant.doAction(action);
 		
-		step = "Bring our yer dead";
+			activeCombatant.hasActed = true;	
+			action = {name:"empty"};
+			targets = [];
+			step = "Bring our yer dead";
+		}
+	break;
 		
-	case "Bring our yer dead":	
+	case "Bring our yer dead":
 	//Check for anyone below 0HP.
 		for (var i=0;i<array_length(combatants);i++;){
 			if combatants[i].currentHP <= 0{
+				//combatants[i].currentHP = 0; // Could add that if we don't want negetive HP.
 				combatants[i].isConscious = false;
 			}
 		}
+		
+		//We could toy around with being unconcious but having HP means you may wake up.
 		
 		//If so, animate death/down.
 			//@TODO Figure out how to do this. 

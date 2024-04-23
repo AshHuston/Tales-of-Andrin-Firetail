@@ -7,9 +7,12 @@
  */
 function createPartyCombatObjects(partyIDs){
 	var combatObjectIDs = [];
+	var combatCharID
 	
 	for (var i=0; i<array_length(partyIDs); i++;){
-		var combatCharID = instance_create_depth(x,y, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});
+		//show_debug_message(partyIDs[i]);
+		if i==0 {combatCharID = instance_create_depth(x,y, 0, obj_combat_aaron, {associatedCharacterID:partyIDs[i]});}
+		else{combatCharID = instance_create_depth(x,y, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});}
 		array_push(combatObjectIDs, combatCharID);
 	}
 	
@@ -34,14 +37,18 @@ function createPartyCombatObjects(partyIDs){
 		
 		//Make sure group size is accurate.
 		var partyIDs = [charAaron, charA, charB, charC];
+			
 		for (var i=0;i<array_length(partyIDs);i++;){
+			//show_debug_message(partyIDs[i])
 			if 	partyIDs[i] == 0{
-				array_delete(partyIDs, i, 1);	
+				show_debug_message("deleted - " + string(partyIDs[i]))
+				array_delete(partyIDs, i, 1);
+				i = 0;
 			}
 		}
 		
 		partyIDs = createPartyCombatObjects(partyIDs);
-		
+		show_debug_message(partyIDs)
 		// Enemies are either premade or created by their own function. Overworld enemy will generate it.
 		// Either way, their ids will get passed in via the struct.
 
@@ -67,8 +74,12 @@ function createPartyCombatObjects(partyIDs){
 		for (var i=0;i<array_length(partyIDs);i++;){
 			array_push(combatants, partyIDs[i]);
 		}
-		for (var i=0;i<array_length(mobs);i++;){
-			array_push(combatants, mobs[i]);
-		}
+		//for (var i=0;i<array_length(mobs);i++;){
+		//	array_push(combatants, mobs[i]);
+		//}
 		
 	//Start combat clock
+	step = "Determine active combatant";
+	activeCombatant = combatants[0];
+	action = {name:"empty"};
+	targets = [];

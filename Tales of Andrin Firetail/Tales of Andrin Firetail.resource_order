@@ -30,6 +30,7 @@
     {"name":"obj_settings","order":3,"path":"objects/obj_settings/obj_settings.yy",},
     {"name":"obj_textbox","order":2,"path":"objects/obj_textbox/obj_textbox.yy",},
     {"name":"obj_title_menu","order":4,"path":"objects/obj_title_menu/obj_title_menu.yy",},
+    {"name":"obj_combat_menu","order":6,"path":"objects/obj_combat_menu/obj_combat_menu.yy",},
     {"name":"rm_combat_testing","order":1,"path":"rooms/rm_combat_testing/rm_combat_testing.yy",},
     {"name":"scr_combat_order","order":2,"path":"scripts/scr_combat_order/scr_combat_order.yy",},
     {"name":"scr_global_vars","order":1,"path":"scripts/scr_global_vars/scr_global_vars.yy",},

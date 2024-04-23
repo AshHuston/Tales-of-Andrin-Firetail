@@ -53,6 +53,7 @@
     {"id":{"name":"obj_settings","path":"objects/obj_settings/obj_settings.yy",},},
     {"id":{"name":"obj_textbox","path":"objects/obj_textbox/obj_textbox.yy",},},
     {"id":{"name":"obj_title_menu","path":"objects/obj_title_menu/obj_title_menu.yy",},},
+    {"id":{"name":"obj_combat_menu","path":"objects/obj_combat_menu/obj_combat_menu.yy",},},
     {"id":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
     {"id":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
