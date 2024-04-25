@@ -7,6 +7,7 @@ skillMelee = 20;		//		to test the Overworld --> Combat object conversion.
 skillEdged = 5;
 skillMagic = 5;
 
+framecount = 0; //Remove this later
 
 potion = {name:"Healing Potion", 
 		quantity: 5, 

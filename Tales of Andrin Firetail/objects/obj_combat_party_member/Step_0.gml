@@ -15,9 +15,7 @@ bite = {
 	frequency: 5,
 	actionType: "attack"
 };
-if instance_exists(obj_enemy){
-bite.targetID = instance_find(obj_enemy, 0);
-}
+
 
 shoot = {
 	name: "Shoot",	//Only really needed for playable characters. Will show up on menu.
@@ -33,9 +31,6 @@ shoot = {
 	frequency: 5,
 	actionType: "attack"
 };
-if instance_exists(obj_enemy){
-shoot.targetID = instance_find(obj_enemy, 0);
-}
 
 attacks = [bite, shoot];
 

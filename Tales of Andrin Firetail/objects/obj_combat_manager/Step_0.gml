@@ -34,11 +34,14 @@ switch(step){
 		}
 	
 		activeCombatant = fastestRemainingCombatant;
+		
+		
 		step = "Open menu";
 	break;
 	
 	case "Open menu":
 	//On a turn:
+		
 		activeCombatant.isActive = true;
 		if instance_exists(obj_combat_menu){
 		instance_destroy(menu);	
@@ -61,6 +64,7 @@ switch(step){
 				menu = instance_create_depth(x+40,y+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
 				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
 			}
+			
 			
 			//If enemy, determine action based on AI rules.
 			if activeCombatant.object_index == obj_enemy || object_get_parent(activeCombatant.object_index) == obj_enemy{
@@ -98,7 +102,7 @@ switch(step){
 			if array_length(targets) == 2 {action.bonus_targetID = targets[1];}
 			
 			activeCombatant.doAction(action);
-		
+			
 			activeCombatant.hasActed = true;	
 			action = {name:"empty"};
 			targets = [];
@@ -147,4 +151,5 @@ switch(step){
 		
 		}
 		step = "Determine active combatant";
+		
 }

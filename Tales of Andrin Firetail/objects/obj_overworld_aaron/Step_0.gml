@@ -6,6 +6,7 @@ if !instance_exists(obj_combat_aaron){
 }
 
 
-if !instance_exists(obj_combat_manager){
+if !instance_exists(obj_combat_manager) && framecount >= 100{
 	instance_create_depth(x,y,0,obj_combat_manager, {mob1:instance_find(obj_enemy, 0), mob2:instance_find(obj_enemy, 1), mob3:instance_find(obj_enemy, 2), mob4:instance_find(obj_enemy, 3), mob5:instance_find(obj_enemy, 4)});
 }
+framecount++

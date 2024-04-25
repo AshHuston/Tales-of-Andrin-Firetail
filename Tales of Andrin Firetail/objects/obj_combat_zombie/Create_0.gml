@@ -44,9 +44,7 @@ attacks = [swipe, bite]
 function getAction(){
 	//Pick target
 	var partyIDs = []
-	if instance_exists(obj_combat_manager){
-		partyIDs = instance_find(obj_combat_manager, 0).getPartyIDs();
-	}
+		partyIDs = getCombatPartyIDs();
 	//var targetIndex = round(random_range(0,array_length(partyIDs)));
 	var targetIndex = 0;
 	var target = partyIDs[targetIndex];
