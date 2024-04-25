@@ -1,11 +1,11 @@
-baseHP = round(random_range(22,29));
+baseHP = round(random_range(45,75));
 currentHP = baseHP;
 statusEffect = [];
 resistances = ["physical", "poison"];
 immunities = ["poison", "tired"];
 armor = round(random_range(3,4));
 magicResist = 1;
-
+totalSpeed = round(random_range(0, 1));
 // Inherit the parent event
 event_inherited();
 
@@ -40,3 +40,19 @@ bite = {
 }
 
 attacks = [swipe, bite]
+
+function getAction(){
+	//Pick target
+	var partyIDs = []
+	if instance_exists(obj_combat_manager){
+		partyIDs = instance_find(obj_combat_manager, 0).getPartyIDs();
+	}
+	//var targetIndex = round(random_range(0,array_length(partyIDs)));
+	var targetIndex = 0;
+	var target = partyIDs[targetIndex];
+	
+	// Pick attack
+	bite.targetID = target;
+	show_debug_message("Used " + bite.name + " targeting " + string(target));
+	return bite;
+}

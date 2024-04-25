@@ -20,6 +20,7 @@ function createPartyCombatObjects(partyIDs){
 }
 
 
+
 //-------------------COMBAT START----------------------
 
 	//Begin transition animation
@@ -74,12 +75,26 @@ function createPartyCombatObjects(partyIDs){
 		for (var i=0;i<array_length(partyIDs);i++;){
 			array_push(combatants, partyIDs[i]);
 		}
-		//for (var i=0;i<array_length(mobs);i++;){
-		//	array_push(combatants, mobs[i]);
-		//}
+		for (var i=0;i<array_length(mobs);i++;){
+			if mobs[i] != ""{
+				array_push(combatants, mobs[i]);
+			}
+		}
 		
 	//Start combat clock
 	step = "Determine active combatant";
 	activeCombatant = combatants[0];
 	action = {name:"empty"};
 	targets = [];
+	menu = "";
+	hovering = -1;
+	
+	function getPartyIDs(combatants = combatants){
+		outArr =[]
+		for (var i=0;i<array_length(combatants);i++;){ 
+			if object_get_parent(combatants[i].object_index) != obj_enemy{
+			array_push(outArr, combatants[i]);	
+			}
+		}
+		return outArr;	
+	}

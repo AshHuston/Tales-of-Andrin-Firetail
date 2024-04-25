@@ -1,4 +1,6 @@
-	
+var up_key = keyboard_check_pressed(vk_up);
+var down_key = keyboard_check_pressed(vk_down);
+var accept_key = keyboard_check_pressed(vk_return);
 
 	//-------------------COMBAT CLOCK----------------------
 switch(step){
@@ -6,6 +8,12 @@ switch(step){
 	break;
 	
 	case "Determine active combatant":
+	
+	if !instance_exists(obj_enemy) && instance_exists(obj_combat_menu){
+		instance_destroy(menu);	
+		instance_destroy(self);
+	}
+	
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
 		var canStillGo = combatants;
@@ -32,7 +40,9 @@ switch(step){
 	case "Open menu":
 	//On a turn:
 		activeCombatant.isActive = true;
-		
+		if instance_exists(obj_combat_menu){
+		instance_destroy(menu);	
+		}
 		//Reduce their counters by 1. (Statuses/cooldowns)
 			//@TODO Figure this out.
 		
@@ -48,7 +58,7 @@ switch(step){
 			
 			
 			// Might somehow utilize -> activeCombatant.menuTexture   \/
-				instance_create_depth(x,y,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
+				menu = instance_create_depth(x+40,y+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
 				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
 			}
 			
@@ -58,6 +68,29 @@ switch(step){
 				step = "Do action";
 			}
 	break;
+	
+	
+	case "Select targets":
+			//Figure out how to set action.targetID and action.bonus_targetID.
+			//I feel like this SHOULD be easy.
+			//Maybe just loop though the options and display an indicateor over the selected target.
+			var combatantsLength = array_length(combatants);
+			if down_key{hovering++;}
+			if up_key{hovering--;}
+			if hovering>=combatantsLength{hovering=0};
+			if hovering<0 {hovering=combatantsLength-1};
+			action.targetID = combatants[hovering];
+			
+			if object_get_parent(combatants[hovering].object_index) != obj_enemy{
+				
+				if down_key{hovering++}
+				else{hovering--}
+				
+			}
+			
+			if accept_key{step = "Do action";}
+	break;
+	
 	
 	case "Do action":
 		if action.name != "empty" && array_length(targets) != 0 {

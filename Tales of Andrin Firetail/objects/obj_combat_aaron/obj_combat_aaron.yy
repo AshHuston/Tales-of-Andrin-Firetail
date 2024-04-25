@@ -32,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_smiley",
+    "path":"sprites/spr_smiley/spr_smiley.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

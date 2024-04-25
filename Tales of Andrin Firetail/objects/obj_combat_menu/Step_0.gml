@@ -128,6 +128,6 @@ if (accept_key)
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	combatManagerID.action = selectedAction;
 	combatManagerID.targets = chosenTargets;
-	combatManagerID.step = "Do action";
+	combatManagerID.step = "Select targets";
 	instance_destroy(self);
 }

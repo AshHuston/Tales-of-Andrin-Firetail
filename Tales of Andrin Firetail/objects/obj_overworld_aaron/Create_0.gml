@@ -22,6 +22,7 @@ potion = {name:"Healing Potion",
 		targetID:"",
 		bonus_targetID: ""
 		}
+		
 
 herb = {name:"Cleansing Herb", 
 		quantity: 2, 
