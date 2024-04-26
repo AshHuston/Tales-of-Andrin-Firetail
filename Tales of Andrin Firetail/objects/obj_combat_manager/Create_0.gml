@@ -68,7 +68,7 @@ function createPartyCombatObjects(partyIDs){
 		}
 		
 		//Receive ids/positions from monster struct
-		var mobs = [mob1, mob2, mob3, mob4, mob5];
+		var mobs = [mob1, mob2, mob3, mob4, mob5]; //This has us maxing out theorerically at 5 enemies, but depending on what our highest number is we can just add more, it will ignore empty ones.
 		
 		//Combine combatants
 		for (var i=0;i<array_length(mobs);i++;){
@@ -76,7 +76,6 @@ function createPartyCombatObjects(partyIDs){
 				array_push(combatants, mobs[i]);
 			}
 		}
-		
 		
 		for (var i=0;i<array_length(partyIDs);i++;){
 			array_push(combatants, partyIDs[i]);

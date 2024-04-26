@@ -6,6 +6,10 @@ global.OVERWORLD_ID_C = 0;
 global.COMBAT_ORDERING = ["AARON", "A", "B", "C"];
 
 global.COMBATANTS = [];
+
+// Honestly idk if this is the right place for this or not. 
+// Right now im more concerned with making the global work.
+// It could just go in it's own script.
 function getCombatPartyIDs(){
 	show_debug_message(global.COMBATANTS);
 		outArr =[]
@@ -18,4 +22,3 @@ function getCombatPartyIDs(){
 		return outArr;	
 	}
 	
-//global.font_main = font_add_sprite(spr_font1, 32, true, 1);;
