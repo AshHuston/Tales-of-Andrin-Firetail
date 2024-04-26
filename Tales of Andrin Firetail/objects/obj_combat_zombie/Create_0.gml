@@ -3,8 +3,8 @@ currentHP = baseHP;
 statusEffect = [];
 resistances = ["physical", "poison"];
 immunities = ["poison", "tired"];
-armor = round(random_range(3,4));
-magicResist = 1;
+totalArmor = round(random_range(3,4));
+totalMagicResist = 1;
 totalSpeed = round(random_range(0, 1));
 // Inherit the parent event
 event_inherited();
@@ -26,6 +26,7 @@ swipe = {
 
 bite = {
 	display_name: "bite",
+	name: "bite",
 	description: "bites at target. Low chance to poison.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
@@ -51,6 +52,6 @@ function getAction(){
 	
 	// Pick attack
 	bite.targetID = target;
-	show_debug_message("Used " + bite.name + " targeting " + string(target));
+	show_debug_message("Used " + bite.name + " targeting " + string(target.combat_name));
 	return bite;
 }

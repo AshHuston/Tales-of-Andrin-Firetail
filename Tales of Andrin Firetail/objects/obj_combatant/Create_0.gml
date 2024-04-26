@@ -1,7 +1,7 @@
 hasActed = false;
 isActive = false;
 inConscious = true;
-
+statusEffects = [];
 
 
 /// @function                 attack(details);
@@ -22,7 +22,7 @@ function attack(details){
 		defenseStat = target.magic_resistence;
 	}
 	if details.dmg_type == "physical"{
-		defenseStat = target.armor;
+		defenseStat = target.totalArmor;
 	}
 	
 //Check if effect will apply.
@@ -61,7 +61,7 @@ function attack(details){
 		//If effected, apply effect.
 		if isEffected{
 			//Apply the effect to the target
-			target.statusEffect += (" "+ details.effect_type);
+			array_push(target.statusEffects, details.effect_type);
 			//Run effect animation.
 				//@TODO Run effect animation
 		}

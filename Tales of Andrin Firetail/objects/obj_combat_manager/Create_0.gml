@@ -42,7 +42,6 @@ function createPartyCombatObjects(partyIDs){
 		for (var i=0;i<array_length(partyIDs);i++;){
 			//show_debug_message(partyIDs[i])
 			if 	partyIDs[i] == 0{
-				show_debug_message("deleted - " + string(partyIDs[i]))
 				array_delete(partyIDs, i, 1);
 				i = 0;
 			}
@@ -90,7 +89,7 @@ function createPartyCombatObjects(partyIDs){
 	targets = [];
 	menu = "";
 	hovering = -1;
+	canStillGo = []
 	
-	
-	global.COMBATANTS = combatants;
-	show_debug_message(global.COMBATANTS)
+	//global.COMBATANTS = combatants;
+	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))

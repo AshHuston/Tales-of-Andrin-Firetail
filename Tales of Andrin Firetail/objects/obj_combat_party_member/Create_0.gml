@@ -16,6 +16,8 @@ skillMagic = associatedCharacterID.skillMagic;
 
 inventory = associatedCharacterID.inventory;
 activeEffects = associatedCharacterID.activeEffects;
+resistances = associatedCharacterID.resistances;
+immunities = associatedCharacterID.immunities;
 
 /// @function                 getItemBonus(stat);
 /// @param {String}	stat	  The stat to get.

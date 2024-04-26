@@ -16,10 +16,11 @@ switch(step){
 	
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
-		var canStillGo = combatants;
+		canStillGo = [];
+		array_copy(canStillGo, -1, combatants, 0, array_length(combatants))
 		//show_debug_message(combatants)
-		for (var i=0;i<array_length(combatants);i++;){
-			if 	combatants[i].currentHP <= 0 || combatants[i].hasActed{
+		for (var i=array_length(canStillGo)-1;i>=0;i--;){
+			if 	canStillGo[i].currentHP <= 0 || canStillGo[i].hasActed{
 				array_delete(canStillGo, i, 1);	
 			}
 		}
@@ -69,6 +70,8 @@ switch(step){
 			//If enemy, determine action based on AI rules.
 			if activeCombatant.object_index == obj_enemy || object_get_parent(activeCombatant.object_index) == obj_enemy{
 				action = activeCombatant.getAction();
+				targets = [action.targetID]
+				if action.bonus_targetID != ""{array_push(targets, action.bonus_targetID);}
 				step = "Do action";
 			}
 	break;
@@ -83,15 +86,13 @@ switch(step){
 			if up_key{hovering--;}
 			if hovering>=combatantsLength{hovering=0};
 			if hovering<0 {hovering=combatantsLength-1};
-			action.targetID = combatants[hovering];
-			
 			if object_get_parent(combatants[hovering].object_index) != obj_enemy{
 				
 				if down_key{hovering++}
 				else{hovering--}
 				
 			}
-			
+			targets[0] = combatants[hovering];
 			if accept_key{step = "Do action";}
 	break;
 	
@@ -114,10 +115,19 @@ switch(step){
 	//Check for anyone below 0HP.
 		for (var i=0;i<array_length(combatants);i++;){
 			if combatants[i].currentHP <= 0{
-				//combatants[i].currentHP = 0; // Could add that if we don't want negetive HP.
-				combatants[i].isConscious = false;
+				if object_get_parent(combatants[i].object_index) == obj_enemy{
+					combatants[i].image_angle = 270;
+					array_delete(combatants, i, 1)
+					array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))
+				}
+				else{
+					combatants[i].isConscious = false;
+					combatants[i].currentHP = 0;
+				}
+				array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 			}
 		}
+		
 		
 		//We could toy around with being unconcious but having HP means you may wake up.
 		
