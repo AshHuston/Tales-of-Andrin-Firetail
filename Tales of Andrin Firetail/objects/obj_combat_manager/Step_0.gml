@@ -81,6 +81,8 @@ switch(step){
 			//Figure out how to set action.targetID and action.bonus_targetID.
 			//I feel like this SHOULD be easy.
 			//Maybe just loop though the options and display an indicateor over the selected target.
+			
+			
 			var combatantsLength = array_length(combatants);
 			if down_key{hovering++;}
 			if up_key{hovering--;}
@@ -92,8 +94,18 @@ switch(step){
 				else{hovering--}
 				
 			}
-			targets[0] = combatants[hovering];
-			if accept_key{step = "Do action";}
+			
+			if accept_key{
+				targets[0] = combatants[hovering];
+				step = "Do action";
+				}
+			if action.actionType = "item"{
+				if action.canTarget = "self"{
+					targets[0] = "self";
+					step = "Do action";
+					}
+				}
+			
 	break;
 	
 	

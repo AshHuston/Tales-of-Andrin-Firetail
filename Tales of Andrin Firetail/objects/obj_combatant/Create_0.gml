@@ -61,7 +61,8 @@ function attack(details){
 		//If effected, apply effect.
 		if isEffected{
 			//Apply the effect to the target
-			array_push(target.statusEffects, details.effect_type);
+			array_push(target.activeEffects, {name:details.effect_type, value:true});
+			show_debug_message(target.combat_name + " effected with " + details.effect_type)
 			//Run effect animation.
 				//@TODO Run effect animation
 		}
