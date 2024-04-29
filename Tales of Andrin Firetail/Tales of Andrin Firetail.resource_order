@@ -9,6 +9,7 @@
     {"name":"Objects","order":9,"path":"folders/Objects.yy",},
     {"name":"Combat","order":8,"path":"folders/Objects/Combat.yy",},
     {"name":"Enemies","order":1,"path":"folders/Objects/Combat/Enemies.yy",},
+    {"name":"Action animations","order":4,"path":"folders/Objects/Combat/Action animations.yy",},
     {"name":"OverworldCharacters","order":5,"path":"folders/Objects/OverworldCharacters.yy",},
     {"name":"Enemies","order":1,"path":"folders/Objects/OverworldCharacters/Enemies.yy",},
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
@@ -36,7 +37,9 @@
     {"name":"scr_global_vars","order":1,"path":"scripts/scr_global_vars/scr_global_vars.yy",},
     {"name":"spr_font1","order":1,"path":"sprites/spr_font1/spr_font1.yy",},
     {"name":"spr_menu_1","order":5,"path":"sprites/spr_menu_1/spr_menu_1.yy",},
-    {"name":"Sprite6","order":1,"path":"sprites/Sprite6/Sprite6.yy",},
     {"name":"spr_targetIndicator","order":2,"path":"sprites/spr_targetIndicator/spr_targetIndicator.yy",},
+    {"name":"spr_test_attack_claw","order":1,"path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},
+    {"name":"spr_test_attack_claw9","order":2,"path":"sprites/spr_test_attack_claw9/spr_test_attack_claw9.yy",},
+    {"name":"Sprite6","order":1,"path":"sprites/Sprite6/Sprite6.yy",},
   ],
 }

@@ -114,8 +114,12 @@ switch(step){
 			action.targetID = targets[0]; //Could be an ID or "all" or "self"
 			if array_length(targets) == 2 {action.bonus_targetID = targets[1];}
 			
-			activeCombatant.doAction(action);
+			var results = activeCombatant.doAction(action); // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
+						
+			displayActionAnimation(action.targetID, results); //@TODO Write this lol. Probably contains this - displayDamage(action.targetID, results.damage);
 			
+			
+			//Maybe setting this in a seperate, post-aniamtion step. TBD. Prolly not bc that's slow
 			activeCombatant.hasActed = true;	
 			action = {name:"empty"};
 			targets = [];
