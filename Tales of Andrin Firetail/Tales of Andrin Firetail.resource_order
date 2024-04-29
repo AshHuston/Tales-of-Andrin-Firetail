@@ -29,6 +29,8 @@
     {"name":"obj_combat_menu","order":6,"path":"objects/obj_combat_menu/obj_combat_menu.yy",},
     {"name":"obj_combat_zombie","order":1,"path":"objects/obj_combat_zombie/obj_combat_zombie.yy",},
     {"name":"obj_combatant","order":3,"path":"objects/obj_combatant/obj_combatant.yy",},
+    {"name":"obj_damage_value_animation","order":3,"path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},
+    {"name":"obj_overworld_roy","order":2,"path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},
     {"name":"obj_settings","order":3,"path":"objects/obj_settings/obj_settings.yy",},
     {"name":"obj_textbox","order":2,"path":"objects/obj_textbox/obj_textbox.yy",},
     {"name":"obj_title_menu","order":4,"path":"objects/obj_title_menu/obj_title_menu.yy",},
@@ -39,7 +41,8 @@
     {"name":"spr_menu_1","order":5,"path":"sprites/spr_menu_1/spr_menu_1.yy",},
     {"name":"spr_targetIndicator","order":2,"path":"sprites/spr_targetIndicator/spr_targetIndicator.yy",},
     {"name":"spr_test_attack_claw","order":1,"path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},
-    {"name":"spr_test_attack_claw9","order":2,"path":"sprites/spr_test_attack_claw9/spr_test_attack_claw9.yy",},
+    {"name":"spr_test_attack_flame","order":2,"path":"sprites/spr_test_attack_flame/spr_test_attack_flame.yy",},
+    {"name":"spr_testRoy","order":3,"path":"sprites/spr_testRoy/spr_testRoy.yy",},
     {"name":"Sprite6","order":1,"path":"sprites/Sprite6/Sprite6.yy",},
   ],
 }

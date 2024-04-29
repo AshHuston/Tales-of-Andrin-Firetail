@@ -12,7 +12,7 @@ function createPartyCombatObjects(partyIDs){
 	for (var i=0; i<array_length(partyIDs); i++;){
 		//show_debug_message(partyIDs[i]);
 		if i==0 {combatCharID = instance_create_depth(x,y, 0, obj_combat_aaron, {associatedCharacterID:partyIDs[i]});}
-		else{combatCharID = instance_create_depth(x,y, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});}
+		else{combatCharID = instance_create_depth(x, y-100, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});}
 		array_push(combatObjectIDs, combatCharID);
 	}
 	
@@ -90,6 +90,9 @@ function createPartyCombatObjects(partyIDs){
 	menu = "";
 	hovering = -1;
 	canStillGo = []
+	originalScaleX = 0;
+	originalScaleY = 0;
+	activeCombatantScale = 1.2;
 	
 	//global.COMBATANTS = combatants;
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))

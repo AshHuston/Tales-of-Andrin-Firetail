@@ -17,14 +17,15 @@ potion = {name:"Healing Potion",
 		use: function healUser(targetID){
 			var healAmt = round(random_range(15, 30));
 			targetID.currentHP += healAmt;
-			return healAmt;
+			return {animation_index: "None", hpRestored: healAmt};
 		   	}, 
 		description:"Heals user for 15-30 HP", 
 		canTarget:"self",
 		actionType:"item",
 		combatMenu:true,
 		targetID:"",
-		bonus_targetID: ""
+		bonus_targetID: "",
+		animation_index: "None"
 		}
 		
 
@@ -67,14 +68,15 @@ herb = {name:"Cleansing Herb",
 				outputMessage = string_concat(outputMessage, ".");
 			
 				show_debug_message(outputMessage)
-				return outputMessage;
+				return {animation_index: "None", logText: outputMessage};
 		}, 
 		description:"Removes all negetive status effects.", 
 		canTarget:"self",
 		actionType:"item",
 		combatMenu:true,
 		targetID:"",
-		bonus_targetID: ""
+		bonus_targetID: "",
+		animation_index: "None"
 		}
 
 

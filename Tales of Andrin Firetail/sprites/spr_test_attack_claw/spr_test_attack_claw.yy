@@ -27,6 +27,8 @@
     {"$GMSpriteFrame":"","%Name":"d6cc8bac-4506-4f55-bf8c-043c74b64faf","name":"d6cc8bac-4506-4f55-bf8c-043c74b64faf","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"7ef2aab8-497e-4523-9415-82c88eb90025","name":"7ef2aab8-497e-4523-9415-82c88eb90025","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"fbab3deb-2593-422b-9e59-81599d379b36","name":"fbab3deb-2593-422b-9e59-81599d379b36","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"5979dfac-b43a-4ccc-bfd3-00ef653429c7","name":"5979dfac-b43a-4ccc-bfd3-00ef653429c7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"1e7308b4-9dbf-433b-bee1-659a6867e54a","name":"1e7308b4-9dbf-433b-bee1-659a6867e54a","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
@@ -63,7 +65,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":15.0,
+    "length":17.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -127,6 +129,12 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"fbab3deb-2593-422b-9e59-81599d379b36","path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"ae3a0736-4f08-4019-a5fc-198a6ca63868","IsCreationKey":false,"Key":14.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5979dfac-b43a-4ccc-bfd3-00ef653429c7","path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"5912a3bb-3da3-4e7d-9656-2a64d4ee55f0","IsCreationKey":false,"Key":15.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1e7308b4-9dbf-433b-bee1-659a6867e54a","path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"bd25d1f4-3d3b-430b-9139-18052fac44d4","IsCreationKey":false,"Key":16.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

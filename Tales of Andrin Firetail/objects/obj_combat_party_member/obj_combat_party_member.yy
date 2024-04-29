@@ -35,7 +35,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_testRoy",
+    "path":"sprites/spr_testRoy/spr_testRoy.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

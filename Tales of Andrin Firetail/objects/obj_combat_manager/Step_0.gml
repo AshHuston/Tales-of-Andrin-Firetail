@@ -2,6 +2,30 @@ var up_key = keyboard_check_pressed(vk_up);
 var down_key = keyboard_check_pressed(vk_down);
 var accept_key = keyboard_check_pressed(vk_return);
 
+function displayActionAnimation(targetsArr, results){
+	target = targetsArr[0];
+	if results.animation_index != "None"{
+		instance_create_depth(target.x, target.y, -100, obj_action_animation, {image_speed: 1.5, sprite_index: results.animation_index});
+		if array_length(targetsArr) == 2{
+			secondary_target = targetsArr[1];
+			instance_create_depth(secondary_target.x, secondary_target.y, -100, obj_action_animation, {sprite_index:results.animation_index});
+		}
+	}
+	
+	if struct_exists(results, "mainDmg"){
+		instance_create_depth(target.x, target.y, -100, obj_damage_value_animation, {dmgAmt: results.mainDmg});	
+			
+	}
+	
+	//@TODO Add pause and then animate status effect if applied. //And probably not if aleady affected.
+	
+	
+	if array_length(targetsArr) == 2{
+		secondary_target = targetsArr[1];
+		instance_create_depth(secondary_target.x, secondary_target.y, -100, obj_action_animation, {sprite_index:results.animation_index});
+	}
+}
+
 	//-------------------COMBAT CLOCK----------------------
 switch(step){
 	case "Awaiting player input":
@@ -18,7 +42,6 @@ switch(step){
 		//List all combatants that are not 0HP and have not yet acted this round.
 		canStillGo = [];
 		array_copy(canStillGo, -1, combatants, 0, array_length(combatants))
-		//show_debug_message(combatants)
 		for (var i=array_length(canStillGo)-1;i>=0;i--;){
 			if 	canStillGo[i].currentHP <= 0 || canStillGo[i].hasActed{
 				array_delete(canStillGo, i, 1);	
@@ -36,6 +59,13 @@ switch(step){
 	
 		activeCombatant = fastestRemainingCombatant;
 		
+		// This line just for testing rn. Probably will remove.
+		if object_get_parent(activeCombatant.object_index) == obj_enemy{activeCombatantScale = 1.2} else {activeCombatantScale = 1.6}
+		
+		originalScaleX = activeCombatant.image_xscale;
+		originalScaleY = activeCombatant.image_yscale;
+		activeCombatant.image_xscale = originalScaleX * activeCombatantScale;
+		activeCombatant.image_yscale = originalScaleY * activeCombatantScale;
 		
 		step = "Open menu";
 	break;
@@ -76,23 +106,19 @@ switch(step){
 			}
 	break;
 	
-	
 	case "Select targets":
-			//Figure out how to set action.targetID and action.bonus_targetID.
-			//I feel like this SHOULD be easy.
-			//Maybe just loop though the options and display an indicateor over the selected target.
-			
-			
 			var combatantsLength = array_length(combatants);
 			if down_key{hovering++;}
 			if up_key{hovering--;}
 			if hovering>=combatantsLength{hovering=0};
 			if hovering<0 {hovering=combatantsLength-1};
-			if object_get_parent(combatants[hovering].object_index) != obj_enemy{
-				
-				if down_key{hovering++}
-				else{hovering--}
-				
+			for (var i=0;i<3;i++){
+				if object_get_parent(combatants[hovering].object_index) != obj_enemy{	
+					if down_key{hovering++}
+					else{hovering--}	
+				}
+				if hovering>=combatantsLength{hovering=0};
+				if hovering<0 {hovering=combatantsLength-1};
 			}
 			
 			if accept_key{
@@ -105,26 +131,28 @@ switch(step){
 					step = "Do action";
 					}
 				}
-			
 	break;
-	
 	
 	case "Do action":
 		if action.name != "empty" && array_length(targets) != 0 {
-			action.targetID = targets[0]; //Could be an ID or "all" or "self"
+			action.targetID = targets[0]; //Could be an objectID or "all" or "self" //@TODO Handle these non-ID cases.
 			if array_length(targets) == 2 {action.bonus_targetID = targets[1];}
 			
-			var results = activeCombatant.doAction(action); // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
-						
-			displayActionAnimation(action.targetID, results); //@TODO Write this lol. Probably contains this - displayDamage(action.targetID, results.damage);
+			var results = activeCombatant.doAction(action);	   // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
+			displayActionAnimation(targets, results); //@TODO Write this lol. Probably contains this - displayDamage(action.targetID, results.damage);
 			
-			
-			//Maybe setting this in a seperate, post-aniamtion step. TBD. Prolly not bc that's slow
-			activeCombatant.hasActed = true;	
-			action = {name:"empty"};
-			targets = [];
-			step = "Bring our yer dead";
+			step = "Running animation";
 		}
+	break;
+	
+	case "Running animation":
+			if !instance_exists(obj_action_animation){
+			//&& !instance_exists(obj_damage_value_animation){			
+				activeCombatant.hasActed = true;	
+				action = {name:"empty"};
+				targets = [];
+				step = "Bring our yer dead";
+			}
 	break;
 		
 	case "Bring our yer dead":
@@ -151,6 +179,10 @@ switch(step){
 			//@TODO Figure out how to do this. 
 			//Probably setting the sprite to a death animation then a speed/index to do the last frame.
 		
+		
+		activeCombatant.image_xscale = originalScaleX; //Seemed like the best place to put this I guess.
+		activeCombatant.image_yscale = originalScaleY;
+		
 		step = "Reset check";
 	break;
 	
@@ -176,6 +208,5 @@ switch(step){
 				// if roundEvents[] not empty, check for trigger rounds.
 		
 		}
-		step = "Determine active combatant";
-		
+		step = "Determine active combatant";	
 }

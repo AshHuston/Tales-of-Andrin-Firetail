@@ -5,7 +5,7 @@ resistances = ["physical", "poison"];
 immunities = ["poison", "tired"];
 totalArmor = round(random_range(3,4));
 totalMagicResist = 1;
-totalSpeed = round(random_range(0, 1));
+totalSpeed = round(random_range(10, 13));
 // Inherit the parent event
 event_inherited();
 
@@ -33,11 +33,12 @@ bite = {
 	dmg_type: "physical", 
 	min_dmg: 3, 
 	max_dmg: 4, 
-	hit_chance: 75, 
+	hit_chance: 90, 
 	effect_chance: 30, 
 	effect_type: "poison",
 	frequency: round(random_range(4,8)),
-	actionType:"attack"
+	actionType:"attack",
+	animation_index: spr_test_attack_claw
 }
 
 attacks = [swipe, bite]

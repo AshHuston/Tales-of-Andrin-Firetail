@@ -44,7 +44,7 @@ function attack(details){
 	}
 	
 //Checks if attack hits. If so, resolve the attack.
-	var totalDamage = {mainDmg:0,mainType:"",secondaryDmg:0,secondaryType:""}
+	var results = {mainDmg:0, mainType:"", secondaryDmg:0, secondaryType:"", hit: false, animation_index: details.animation_index, effect: "", isEffected: false};
 	var hitPercent = details.hit_chance - defenseStat;
 	if random_range(0, 100) <= hitPercent{
 		//Determine damage
@@ -52,21 +52,19 @@ function attack(details){
 		dmg = round(dmg)
 		//Apply damage
 		details.targetID.currentHP -= dmg;
-		totalDamage.mainDmg = dmg;
-		totalDamage.mainType = details.dmg_type;
-		
-		//Run damage animation.
-			//@TODO Run damage animation. Should display dmg.
+		results.mainDmg = dmg;
+		results.mainType = details.dmg_type;
+		results.hit = true;
 		
 		//If effected, apply effect.
 		if isEffected{
 			//Apply the effect to the target
-			array_push(target.activeEffects, {name:details.effect_type, value:true});
+			array_push(target.activeEffects, {name: details.effect_type, value: true});
 			show_debug_message(target.combat_name + " effected with " + details.effect_type)
-			//Run effect animation.
-				//@TODO Run effect animation
+			results.isEffected = true;
+			results.effect = details.effect_type;
 		}
-	}
+	}else{results.mainDmg = -1;}
 
 //Apply attack to the bonus target.
 	if details.bonus_targetID != ""{
@@ -85,25 +83,27 @@ function attack(details){
 		
 		//Recur the function for the bonus hit.
 		var secondaryAttack = attack(bonusHitDetails);
-		totalDamage.secondaryDmg = secondaryAttack.mainDmg;
-		totalDamage.secondaryType = secondaryAttack.mainType;
+		results.secondaryDmg = secondaryAttack.mainDmg;
+		results.secondaryType = secondaryAttack.mainType;
 	}
-	return totalDamage;
+	return results;
 }
 
 function useItem(details){
+	var result;
 	if details.targetID == "self"{
-		details.use(self, details.bonus_targetID);	
+		result = details.use(self, details.bonus_targetID);	
 	}
 	else{
-		details.use(targetID, details.bonus_targetID);	
+		result = details.use(targetID, details.bonus_targetID);	
 	}
+	return result;
 }
 
 function doAction(detailStruct){
 	switch(detailStruct.actionType){
 	case "attack":
-		show_debug_message(attack(detailStruct).mainDmg);
+		return attack(detailStruct);
 		break;
 	
 	case "spell":
@@ -111,7 +111,7 @@ function doAction(detailStruct){
 		break;
 	
 	case "item":
-		show_debug_message(useItem(detailStruct));
+		return useItem(detailStruct);
 		break;
 	
 	case "special":
