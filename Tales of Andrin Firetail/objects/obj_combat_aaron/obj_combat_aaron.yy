@@ -5,7 +5,7 @@
   "managed":true,
   "name":"obj_combat_aaron",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"","%Name":"","name":"","objectId":{"name":"obj_combat_party_member","path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},"propertyId":{"name":"associatedCharacterID","path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"global.OVERWORLD_ID_AARON",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_combat_party_member","path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},"propertyId":{"name":"associatedCharacterID","path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},"resource":null,"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"global.OVERWORLD_ID_AARON",},
   ],
   "parent":{
     "name":"CombatCharacters",
@@ -29,7 +29,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"","%Name":"combat_name","filters":[],"listItems":[],"multiselect":false,"name":"combat_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Aaron","varType":2,},
+    {"$GMObjectProperty":"v1","%Name":"combat_name","filters":[],"listItems":[],"multiselect":false,"name":"combat_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":null,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Aaron","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
