@@ -1,6 +1,7 @@
 up_key = keyboard_check_pressed(vk_up);
 down_key = keyboard_check_pressed(vk_down);
 accept_key = keyboard_check_pressed(vk_return);
+back_key = keyboard_check_pressed(vk_backspace)
 //if 0.25 > gamepad_axis_value(0, gp_axislv) > -0.25 {up_down_stick = gamepad_axis_value(0, gp_axislv);}
 accept_btn = gamepad_button_value(0, gp_face1);
 
@@ -22,6 +23,7 @@ op_length = array_length(option[menu_level]);
 
 //if  (input("down_cont") - input("up_cont")) == 0 {btn_pressed = false}
 
+if back_key{menu_level = 0;}
 
 //Clicky da button
 if (accept_key) 

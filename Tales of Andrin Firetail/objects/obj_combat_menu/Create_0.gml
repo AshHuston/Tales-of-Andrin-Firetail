@@ -36,6 +36,7 @@ pos = 0;
 up_key = keyboard_check(vk_up);
 down_key = keyboard_check(vk_down);
 accept_key = keyboard_check(vk_return);
+back_key = keyboard_check(vk_backspace)
 up_down_stick = 0;
 accept_btn = gamepad_button_value(0, gp_face1);
 

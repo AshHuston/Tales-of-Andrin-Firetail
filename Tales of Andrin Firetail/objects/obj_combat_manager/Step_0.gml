@@ -1,10 +1,11 @@
 var up_key = keyboard_check_pressed(vk_up);
 var down_key = keyboard_check_pressed(vk_down);
 var accept_key = keyboard_check_pressed(vk_return);
+var back_key = keyboard_check_pressed(vk_backspace);
 
 function displayActionAnimation(targetsArr, results){
 	target = targetsArr[0];
-	if results.animation_index != "None"{
+	if results.animation_index != "None" && results.mainDmg != -1{
 		instance_create_depth(target.x, target.y, -100, obj_action_animation, {image_speed: 1.5, sprite_index: results.animation_index});
 		if array_length(targetsArr) == 2{
 			secondary_target = targetsArr[1];
@@ -85,11 +86,15 @@ switch(step){
 			action = {name:"empty"};
 			targets = [];
 			if activeCombatant.object_index == obj_combat_party_member || object_get_parent(activeCombatant.object_index) == obj_combat_party_member{
-				var attacks = activeCombatant.listAttacks();
-				var specialActions = activeCombatant.listSpecialActions();
-				var inventory = activeCombatant.listItems();
-				var spells = activeCombatant.listSpells();
-			
+				var attacks = [];
+				array_copy(attacks, -1, activeCombatant.listAttacks(), 0, array_length(activeCombatant.listAttacks()));
+				var specialActions = []
+				array_copy(specialActions, -1, activeCombatant.listSpecialActions(), 0, array_length(activeCombatant.listSpecialActions()));
+				var inventory = [];
+				array_copy(inventory, -1, activeCombatant.listItems(), 0, array_length(activeCombatant.listItems()));
+				var spells = [];
+				array_copy(spells, -1, activeCombatant.listSpells(), 0, array_length(activeCombatant.listSpells()));
+				
 			
 			// Might somehow utilize -> activeCombatant.menuTexture   \/
 				menu = instance_create_depth(x+40,y+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
@@ -107,6 +112,8 @@ switch(step){
 	break;
 	
 	case "Select targets":
+		if back_key{step = "Open menu";} 
+		else{
 			var combatantsLength = array_length(combatants);
 			if down_key{hovering++;}
 			if up_key{hovering--;}
@@ -131,28 +138,54 @@ switch(step){
 					step = "Do action";
 					}
 				}
+		}
 	break;
 	
 	case "Do action":
 		if action.name != "empty" && array_length(targets) != 0 {
+			
+			var bonusTargetStartHP = 0;
+			var targetStartHP = 0;
+			var bonusTargetEndHP = 0;
+			var targetEndHP = 0;
+			
 			action.targetID = targets[0]; //Could be an objectID or "all" or "self" //@TODO Handle these non-ID cases.
-			if array_length(targets) == 2 {action.bonus_targetID = targets[1];}
+			targetStartHP = action.targetID.currentHP;
+			
+			if array_length(targets) == 2 {
+				action.bonus_targetID = targets[1];
+				bonusTargetStartHP = action.bonus_targetID.currentHP;
+				}
 			
 			var results = activeCombatant.doAction(action);	   // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
-			displayActionAnimation(targets, results); //@TODO Write this lol. Probably contains this - displayDamage(action.targetID, results.damage);
+			displayActionAnimation(targets, results);
+			
+			targetEndHP = action.targetID.currentHP;
+			if targetEndHP < targetStartHP{
+					action.targetID.isTakingDamage = true;
+				}
+			
+			if array_length(targets) == 2 {
+				bonusTargetEndHP = action.bonus_targetID.currentHP;
+				if bonusTargetEndHP < bonusTargetStartHP{
+					action.bonus_targetID.isTakingDamage = true;
+				}
+			}
 			
 			step = "Running animation";
+			
 		}
 	break;
 	
 	case "Running animation":
-			if !instance_exists(obj_action_animation){
-			//&& !instance_exists(obj_damage_value_animation){			
-				activeCombatant.hasActed = true;	
-				action = {name:"empty"};
-				targets = [];
-				step = "Bring our yer dead";
-			}
+		
+		if action.targetID.isTakingDamage == false && !instance_exists(obj_action_animation){
+		//&& !instance_exists(obj_damage_value_animation){			
+			activeCombatant.hasActed = true;	
+			action = {name:"empty"};
+			targets = [];
+			step = "Bring our yer dead";
+		}
 	break;
 		
 	case "Bring our yer dead":

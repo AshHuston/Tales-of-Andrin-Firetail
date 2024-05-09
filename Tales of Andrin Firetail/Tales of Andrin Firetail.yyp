@@ -63,6 +63,7 @@
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},
     {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
+    {"id":{"name":"dmg_zombie_sprite","path":"sprites/dmg_zombie_sprite/dmg_zombie_sprite.yy",},},
     {"id":{"name":"Screenshot","path":"sprites/Screenshot/Screenshot.yy",},},
     {"id":{"name":"spr_font1","path":"sprites/spr_font1/spr_font1.yy",},},
     {"id":{"name":"spr_menu_1","path":"sprites/spr_menu_1/spr_menu_1.yy",},},

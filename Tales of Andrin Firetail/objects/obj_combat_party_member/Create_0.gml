@@ -2,6 +2,8 @@
 
 event_inherited();
 
+damageAnimationSprite = sprite_index;
+
 menuTexture = ""; //@TODO Add menu texture per character.
 
 baseHP = associatedCharacterID.HP;

@@ -56,3 +56,6 @@ function getAction(){
 	show_debug_message("Used " + bite.name + " targeting " + string(target.combat_name));
 	return bite;
 }
+
+
+damageAnimationSprite = dmg_zombie_sprite;
