@@ -38,7 +38,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.4.0.137",
+    "IDEVersion":"2024.4.1.152",
   },
   "name":"Tales of Andrin Firetail",
   "resources":[
@@ -63,6 +63,9 @@
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},
     {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
+    {"id":{"name":"snd_agh","path":"sounds/snd_agh/snd_agh.yy",},},
+    {"id":{"name":"snd_no_sound","path":"sounds/snd_no_sound/snd_no_sound.yy",},},
+    {"id":{"name":"snd_zombie_blah","path":"sounds/snd_zombie_blah/snd_zombie_blah.yy",},},
     {"id":{"name":"dmg_zombie_sprite","path":"sprites/dmg_zombie_sprite/dmg_zombie_sprite.yy",},},
     {"id":{"name":"Screenshot","path":"sprites/Screenshot/Screenshot.yy",},},
     {"id":{"name":"spr_font1","path":"sprites/spr_font1/spr_font1.yy",},},

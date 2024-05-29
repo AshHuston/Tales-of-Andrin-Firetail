@@ -3,6 +3,8 @@ isActive = false;
 inConscious = true;
 statusEffects = [];
 isTakingDamage = false;
+startedDamageSFX = false;
+damageSoundEffect = snd_no_sound
 damageAnimationCounter = 0;
 defaultSprite = sprite_index;
 damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
@@ -18,11 +20,11 @@ function attack(details){
 	
 	
 	var target = details.targetID;
-	//show_message(target);
+	
 //Grabs appropriate defense stat from the target
 	var defenseStat = 0
 	if details.dmg_type == "magic"{
-		defenseStat = target.magic_resistence;
+		defenseStat = target.totalMagicResist;
 	}
 	if details.dmg_type == "physical"{
 		defenseStat = target.totalArmor;
@@ -48,11 +50,22 @@ function attack(details){
 	
 //Checks if attack hits. If so, resolve the attack.
 	var results = {mainDmg:0, mainType:"", secondaryDmg:0, secondaryType:"", hit: false, animation_index: details.animation_index, effect: "", isEffected: false};
-	var hitPercent = details.hit_chance - defenseStat;
-	if random_range(0, 100) <= hitPercent{
+	
+	var hitPercent = details.hit_chance - target.totalEvasion;
+	var minmumPossibleHitPercent = 2;
+	if hitPercent < minmumPossibleHitPercent{
+		hitPercent = minmumPossibleHitPercent;
+	}
+	
+	if round(random_range(0, 100)) <= hitPercent{
 		//Determine damage
 		var dmg = random_range(details.min_dmg, details.max_dmg);
+		
+		//Apply armor/magic-resist							// @TODO Potentially rework how armor and magic resist effects total damage
+		defenseStat = defenseStat*random_range(0.90, 1.10);
+		dmg = dmg - (dmg*defenseStat)/100;
 		dmg = round(dmg)
+		
 		//Apply damage
 		details.targetID.currentHP -= dmg;
 		results.mainDmg = dmg;
@@ -67,7 +80,10 @@ function attack(details){
 			results.isEffected = true;
 			results.effect = details.effect_type;
 		}
-	}else{results.mainDmg = -1;}
+	}
+	else{
+		results.mainDmg = -1;
+	}
 
 //Apply attack to the bonus target.
 	if details.bonus_targetID != ""{
@@ -107,7 +123,6 @@ function doAction(detailStruct){
 	switch(detailStruct.actionType){
 	case "attack":
 		return attack(detailStruct);
-		break;
 	
 	case "spell":
 		castSpell(detailStruct);
@@ -115,7 +130,6 @@ function doAction(detailStruct){
 	
 	case "item":
 		return useItem(detailStruct);
-		break;
 	
 	case "special":
 		useSpecialAction(detailStruct);

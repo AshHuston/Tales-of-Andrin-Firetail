@@ -3,9 +3,10 @@ currentHP = baseHP;
 statusEffect = [];
 resistances = ["physical", "poison"];
 immunities = ["poison", "tired"];
-totalArmor = round(random_range(3,4));
-totalMagicResist = 1;
+totalArmor = round(random_range(10,15));
+totalMagicResist = 17;
 totalSpeed = round(random_range(10, 13));
+totalEvasion = 0;
 // Inherit the parent event
 event_inherited();
 
@@ -31,8 +32,8 @@ bite = {
 	targetID: "", 
 	bonus_targetID: "", 
 	dmg_type: "physical", 
-	min_dmg: 3, 
-	max_dmg: 4, 
+	min_dmg: 7, 
+	max_dmg: 10, 
 	hit_chance: 90, 
 	effect_chance: 30, 
 	effect_type: "poison",
@@ -57,5 +58,5 @@ function getAction(){
 	return bite;
 }
 
-
 damageAnimationSprite = dmg_zombie_sprite;
+damageSoundEffect = snd_zombie_blah

@@ -1,7 +1,8 @@
 HP = 5000;
 combatSpeed = 40;
-armor = 12;
+armor = 10;
 magicResist = 6;
+evasion = 7;
 skillRanged = 25;		//@TODO These are just dummy/placeholder stats
 skillMelee = 20;		//		to test the Overworld --> Combat object conversion.
 skillEdged = 5;
@@ -20,6 +21,22 @@ potion = {name:"Healing Potion",
 			return {animation_index: "None", hpRestored: healAmt};
 		   	}, 
 		description:"Heals user for 15-30 HP", 
+		canTarget:"self",
+		actionType:"item",
+		combatMenu:true,
+		targetID:"",
+		bonus_targetID: "",
+		animation_index: "None"
+		}
+		
+elixir = {name:"Elixir", 
+		quantity: 5, 
+		use: function healUser(targetID){
+			var healAmt = 30;
+			targetID.currentHP += healAmt;
+			return {animation_index: "None", hpRestored: healAmt};
+		   	}, 
+		description:"Heals user for 30 HP", 
 		canTarget:"self",
 		actionType:"item",
 		combatMenu:true,
@@ -80,7 +97,7 @@ herb = {name:"Cleansing Herb",
 		}
 
 
-inventory = [potion, herb]
+inventory = [potion, herb, elixir]
 
 activeEffects = [
 {name:"bonus magic resist", value:-12},{name:"bonusSpeed", value:25}, {name:"hungry", value:true}

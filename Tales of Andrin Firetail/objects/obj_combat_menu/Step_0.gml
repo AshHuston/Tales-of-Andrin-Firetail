@@ -114,7 +114,7 @@ if (accept_key)
 				default:
 				show_debug_message(inventory[pos].name);
 				selectedAction = inventory[pos];
-				chosenTargets = ["self"]
+				chosenTargets = ["self"]				 //Temporary line of code? // = slectedAction.cantarget
 		}
 		break;
 		

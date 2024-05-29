@@ -150,7 +150,20 @@ switch(step){
 			var targetEndHP = 0;
 			
 			action.targetID = targets[0]; //Could be an objectID or "all" or "self" //@TODO Handle these non-ID cases.
-			targetStartHP = action.targetID.currentHP;
+			
+			switch(action.targetID)
+			{
+				case "self":
+				targetStartHP = activeCombatant.currentHP;
+				break;
+				
+				case "all":
+				show_debug_message("Add this code you dumy!");
+				break;
+				
+				default:
+				targetStartHP = action.targetID.currentHP;
+			}
 			
 			if array_length(targets) == 2 {
 				action.bonus_targetID = targets[1];
@@ -160,7 +173,21 @@ switch(step){
 			var results = activeCombatant.doAction(action);	   // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
 			displayActionAnimation(targets, results);
 			
-			targetEndHP = action.targetID.currentHP;
+			switch(action.targetID)
+			{
+				case "self":
+				targetEndHP = activeCombatant.currentHP;
+				break;
+				
+				case "all":
+				show_debug_message("Add this code you dumy!");
+				break;
+				
+				default:
+				targetEndHP = action.targetID.currentHP;
+			}
+			
+			
 			if targetEndHP < targetStartHP{
 					action.targetID.isTakingDamage = true;
 				}
@@ -178,8 +205,14 @@ switch(step){
 	break;
 	
 	case "Running animation":
-		
-		if action.targetID.isTakingDamage == false && !instance_exists(obj_action_animation){
+		var damageAnimationsAreRunning = false;
+		for (var i =0; i<array_length(combatants); i++;){
+			if combatants[i].isTakingDamage{
+				damageAnimationsAreRunning = true;	
+			}
+		}
+		 
+		if damageAnimationsAreRunning == false && instance_exists(obj_action_animation) == false{
 		//&& !instance_exists(obj_damage_value_animation){			
 			activeCombatant.hasActed = true;	
 			action = {name:"empty"};

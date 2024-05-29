@@ -10,6 +10,7 @@ baseHP = associatedCharacterID.HP;
 baseSpeed = associatedCharacterID.combatSpeed;
 baseArmor = associatedCharacterID.armor;
 baseMagicResist = associatedCharacterID.magicResist;
+baseEvasion = associatedCharacterID.evasion;
 
 skillRanged = associatedCharacterID.skillRanged;
 skillMelee = associatedCharacterID.skillMelee;
@@ -36,6 +37,8 @@ function getItemBonus(stat){
 			key = "bonusHP" break;
 		case "magic resist":
 			key = "bonusMagicResist" break;
+		case "evasion":
+			key = "bonusEvasion" break;
 		default:
 			show_error("No such stat '"+stat+"'", true)
 			return 0;
@@ -53,7 +56,8 @@ function getItemBonus(stat){
 					sum += inventory[i].bonusHP; break;
 				case "bonusMagicResist":
 					sum += inventory[i].bonusMagicResist; break;
-			
+				case "bonusEvasion":
+					sum += inventory[i].bonusEvasion; break;
 			}
 		}
 	}
@@ -75,6 +79,8 @@ function getEffectBonus(stat){
 			key = "bonusHP" break;
 		case "magic resist":
 			key = "bonusMagicResist" break;
+		case "evasion":
+			key = "bonusEvasion" break;
 		default:
 			show_error("No such stat '"+stat+"'", true)
 			return 0;
@@ -92,6 +98,8 @@ function getEffectBonus(stat){
 					sum += activeEffects[i].bonusHP; break;
 				case "bonusMagicResist":
 					sum += activeEffects[i].bonusMagicResist; break;
+				case "bonusEvasion":
+					sum += activeEffects[i].bonusEvasion; break;
 			
 			}
 		}
@@ -105,16 +113,19 @@ itemBonusHP = getItemBonus("hp");
 itemBonusSpeed = getItemBonus("speed");
 itemBonusArmor = getItemBonus("armor");
 itemBonusMagicResist = getItemBonus("magic resist");
+itemBonusEvasion = getItemBonus("evasion");
 
 effectBonusHP = getEffectBonus("hp");
 effectBonusSpeed = getEffectBonus("speed");
 effectBonusArmor = getEffectBonus("armor");
 effectBonusMagicResist = getEffectBonus("magic resist");
+effectBonusEvasion = getEffectBonus("evasion");
 
 totalHP = baseHP + itemBonusHP + effectBonusHP;
 totalSpeed = baseSpeed + itemBonusSpeed + effectBonusSpeed;
 totalArmor = baseArmor + itemBonusArmor+ effectBonusArmor;
 totalMagicResist = baseMagicResist + itemBonusMagicResist + effectBonusMagicResist;
+totalEvasion = baseEvasion + itemBonusEvasion + effectBonusEvasion;
 
 currentHP = totalHP;
 

@@ -2,9 +2,10 @@ HP = 5000;
 combatSpeed = 2;
 armor = 12;
 magicResist = 6;
-skillRanged = 25;		//@TODO These are just dummy/placeholder stats
-skillMelee = 20;		//		to test the Overworld --> Combat object conversion.
-skillEdged = 5;
+evasion = 10;
+skillRanged = 18;		//@TODO These are just dummy/placeholder stats
+skillMelee = 25;		//		to test the Overworld --> Combat object conversion.
+skillEdged = 50;
 skillMagic = 5;
 
 resistances = []

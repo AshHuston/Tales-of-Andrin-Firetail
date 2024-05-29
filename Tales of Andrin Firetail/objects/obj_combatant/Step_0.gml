@@ -4,4 +4,11 @@ if isTakingDamage{
 		sprite_index = defaultSprite;
 		isTakingDamage = false;
 	}
+	if startedDamageSFX == false{
+		startedDamageSFX = true;
+		audio_play_sound_ext({ sound: damageSoundEffect })
+	}
+}
+else{
+	startedDamageSFX = false;	
 }
