@@ -62,6 +62,7 @@
     {"id":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},
+    {"id":{"name":"scr_input_manager","path":"scripts/scr_input_manager/scr_input_manager.yy",},},
     {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
     {"id":{"name":"snd_agh","path":"sounds/snd_agh/snd_agh.yy",},},
     {"id":{"name":"snd_no_sound","path":"sounds/snd_no_sound/snd_no_sound.yy",},},
