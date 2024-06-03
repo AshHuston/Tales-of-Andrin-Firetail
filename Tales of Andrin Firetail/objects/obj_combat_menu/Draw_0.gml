@@ -9,7 +9,7 @@ draw_set_halign(fa_left);
 var text = ""
 
 
-for(var i =0; i< op_length; i++)
+for(var i=0; i<op_length; i++)
 	{
 		
 		if menu_level == 0{text = option[menu_level, i];}

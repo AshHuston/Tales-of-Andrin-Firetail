@@ -1,3 +1,8 @@
+var up_key 
+var down_key 
+var accept_key 
+var back_key 
+
 //CombatDetailStruct should contain enemy ids [], enemy positioning, round timer events, [MORE?]
 
 /**

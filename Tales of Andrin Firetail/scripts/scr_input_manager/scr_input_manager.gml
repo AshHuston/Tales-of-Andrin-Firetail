@@ -27,6 +27,7 @@ function input(button)
 			case "down": if keyboard_check_pressed(vk_down) || keyboard_check_pressed(ord("S")) {return 1;} else {return 0;}; break;
 			
 			case "enter": return keyboard_check_pressed(vk_enter); break;
+			case "back": return keyboard_check_pressed(vk_backspace); break;
 			case "trigger_click_pressed": return mouse_check_button_pressed(mb_left); break;
 			case "trigger_click": return mouse_check_button(mb_left); break;
 			case "start": return keyboard_check_pressed(vk_escape); break;
@@ -120,9 +121,10 @@ function input(button)
 
 			case "lstick_btn": return gamepad_button_check(0, gp_stickl); break;
 			case "rstick_btn": return gamepad_button_value(0, gp_stickr); break;
-			case "enter": return gamepad_button_value(0, gp_face1); break;
+			case "enter": return gamepad_button_check_pressed(0, gp_face1); break;
 			case "A": return gamepad_button_value(0, gp_face1); break;
 			case "B": return gamepad_button_value(0, gp_face2); break;
+			case "back": return gamepad_button_check_pressed(0, gp_face2); break;
 			case "Y": return gamepad_button_value(0, gp_face3); break;
 			case "X": return gamepad_button_value(0, gp_face4); break;
 			case "start": return gamepad_button_value(0, gp_start); break;
@@ -130,7 +132,8 @@ function input(button)
 
 			case "lBumper": return gamepad_button_value(0, gp_shoulderl); break;
 			case "rBumper": return gamepad_button_value(0, gp_shoulderr); break;
-			case "lTrigger_pressed": return gamepad_button_check_pressed(0, gp_shoulderlb); break;
+			case "lTrigger": return gamepad_button_check_pressed(0, gp_shoulderlb); break;
+			case "lTrigger_held": return gamepad_button_check(0, gp_shoulderlb); break;
 			case "trigger_click_pressed": return gamepad_button_check_pressed(0, gp_shoulderrb); break;
 			case "trigger_click": return gamepad_button_check(0, gp_shoulderrb); break;
 			case "lTrigger_val": return gamepad_button_value(0, gp_shoulderlb); break;

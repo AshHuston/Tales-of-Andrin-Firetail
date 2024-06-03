@@ -1,7 +1,7 @@
-var up_key = keyboard_check_pressed(vk_up);
-var down_key = keyboard_check_pressed(vk_down);
-var accept_key = keyboard_check_pressed(vk_return);
-var back_key = keyboard_check_pressed(vk_backspace);
+up_key = input("up");
+down_key = input("down");
+accept_key = input("enter");
+back_key = input("back");
 
 function displayActionAnimation(targetsArr, results){
 	target = targetsArr[0];
