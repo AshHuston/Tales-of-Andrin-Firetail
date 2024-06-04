@@ -11,7 +11,8 @@ global.DIALGUE_STRUCT = {
 	dialgueID: 0,
 	dialogue:{
 			speaker:"Balduk", 
-			text:"Hi, this is some example dialogue. Isn’t that neat! Anyways, you dont look like you’re from around here. Where are you from?", 
+			text: "Hola senor, como te llamo?",
+			//"Hi, this is some example dialogue. Isn't that neat! Anyways, you don't look like you're from around here. Where are you from?", 
 			flag:{
 				id:"", 
 				value:false
@@ -23,7 +24,7 @@ global.DIALGUE_STRUCT = {
 					{
 						option_display:"Irkenstead",
 						speaker:"Aaron", 
-						text:"Oh, I’m from the capital! Irkenstead.", 
+						text:"Oh, I'm from the capital! Irkenstead.", 
 						flag:{
 							id:"", 
 							value:false
@@ -101,15 +102,17 @@ global.DIALGUE_STRUCT = {
 						respondable:false, 
 						response_options:
 						{
-							option_display:"",
-							speaker:"Balduk", 
-							text:"Oh...I see...", 
-							flag:{
-								id:"refuseToSellPotions", 
-								value:true
-							}, 
-							respondable:false, 
-							response_options:{}
+							ohOkay:{
+								option_display:"",
+								speaker:"Balduk", 
+								text:"Oh...I see...", 
+								flag:{
+									id:"refuseToSellPotions", 
+									value:true
+								}, 
+								respondable:false, 
+								response_options:{}
+							}
 						}
 					},
 
@@ -125,14 +128,16 @@ global.DIALGUE_STRUCT = {
 						respondable:false, 
 						response_options:
 						{
-							speaker:"Balduk",
-							text:"Alright then, keep your secrets.",
-							flag:{
-								id:"", 
-								value:false
-								},
+							okayFine:{
+								speaker:"Balduk",
+								text:"Alright then, keep your secrets.",
+								flag:{
+									id:"", 
+									value:false
+									},
 								respondable:false, 
 								response_options:{}	
+							}
 						}
 					}
 				}

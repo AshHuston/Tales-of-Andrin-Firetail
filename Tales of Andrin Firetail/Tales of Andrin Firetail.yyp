@@ -52,7 +52,6 @@
     {"id":{"name":"obj_combatant","path":"objects/obj_combatant/obj_combatant.yy",},},
     {"id":{"name":"obj_damage_value_animation","path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},},
     {"id":{"name":"obj_dialogue_manager","path":"objects/obj_dialogue_manager/obj_dialogue_manager.yy",},},
-    {"id":{"name":"obj_dialogue_options","path":"objects/obj_dialogue_options/obj_dialogue_options.yy",},},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
     {"id":{"name":"obj_overworld_aaron","path":"objects/obj_overworld_aaron/obj_overworld_aaron.yy",},},
     {"id":{"name":"obj_overworld_roy","path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},},

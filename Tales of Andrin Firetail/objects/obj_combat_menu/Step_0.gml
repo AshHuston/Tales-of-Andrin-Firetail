@@ -93,7 +93,7 @@ if (accept_key)
 				case 0:
 					menu_level = 0;
 					break;
-					
+				
 				default:
 				show_debug_message(spells[pos].name); 
 			}

@@ -31,11 +31,7 @@ potion = {name:"Healing Potion",
 		
 elixir = {name:"Elixir", 
 		quantity: 5, 
-		use: function healUser(targetID){
-			var healAmt = 30;
-			targetID.currentHP += healAmt;
-			return {animation_index: "None", hpRestored: healAmt};
-		   	}, 
+		use: show_debug_message("Elixir used"), 
 		description:"Heals user for 30 HP", 
 		canTarget:"self",
 		actionType:"item",
@@ -96,8 +92,22 @@ herb = {name:"Cleansing Herb",
 		animation_index: "None"
 		}
 
+textTest = {name:"Text box test", 
+		quantity: 5, 
+		use: function dumb(){
+			instance_create_depth(0, 0, -1000, obj_dialogue_manager, {wholeDialogueStruct: global.DIALGUE_STRUCT})
+			return {animation_index: "None", logText: "Testing text"}
+		}, 
+		description:"Heals user for 30 HP", 
+		canTarget:"self",
+		actionType:"item",
+		combatMenu:true,
+		targetID:"",
+		bonus_targetID: "",
+		animation_index: "None"
+		}
 
-inventory = [potion, herb, elixir]
+inventory = [potion, herb, elixir, textTest]
 
 activeEffects = [
 {name:"bonus magic resist", value:-12},{name:"bonusSpeed", value:25}, {name:"hungry", value:true}

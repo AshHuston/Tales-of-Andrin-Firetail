@@ -31,7 +31,6 @@
     {"name":"obj_combat_zombie","order":1,"path":"objects/obj_combat_zombie/obj_combat_zombie.yy",},
     {"name":"obj_combatant","order":3,"path":"objects/obj_combatant/obj_combatant.yy",},
     {"name":"obj_damage_value_animation","order":3,"path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},
-    {"name":"obj_dialogue_options","order":1,"path":"objects/obj_dialogue_options/obj_dialogue_options.yy",},
     {"name":"obj_overworld_roy","order":2,"path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},
     {"name":"obj_settings","order":3,"path":"objects/obj_settings/obj_settings.yy",},
     {"name":"obj_textbox","order":2,"path":"objects/obj_textbox/obj_textbox.yy",},
