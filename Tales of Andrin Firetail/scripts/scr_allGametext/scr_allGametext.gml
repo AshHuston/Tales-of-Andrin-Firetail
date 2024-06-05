@@ -11,8 +11,7 @@ global.DIALGUE_STRUCT = {
 	dialgueID: 0,
 	dialogue:{
 			speaker:"Balduk", 
-			text: "Hola senor, como te llamo?",
-			//"Hi, this is some example dialogue. Isn't that neat! Anyways, you don't look like you're from around here. Where are you from?", 
+			text:"Hi, this is some example dialogue. Isn't that neat! Anyways, you don't look like you're from around here. Where are you from?", 
 			flag:{
 				id:"", 
 				value:false
