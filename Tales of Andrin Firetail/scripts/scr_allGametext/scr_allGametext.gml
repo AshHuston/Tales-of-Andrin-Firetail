@@ -28,9 +28,10 @@ global.DIALGUE_STRUCT = {
 							id:"", 
 							value:false
 							}, 
-						respondable:true, 
+						respondable:false, 
 						response_options:
-						
+						{
+							whichDistrict:
 							{
 								speaker:"Balduk",
 								text:"Oh wow, the capital huh? Which district?",
@@ -38,9 +39,8 @@ global.DIALGUE_STRUCT = {
 									id:"", 
 									value:false
 									},
-								respondable:false,
+								respondable:true,
 								response_options:
-							
 								{
 								north:{
 									option_display:"North",
@@ -48,7 +48,8 @@ global.DIALGUE_STRUCT = {
 									text:"Love those fields huh!", 
 									flag:{
 										id:"", 
-										value:false}, 
+										value:false
+										}, 
 									respondable:false, 
 									response_options:{}
 									}, 
@@ -77,7 +78,7 @@ global.DIALGUE_STRUCT = {
 								east:{
 									option_display:"East",
 									speaker:"Balduk", 
-									text:"Oh nice, I have a cousin who lives there. Know her?", 
+									text:"Oh nice, I have a cousin who lives there.", 
 									flag:{
 										id:"", 
 										value:false
@@ -87,6 +88,7 @@ global.DIALGUE_STRUCT = {
 									}
 								}
 							}
+						}
 					},
 
 				college:
