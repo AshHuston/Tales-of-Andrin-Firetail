@@ -7,6 +7,7 @@ var rstick_digital_vals = [-1,-1,-1,-1];
 
 function input(button)
 {
+	//-------------------------------------------------------Keyboard controls---------------------------------------------------------
 	if gamepad_is_connected(0) == false
 	{
 		switch (button)
@@ -40,6 +41,8 @@ function input(button)
 			default: return 0;
 		}
 	}
+	
+	//-------------------------------------------------Gamepad controls ------------------------------------------------------------
 	if gamepad_is_connected(0) == true
 	{
 		gamepad_set_axis_deadzone(0, 0.2);

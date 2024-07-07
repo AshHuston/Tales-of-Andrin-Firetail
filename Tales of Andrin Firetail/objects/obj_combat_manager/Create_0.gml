@@ -1,14 +1,45 @@
+event_inherited()
+
 var up_key 
 var down_key 
 var accept_key 
 var back_key 
+overworldViewport = 0
+overworldCameraX = 0
+overworldCameraY = 0
+combatViewport = 7
+for (var i=0; i<7; i++;){
+	if view_get_visible(i){
+	overworldViewport = i
+	overworldCameraX = view_get_xport(i)
+	overworldCameraY = view_get_yport(i)
+	}
+	view_set_visible(i, false)
+}
+view_set_visible(combatViewport, true)
+combatCameraX = camera_get_view_x(view_get_camera(combatViewport)) 
+combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
+var mx1 = global.COMBAT_POSITIONING.fiveMonsters[0][0] + combatCameraX
+var my1 = global.COMBAT_POSITIONING.fiveMonsters[0][1] + combatCameraY
+var mx2 = global.COMBAT_POSITIONING.fiveMonsters[1][0] + combatCameraX
+var my2 = global.COMBAT_POSITIONING.fiveMonsters[1][1] + combatCameraY
+var mx3 = global.COMBAT_POSITIONING.fiveMonsters[2][0] + combatCameraX
+var my3 = global.COMBAT_POSITIONING.fiveMonsters[2][1] + combatCameraY
+var mx4 = global.COMBAT_POSITIONING.fiveMonsters[3][0] + combatCameraX
+var my4 = global.COMBAT_POSITIONING.fiveMonsters[3][1] + combatCameraY
+var mx5 = global.COMBAT_POSITIONING.fiveMonsters[4][0] + combatCameraX
+var my5 = global.COMBAT_POSITIONING.fiveMonsters[4][1] + combatCameraY
 
+mob1.x = mx1
+mob1.y = my1
+mob2.x = mx2
+mob2.y = my2
 //CombatDetailStruct should contain enemy ids [], enemy positioning, round timer events, [MORE?]
 
 /**
  * Creates the combat characters for party members.
  * @param {any*} partyIDs overworld object IDs for party members.
- * @returns {array} obj_combat_party_member object IDs, in the order the overworld ids were provided.
+ * @returns {Array<Id.Instance<obj_combat_aaron>>} obj_combat_party_member object IDs, in the order the overworld ids were provided.
  */
 function createPartyCombatObjects(partyIDs){
 	var combatObjectIDs = [];
@@ -20,7 +51,6 @@ function createPartyCombatObjects(partyIDs){
 		else{combatCharID = instance_create_depth(x, y-100, 0, obj_combat_party_member, {associatedCharacterID:partyIDs[i]});}
 		array_push(combatObjectIDs, combatCharID);
 	}
-	
 	return combatObjectIDs;
 }
 
@@ -59,7 +89,7 @@ function createPartyCombatObjects(partyIDs){
 
 	//Determine positioning
 		//Look at globalvar for party
-		IDsorder = [];
+		IDorder = [];
 				
 		//Fill out IDorder[]
 		for(var i=0;i<array_length(global.COMBAT_ORDERING);i++;){
@@ -68,6 +98,32 @@ function createPartyCombatObjects(partyIDs){
 				case "A": IDorder[i] = charA; break;
 				case "B": IDorder[i] = charB; break;
 				case "C": IDorder[i] = charC; break;
+			}
+		}
+	
+		for (var i=0;i<array_length(IDorder);i++;){
+			show_debug_message(IDorder[i])
+			if IDorder[i] == 0{ continue }
+			switch(i){
+				case 0:
+					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[0][0] + combatCameraX;
+					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[0][1] + combatCameraY;
+					break;
+					
+				case 1: 
+					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[1][0] + combatCameraX;
+					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[1][1] + combatCameraY;
+					break;				
+			
+				case 2: 
+					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[2][0] + combatCameraX;
+					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[2][1] + combatCameraY;
+					break;
+					
+				case 3: 
+					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[3][0] + combatCameraX;
+					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[3][1] + combatCameraY;
+					break;
 			}
 		}
 		

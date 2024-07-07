@@ -30,7 +30,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_aaron_ovw",
+    "path":"sprites/spr_aaron_ovw/spr_aaron_ovw.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

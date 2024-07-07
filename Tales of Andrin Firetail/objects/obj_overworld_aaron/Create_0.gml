@@ -1,3 +1,32 @@
+
+//For temporary sprite reasons
+manualImageScaleX = 16/sprite_width
+image_yscale = manualImageScaleX
+image_xscale = manualImageScaleX
+
+depth = -6
+
+movementspacesize = 16
+movementSpeed = 3
+facingDir = LEFT
+lastFacingDir = LEFT
+lastX = 0
+lastY = 0
+acceptingMovementCommand = true
+notAtDestination = false
+
+x = 168
+y = 168
+prevDestinationX = x
+prevDestinationY = y
+
+deltaX = 0
+deltaY = 0
+
+paused = false
+
+destinationCoords = [x, y]
+
 HP = 5000;
 combatSpeed = 40;
 armor = 10;

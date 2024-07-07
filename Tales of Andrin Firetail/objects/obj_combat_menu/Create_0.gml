@@ -1,6 +1,13 @@
 //width = 175;
 //height = 100;
 
+for (var i = 0; i<instance_count; i++){
+	var checkDepth = instance_id_get(i).depth
+	if checkDepth < depth{ 
+		depth = checkDepth-1
+		}	
+}
+
 op_border = 8
 op_space = 16;
 
@@ -42,3 +49,6 @@ accept_btn = gamepad_button_value(0, gp_face1);
 
 selectedAction = {name:"empty"}; 
 chosenTargets = [];
+
+show_debug_message(x)
+show_debug_message(y)
