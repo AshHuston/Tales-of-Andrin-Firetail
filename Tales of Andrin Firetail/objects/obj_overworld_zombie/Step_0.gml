@@ -12,7 +12,7 @@ if place_meeting(x, y, obj_overworld_aaron){
 	if !instance_exists(obj_combat_zombie){
 		Z1 = instance_create_depth(0,0,0,obj_combat_zombie);
 		Z2 = instance_create_depth(0,0,0,obj_combat_zombie);
-		instance_create_depth(0,0,0,obj_combat_manager, {mob1:Z1, mob2:Z2})
+		instance_create_depth(0,0,0,obj_combat_manager, {overworld_mob:id, mob1:Z1, mob2:Z2})
 	
 	}
 }

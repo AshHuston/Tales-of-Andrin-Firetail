@@ -15,8 +15,8 @@ lastY = 0
 acceptingMovementCommand = true
 notAtDestination = false
 
-x = 168
-y = 168
+//x = 168
+//y = 168
 prevDestinationX = x
 prevDestinationY = y
 

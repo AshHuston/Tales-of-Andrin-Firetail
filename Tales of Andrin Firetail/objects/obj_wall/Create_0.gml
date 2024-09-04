@@ -1,4 +1,4 @@
-//image_alpha = 0
+image_alpha = 0
 depth = 1
 
 interactable = true
