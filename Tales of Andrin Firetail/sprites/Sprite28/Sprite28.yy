@@ -19,7 +19,7 @@
   "height":32,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"a1799033-b9a7-4816-9071-fa4eb7a6b6a0","blendMode":0,"displayName":"default","isLocked":false,"name":"a1799033-b9a7-4816-9071-fa4eb7a6b6a0","opacity":95.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"a1799033-b9a7-4816-9071-fa4eb7a6b6a0","blendMode":0,"displayName":"default","isLocked":false,"name":"a1799033-b9a7-4816-9071-fa4eb7a6b6a0","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"Sprite28",
   "nineSlice":null,

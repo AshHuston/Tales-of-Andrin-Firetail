@@ -131,8 +131,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_demoDungeon","path":"rooms/rm_demoDungeon/rm_demoDungeon.yy",},},
     {"roomId":{"name":"rm_test_overworld_1","path":"rooms/rm_test_overworld_1/rm_test_overworld_1.yy",},},
+    {"roomId":{"name":"rm_demoDungeon","path":"rooms/rm_demoDungeon/rm_demoDungeon.yy",},},
     {"roomId":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
     {"roomId":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},
     {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
