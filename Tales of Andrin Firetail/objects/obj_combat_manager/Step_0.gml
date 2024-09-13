@@ -1,7 +1,7 @@
-up_key = input("up");
-down_key = input("down");
-accept_key = input("enter");
-back_key = input("back");
+var up_key = input("up");
+var down_key = input("down");
+var accept_key = input("enter");
+var back_key = input("back");
 
 function displayActionAnimation(targetsArr, results){
 	target = targetsArr[0];
@@ -33,12 +33,6 @@ switch(step){
 	break;
 	
 	case "Determine active combatant":
-	
-	if !instance_exists(obj_enemy) && instance_exists(obj_combat_menu){
-		instance_destroy(menu);	
-		instance_destroy(self);
-	}
-	
 	//Determine who’s turn it is. 
 		//List all combatants that are not 0HP and have not yet acted this round.
 		canStillGo = [];
@@ -48,6 +42,27 @@ switch(step){
 				array_delete(canStillGo, i, 1);	
 			}
 		}
+		
+		//see if we done here
+		var stillAreMonsters = false
+		for (var i=0 ; i<array_length(combatants); i++) {
+			show_debug_message(object_get_parent(combatants[i].object_index))
+			if object_get_parent(combatants[i].object_index) == obj_enemy{
+				if combatants[i].currentHP > 0{
+					stillAreMonsters = true
+				}
+			}
+		}
+		if stillAreMonsters == false{
+			view_set_xport(overworldViewport, overworldCameraX)
+			view_set_yport(overworldViewport, overworldCameraY)
+			view_visible[overworldViewport] = 1
+			view_visible[combatViewport] = 0
+			if instance_exists(obj_combat_menu){
+				instance_destroy(menu);	
+			}
+			instance_destroy(self);
+		}else{show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))}
 		
 		//Iterate, comparing speed to highestSpeed.
 		var fastestRemainingCombatant = canStillGo[0];
@@ -97,7 +112,7 @@ switch(step){
 				
 			
 			// Might somehow utilize -> activeCombatant.menuTexture   \/
-				menu = instance_create_depth(x+40,y+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
+				menu = instance_create_depth(combatCameraX+40,combatCameraY+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
 				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
 			}
 			
@@ -274,5 +289,6 @@ switch(step){
 				// if roundEvents[] not empty, check for trigger rounds.
 		
 		}
-		step = "Determine active combatant";	
+			
+		step = "Determine active combatant";
 }
