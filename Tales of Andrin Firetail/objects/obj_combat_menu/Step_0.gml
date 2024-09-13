@@ -1,13 +1,7 @@
-up_key = keyboard_check_pressed(vk_up);
-down_key = keyboard_check_pressed(vk_down);
-accept_key = keyboard_check_pressed(vk_return);
-back_key = keyboard_check_pressed(vk_backspace);
-
 up_key = input("up");
 down_key = input("down");
 accept_key = input("enter");
 back_key = input("back");
-
 
 
 //Store num of options in current menu

@@ -1,0 +1,8 @@
+TOAF Ephrin's Queens stuff:
+- Navigateable menu
+- Pickup crystals
+- Somewhere to get unequipped crystals
+- Move crystals in menu
+- Place crystals in menu
+- Know what crystals are equipped
+- Apply crystal buffs

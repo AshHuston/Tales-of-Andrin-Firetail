@@ -14,7 +14,6 @@
     {"$GMFolder":"","%Name":"Extensions","folderPath":"folders/Extensions.yy","name":"Extensions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Fonts","folderPath":"folders/Fonts.yy","name":"Fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"images","folderPath":"folders/images.yy","name":"images","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Menu system","folderPath":"folders/Menu system.yy","name":"Menu system","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Notes","folderPath":"folders/Notes.yy","name":"Notes","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Combat","folderPath":"folders/Objects/Combat.yy","name":"Combat","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -22,6 +21,8 @@
     {"$GMFolder":"","%Name":"CombatCharacters","folderPath":"folders/Objects/Combat/CombatCharacters.yy","name":"CombatCharacters","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/Objects/Combat/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Dialogue system","folderPath":"folders/Objects/Dialogue system.yy","name":"Dialogue system","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Menu system","folderPath":"folders/Objects/Menu system.yy","name":"Menu system","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"EQ menu","folderPath":"folders/Objects/Menu system/EQ menu.yy","name":"EQ menu","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"OverworldCharacters","folderPath":"folders/Objects/OverworldCharacters.yy","name":"OverworldCharacters","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/Objects/OverworldCharacters/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Particle Systems","folderPath":"folders/Particle Systems.yy","name":"Particle Systems","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -32,6 +33,7 @@
     {"$GMFolder":"","%Name":"Shaders","folderPath":"folders/Shaders.yy","name":"Shaders","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sounds","folderPath":"folders/Sounds.yy","name":"Sounds","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprites","folderPath":"folders/Sprites.yy","name":"Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"EphrinsQueen","folderPath":"folders/Sprites/EphrinsQueen.yy","name":"EphrinsQueen","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Tile Sets","folderPath":"folders/Tile Sets.yy","name":"Tile Sets","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
@@ -54,6 +56,11 @@
     {"id":{"name":"obj_dialogue_manager","path":"objects/obj_dialogue_manager/obj_dialogue_manager.yy",},},
     {"id":{"name":"obj_dialogue_options","path":"objects/obj_dialogue_options/obj_dialogue_options.yy",},},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
+<<<<<<< Updated upstream
+=======
+    {"id":{"name":"obj_EQ_menu","path":"objects/obj_EQ_menu/obj_EQ_menu.yy",},},
+    {"id":{"name":"obj_fogOfWar","path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},},
+>>>>>>> Stashed changes
     {"id":{"name":"obj_overworld_aaron","path":"objects/obj_overworld_aaron/obj_overworld_aaron.yy",},},
     {"id":{"name":"obj_overworld_roy","path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},},
     {"id":{"name":"obj_overworld_zombie","path":"objects/obj_overworld_zombie/obj_overworld_zombie.yy",},},
@@ -76,6 +83,7 @@
     {"id":{"name":"spr_font1","path":"sprites/spr_font1/spr_font1.yy",},},
     {"id":{"name":"spr_menu_1","path":"sprites/spr_menu_1/spr_menu_1.yy",},},
     {"id":{"name":"spr_menu","path":"sprites/spr_menu/spr_menu.yy",},},
+    {"id":{"name":"spr_queen_slot","path":"sprites/spr_queen_slot/spr_queen_slot.yy",},},
     {"id":{"name":"spr_smiley","path":"sprites/spr_smiley/spr_smiley.yy",},},
     {"id":{"name":"spr_targetIndicator","path":"sprites/spr_targetIndicator/spr_targetIndicator.yy",},},
     {"id":{"name":"spr_test_attack_claw","path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},},
@@ -86,8 +94,16 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
+<<<<<<< Updated upstream
     {"roomId":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
     {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
+=======
+    {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
+    {"roomId":{"name":"rm_test_overworld_1","path":"rooms/rm_test_overworld_1/rm_test_overworld_1.yy",},},
+    {"roomId":{"name":"rm_demoDungeon","path":"rooms/rm_demoDungeon/rm_demoDungeon.yy",},},
+    {"roomId":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
+    {"roomId":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},
+>>>>>>> Stashed changes
   ],
   "templateType":"game",
   "TextureGroups":[
