@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Menu system",
-    "path":"folders/Menu system.yy",
+    "path":"folders/Objects/Menu system.yy",
   },
   "parentObjectId":null,
   "persistent":true,
