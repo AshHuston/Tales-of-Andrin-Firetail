@@ -8,21 +8,16 @@ back_key = false;
 right_key_tap = false;
 up_key_tap = false;
 down_key_tap = false;
-
 //For readability
 X = 0
 Y = 1
-
 op_border = 8
 op_space = 16;
-
 baseX = 20
 baseY = 20
-
 // Slot spacing refers to the X and Y spacing in pixels.
 // Minimum of 24 due to the size of the sprite.
 slot_spacing = 23
-
 //[XgridPos, YgridPos]
 slot_coordinates = [
 	[2,1],
@@ -38,25 +33,19 @@ slot_coordinates = [
 	[5,2],
 	[5,4]
 ]
-
 crystal_list_coordinates = [6,0]
-
 in_crystal_list = false
 bufferCoords = false
 bufferedCoords = []
-
 numOfSlots = 12
 range = 0.00
 hoveredCoords = [2,1]
 hoveredSlot = 0
 noLastPress = true
-
 hoveredCrystal = 0
-
 slotsAlpha = 1
 listAlpha = 0.7
 rightMostColumn = 0
-
 crystal_inventory = [
 	{name : "Sharpshooter", sprite : spr_crystal_1, coords: [6,0]},
 	{name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]},
@@ -65,7 +54,6 @@ crystal_inventory = [
 	{name : "Jump", sprite : spr_crystal_1, coords: [6,0]},
 	{name : "Hyperbeam", sprite : spr_crystal_2, coords: [6,0]}	
 ]
-
 num_of_crystals = array_length(crystal_inventory)
 longest_crystal_name_length = 0;
 tallest_crystal_name_height = 0
@@ -79,7 +67,6 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 		tallest_crystal_name_height = this_height	
 	}
 }
-
 noCrystal = {name : "none", sprite : spr_slot, coords: [6,0]}
 heldCrystal = noCrystal
 isHoldingCrystal = false
