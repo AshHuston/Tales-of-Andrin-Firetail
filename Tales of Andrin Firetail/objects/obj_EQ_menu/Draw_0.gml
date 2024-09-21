@@ -1,5 +1,4 @@
 //show_debug_message(heldCrystal)
-
 var hoveringCrystalX = 0
 var hoveringCrystalYShadow = 0
 var hoveringCrystalY = 0
@@ -16,7 +15,6 @@ for (var i = 0; i<numOfSlots; i++){
 		hoveringCrystalY = slotY - 6
 	}
 }
-
 for (var i = 0; i<numOfSlots; i++){
 	for (var crystal = 0; crystal<array_length(crystal_inventory); crystal++){ 
 		if string(slot_coordinates[i]) == string(crystal_inventory[crystal].coords){
@@ -26,13 +24,10 @@ for (var i = 0; i<numOfSlots; i++){
 		}
 	}
 }
-
 if isHoldingCrystal && !in_crystal_list{
 	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX, hoveringCrystalYShadow, 1, 1, 45, c_black, 0.3)
 	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX, hoveringCrystalY, 1, 1, 45, c_white, 1)
 	}
-
-
 // Crystal list
 var listX = 200		//Arbitrary for testing
 var listY = baseY	//Arbitrary for testing
@@ -40,10 +35,7 @@ var width = longest_crystal_name_length + (op_border*2)
 var height = (tallest_crystal_name_height*num_of_crystals) + op_border
 var xScale = width/sprite_get_width(spr_menu)
 var yScale = height/sprite_get_height(spr_menu)
-
 draw_sprite_ext(spr_menu, 0, listX, listY, xScale, yScale, 0, c_white, listAlpha)
-
-
 for (var i=0; i<array_length(crystal_inventory); i++){
 	var _c = c_black;
 	var fade = .5
@@ -55,8 +47,6 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 		}
 	}
 }
-
-
 if in_crystal_list && !isHoldingCrystal{
 	var previewCrystalX = listX + width + 65//Arbitrary for testing
 	var previewCrystalY = listY + 80		//Arbitrary for testing
@@ -64,4 +54,3 @@ if in_crystal_list && !isHoldingCrystal{
 	var previewCrystalScaleX = 1.5			//Arbitrary for testing
 	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 45, c_white, 1)
 }
-
