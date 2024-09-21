@@ -1,0 +1,8 @@
+TOAF Ephrin's Queens stuff:
+Done - Navigateable menu
+Done - Pickup crystals
+Done - Somewhere to put unequipped crystals
+Done - Move crystals in menu
+WIP(cant see each other) - Place crystals in menu
+- Know what crystals are equipped
+- Apply crystal buffs

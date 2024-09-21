@@ -22,7 +22,12 @@
     {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/Objects/Combat/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Dialogue system","folderPath":"folders/Objects/Dialogue system.yy","name":"Dialogue system","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Menu system","folderPath":"folders/Objects/Menu system.yy","name":"Menu system","resourceType":"GMFolder","resourceVersion":"2.0",},
+<<<<<<< HEAD
     {"$GMFolder":"","%Name":"EQ menu","folderPath":"folders/Objects/Menu system/EQ menu.yy","name":"EQ menu","resourceType":"GMFolder","resourceVersion":"2.0",},
+=======
+    {"$GMFolder":"","%Name":"Ephrin's Queen menu","folderPath":"folders/Objects/Menu system/Ephrin's Queen menu.yy","name":"Ephrin's Queen menu","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"crystal Sprites","folderPath":"folders/Objects/Menu system/Ephrin's Queen menu/crystal Sprites.yy","name":"crystal Sprites","resourceType":"GMFolder","resourceVersion":"2.0",},
+>>>>>>> EQ-demo
     {"$GMFolder":"","%Name":"OverworldCharacters","folderPath":"folders/Objects/OverworldCharacters.yy","name":"OverworldCharacters","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/Objects/OverworldCharacters/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"OverworldStuff","folderPath":"folders/Objects/OverworldStuff.yy","name":"OverworldStuff","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -60,9 +65,13 @@
     {"id":{"name":"obj_dialogue_manager","path":"objects/obj_dialogue_manager/obj_dialogue_manager.yy",},},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     {"id":{"name":"obj_EQ_menu","path":"objects/obj_EQ_menu/obj_EQ_menu.yy",},},
+=======
+    {"id":{"name":"obj_eq_menu","path":"objects/obj_eq_menu/obj_eq_menu.yy",},},
+>>>>>>> EQ-demo
     {"id":{"name":"obj_fogOfWar","path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},},
 >>>>>>> Stashed changes
 =======
@@ -112,13 +121,20 @@
     {"id":{"name":"spr_a_press","path":"sprites/spr_a_press/spr_a_press.yy",},},
     {"id":{"name":"spr_aaron_dialogue","path":"sprites/spr_aaron_dialogue/spr_aaron_dialogue.yy",},},
     {"id":{"name":"spr_aaron_ovw","path":"sprites/spr_aaron_ovw/spr_aaron_ovw.yy",},},
+    {"id":{"name":"spr_crystal_1","path":"sprites/spr_crystal_1/spr_crystal_1.yy",},},
+    {"id":{"name":"spr_crystal_2","path":"sprites/spr_crystal_2/spr_crystal_2.yy",},},
+    {"id":{"name":"spr_crystal_3","path":"sprites/spr_crystal_3/spr_crystal_3.yy",},},
     {"id":{"name":"spr_enter_press","path":"sprites/spr_enter_press/spr_enter_press.yy",},},
     {"id":{"name":"spr_font1","path":"sprites/spr_font1/spr_font1.yy",},},
     {"id":{"name":"spr_mario_1","path":"sprites/spr_mario_1/spr_mario_1.yy",},},
     {"id":{"name":"spr_mario","path":"sprites/spr_mario/spr_mario.yy",},},
     {"id":{"name":"spr_menu_1","path":"sprites/spr_menu_1/spr_menu_1.yy",},},
     {"id":{"name":"spr_menu","path":"sprites/spr_menu/spr_menu.yy",},},
+<<<<<<< HEAD
     {"id":{"name":"spr_queen_slot","path":"sprites/spr_queen_slot/spr_queen_slot.yy",},},
+=======
+    {"id":{"name":"spr_slot","path":"sprites/spr_slot/spr_slot.yy",},},
+>>>>>>> EQ-demo
     {"id":{"name":"spr_smiley","path":"sprites/spr_smiley/spr_smiley.yy",},},
     {"id":{"name":"spr_targetIndicator","path":"sprites/spr_targetIndicator/spr_targetIndicator.yy",},},
     {"id":{"name":"spr_test_attack_claw","path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},},
@@ -143,6 +159,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
     {"roomId":{"name":"rm_test_overworld_1","path":"rooms/rm_test_overworld_1/rm_test_overworld_1.yy",},},
@@ -152,12 +169,17 @@
     {"roomId":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},
     {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
 =======
+=======
+>>>>>>> EQ-demo
     {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"roomId":{"name":"rm_test_overworld_1","path":"rooms/rm_test_overworld_1/rm_test_overworld_1.yy",},},
     {"roomId":{"name":"rm_demoDungeon","path":"rooms/rm_demoDungeon/rm_demoDungeon.yy",},},
     {"roomId":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
     {"roomId":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> EQ-demo
   ],
   "templateType":"game",
   "TextureGroups":[

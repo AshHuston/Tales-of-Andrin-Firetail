@@ -11,6 +11,7 @@
     {"name":"Enemies","order":1,"path":"folders/Objects/Combat/Enemies.yy",},
     {"name":"Dialogue system","order":3,"path":"folders/Objects/Dialogue system.yy",},
     {"name":"Menu system","order":5,"path":"folders/Objects/Menu system.yy",},
+<<<<<<< HEAD
     {"name":"EQ menu","order":7,"path":"folders/Objects/Menu system/EQ menu.yy",},
     {"name":"OverworldCharacters","order":1,"path":"folders/Objects/OverworldCharacters.yy",},
     {"name":"Enemies","order":1,"path":"folders/Objects/OverworldCharacters/Enemies.yy",},
@@ -22,6 +23,13 @@
 >>>>>>> Stashed changes
 =======
     {"name":"OverworldStuff","order":10,"path":"folders/Objects/OverworldStuff.yy",},
+=======
+    {"name":"Ephrin's Queen menu","order":7,"path":"folders/Objects/Menu system/Ephrin's Queen menu.yy",},
+    {"name":"crystal Sprites","order":3,"path":"folders/Objects/Menu system/Ephrin's Queen menu/crystal Sprites.yy",},
+    {"name":"OverworldCharacters","order":1,"path":"folders/Objects/OverworldCharacters.yy",},
+    {"name":"Enemies","order":1,"path":"folders/Objects/OverworldCharacters/Enemies.yy",},
+    {"name":"OverworldStuff","order":4,"path":"folders/Objects/OverworldStuff.yy",},
+>>>>>>> EQ-demo
     {"name":"collectables","order":2,"path":"folders/Objects/OverworldStuff/collectables.yy",},
 >>>>>>> Dialogue-System
     {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
@@ -45,6 +53,7 @@
     {"name":"obj_combat_zombie","order":1,"path":"objects/obj_combat_zombie/obj_combat_zombie.yy",},
     {"name":"obj_combatant","order":3,"path":"objects/obj_combatant/obj_combatant.yy",},
     {"name":"obj_damage_value_animation","order":3,"path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},
+    {"name":"obj_eq_menu","order":2,"path":"objects/obj_eq_menu/obj_eq_menu.yy",},
     {"name":"obj_fogOfWar","order":4,"path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},
     {"name":"obj_overworld_roy","order":2,"path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},
     {"name":"obj_ovw_mario","order":3,"path":"objects/obj_ovw_mario/obj_ovw_mario.yy",},
@@ -80,11 +89,14 @@
     {"name":"spr_a_press","order":6,"path":"sprites/spr_a_press/spr_a_press.yy",},
     {"name":"spr_aaron_dialogue","order":13,"path":"sprites/spr_aaron_dialogue/spr_aaron_dialogue.yy",},
     {"name":"spr_aaron_ovw","order":12,"path":"sprites/spr_aaron_ovw/spr_aaron_ovw.yy",},
+    {"name":"spr_crystal_2","order":1,"path":"sprites/spr_crystal_2/spr_crystal_2.yy",},
+    {"name":"spr_crystal_3","order":2,"path":"sprites/spr_crystal_3/spr_crystal_3.yy",},
     {"name":"spr_enter_press","order":7,"path":"sprites/spr_enter_press/spr_enter_press.yy",},
     {"name":"spr_font1","order":1,"path":"sprites/spr_font1/spr_font1.yy",},
     {"name":"spr_mario_1","order":11,"path":"sprites/spr_mario_1/spr_mario_1.yy",},
     {"name":"spr_mario","order":5,"path":"sprites/spr_mario/spr_mario.yy",},
     {"name":"spr_menu_1","order":5,"path":"sprites/spr_menu_1/spr_menu_1.yy",},
+    {"name":"spr_slot","order":2,"path":"sprites/spr_slot/spr_slot.yy",},
     {"name":"spr_targetIndicator","order":2,"path":"sprites/spr_targetIndicator/spr_targetIndicator.yy",},
     {"name":"spr_test_attack_claw","order":1,"path":"sprites/spr_test_attack_claw/spr_test_attack_claw.yy",},
     {"name":"spr_test_attack_flame","order":2,"path":"sprites/spr_test_attack_flame/spr_test_attack_flame.yy",},
