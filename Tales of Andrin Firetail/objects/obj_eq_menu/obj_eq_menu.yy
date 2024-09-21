@@ -1,18 +1,22 @@
 {
   "$GMObject":"",
-  "%Name":"obj_fogOfWar",
+  "%Name":"obj_eq_menu",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_fogOfWar",
+  "name":"obj_eq_menu",
   "overriddenProperties":[],
   "parent":{
-    "name":"OverworldStuff",
-    "path":"folders/Objects/OverworldStuff.yy",
+    "name":"Ephrin's Queen menu",
+    "path":"folders/Objects/Menu system/Ephrin's Queen menu.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_pauser",
+    "path":"objects/obj_pauser/obj_pauser.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -30,10 +34,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"Sprite28",
-    "path":"sprites/Sprite28/Sprite28.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

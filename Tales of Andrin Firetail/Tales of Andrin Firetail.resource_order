@@ -37,7 +37,7 @@
     {"name":"obj_combat_zombie","order":1,"path":"objects/obj_combat_zombie/obj_combat_zombie.yy",},
     {"name":"obj_combatant","order":3,"path":"objects/obj_combatant/obj_combatant.yy",},
     {"name":"obj_damage_value_animation","order":3,"path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},
-    {"name":"obj_eq_menu","order":2,"path":"objects/obj_eq_menu/obj_eq_menu.yy",},
+    {"name":"obj_eq_menu","order":4,"path":"objects/obj_eq_menu/obj_eq_menu.yy",},
     {"name":"obj_fogOfWar","order":4,"path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},
     {"name":"obj_overworld_roy","order":2,"path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},
     {"name":"obj_ovw_mario","order":3,"path":"objects/obj_ovw_mario/obj_ovw_mario.yy",},
