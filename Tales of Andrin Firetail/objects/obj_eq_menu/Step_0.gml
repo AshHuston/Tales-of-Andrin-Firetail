@@ -12,6 +12,11 @@ right_key = input("right_cont");
 accept_key = input("enter");
 back_key = input("back");
 right_key_tap = input("right");
+up_key_tap = input("up");
+down_key_tap = input("down");
+
+isHoldingCrystal = false
+if heldCrystal != noCrystal{ isHoldingCrystal = true}
 
 switch(numOfSlots){
 	case 4:
@@ -100,3 +105,33 @@ if in_crystal_list{
 
 //if hoveredSlot >= numOfSlots{hoveredSlot=0}
 //if hoveredSlot < 0{hoveredSlot = numOfSlots-1}
+
+if in_crystal_list{
+	if up_key_tap && noLastPress{
+		hoveredCrystal--	
+	}
+	if down_key_tap && noLastPress{
+		hoveredCrystal++	
+	}
+	if hoveredCrystal >= num_of_crystals {hoveredCrystal=0}
+	if hoveredCrystal < 0 {hoveredCrystal = num_of_crystals-1}
+	if accept_key{
+		if isHoldingCrystal{
+			heldCrystal = noCrystal
+		}else{
+			heldCrystal = crystal_inventory[hoveredCrystal]	
+		}
+	}
+}else{
+	if isHoldingCrystal && accept_key && noLastPress {
+		for (var i=0; i<array_length(crystal_inventory); i++){
+			if crystal_inventory[i].name == heldCrystal.name{
+				crystal_inventory[i].coords[0] = hoveredCoords[0]
+				crystal_inventory[i].coords[1] = hoveredCoords[1]
+			}
+		}
+		heldCrystal = noCrystal
+	}
+}
+
+if heldCrystal == noCrystal{ isHoldingCrystal = false}
