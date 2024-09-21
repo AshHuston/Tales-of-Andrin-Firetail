@@ -46,14 +46,7 @@ hoveredCrystal = 0
 slotsAlpha = 1
 listAlpha = 0.7
 rightMostColumn = 0
-crystal_inventory = [
-	{name : "Sharpshooter", sprite : spr_crystal_1, coords: [6,0]},
-	{name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]},
-	{name : "Slayer", sprite : spr_crystal_2, coords: [6,0]},
-	{name : "Double Time", sprite : spr_crystal_3, coords: [6,0]},
-	{name : "Jump", sprite : spr_crystal_1, coords: [6,0]},
-	{name : "Hyperbeam", sprite : spr_crystal_2, coords: [6,0]}	
-]
+crystal_inventory = global.CRYSTAL_INVENTORY
 num_of_crystals = array_length(crystal_inventory)
 longest_crystal_name_length = 0;
 tallest_crystal_name_height = 0

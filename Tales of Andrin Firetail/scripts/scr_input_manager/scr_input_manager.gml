@@ -38,6 +38,7 @@ function input(button)
 			case "A": return keyboard_check_pressed(ord("A")); break;
 			case "S": return keyboard_check_pressed(ord("S")); break;
 			case "D": return keyboard_check_pressed(ord("D")); break;
+			case "E": return keyboard_check_pressed(ord("E")); break;
 			default: return 0;
 		}
 	}

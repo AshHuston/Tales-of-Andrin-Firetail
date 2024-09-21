@@ -4,8 +4,9 @@ global.OVERWORLD_ID_A = 0;
 global.OVERWORLD_ID_B = 0;
 global.OVERWORLD_ID_C = 0;
 global.COMBAT_ORDERING = ["AARON", "A", "B", "C"];
-
 global.COMBATANTS = [];
+
+global.CRYSTAL_INVENTORY = []
 
 // Honestly idk if this is the right place for this or not. 
 // Right now im more concerned with making the global work.
@@ -19,4 +20,3 @@ function getCombatPartyIDs(){
 		}
 		return outArr;	
 	}
-	

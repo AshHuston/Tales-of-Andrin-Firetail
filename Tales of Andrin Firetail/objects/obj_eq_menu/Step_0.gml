@@ -1,3 +1,5 @@
+if input("start"){instance_destroy(self)}
+
 function flipAlphas(){
 	var buffSlotAlpha = listAlpha
 	var buffListAlpha = slotsAlpha

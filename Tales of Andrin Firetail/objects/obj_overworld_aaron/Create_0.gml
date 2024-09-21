@@ -32,13 +32,18 @@ combatSpeed = 40;
 armor = 10;
 magicResist = 6;
 evasion = 7;
-skillRanged = 25;		//@TODO These are just dummy/placeholder stats
+skillRanged = 250;		//@TODO These are just dummy/placeholder stats
 skillMelee = 20;		//		to test the Overworld --> Combat object conversion.
 skillEdged = 5;
 skillMagic = 5;
 
 resistances = []
 immunities = []
+crystal_inventory = global.CRYSTAL_INVENTORY
+
+array_push(crystal_inventory, {name : "Sharpshooter", sprite : spr_crystal_1, coords: [6,0]})
+array_push(crystal_inventory, {name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]})
+array_push(crystal_inventory, {name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]})
 
 framecount = 0; //Remove this later
 

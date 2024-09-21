@@ -1,6 +1,19 @@
-//show_debug_message("Current coords: ------ " + string(x) + ", " + string(y))
-//show_debug_message("Destinatio ncoords: -- " + string(destinationCoords[0]) + ", " + string(destinationCoords[1]))
-//show_debug_message("")
+//EQ Menu testing
+if input("E"){
+	show_debug_message("E")
+	//if object_exists(obj_eq_menu){
+		//instance_destroy(instance_find(obj_eq_menu,0))
+	//}else{
+		instance_create_depth(0,0,depth-1,obj_eq_menu)
+	//}
+	
+}
+
+
+
+
+
+
 
 function moveSprite(directionToMove){
 		acceptingMovementCommand = false
