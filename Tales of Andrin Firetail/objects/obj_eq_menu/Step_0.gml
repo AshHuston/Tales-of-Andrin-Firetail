@@ -6,6 +6,15 @@ function flipAlphas(){
 	slotsAlpha = buffSlotAlpha
 	listAlpha = buffListAlpha	
 }
+
+function getSlotByCoords(input_coords){
+	for (var i = 0; i<numOfSlots; i++){ 
+		if string(slot_coordinates[i]) == string(input_coords){
+			return i	
+		}
+	}
+	return -1
+}
 up_key = input("up_cont");
 down_key = input("down_cont");
 left_key = input("left_cont");
@@ -58,9 +67,10 @@ else if down_key && right_key{
 else {
 	noLastPress = true	
 }
+
 // Allows for a rightmost hovered cell to move to the crystalList via pressing Right, no diagonal needed.
 if noLastPress && hoveredCoords[X] == rightMostColumn && right_key_tap{
-	hoveredCoords[X]++
+	hoveredCoords[X] = crystal_list_coordinates[X]
 	noLastPress = false
 }
 var revertToLastCoords = true
@@ -91,8 +101,33 @@ if in_crystal_list{
 		in_crystal_list = false
 	}
 }
-//if hoveredSlot >= numOfSlots{hoveredSlot=0}
-//if hoveredSlot < 0{hoveredSlot = numOfSlots-1}
+
+
+// Ensure slots are marked as filled or not. Its so nested its awful.
+for (var slot=0; slot<array_length(slot_coordinates); slot++){
+	slot_states[slot] = EMPTY
+	var coords = slot_coordinates[slot]
+	if slot_states[slot] == EMPTY{
+		for (var i=0; i<array_length(crystal_inventory); i++){
+			// Mark slots as FILLED
+			if string(crystal_inventory[i].coords) == string(coords){
+				// Fill master slot
+				slot_states[slot] = FILLED
+				//Fill slave_slots
+				for (var n=0; n<array_length(crystal_inventory[i].slave_cells); n++){
+					var slaveCoords = []
+					array_copy(slaveCoords, 0, crystal_inventory[i].slave_cells[n], 0, array_length(crystal_inventory[i].slave_cells[n]))
+					slaveCoords[0] += coords[0]
+					slaveCoords[1] += coords[1]
+					slot_states[getSlotByCoords(slaveCoords)] = FILLED
+				}
+			}
+		}
+	}
+}
+
+
+// Pick up and place crystals
 if in_crystal_list{
 	if up_key_tap && noLastPress{
 		hoveredCrystal--	
@@ -111,13 +146,38 @@ if in_crystal_list{
 	}
 }else{
 	if isHoldingCrystal && accept_key && noLastPress {
-		for (var i=0; i<array_length(crystal_inventory); i++){
-			if crystal_inventory[i].name == heldCrystal.name{
-				crystal_inventory[i].coords[0] = hoveredCoords[0]
-				crystal_inventory[i].coords[1] = hoveredCoords[1]
+		// Check that there are no filled slots in our way
+		var canPlaceCrystal = true
+		if isHoldingCrystal{
+			if slot_states[getSlotByCoords(hoveredCoords)] == FILLED {canPlaceCrystal = false}
+			var slaveCells = heldCrystal.slave_cells
+			for (var i=0; i<array_length(slaveCells); i++){
+				var slaveCoords = []
+				array_copy(slaveCoords, 0, slaveCells[i], 0, array_length(slaveCells[i]))
+				slaveCoords[0] += hoveredCoords[0]
+				slaveCoords[1] += hoveredCoords[1]
+				try{
+					if slot_states[getSlotByCoords(slaveCoords)] == FILLED {canPlaceCrystal = false}
+				}catch(_exception){
+					canPlaceCrystal = false
+				}
 			}
 		}
-		heldCrystal = noCrystal
+		if canPlaceCrystal{
+			for (var i=0; i<array_length(crystal_inventory); i++){
+				//Set held crystal coords to the hovered slot.
+				if crystal_inventory[i].name == heldCrystal.name{
+					crystal_inventory[i].coords[0] = hoveredCoords[0]
+					crystal_inventory[i].coords[1] = hoveredCoords[1]
+				}
+			}
+			heldCrystal = noCrystal
+		}else{
+		shakeHeldCrystalFrames = 15	
+		}
+	}
+	if !isHoldingCrystal && accept_key && noLastPress{
+		// Pick up the crystal currently here. @TODO
 	}
 }
-if heldCrystal == noCrystal{ isHoldingCrystal = false}
+if heldCrystal == noCrystal {isHoldingCrystal = false}

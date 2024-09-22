@@ -15,10 +15,11 @@ op_border = 8
 op_space = 16;
 baseX = 20
 baseY = 20
-// Slot spacing refers to the X and Y spacing in pixels.
-// Minimum of 24 due to the size of the sprite.
+
+// Slot spacing refers to the X and Y spacing in pixels. Minimum of 24 due to the size of the sprite.
 slot_spacing = 23
-//[XgridPos, YgridPos]
+
+//[XgridPos, YgridPos].
 slot_coordinates = [
 	[2,1],
 	[1,2],
@@ -33,11 +34,16 @@ slot_coordinates = [
 	[5,2],
 	[5,4]
 ]
+
+EMPTY = 0
+FILLED = 1
+slot_states = []
+for (var slot=0; slot<array_length(slot_coordinates); slot++){slot_states[slot] = EMPTY}
 crystal_list_coordinates = [6,0]
 in_crystal_list = false
 bufferCoords = false
 bufferedCoords = []
-numOfSlots = 12
+numOfSlots = 7 ///////////////////////////////////////////
 range = 0.00
 hoveredCoords = [2,1]
 hoveredSlot = 0
@@ -63,3 +69,4 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 noCrystal = {name : "none", sprite : spr_slot, coords: [6,0]}
 heldCrystal = noCrystal
 isHoldingCrystal = false
+shakeHeldCrystalFrames = 0

@@ -41,9 +41,15 @@ resistances = []
 immunities = []
 crystal_inventory = global.CRYSTAL_INVENTORY
 
-array_push(crystal_inventory, {name : "Sharpshooter", sprite : spr_crystal_1, coords: [6,0]})
-array_push(crystal_inventory, {name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]})
-array_push(crystal_inventory, {name : "Team Heal", sprite : spr_crystal_3, coords: [6,0]})
+
+
+//test crystals
+array_push(crystal_inventory, {name : "Sharpshooter", sprite : spr_crystal_1, coords: [6,0], slave_cells: []})
+array_push(crystal_inventory, {name : "Team Healer", sprite : spr_crystal_3, coords: [6,0], slave_cells: [[1,1]]})
+array_push(crystal_inventory, {name : "Team Heal", sprite : spr_crystal_3, coords: [6,0], slave_cells: [[1,1]]})
+
+
+
 
 framecount = 0; //Remove this later
 

@@ -1,15 +1,11 @@
 //EQ Menu testing
 if input("E"){
-	show_debug_message("E")
-	//if object_exists(obj_eq_menu){
-		//instance_destroy(instance_find(obj_eq_menu,0))
-	//}else{
+	if instance_number(obj_eq_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_eq_menu)
-	//}
-	
+	}else{
+		instance_destroy(instance_find(obj_eq_menu,0))
+	}
 }
-
-
 
 
 

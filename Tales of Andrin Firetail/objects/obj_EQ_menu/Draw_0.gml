@@ -1,4 +1,3 @@
-//show_debug_message(heldCrystal)
 var hoveringCrystalX = 0
 var hoveringCrystalYShadow = 0
 var hoveringCrystalY = 0
@@ -7,6 +6,7 @@ for (var i = 0; i<numOfSlots; i++){
 	var frame = 0
 	var slotX = (slot_spacing*slot_coordinates[i,0]) + baseX// + random(range*slot_spacing) - random(range*slot_spacing)
 	var slotY = (slot_spacing*slot_coordinates[i,1]) + baseY// + random(range*slot_spacing) - random(range*slot_spacing)
+	if slot_states[i] == FILLED{frame = 2}
 	if i = hoveredSlot{frame = 1}
 	draw_sprite_ext(spr_slot, frame, slotX, slotY, 1, 1, 0, c_white, slotsAlpha)
 	if isHoldingCrystal && i = hoveredSlot{
@@ -20,13 +20,20 @@ for (var i = 0; i<numOfSlots; i++){
 		if string(slot_coordinates[i]) == string(crystal_inventory[crystal].coords){
 			var crystalX = (slot_spacing*slot_coordinates[i,0]) + baseX
 			var crystalY = (slot_spacing*slot_coordinates[i,1]) + baseY
-			draw_sprite_ext(crystal_inventory[crystal].sprite, 0, crystalX, crystalY, 1, 1, 45, c_white, 1)
+			draw_sprite_ext(crystal_inventory[crystal].sprite, 0, crystalX, crystalY, 1, 1, 0, c_white, 1)
 		}
 	}
 }
 if isHoldingCrystal && !in_crystal_list{
-	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX, hoveringCrystalYShadow, 1, 1, 45, c_black, 0.3)
-	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX, hoveringCrystalY, 1, 1, 45, c_white, 1)
+	var shakeX = 0
+	var shakeY = 0
+	if shakeHeldCrystalFrames>0{
+		shakeX = random(shakeHeldCrystalFrames/3)
+		shakeY = random(shakeHeldCrystalFrames/3)
+		shakeHeldCrystalFrames --
+	}
+	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX+shakeX, hoveringCrystalYShadow+shakeY, 1, 1, 0, c_black, 0.3)
+	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX+shakeX, hoveringCrystalY+shakeY, 1, 1, 0, c_white, 1)
 	}
 // Crystal list
 var listX = 200		//Arbitrary for testing
@@ -43,7 +50,7 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 	draw_text_color(listX+op_border, listY+op_border + op_space*i, crystal_inventory[i].name, _c, _c, _c, _c, listAlpha-fade);	
 	if isHoldingCrystal{
 		if isHoldingCrystal && in_crystal_list{
-		draw_sprite_ext(heldCrystal.sprite, 0, listX+(width/2), listY+(height/2), 1, 1, 45, c_white, 1)
+		draw_sprite_ext(heldCrystal.sprite, 0, listX+(width/2), listY+(height/2), 1, 1, 0, c_white, 1)
 		}
 	}
 }
@@ -52,5 +59,5 @@ if in_crystal_list && !isHoldingCrystal{
 	var previewCrystalY = listY + 80		//Arbitrary for testing
 	var previewCrystalScaleY = 1.5			//Arbitrary for testing
 	var previewCrystalScaleX = 1.5			//Arbitrary for testing
-	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 45, c_white, 1)
+	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
 }
