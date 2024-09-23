@@ -7,6 +7,7 @@ global.COMBAT_ORDERING = ["AARON", "A", "B", "C"];
 global.COMBATANTS = [];
 
 global.CRYSTAL_INVENTORY = []
+global.EQUIPPED_CRYSTALS = []
 
 // Honestly idk if this is the right place for this or not. 
 // Right now im more concerned with making the global work.

@@ -47,6 +47,7 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 	var _c = c_black;
 	var fade = .5
 	if hoveredCrystal == i && !(listAlpha < slotsAlpha) && !isHoldingCrystal {fade = 0}
+	if string(crystal_inventory[i].coords) != string(noCrystal.coords){_c = c_ltgray}
 	draw_text_color(listX+op_border, listY+op_border + op_space*i, crystal_inventory[i].name, _c, _c, _c, _c, listAlpha-fade);	
 	if isHoldingCrystal{
 		if isHoldingCrystal && in_crystal_list{
@@ -61,3 +62,6 @@ if in_crystal_list && !isHoldingCrystal{
 	var previewCrystalScaleX = 1.5			//Arbitrary for testing
 	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
 }
+
+//Testing equipped crystals
+draw_text_ext_transformed(50, baseY+150, string(global.EQUIPPED_CRYSTALS), 17, 1200, .25, .25, 0)

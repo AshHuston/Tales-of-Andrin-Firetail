@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_combat_position_macros",
   "isCompatibility":false,
   "isDnD":false,

@@ -15,6 +15,21 @@ function getSlotByCoords(input_coords){
 	}
 	return -1
 }
+
+function getCrystalByCoords(input_coords){
+	for (var i=0; i<array_length(crystal_inventory); i++){
+		if string(crystal_inventory[i].coords) == string(input_coords){
+			return i
+		}
+		for (var slot=0; slot<array_length(crystal_inventory[i].other_filled_slots); slot++){ 
+			if string(crystal_inventory[i].other_filled_slots[slot]) == string(input_coords){
+				return i
+			}
+		}
+	}
+	return -1
+}
+
 up_key = input("up_cont");
 down_key = input("down_cont");
 left_key = input("left_cont");
@@ -103,23 +118,30 @@ if in_crystal_list{
 }
 
 
-// Ensure slots are marked as filled or not. Its so nested its awful.
+// Ensure slots are marked as filled or not and equips appropriate crystals. Its so nested its awful.
+global.EQUIPPED_CRYSTALS = []
+slot_states = [EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY]
 for (var slot=0; slot<array_length(slot_coordinates); slot++){
-	slot_states[slot] = EMPTY
 	var coords = slot_coordinates[slot]
 	if slot_states[slot] == EMPTY{
 		for (var i=0; i<array_length(crystal_inventory); i++){
 			// Mark slots as FILLED
 			if string(crystal_inventory[i].coords) == string(coords){
+				// Add crystal to equipped crystals
+				if !array_contains(global.EQUIPPED_CRYSTALS, crystal_inventory[i]){
+					array_push(global.EQUIPPED_CRYSTALS, crystal_inventory[i])
+				}
 				// Fill master slot
 				slot_states[slot] = FILLED
 				//Fill slave_slots
+				crystal_inventory[i].other_filled_slots = []
 				for (var n=0; n<array_length(crystal_inventory[i].slave_cells); n++){
 					var slaveCoords = []
 					array_copy(slaveCoords, 0, crystal_inventory[i].slave_cells[n], 0, array_length(crystal_inventory[i].slave_cells[n]))
 					slaveCoords[0] += coords[0]
 					slaveCoords[1] += coords[1]
 					slot_states[getSlotByCoords(slaveCoords)] = FILLED
+					array_push(crystal_inventory[i].other_filled_slots, slaveCoords)
 				}
 			}
 		}
@@ -140,7 +162,7 @@ if in_crystal_list{
 	if accept_key{
 		if isHoldingCrystal{
 			heldCrystal = noCrystal
-		}else{
+		}else if string(crystal_inventory[hoveredCrystal].coords) == string(noCrystal.coords){
 			heldCrystal = crystal_inventory[hoveredCrystal]	
 		}
 	}
@@ -177,7 +199,13 @@ if in_crystal_list{
 		}
 	}
 	if !isHoldingCrystal && accept_key && noLastPress{
-		// Pick up the crystal currently here. @TODO
+		// Pick up the crystal currently at hoveredCoords
+		var crystalNum = getCrystalByCoords(hoveredCoords)
+		if crystalNum != -1{
+			heldCrystal = crystal_inventory[crystalNum]
+			hoveredCoords = heldCrystal.coords//moves hover to master cell of the crystal so it doesnt move
+			heldCrystal.coords = [6,0] //moves the crystal off the board
+		}
 	}
 }
 if heldCrystal == noCrystal {isHoldingCrystal = false}

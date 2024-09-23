@@ -66,7 +66,7 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 		tallest_crystal_name_height = this_height	
 	}
 }
-noCrystal = {name : "none", sprite : spr_slot, coords: [6,0]}
+noCrystal = {name : "none", sprite : spr_slot, coords: [6,0], other_filled_slots: []}
 heldCrystal = noCrystal
 isHoldingCrystal = false
 shakeHeldCrystalFrames = 0
