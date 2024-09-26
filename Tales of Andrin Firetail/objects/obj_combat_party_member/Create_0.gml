@@ -2,6 +2,9 @@
 
 event_inherited();
 
+addAttacks = true //Just for some test attacks, remove later.
+
+
 damageAnimationSprite = sprite_index;
 
 menuTexture = ""; //@TODO Add menu texture per character.
@@ -91,16 +94,25 @@ function getEffectBonus(stat){
 		if variable_struct_exists(activeEffects[i], key){
 			switch(key){
 				case "bonusArmor":
-					sum += activeEffects[i].bonusArmor; break;
+					if variable_struct_exists(activeEffects[i], "bonusArmor"){
+						sum += activeEffects[i].bonusArmor;} 
+						break;
 				case "bonusSpeed":
-					sum += activeEffects[i].bonusSpeed; break;
+					if variable_struct_exists(activeEffects[i], "bonusSpeed"){ 
+						sum += activeEffects[i].bonusSpeed;}
+						break;
 				case "bonusHP":
-					sum += activeEffects[i].bonusHP; break;
+					if variable_struct_exists(activeEffects[i], "bonusHP"){ 
+						sum += activeEffects[i].bonusHP;}
+						break;
 				case "bonusMagicResist":
-					sum += activeEffects[i].bonusMagicResist; break;
+					if variable_struct_exists(activeEffects[i], "bonusMagicResist"){ 
+						sum += activeEffects[i].bonusMagicResist;}
+						break;
 				case "bonusEvasion":
-					sum += activeEffects[i].bonusEvasion; break;
-			
+					if variable_struct_exists(activeEffects[i], "bonusEvasion"){ 
+						sum += activeEffects[i].bonusEvasion;}
+						break;
 			}
 		}
 	}

@@ -1,7 +1,9 @@
 {
   "FolderOrderSettings":[],
   "ResourceOrderSettings":[
+    {"name":"obj_collectabale_crystal","order":4,"path":"objects/obj_collectabale_crystal/obj_collectabale_crystal.yy",},
     {"name":"obj_collectable","order":1,"path":"objects/obj_collectable/obj_collectable.yy",},
-    {"name":"obj_eq_crystal_test","order":2,"path":"objects/obj_eq_crystal_test/obj_eq_crystal_test.yy",},
+    {"name":"obj_eq_crystal_armorup","order":2,"path":"objects/obj_eq_crystal_armorup/obj_eq_crystal_armorup.yy",},
+    {"name":"obj_eq_crystal_incinerate","order":3,"path":"objects/obj_eq_crystal_incinerate/obj_eq_crystal_incinerate.yy",},
   ],
 }

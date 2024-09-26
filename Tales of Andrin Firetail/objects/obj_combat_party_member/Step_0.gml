@@ -65,8 +65,12 @@ var shoot = {
 	animation_index: spr_test_attack_flame
 };
 
-attacks = [bite, stab, shoot, slash];
-
-
+if addAttacks{ //Just for some test attacks, remove later.
+	addAttacks = false
+	array_push(attacks, bite)
+	array_push(attacks, stab)
+	array_push(attacks, shoot)
+	array_push(attacks, slash)
+}
 //-------------TESTS ONLY -> DELETE LATER-------------------
 //var results = inventory[0].use(self);

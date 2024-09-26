@@ -1,4 +1,4 @@
-baseHP = round(random_range(15,45));
+baseHP = round(random_range(55,95));
 currentHP = baseHP;
 statusEffect = [];
 resistances = ["physical", "poison"];

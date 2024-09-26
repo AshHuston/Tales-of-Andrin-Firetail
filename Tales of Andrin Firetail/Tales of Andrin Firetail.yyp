@@ -50,6 +50,7 @@
   "name":"Tales of Andrin Firetail",
   "resources":[
     {"id":{"name":"obj_action_animation","path":"objects/obj_action_animation/obj_action_animation.yy",},},
+    {"id":{"name":"obj_collectabale_crystal","path":"objects/obj_collectabale_crystal/obj_collectabale_crystal.yy",},},
     {"id":{"name":"obj_collectable","path":"objects/obj_collectable/obj_collectable.yy",},},
     {"id":{"name":"obj_combat_aaron","path":"objects/obj_combat_aaron/obj_combat_aaron.yy",},},
     {"id":{"name":"obj_combat_manager","path":"objects/obj_combat_manager/obj_combat_manager.yy",},},
@@ -60,7 +61,8 @@
     {"id":{"name":"obj_damage_value_animation","path":"objects/obj_damage_value_animation/obj_damage_value_animation.yy",},},
     {"id":{"name":"obj_dialogue_manager","path":"objects/obj_dialogue_manager/obj_dialogue_manager.yy",},},
     {"id":{"name":"obj_enemy","path":"objects/obj_enemy/obj_enemy.yy",},},
-    {"id":{"name":"obj_eq_crystal_test","path":"objects/obj_eq_crystal_test/obj_eq_crystal_test.yy",},},
+    {"id":{"name":"obj_eq_crystal_armorup","path":"objects/obj_eq_crystal_armorup/obj_eq_crystal_armorup.yy",},},
+    {"id":{"name":"obj_eq_crystal_incinerate","path":"objects/obj_eq_crystal_incinerate/obj_eq_crystal_incinerate.yy",},},
     {"id":{"name":"obj_eq_menu","path":"objects/obj_eq_menu/obj_eq_menu.yy",},},
     {"id":{"name":"obj_fogOfWar","path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},},
     {"id":{"name":"obj_overworld_aaron","path":"objects/obj_overworld_aaron/obj_overworld_aaron.yy",},},
@@ -140,8 +142,8 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"roomId":{"name":"rm_test_overworld_1","path":"rooms/rm_test_overworld_1/rm_test_overworld_1.yy",},},
+    {"roomId":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"roomId":{"name":"rm_demoDungeon","path":"rooms/rm_demoDungeon/rm_demoDungeon.yy",},},
     {"roomId":{"name":"rm_combat_testing","path":"rooms/rm_combat_testing/rm_combat_testing.yy",},},
     {"roomId":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},

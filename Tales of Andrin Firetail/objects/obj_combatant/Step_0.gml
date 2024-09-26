@@ -6,7 +6,7 @@ if isTakingDamage{
 	}
 	if startedDamageSFX == false{
 		startedDamageSFX = true;
-		//-------------------------------------------------------------temporary removal for development QOL
+		//@TODO------------------------------------temporary removal for development QOL
 		//audio_play_sound_ext({ sound: damageSoundEffect })
 	}
 }

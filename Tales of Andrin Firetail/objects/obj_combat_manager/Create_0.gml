@@ -1,5 +1,7 @@
 event_inherited()
 
+drawSelector = true
+preDesignatedTargets = ["all enemies", "all"] // Targets that will not require selection.
 var up_key 
 var down_key 
 var accept_key 

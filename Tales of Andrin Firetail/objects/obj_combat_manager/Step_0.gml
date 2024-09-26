@@ -2,6 +2,7 @@ var up_key = input("up");
 var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
+drawSelector = true
 
 function displayActionAnimation(targetsArr, results){
 	target = targetsArr[0];
@@ -46,7 +47,7 @@ switch(step){
 		//see if we done here
 		var stillAreMonsters = false
 		for (var i=0 ; i<array_length(combatants); i++) {
-			show_debug_message(object_get_parent(combatants[i].object_index))
+			//show_debug_message(object_get_parent(combatants[i].object_index))
 			if object_get_parent(combatants[i].object_index) == obj_enemy{
 				if combatants[i].currentHP > 0{
 					stillAreMonsters = true
@@ -56,8 +57,8 @@ switch(step){
 		if stillAreMonsters == false{
 			view_set_xport(overworldViewport, overworldCameraX)
 			view_set_yport(overworldViewport, overworldCameraY)
-			view_visible[overworldViewport] = 1
-			view_visible[combatViewport] = 0
+			view_visible[overworldViewport] = true
+			view_visible[combatViewport] = false
 			if instance_exists(obj_combat_menu){
 				instance_destroy(menu);	
 			}
@@ -75,7 +76,7 @@ switch(step){
 	
 		activeCombatant = fastestRemainingCombatant;
 		
-		// This line just for testing rn. Probably will remove.
+		// This line just for testing rn. Because of the diff in sprite sizes. Probably will remove.
 		if object_get_parent(activeCombatant.object_index) == obj_enemy{activeCombatantScale = 1.2} else {activeCombatantScale = 1.6}
 		
 		originalScaleX = activeCombatant.image_xscale;
@@ -88,7 +89,7 @@ switch(step){
 	
 	case "Open menu":
 	//On a turn:
-		
+		targets = [];
 		activeCombatant.isActive = true;
 		if instance_exists(obj_combat_menu){
 		instance_destroy(menu);	
@@ -96,38 +97,41 @@ switch(step){
 		//Reduce their counters by 1. (Statuses/cooldowns)
 			//@TODO Figure this out.
 		
-		//@TODO Display character menu, select action/target(s).
-			//@TODO move all the functionaility of obj_title_menu to this object
-			action = {name:"empty"};
-			targets = [];
-			if activeCombatant.object_index == obj_combat_party_member || object_get_parent(activeCombatant.object_index) == obj_combat_party_member{
-				var attacks = [];
-				array_copy(attacks, -1, activeCombatant.listAttacks(), 0, array_length(activeCombatant.listAttacks()));
-				var specialActions = []
-				array_copy(specialActions, -1, activeCombatant.listSpecialActions(), 0, array_length(activeCombatant.listSpecialActions()));
-				var inventory = [];
-				array_copy(inventory, -1, activeCombatant.listItems(), 0, array_length(activeCombatant.listItems()));
-				var spells = [];
-				array_copy(spells, -1, activeCombatant.listSpells(), 0, array_length(activeCombatant.listSpells()));
-				
+		action = {name:"empty"};
+		if activeCombatant.object_index == obj_combat_party_member || object_get_parent(activeCombatant.object_index) == obj_combat_party_member{
+			var attacks = [];
+			array_copy(attacks, -1, activeCombatant.listAttacks(), 0, array_length(activeCombatant.listAttacks()));
+			var specialActions = []
+			array_copy(specialActions, -1, activeCombatant.listSpecialActions(), 0, array_length(activeCombatant.listSpecialActions()));
+			var inventory = [];
+			array_copy(inventory, -1, activeCombatant.listItems(), 0, array_length(activeCombatant.listItems()));
+			var spells = [];
+			array_copy(spells, -1, activeCombatant.listSpells(), 0, array_length(activeCombatant.listSpells()));
 			
-			// Might somehow utilize -> activeCombatant.menuTexture   \/
-				menu = instance_create_depth(combatCameraX+40,combatCameraY+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
-				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
-			}
+		// Might somehow utilize -> activeCombatant.menuTexture   \/
+			menu = instance_create_depth(combatCameraX+40,combatCameraY+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
+			step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
+		}
 			
-			
-			//If enemy, determine action based on AI rules.
-			if activeCombatant.object_index == obj_enemy || object_get_parent(activeCombatant.object_index) == obj_enemy{
-				action = activeCombatant.getAction();
-				targets = [action.targetID]
-				if action.bonus_targetID != ""{array_push(targets, action.bonus_targetID);}
-				step = "Do action";
-			}
-	break;
+		//If enemy, determine action based on AI rules.
+		if activeCombatant.object_index == obj_enemy || object_get_parent(activeCombatant.object_index) == obj_enemy{
+			action = activeCombatant.getAction();
+			array_push(targets, action.targetID); //targets = [action.targetID]
+			if action.bonus_targetID != ""{array_push(targets, action.bonus_targetID);}
+			step = "Do action";
+		}
+break;
 	
 	case "Select targets":
-		if back_key{step = "Open menu";} 
+		//show_debug_message(typeof(targets))
+		//show_debug_message(targets[0])
+		if back_key{step = "Open menu";}
+		else if array_contains(preDesignatedTargets, string_lower(targets[0])){
+			if accept_key{
+				step = "Do action";
+				break;	
+			}
+		}
 		else{
 			var combatantsLength = array_length(combatants);
 			if down_key{hovering++;}
@@ -157,14 +161,16 @@ switch(step){
 	break;
 	
 	case "Do action":
-		if action.name != "empty" && array_length(targets) != 0 {
-			
+	function doAction(theseTargets){
+		
 			var bonusTargetStartHP = 0;
 			var targetStartHP = 0;
 			var bonusTargetEndHP = 0;
 			var targetEndHP = 0;
 			
-			action.targetID = targets[0]; //Could be an objectID or "all" or "self" //@TODO Handle these non-ID cases.
+			if typeof(theseTargets) != "array"{theseTargets = [theseTargets]}
+			action.targetID = theseTargets[0];	//Could be an objectID or "all" or "self" 
+											//@TODO Handle these non-ID cases. /\
 			
 			switch(action.targetID)
 			{
@@ -173,6 +179,7 @@ switch(step){
 				break;
 				
 				case "all":
+				//@TODO Figure this out
 				show_debug_message("Add this code you dumy!");
 				break;
 				
@@ -180,13 +187,13 @@ switch(step){
 				targetStartHP = action.targetID.currentHP;
 			}
 			
-			if array_length(targets) == 2 {
-				action.bonus_targetID = targets[1];
+			if array_length(theseTargets) == 2 {
+				action.bonus_targetID = theseTargets[1];
 				bonusTargetStartHP = action.bonus_targetID.currentHP;
 				}
 			
 			var results = activeCombatant.doAction(action);	   // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
-			displayActionAnimation(targets, results);
+			displayActionAnimation(theseTargets, results);
 			
 			switch(action.targetID)
 			{
@@ -195,6 +202,7 @@ switch(step){
 				break;
 				
 				case "all":
+				//@TODO Figure this out
 				show_debug_message("Add this code you dumy!");
 				break;
 				
@@ -207,15 +215,33 @@ switch(step){
 					action.targetID.isTakingDamage = true;
 				}
 			
-			if array_length(targets) == 2 {
+			if array_length(theseTargets) == 2 {
 				bonusTargetEndHP = action.bonus_targetID.currentHP;
 				if bonusTargetEndHP < bonusTargetStartHP{
 					action.bonus_targetID.isTakingDamage = true;
 				}
 			}
-			
+				
+	}
+		if action.name != "empty" && array_length(targets) != 0{
+			if string_lower(targets[0]) == "all"{
+				for (var i=0; i<array_length(combatants); i++){
+					doAction(combatants[i])
+				}
+				action.targetID = "all"
+			}
+			else if string_lower(targets[0]) == "all enemies"{
+				for (var i=0; i<array_length(combatants); i++){
+					if object_get_parent(combatants[i].object_index) == obj_enemy{
+						doAction(combatants[i])
+					}
+				}
+				action.targetID = "all enemies"
+			}
+			else{
+				doAction(targets)	
+			}
 			step = "Running animation";
-			
 		}
 	break;
 	
@@ -227,7 +253,7 @@ switch(step){
 			}
 		}
 		 
-		if damageAnimationsAreRunning == false && instance_exists(obj_action_animation) == false{
+		if damageAnimationsAreRunning == false && !instance_exists(obj_action_animation){
 		//&& !instance_exists(obj_damage_value_animation){			
 			activeCombatant.hasActed = true;	
 			action = {name:"empty"};
@@ -255,7 +281,6 @@ switch(step){
 		
 		
 		//We could toy around with being unconcious but having HP means you may wake up.
-		
 		//If so, animate death/down.
 			//@TODO Figure out how to do this. 
 			//Probably setting the sprite to a death animation then a speed/index to do the last frame.

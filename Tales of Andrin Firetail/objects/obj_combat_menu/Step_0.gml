@@ -74,9 +74,9 @@ if (accept_key)
 					break;
 					
 				default:
-				show_debug_message(attacks[pos].name);
 				selectedAction = attacks[pos];
-				chosenTargets = [instance_find(obj_combat_zombie, 1)];
+				chosenTargets = [];
+				array_push(chosenTargets, selectedAction.targetID)
 			}
 			 
 		break;
@@ -89,7 +89,6 @@ if (accept_key)
 					break;
 				
 				default:
-				show_debug_message(spells[pos].name); 
 			}
 		break;
 		
@@ -101,7 +100,6 @@ if (accept_key)
 					break;
 					
 				default:
-				show_debug_message(specialActions[pos].name); 
 		}
 		break;
 		
@@ -113,9 +111,9 @@ if (accept_key)
 					break;
 					
 				default:
-				show_debug_message(inventory[pos].name);
 				selectedAction = inventory[pos];
-				chosenTargets = ["self"]				 //Temporary line of code? // = slectedAction.cantarget
+				chosenTargets = [];				 //Temporary line of code? // = slectedAction.cantarget
+				array_push(chosenTargets, selectedAction.targetID)
 		}
 		break;
 		
@@ -132,5 +130,6 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	combatManagerID.action = selectedAction;
 	combatManagerID.targets = chosenTargets;
 	combatManagerID.step = "Select targets";
+	//if array_contains(combatManagerID.preDesignatedTargets, chosenTargets){combatManagerID.drawSelector = false}
 	instance_destroy(self);
 }

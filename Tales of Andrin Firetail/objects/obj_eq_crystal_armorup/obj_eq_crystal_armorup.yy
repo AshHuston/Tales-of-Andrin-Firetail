@@ -1,20 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"obj_eq_crystal_test",
+  "%Name":"obj_eq_crystal_armorup",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_eq_crystal_test",
+  "name":"obj_eq_crystal_armorup",
   "overriddenProperties":[],
   "parent":{
     "name":"collectables",
     "path":"folders/Objects/OverworldStuff/collectables.yy",
   },
   "parentObjectId":{
-    "name":"obj_collectable",
-    "path":"objects/obj_collectable/obj_collectable.yy",
+    "name":"obj_collectabale_crystal",
+    "path":"objects/obj_collectabale_crystal/obj_collectabale_crystal.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
