@@ -89,6 +89,9 @@ if (accept_key)
 					break;
 				
 				default:
+				selectedAction = spells[pos];
+				chosenTargets = [];				 
+				array_push(chosenTargets, selectedAction.targetID)
 			}
 		break;
 		
@@ -100,6 +103,9 @@ if (accept_key)
 					break;
 					
 				default:
+				selectedAction = spells[pos];
+				chosenTargets = [];				 
+				array_push(chosenTargets, selectedAction.targetID)
 		}
 		break;
 		

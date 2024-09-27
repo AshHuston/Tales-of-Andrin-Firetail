@@ -173,7 +173,7 @@ function listSpells(){
 	var outputSpells = [];
 	for (var i=0; i<array_length(spells);i++;){
 		if spells[i].combatMenu == true{
-			array_push(outputItems, spells[i]);
+			array_push(outputSpells, spells[i]);
 		}
 	}
 	return outputSpells;

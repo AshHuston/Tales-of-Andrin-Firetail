@@ -6,7 +6,7 @@ itemInfo = {
 	coords: [6,0],
 	slave_cells: [[1,1], [2,0]],
 	other_filled_slots: [], //Left intentionally empty
-	effectType: "attack",
+	effectType: "spell",
 	effect: {
 		name: "Incinerate",	//Only really needed for playable characters. Will show up on menu.
 		description: "Burns all enemies",	//Only really needed for playable characters. Will show up on menu.
@@ -19,6 +19,7 @@ itemInfo = {
 		effect_chance: 0, 
 		effect_type: "",
 		frequency: 5,
+		combatMenu: true,
 		actionType: "attack",
 		animation_index: spr_test_attack_flame
 	}

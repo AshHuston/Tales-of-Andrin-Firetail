@@ -62,7 +62,7 @@ var shoot = {
 	effect_type: "",
 	frequency: 5,
 	actionType: "attack",
-	animation_index: spr_test_attack_flame
+	animation_index: spr_test_attack_flame,
 };
 
 if addAttacks{ //Just for some test attacks, remove later.

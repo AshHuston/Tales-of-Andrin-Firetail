@@ -1,5 +1,8 @@
 event_inherited()
 
+combatLogEntries = []			// Each entry should have {text:"Words", color:c_white}
+combatLogEntriesOnDisplay = []	// Should have {text:"Words", color:c_white, frames:default_frames, alpha:for_fade_out}
+
 drawSelector = true
 preDesignatedTargets = ["all enemies", "all"] // Targets that will not require selection.
 var up_key 
@@ -12,9 +15,9 @@ overworldCameraY = 0
 combatViewport = 7
 for (var i=0; i<7; i++;){
 	if view_get_visible(i){
-	overworldViewport = i
-	overworldCameraX = view_get_xport(i)
-	overworldCameraY = view_get_yport(i)
+		overworldViewport = i
+		overworldCameraX = view_get_xport(i)
+		overworldCameraY = view_get_yport(i)
 	}
 	view_set_visible(i, false)
 }

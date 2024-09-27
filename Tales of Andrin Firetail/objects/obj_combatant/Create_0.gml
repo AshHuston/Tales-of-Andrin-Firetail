@@ -15,7 +15,7 @@ damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
 function attack(details){
 // Struct should contain: targetID, bonus_targetID, dmg_type, min_dmg, max_dmg, hit_chance, effect_chance, effect_type. 	
 //Ensure struct elements are present
-
+	
 	//@TODO Insert try catch block checking it and returning an error if something is missing.	
 	
 	
@@ -49,7 +49,20 @@ function attack(details){
 	}
 	
 //Checks if attack hits. If so, resolve the attack.
-	var results = {mainDmg:0, mainType:"", secondaryDmg:0, secondaryType:"", hit: false, animation_index: details.animation_index, effect: "", isEffected: false};
+	var results = {
+		mainDmg:0, 
+		mainType:"", 
+		secondaryDmg:0, 
+		secondaryType:"", 
+		hit: false, 
+		animation_index: details.animation_index, 
+		effect: "", 
+		isEffected: false,
+		logMessage: "DEFAULT LOG MESSAGE"
+		};
+	if variable_struct_exists(details, "logMessage"){
+		results.logMessage = details.logMessage
+	}
 	
 	var hitPercent = details.hit_chance - target.totalEvasion;
 	var minmumPossibleHitPercent = 2;
@@ -83,6 +96,7 @@ function attack(details){
 	}
 	else{
 		results.mainDmg = -1;
+		results.logMessage = "MISS" //@TODO Flesh this out
 	}
 
 //Apply attack to the bonus target.
@@ -108,6 +122,14 @@ function attack(details){
 	return results;
 }
 
+function castSpell(details){
+	if details.actionType == "attack"{
+		return attack(details)
+	}else{
+		//@TODO Figure this out	
+	}
+}
+
 function useItem(details){
 	var result;
 	if details.targetID == "self"{
@@ -125,7 +147,7 @@ function doAction(detailStruct){
 		return attack(detailStruct);
 	
 	case "spell":
-		castSpell(detailStruct);
+		return castSpell(detailStruct);
 		break;
 	
 	case "item":

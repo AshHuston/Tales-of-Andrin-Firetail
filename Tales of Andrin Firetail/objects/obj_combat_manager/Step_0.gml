@@ -162,7 +162,6 @@ break;
 	
 	case "Do action":
 	function doAction(theseTargets){
-		
 			var bonusTargetStartHP = 0;
 			var targetStartHP = 0;
 			var bonusTargetEndHP = 0;
@@ -221,7 +220,14 @@ break;
 					action.bonus_targetID.isTakingDamage = true;
 				}
 			}
-				
+			// Push the log message
+			logMessage = {
+				text: results.logMessage,	
+				color: c_white,
+				frames: 90, 
+				alpha: 1
+			}
+			array_push(self.combatLogEntriesOnDisplay, logMessage)
 	}
 		if action.name != "empty" && array_length(targets) != 0{
 			if string_lower(targets[0]) == "all"{
