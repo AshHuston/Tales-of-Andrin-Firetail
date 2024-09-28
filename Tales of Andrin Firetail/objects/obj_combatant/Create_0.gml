@@ -8,6 +8,8 @@ damageSoundEffect = snd_no_sound
 damageAnimationCounter = 0;
 defaultSprite = sprite_index;
 damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
+combatName = "UNNAMED COMBATANT"
+combatLogColor = c_white
 
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.
@@ -96,7 +98,11 @@ function attack(details){
 	}
 	else{
 		results.mainDmg = -1;
-		results.logMessage = "MISS" //@TODO Flesh this out
+		results.logMessage =[
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "missed", color: c_white},
+		{text: "*TARGET", color: c_olive} //"MISS" //@TODO Flesh this out
+		]
 	}
 
 //Apply attack to the bonus target.

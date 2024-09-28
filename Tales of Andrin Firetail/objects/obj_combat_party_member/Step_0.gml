@@ -14,7 +14,15 @@ var bite = {
 	effect_type: "poison",
 	frequency: 5,
 	actionType: "attack",
-	animation_index: spr_test_attack_claw
+	animation_index: spr_test_attack_claw,
+	logMessage: [
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "bites", color: c_white},
+		{text: "*TARGET", color: c_olive},
+		{text: "dealing", color: c_white},
+		{text: "*DAMAGE", color: c_white},
+		{text: "damage.", color: c_white},
+		]
 };
 
 var stab = {
@@ -30,7 +38,15 @@ var stab = {
 	effect_type: "",
 	frequency: 5,
 	actionType: "attack",
-	animation_index: spr_test_attack_claw
+	animation_index: spr_test_attack_claw,
+	logMessage: [
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "stabs", color: c_white},
+		{text: "*TARGET", color: c_olive},
+		{text: "dealing", color: c_white},
+		{text: "*DAMAGE", color: c_white},
+		{text: "damage.", color: c_white},
+		]
 };
 
 var slash = {
@@ -46,7 +62,15 @@ var slash = {
 	effect_type: "",
 	frequency: 5,
 	actionType: "attack",
-	animation_index: spr_test_attack_flame
+	animation_index: spr_test_attack_flame,
+	logMessage: [
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "slashes", color: c_white},
+		{text: "*TARGET", color: c_olive},
+		{text: "dealing", color: c_white},
+		{text: "*DAMAGE", color: c_white},
+		{text: "damage.", color: c_white},
+		]
 };
 
 var shoot = {
@@ -63,6 +87,14 @@ var shoot = {
 	frequency: 5,
 	actionType: "attack",
 	animation_index: spr_test_attack_flame,
+	logMessage: [
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "shoot", color: c_white},
+		{text: "*TARGET", color: c_olive},
+		{text: "dealing", color: c_white},
+		{text: "*DAMAGE", color: c_white},
+		{text: "damage.", color: c_white},
+		]
 };
 
 if addAttacks{ //Just for some test attacks, remove later.

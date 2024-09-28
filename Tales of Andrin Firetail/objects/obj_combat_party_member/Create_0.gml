@@ -2,6 +2,9 @@
 
 event_inherited();
 
+combatName = "Unnamed Party Member"
+combatLogColor = c_olive
+
 addAttacks = true //Just for some test attacks, remove later.
 
 

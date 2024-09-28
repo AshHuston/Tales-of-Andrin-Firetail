@@ -2,6 +2,7 @@ event_inherited()
 
 combatLogEntries = []			// Each entry should have {text:"Words", color:c_white}
 combatLogEntriesOnDisplay = []	// Should have {text:"Words", color:c_white, frames:default_frames, alpha:for_fade_out}
+waitFrames = 3
 
 drawSelector = true
 preDesignatedTargets = ["all enemies", "all"] // Targets that will not require selection.

@@ -1,6 +1,10 @@
 //width = 175;
 //height = 100;
 
+//var cam = camera_get_active()
+//x = camera_get_view_x(cam) + (camera_get_view_width(cam)/2) //@TODO Arbitrary for now. Will change when organizing the combat uis
+//y = camera_get_view_y(cam) + (camera_get_view_height(cam)/2)
+
 for (var i = 0; i<instance_count; i++){
 	var checkDepth = instance_id_get(i).depth
 	if checkDepth < depth{ 

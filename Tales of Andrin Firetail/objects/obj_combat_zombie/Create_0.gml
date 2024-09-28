@@ -9,6 +9,8 @@ totalSpeed = round(random_range(10, 13));
 totalEvasion = 0;
 // Inherit the parent event
 event_inherited();
+combatName = "Zombie"
+combatLogColor = c_maroon
 
 swipe = {
 	display_name: "Swipe",
@@ -39,7 +41,15 @@ bite = {
 	effect_type: "poison",
 	frequency: round(random_range(4,8)),
 	actionType:"attack",
-	animation_index: spr_test_attack_claw
+	animation_index: spr_test_attack_claw,
+	logMessage: [
+		{text: "*ACTIVE", color: c_aqua},
+		{text: "bites", color: c_white},
+		{text: "*TARGET", color: c_olive},
+		{text: "dealing", color: c_white},
+		{text: "*DAMAGE", color: c_white},
+		{text: "damage.", color: c_white},
+		]
 }
 
 attacks = [swipe, bite]
