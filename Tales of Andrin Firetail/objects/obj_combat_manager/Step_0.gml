@@ -21,7 +21,7 @@ function displayActionAnimation(targetsArr, results){
 	}
 	
 	if struct_exists(results, "mainDmg"){
-		instance_create_depth(target.x, target.y, -100, obj_damage_value_animation, {dmgAmt: results.mainDmg});	
+		instance_create_depth(target.x, target.y, -100, obj_damage_value_animation, {dmgAmt: string(results.mainDmg)});	
 			
 	}
 	
@@ -198,7 +198,7 @@ if waitFrames<1{
 					bonusTargetStartHP = action.bonus_targetID.currentHP;
 					}
 			
-				var results = activeCombatant.doAction(action);	   // Should return {damage:int(or 'miss'), effect:str, animation_index:asset}
+				var results = activeCombatant.doAction(action);	
 				displayActionAnimation(theseTargets, results);
 			
 				switch(action.targetID)
@@ -209,6 +209,7 @@ if waitFrames<1{
 				
 					case "all":
 					//@TODO Figure this out
+					// I may have already handled this.
 					show_debug_message("Add this code you dumy!");
 					break;
 				
@@ -227,8 +228,10 @@ if waitFrames<1{
 					}
 				}
 				// Push the log message
+				var json = json_stringify(results.logMessage)
+				var logText = json_parse(json)
 				logMessage = {
-					text: results.logMessage,	
+					text:  logText,	
 					color: c_white,
 					frames: 90, //How many frames message is on screen
 					alpha: 1
@@ -247,7 +250,7 @@ if waitFrames<1{
 							break;
 						
 						case "*DAMAGE": 
-							logMessage.text[i].text = string(targetStartHP-targetEndHP) 
+							logMessage.text[i].text = results.mainDmg
 							logMessage.text[i].color = c_white
 							break;
 						
@@ -312,6 +315,12 @@ if waitFrames<1{
 					else{
 						combatants[i].isConscious = false;
 						combatants[i].currentHP = 0;
+						var deathMessage = [
+							{text: combatants[i].combatName, color: combatants[i].combatLogColor},
+							{text: "has been defeated.", color: c_white},
+							]
+						array_push(combatLogEntries, deathMessage)
+						array_push(combatLogEntriesOnDisplay, deathMessage)
 					}
 					array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 				}

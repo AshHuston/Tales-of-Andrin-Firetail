@@ -96,7 +96,7 @@ for (var i=0; i<array_length(combatLogEntriesOnDisplay); i++){
 	}
 	var logEntrySpacing = 10
 	var logText = get_log_entry_seperate_words(combatLogEntriesOnDisplay[i].text)
-	draw_log_entry_multicolor(logText, popUpLogX, popUpLogY+(logEntrySpacing*i), combatLogEntriesOnDisplay[i].alpha)
+	draw_log_entry_multicolor(logText, popUpLogX, popUpLogY+(logEntrySpacing*i), combatLogEntriesOnDisplay[i].alpha, 1000)
 }
 
 // Full logs
@@ -112,13 +112,8 @@ if setCurrentToOffScreen{goalX = fullLogOriginXClosed; setCurrentToOffScreen=fal
 if hideCombatLog{goalX = fullLogOriginXClosed}
 else{goalX = fullLogOriginX}
 //move the current coords to the goal coords
-show_debug_message("currentX")
-show_debug_message(currentX)
-show_debug_message("goalX")
-show_debug_message(goalX)
-show_debug_message("---------------")
 if currentX != goalX{
-	var slideSpeed = 20
+	var slideSpeed = 22
 	if goalX>currentX{currentX+=slideSpeed}
 	else{currentX-=slideSpeed}
 	currentX = clamp(currentX, fullLogOriginX, fullLogOriginXClosed)
