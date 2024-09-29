@@ -8,19 +8,21 @@ back_key = input("back");
 op_length = array_length(option[menu_level]);
 
 //adjust window
- height = 12 +(op_length*(20 + op_space + op_border));
- 
-//if !down_key && !up_key {btn_pressed = false}else{btn_pressed = true}
-//if btn_pressed == false
-//	{
-		if down_key{pos++;}
-		if up_key{pos--;}
-		if pos>=op_length{pos=0};
-		if pos<0 {pos=op_length-1};
-//		btn_pressed = true;
-//	}
+height = (op_length*(string_height(option[menu_level][0]) + op_border))
 
-//if  (input("down_cont") - input("up_cont")) == 0 {btn_pressed = false}
+width = 0
+for (var i=0; i<op_length; i++){
+	if string_width(option[menu_level][i]) > width{	//@TODO Some bug here making the menu huge.
+	width = string_width(option[menu_level][i])
+	}
+}
+width += op_border
+
+if down_key{pos++;}
+if up_key{pos--;}
+if pos>=op_length{pos=0};
+if pos<0 {pos=op_length-1};
+
 
 if back_key{
 	menu_level = 0;
@@ -28,11 +30,8 @@ if back_key{
 }
 //Clicky da button
 if (accept_key) 
-//&& !sel_btn_pressed_last
 {
 	var _sml = menu_level;
-	
-	
 	switch(menu_level)
 	{
 		//pause menu
@@ -130,12 +129,10 @@ if (accept_key)
 	op_length = array_length(option[menu_level]);
 } else {sel_btn_pressed_last = false;}
 
-//if input("enter") {sel_btn_pressed_last = true;}
 
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	combatManagerID.action = selectedAction;
 	combatManagerID.targets = chosenTargets;
 	combatManagerID.step = "Select targets";
-	//if array_contains(combatManagerID.preDesignatedTargets, chosenTargets){combatManagerID.drawSelector = false}
 	instance_destroy(self);
 }

@@ -1,5 +1,10 @@
 event_inherited()
 
+hideCombatLog = true
+combatLogExtraLines = 0
+addExtraLine = false
+currentX = 0
+setCurrentToOffScreen = true
 combatLogEntries = []			// Each entry should have {text:"Words", color:c_white}
 combatLogEntriesOnDisplay = []	// Should have {text:"Words", color:c_white, frames:default_frames, alpha:for_fade_out}
 waitFrames = 3

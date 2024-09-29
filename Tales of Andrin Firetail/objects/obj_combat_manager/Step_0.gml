@@ -4,6 +4,12 @@ var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
 
+//@TODO Decide actual input
+if keyboard_check_pressed(vk_alt) or input("Y"){
+	if !hideCombatLog{hideCombatLog = true}
+	else {hideCombatLog = false}
+}
+
 function displayActionAnimation(targetsArr, results){
 	target = targetsArr[0];
 	if results.animation_index != "None" && results.mainDmg != -1{
