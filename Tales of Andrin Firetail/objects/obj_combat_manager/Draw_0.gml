@@ -82,8 +82,9 @@ function get_log_entry_seperate_words(logEntry, delimiters=[" "]){
 var cam = camera_get_active()
 
 // Popup logs
-var popUpLogX = camera_get_view_x(cam) + (camera_get_view_width(cam)/2) - 40 //@TODO Arbitrary for now. Will change when organizing the combat uis
-var popUpLogY = camera_get_view_y(cam) + (camera_get_view_height(cam)/2)
+var popUpLogScreenBorder = 22
+var popUpLogX = camera_get_view_x(cam) + popUpLogScreenBorder*0.8
+var popUpLogY = camera_get_view_y(cam) + (camera_get_view_height(cam) - popUpLogScreenBorder)
 for (var i=0; i<array_length(combatLogEntriesOnDisplay); i++){
 	combatLogEntriesOnDisplay[i].frames--
 	var fadeFrames = 15
@@ -96,24 +97,24 @@ for (var i=0; i<array_length(combatLogEntriesOnDisplay); i++){
 	}
 	var logEntrySpacing = 10
 	var logText = get_log_entry_seperate_words(combatLogEntriesOnDisplay[i].text)
-	draw_log_entry_multicolor(logText, popUpLogX, popUpLogY+(logEntrySpacing*i), combatLogEntriesOnDisplay[i].alpha, 1000)
+	draw_log_entry_multicolor(logText, popUpLogX, popUpLogY-(logEntrySpacing*(array_length(combatLogEntriesOnDisplay)-i-1)), combatLogEntriesOnDisplay[i].alpha, 1000)
 }
 
 // Full logs
 var fullLogtextWidth = 125
 var fullLogScreenBorderX = 25
 var fullLogScreenBorderY = 5
-var fullLogPadding = 10 // Not in use. Only for use with log background.
+var fullLogPadding = 10 // Not in use currently. Only for use with log background.
 var fullLogOriginX = camera_get_view_x(cam) + camera_get_view_width(cam) - fullLogtextWidth - fullLogScreenBorderX
 var fullLogOriginXClosed = round(fullLogOriginX + fullLogtextWidth*1.5)
 var fullLogOriginY = camera_get_view_y(cam) + fullLogScreenBorderY
 var goalX = 0
+var slideSpeed = 22
 if setCurrentToOffScreen{goalX = fullLogOriginXClosed; setCurrentToOffScreen=false}
 if hideCombatLog{goalX = fullLogOriginXClosed}
 else{goalX = fullLogOriginX}
 //move the current coords to the goal coords
 if currentX != goalX{
-	var slideSpeed = 22
 	if goalX>currentX{currentX+=slideSpeed}
 	else{currentX-=slideSpeed}
 	currentX = clamp(currentX, fullLogOriginX, fullLogOriginXClosed)

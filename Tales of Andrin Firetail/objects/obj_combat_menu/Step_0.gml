@@ -135,17 +135,15 @@ width = 0
 for (var i=0; i<op_length; i++){
 	if string_width(option[menu_level][i].name) > width{
 	width = string_width(option[menu_level][i].name)
-	show_debug_message(option[menu_level][i])
-	show_debug_message(width)
 	}
 }
-show_debug_message("-----------------")
 width += op_border*2
 var minMenuWidth = 50
 var maxMenuWidth = 175
 width = clamp(width, minMenuWidth, maxMenuWidth)
+
 //Relocate the menu
 var camXBuffer = 10
 var camYBuffer = 10
 x = camX + camXBuffer
-y = camY + camHeight - camYBuffer - height
+y = camY + (camHeight/2) - camYBuffer - height/2

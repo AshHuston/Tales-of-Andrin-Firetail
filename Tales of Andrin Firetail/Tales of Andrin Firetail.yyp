@@ -66,6 +66,7 @@
     {"id":{"name":"obj_eq_menu","path":"objects/obj_eq_menu/obj_eq_menu.yy",},},
     {"id":{"name":"obj_fogOfWar","path":"objects/obj_fogOfWar/obj_fogOfWar.yy",},},
     {"id":{"name":"obj_overworld_aaron","path":"objects/obj_overworld_aaron/obj_overworld_aaron.yy",},},
+    {"id":{"name":"obj_overworld_enemy","path":"objects/obj_overworld_enemy/obj_overworld_enemy.yy",},},
     {"id":{"name":"obj_overworld_roy","path":"objects/obj_overworld_roy/obj_overworld_roy.yy",},},
     {"id":{"name":"obj_overworld_zombie","path":"objects/obj_overworld_zombie/obj_overworld_zombie.yy",},},
     {"id":{"name":"obj_ovw_mario","path":"objects/obj_ovw_mario/obj_ovw_mario.yy",},},

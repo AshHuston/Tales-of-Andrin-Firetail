@@ -30,22 +30,50 @@ for (var i=0; i<7; i++;){
 view_set_visible(combatViewport, true)
 combatCameraX = camera_get_view_x(view_get_camera(combatViewport)) 
 combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
-var mx1 = global.COMBAT_POSITIONING.fiveMonsters[0][0] + combatCameraX
-var my1 = global.COMBAT_POSITIONING.fiveMonsters[0][1] + combatCameraY
-var mx2 = global.COMBAT_POSITIONING.fiveMonsters[1][0] + combatCameraX
-var my2 = global.COMBAT_POSITIONING.fiveMonsters[1][1] + combatCameraY
-var mx3 = global.COMBAT_POSITIONING.fiveMonsters[2][0] + combatCameraX
-var my3 = global.COMBAT_POSITIONING.fiveMonsters[2][1] + combatCameraY
-var mx4 = global.COMBAT_POSITIONING.fiveMonsters[3][0] + combatCameraX
-var my4 = global.COMBAT_POSITIONING.fiveMonsters[3][1] + combatCameraY
-var mx5 = global.COMBAT_POSITIONING.fiveMonsters[4][0] + combatCameraX
-var my5 = global.COMBAT_POSITIONING.fiveMonsters[4][1] + combatCameraY
 
-mob1.x = mx1
-mob1.y = my1
-mob2.x = mx2
-mob2.y = my2
-//CombatDetailStruct should contain enemy ids [], enemy positioning, round timer events, [MORE?]
+
+
+
+
+
+
+// ---------------------------------------- MONSTER RELOCATION --------------------------------------------------
+monsters = [
+	mob1,
+	mob2,
+	mob3,
+	mob4,
+	mob5
+]
+X = 0
+Y = 1
+monsterCoords = [[],[],[],[],[]]
+
+for(var i=0; i<array_length(monsters); i++;){
+	if monsters[i] == ""{array_delete(monsters, i, 1)}
+}
+
+switch(array_length(monsters)){
+		case 1:
+			monsterCoords = global.COMBAT_POSITIONING.oneMonster	break;
+		case 2:
+			monsterCoords = global.COMBAT_POSITIONING.twoMonsters	break;
+		case 3:
+			monsterCoords = global.COMBAT_POSITIONING.threeMonsters	break;
+		case 4:
+			monsterCoords = global.COMBAT_POSITIONING.fourMonsters	break;
+		case 5:
+			monsterCoords = global.COMBAT_POSITIONING.fiveMonsters	break;	
+	}		
+for(var i=0; i<array_length(monsterCoords); i++;){
+	monsterCoords[i][X] += combatCameraX
+	monsterCoords[i][Y] += combatCameraY
+	monsters[i].x = monsterCoords[i][X]
+	monsters[i].y = monsterCoords[i][Y]
+}
+// -----------------------------------------------------------------------------------------------------------
+
+
 
 /**
  * Creates the combat characters for party members.

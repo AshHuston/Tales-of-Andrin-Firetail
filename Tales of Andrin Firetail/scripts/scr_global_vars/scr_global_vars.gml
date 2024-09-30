@@ -5,7 +5,7 @@ global.OVERWORLD_ID_B = 0;
 global.OVERWORLD_ID_C = 0;
 global.COMBAT_ORDERING = ["AARON", "A", "B", "C"];
 global.COMBATANTS = [];
-
+global.DEFAULT_OVERWORLD_MONSTER_BENCH = [-1000, -1000]
 global.CRYSTAL_INVENTORY = []
 global.EQUIPPED_CRYSTALS = []
 
