@@ -2,8 +2,12 @@
 //height = 100;
 
 var cam = view_get_camera(combatManagerID.combatViewport)
-x = camera_get_view_x(cam) + (camera_get_view_width(cam)/2) //@TODO Arbitrary for now. Will change when organizing the combat uis
-y = camera_get_view_y(cam) + (camera_get_view_height(cam)/2)
+camX = camera_get_view_x(cam)
+camY = camera_get_view_y(cam)
+camWidth = camera_get_view_width(cam)
+camHeight = camera_get_view_height(cam)
+x = camX + (camWidth/2) //@TODO Arbitrary for now. Will change when organizing the combat uis
+y = camY + (camHeight/2)
 
 for (var i = 0; i<instance_count; i++){
 	var checkDepth = instance_id_get(i).depth
@@ -16,10 +20,10 @@ op_border = 8
 op_space = 16;
 
 //Base Menu
-option[0, 0] = "Attacks";
-option[0, 1] = "Spells";
-option[0, 2] = "Special Actions";
-option[0, 3] = "Inventory";
+option[0, 0] = {name: "Attacks"};
+option[0, 1] = {name: "Spells"};
+option[0, 2] = {name: "Special Actions"};
+option[0, 3] = {name: "Inventory"};
 
 //Settings Menu
 option[1] = attacks;

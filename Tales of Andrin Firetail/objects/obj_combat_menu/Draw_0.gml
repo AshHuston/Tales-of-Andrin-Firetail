@@ -12,8 +12,9 @@ var text = ""
 for(var i=0; i<op_length; i++)
 	{
 		
-		if menu_level == 0{text = option[menu_level, i];}
-		else{text = option[menu_level, i].name;}
+		//if menu_level == 0{text = option[menu_level, i];}
+		//else{text = option[menu_level, i].name;}
+		text = option[menu_level, i].name;
 		
 		var _c = c_white;
 		if pos == i {_c = c_black;}

@@ -7,23 +7,13 @@ back_key = input("back");
 //Store num of options in current menu
 op_length = array_length(option[menu_level]);
 
-//adjust window
-height = (op_length*(string_height(option[menu_level][0]) + op_border))
+// Traverse the menu
+if down_key{pos++}
+if up_key{pos--}
+if pos>=op_length{pos=0}
+if pos<0 {pos=op_length-1}
 
-width = 0
-for (var i=0; i<op_length; i++){
-	if string_width(option[menu_level][i]) > width{	//@TODO Some bug here making the menu huge.
-	width = string_width(option[menu_level][i])
-	}
-}
-width += op_border
-
-if down_key{pos++;}
-if up_key{pos--;}
-if pos>=op_length{pos=0};
-if pos<0 {pos=op_length-1};
-
-
+// Back button
 if back_key{
 	menu_level = 0;
 	op_length = array_length(option[menu_level]);
@@ -136,3 +126,26 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	combatManagerID.step = "Select targets";
 	instance_destroy(self);
 }
+
+
+// ---------------------------- Placement and sizing ------------------------------------------------------
+//adjust window
+height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_length*2
+width = 0
+for (var i=0; i<op_length; i++){
+	if string_width(option[menu_level][i].name) > width{
+	width = string_width(option[menu_level][i].name)
+	show_debug_message(option[menu_level][i])
+	show_debug_message(width)
+	}
+}
+show_debug_message("-----------------")
+width += op_border*2
+var minMenuWidth = 50
+var maxMenuWidth = 175
+width = clamp(width, minMenuWidth, maxMenuWidth)
+//Relocate the menu
+var camXBuffer = 10
+var camYBuffer = 10
+x = camX + camXBuffer
+y = camY + camHeight - camYBuffer - height
