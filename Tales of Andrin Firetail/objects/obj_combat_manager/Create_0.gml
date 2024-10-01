@@ -49,11 +49,12 @@ X = 0
 Y = 1
 monsterCoords = [[],[],[],[],[]]
 
-for(var i=0; i<array_length(monsters); i++;){
-	if monsters[i] == ""{array_delete(monsters, i, 1)}
+for(var i=array_length(monsters)-1; i>=0; i--;){
+	if monsters[i] == noone{array_delete(monsters, i, 1)}
 }
 
 switch(array_length(monsters)){
+	
 		case 1:
 			monsterCoords = global.COMBAT_POSITIONING.oneMonster	break;
 		case 2:
@@ -171,7 +172,7 @@ function createPartyCombatObjects(partyIDs){
 		
 		//Combine combatants
 		for (var i=0;i<array_length(mobs);i++;){
-			if mobs[i] != ""{
+			if mobs[i] != noone{
 				array_push(combatants, mobs[i]);
 			}
 		}

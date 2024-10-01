@@ -109,7 +109,7 @@ var fullLogOriginX = camera_get_view_x(cam) + camera_get_view_width(cam) - fullL
 var fullLogOriginXClosed = round(fullLogOriginX + fullLogtextWidth*1.5)
 var fullLogOriginY = camera_get_view_y(cam) + fullLogScreenBorderY
 var goalX = 0
-var slideSpeed = 22
+var slideSpeed = 35
 if setCurrentToOffScreen{goalX = fullLogOriginXClosed; setCurrentToOffScreen=false}
 if hideCombatLog{goalX = fullLogOriginXClosed}
 else{goalX = fullLogOriginX}

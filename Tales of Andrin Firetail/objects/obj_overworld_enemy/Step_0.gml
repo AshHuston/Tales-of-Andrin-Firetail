@@ -4,15 +4,17 @@ function benchThisMonster(){
 }
 
 function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
-	show_debug_message(typeof(certainMonsters))
+	numberOfMonsters = clamp(numberOfMonsters, 1, 5)
 	benchThisMonster()
 	if typeof(certainMonsters) != "array" {certainMonsters = [certainMonsters]}
-	mobs = ["", "", "", "", ""]
-	for (var i = 0; i<array_length(numberOfMonsters); i++){
+	if array_length(possibleMonsters) == 0 {array_copy(possibleMonsters, 0, certainMonsters, 0, array_length(certainMonsters))}
+	mobs = [noone, noone, noone, noone, noone]
+	for (var i = 0; i<numberOfMonsters; i++){
 		if i<array_length(certainMonsters){
-			// ------------------------------------------ @TODO finish this function
+			mobs[i] = instance_create_depth(0,0,0,certainMonsters[i])
 		}else{
-			
+			possibleMonsters = array_shuffle(possibleMonsters)
+			mobs[i] = instance_create_depth(0,0,0,possibleMonsters[0])
 		}
 	}
 	
