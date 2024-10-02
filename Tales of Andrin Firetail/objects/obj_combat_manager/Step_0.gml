@@ -99,7 +99,8 @@ if waitFrames<1{
 			targets = [];
 			activeCombatant.isActive = true;
 			if instance_exists(obj_combat_menu){
-			instance_destroy(menu);	
+				menu = instance_find(obj_combat_menu, 0)
+				instance_destroy(menu);	
 			}
 			//Reduce their counters by 1. (Statuses/cooldowns)
 				//@TODO Figure this out.

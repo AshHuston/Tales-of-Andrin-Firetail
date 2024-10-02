@@ -8,9 +8,6 @@ if input("E"){
 }
 
 
-
-
-
 function moveSprite(directionToMove){
 		acceptingMovementCommand = false
 		deltaX = 0

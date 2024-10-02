@@ -9,12 +9,7 @@ camHeight = camera_get_view_height(cam)
 x = camX + (camWidth/2) //@TODO Arbitrary for now. Will change when organizing the combat uis
 y = camY + (camHeight/2)
 
-for (var i = 0; i<instance_count; i++){
-	var checkDepth = instance_id_get(i).depth
-	if checkDepth < depth{ 
-		depth = checkDepth-1
-		}	
-}
+setTopDepth(id)
 
 op_border = 8
 op_space = 16;

@@ -1,19 +1,21 @@
 {
   "$GMObject":"",
-  "%Name":"obj_overworld_zombie",
+  "%Name":"obj_combatFadeOut",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_overworld_zombie",
+  "name":"obj_combatFadeOut",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/OverworldCharacters/Enemies.yy",
+    "name":"Combat",
+    "path":"folders/Objects/Combat.yy",
   },
   "parentObjectId":{
-    "name":"obj_overworld_enemy",
-    "path":"objects/obj_overworld_enemy/obj_overworld_enemy.yy",
+    "name":"obj_pauser",
+    "path":"objects/obj_pauser/obj_pauser.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -33,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"Sprite6",
-    "path":"sprites/Sprite6/Sprite6.yy",
+    "name":"spr_testFadeIn",
+    "path":"sprites/spr_testFadeIn/spr_testFadeIn.yy",
   },
   "spriteMaskId":null,
   "visible":true,
