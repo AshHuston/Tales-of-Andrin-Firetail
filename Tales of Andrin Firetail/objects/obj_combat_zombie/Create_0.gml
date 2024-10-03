@@ -10,7 +10,7 @@ totalEvasion = 0;
 // Inherit the parent event
 event_inherited();
 combatName = "Zombie"
-combatLogColor = c_maroon
+combatLogColor = c_red
 
 swipe = {
 	display_name: "Swipe",

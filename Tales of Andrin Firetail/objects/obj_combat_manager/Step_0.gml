@@ -4,7 +4,7 @@ var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
 
-//@TODO Decide actual input
+//@TODO Decide actual input for combatLog
 if keyboard_check_pressed(vk_alt) or input("Y"){
 	if !hideCombatLog{hideCombatLog = true}
 	else {hideCombatLog = false}
@@ -34,6 +34,19 @@ function displayActionAnimation(targetsArr, results){
 	}
 }
 
+function display_log_message(logMessage){
+	if typeof(logMessage) == "string"{
+		logMessage = {
+					text:  logMessage,	
+					color: c_white,
+					frames: 90, //How many frames message is on screen
+					alpha: 1
+				}	
+	}
+	array_push(combatLogEntriesOnDisplay, logMessage)
+	array_push(combatLogEntries, logMessage)
+}
+				
 	//-------------------COMBAT CLOCK----------------------
 if waitFrames<1{
 	switch(step){
@@ -69,8 +82,14 @@ if waitFrames<1{
 				if instance_exists(obj_combat_menu){
 					instance_destroy(menu);	
 				}
+				lootAndExp = {
+					// @TODO Should be filling this in. What are we giving them? How much EXP?
+				}
+				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {lootAndExp: lootAndExp})
 				instance_destroy(self);
-			}else{show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))}
+			}else{
+				show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))
+				}
 		
 			//Iterate, comparing speed to highestSpeed.
 			var fastestRemainingCombatant = canStillGo[0];
@@ -231,6 +250,7 @@ if waitFrames<1{
 				// Push the log message
 				var json = json_stringify(results.logMessage)
 				var logText = json_parse(json)
+				
 				logMessage = {
 					text:  logText,	
 					color: c_white,
@@ -261,8 +281,9 @@ if waitFrames<1{
 							break;
 					}
 				}
-				array_push(self.combatLogEntriesOnDisplay, logMessage)
-				array_push(self.combatLogEntries, logMessage)
+				display_log_message(logMessage)
+				//array_push(combatLogEntriesOnDisplay, logMessage)
+				//array_push(combatLogEntries, logMessage)
 		}
 			if action.name != "empty" && array_length(targets) != 0{
 				if string_lower(targets[0]) == "all"{
@@ -320,8 +341,9 @@ if waitFrames<1{
 							{text: combatants[i].combatName, color: combatants[i].combatLogColor},
 							{text: "has been defeated.", color: c_white},
 							]
-						array_push(combatLogEntries, deathMessage)
-						array_push(combatLogEntriesOnDisplay, deathMessage)
+						display_log_message(deathMessage)
+						//array_push(combatLogEntries, deathMessage)
+						//array_push(combatLogEntriesOnDisplay, deathMessage)
 					}
 					array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 				}

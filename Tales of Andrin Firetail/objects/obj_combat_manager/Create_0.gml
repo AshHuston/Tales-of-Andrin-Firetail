@@ -2,6 +2,9 @@ event_inherited()
 
 instance_create_depth(0, 0, 0, obj_combatFadeOut)
 
+entrySpacing = 0	// Value overridden on Draw
+totalLines = 0		// Value overridden on Draw
+longestTextWidth = 0// Value overridden on Draw
 hideCombatLog = true
 combatLogExtraLines = 0
 addExtraLine = false

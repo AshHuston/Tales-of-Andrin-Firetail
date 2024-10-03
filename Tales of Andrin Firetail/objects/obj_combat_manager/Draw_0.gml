@@ -1,6 +1,7 @@
 depth = -100;
 combatLogExtraLines = 0
 addExtraLine = false
+longestTextWidth = 0
 
 if step == "Select targets" && drawSelector{
 	switch(targets[0]){
@@ -31,22 +32,23 @@ function get_full_log_entry_width(logEntry, spacing=2){ /// ====================
 	for(var i=0; i<array_length(logEntry); i++){
 			logTextWidth += string_width(logEntry[i].text)+spacing
 		}
+		if logTextWidth > longestTextWidth{longestTextWidth = logTextWidth}
 	return logTextWidth	
 }
 
 
-function draw_log_entry_multicolor(logEntry, logX, logY, alpha, lineMaxWidth){
+function draw_log_entry_multicolor(logEntry, logX, logY, alpha, lineMaxWidth, addFullLogHeightToBackground=false){
 	if typeof(logEntry) == "string"{
 		var defaultColor = c_white
 		draw_text_color(logX, logY, logEntry, defaultColor, defaultColor, defaultColor, defaultColor, alpha)
 	}else if typeof(logEntry) == "struct"{
 		draw_text_color(logX, logY, logEntry.text, logEntry.color, logEntry.color, logEntry.color, logEntry.color, alpha)
 	}else if typeof(logEntry) == "array"{
-		var lineSpacing = string_height(logEntry[0].text) + 0 //Can be adjusted manually for fine tuning.
+		var lineSpacing = string_height(logEntry[0].text) + 2 //Can be adjusted manually for fine tuning.
 		var numOfLines = 0
 		var logTextWidth = 0
-		var wordSpacing = 2
 		var entrySpacing = 12
+		var wordSpacing = 2
 		var lineStartIndex = 0
 		addExtraLine = false
 		for(var i=0; i<array_length(logEntry); i++){
@@ -62,7 +64,9 @@ function draw_log_entry_multicolor(logEntry, logX, logY, alpha, lineMaxWidth){
 			var yCoord = logY + ((lineSpacing*numOfLines)+(entrySpacing*combatLogExtraLines))
 			draw_text_color(xCoord, yCoord, logEntry[i].text, logEntry[i].color, logEntry[i].color, logEntry[i].color, logEntry[i].color, alpha)
 			logTextWidth += string_width(logEntry[i].text)+wordSpacing
-			
+		}
+		if addFullLogHeightToBackground{
+			totalLines += numOfLines + 1
 		}
 	}
 }
@@ -103,8 +107,7 @@ for (var i=0; i<array_length(combatLogEntriesOnDisplay); i++){
 // Full logs
 var fullLogtextWidth = 125
 var fullLogScreenBorderX = 25
-var fullLogScreenBorderY = 5
-var fullLogPadding = 10 // Not in use currently. Only for use with log background.
+var fullLogScreenBorderY = 15
 var fullLogOriginX = camera_get_view_x(cam) + camera_get_view_width(cam) - fullLogtextWidth - fullLogScreenBorderX
 var fullLogOriginXClosed = round(fullLogOriginX + fullLogtextWidth*1.5)
 var fullLogOriginY = camera_get_view_y(cam) + fullLogScreenBorderY
@@ -113,6 +116,20 @@ var slideSpeed = 35
 if setCurrentToOffScreen{goalX = fullLogOriginXClosed; setCurrentToOffScreen=false}
 if hideCombatLog{goalX = fullLogOriginXClosed}
 else{goalX = fullLogOriginX}
+
+// Log background
+var fullLogPaddingX = 12
+var fullLogPaddingY = 9
+var backgroundX = currentX - (fullLogPaddingX/2)
+var backgroundY = fullLogOriginY - (fullLogPaddingY/2)
+var textHeight = string_height("I") + 4 // additional buffer
+var bgXScale = ((fullLogPaddingX*2)+(fullLogtextWidth))/sprite_get_width(spr_logBackground)
+totalLines += combatLogExtraLines
+var bgYScale = ((fullLogPaddingY)+((textHeight)*totalLines))/sprite_get_height(spr_logBackground)
+var opacity = 0.4
+draw_sprite_ext(spr_logBackground, 0, backgroundX, backgroundY, bgXScale, bgYScale, 0, c_white, opacity)
+totalLines = 0
+
 //move the current coords to the goal coords
 if currentX != goalX{
 	if goalX>currentX{currentX+=slideSpeed}
@@ -123,5 +140,6 @@ for (var i=0; i<array_length(combatLogEntries); i++){
 	if addExtraLine{combatLogExtraLines++}
 	var logEntrySpacing = 12
 	var logText = get_log_entry_seperate_words(combatLogEntries[i].text)
-	draw_log_entry_multicolor(logText, currentX, fullLogOriginY+(logEntrySpacing*i), 1, fullLogtextWidth)
+	draw_log_entry_multicolor(logText, currentX, fullLogOriginY+(logEntrySpacing*i), 1, fullLogtextWidth, true)
 }
+
