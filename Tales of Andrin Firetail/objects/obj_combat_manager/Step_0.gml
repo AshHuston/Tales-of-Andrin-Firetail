@@ -146,7 +146,7 @@ if waitFrames<1{
 				array_copy(spells, -1, activeCombatant.listSpells(), 0, array_length(activeCombatant.listSpells()));
 			
 			// Might somehow utilize -> activeCombatant.menuTexture   \/
-				menu = instance_create_depth(combatCameraX+40,combatCameraY+10,0,obj_combat_menu,{combatManagerID:id,inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
+				menu = instance_create_depth(combatCameraX+40,combatCameraY+10,0,obj_combat_menu,{combatManagerID:id, activeCombatant: activeCombatant, inventory:inventory, spells:spells, specialActions:specialActions, attacks:attacks});
 				step = "Awaiting player input"; //Menu will set combatManagerID.step = "Do action";
 			}
 			
@@ -198,6 +198,7 @@ if waitFrames<1{
 		break;
 	
 		case "Do action":
+		activeCombatant.spendResource(action)
 		function doAction(theseTargets){
 				var bonusTargetStartHP = 0;
 				var targetStartHP = 0;
@@ -228,7 +229,7 @@ if waitFrames<1{
 					bonusTargetStartHP = action.bonus_targetID.currentHP;
 					}
 			
-				var results = activeCombatant.doAction(action);	
+				var results = activeCombatant.doAction(action);
 				displayActionAnimation(theseTargets, results);
 			
 				switch(action.targetID)

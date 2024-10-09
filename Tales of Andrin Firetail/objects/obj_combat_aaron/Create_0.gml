@@ -16,8 +16,8 @@ for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){
 
 image_xscale = -1 //flip sprite the right way
 
-
 //DisplayStats 
+maxMana = 25
+currentMana = 25
 secondaryDisplayBar = "MP"
-secondaryDisplayBarMax = 25
-secondaryDisplayBarCurrent = 20
+secondaryDisplayBarMax = maxMana

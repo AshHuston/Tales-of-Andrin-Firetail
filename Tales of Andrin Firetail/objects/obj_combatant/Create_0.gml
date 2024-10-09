@@ -133,7 +133,8 @@ function attack(details){
 }
 
 function castSpell(details){
-	if details.actionType == "attack"{
+	if details.spellType == "attack"{
+		show_debug_message("Mana cost: " + string(details.cost_value))
 		return attack(details)
 	}else{
 		//@TODO Figure this out	
@@ -166,5 +167,11 @@ function doAction(detailStruct){
 	case "special":
 		useSpecialAction(detailStruct);
 		break;
+	}
+}
+	
+function spendResource(details){
+	switch(details.actionType){
+		case "spell": currentMana -= details.cost_value break;	
 	}
 }

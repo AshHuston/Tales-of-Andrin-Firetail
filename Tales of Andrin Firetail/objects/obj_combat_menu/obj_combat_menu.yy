@@ -34,6 +34,7 @@
     {"$GMObjectProperty":"v1","%Name":"inventory","filters":[],"listItems":[],"multiselect":false,"name":"inventory","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":6,},
     {"$GMObjectProperty":"v1","%Name":"combatManagerID","filters":[],"listItems":[],"multiselect":false,"name":"combatManagerID","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":2,},
     {"$GMObjectProperty":"v1","%Name":"menuTexture","filters":[],"listItems":[],"multiselect":false,"name":"menuTexture","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"activeCombatant","filters":[],"listItems":[],"multiselect":false,"name":"activeCombatant","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

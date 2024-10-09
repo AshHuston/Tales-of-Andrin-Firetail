@@ -18,7 +18,8 @@ if back_key{
 	menu_level = 0;
 	op_length = array_length(option[menu_level]);
 }
-//Clicky da button
+#region Press select
+chosenTargets = [];	
 if (accept_key) 
 {
 	var _sml = menu_level;
@@ -121,12 +122,34 @@ if (accept_key)
 
 
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
-	combatManagerID.action = selectedAction;
-	combatManagerID.targets = chosenTargets;
-	combatManagerID.step = "Select targets";
-	instance_destroy(self);
+	var cost = 0
+	var type = ""
+	try{
+		cost = real(selectedAction.cost_value)
+		type = selectedAction.cost_type
+	}catch(e){
+		cost = 0
+		type = ""
+	}
+	show_debug_message("COST: " + string(cost))
+	var statCurrentVal = 0
+	
+	switch(type){
+		case "MP": statCurrentVal = activeCombatant.currentMana break;
+	}
+	show_debug_message("Type: " + string(statCurrentVal))
+	if  cost == 0 || statCurrentVal >= cost{
+		combatManagerID.action = selectedAction;
+		combatManagerID.targets = chosenTargets;
+		combatManagerID.step = "Select targets";
+		instance_destroy(self);
+	}else{
+		var shakeFrames = 15 //@TODO Fairly arbitrary number here.
+		combatManagerID.shakeSecondBarFrames = shakeFrames
+		selectedAction = {name:"empty"}
+	}
 }
-
+#endregion
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
