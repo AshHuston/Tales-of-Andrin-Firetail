@@ -2,8 +2,12 @@
 
 event_inherited();
 
-combatName = "Unnamed Party Member"
+combatName = "Roy"
 combatLogColor = c_olive
+secondaryDisplayBar = "Energy"
+secondaryDisplayBarMax = 45
+secondaryDisplayBarCurrent =10
+
 
 addAttacks = true //Just for some test attacks, remove later.
 

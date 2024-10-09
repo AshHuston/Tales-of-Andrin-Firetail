@@ -37,6 +37,7 @@
     {"$GMObjectProperty":"v1","%Name":"mob3","filters":[],"listItems":[],"multiselect":false,"name":"mob3","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"noone","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"mob4","filters":[],"listItems":[],"multiselect":false,"name":"mob4","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"noone","varType":5,},
     {"$GMObjectProperty":"v1","%Name":"mob5","filters":[],"listItems":[],"multiselect":false,"name":"mob5","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"noone","varType":5,},
+    {"$GMObjectProperty":"v1","%Name":"lootToDrop","filters":[],"listItems":[],"multiselect":false,"name":"lootToDrop","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"{}","varType":4,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

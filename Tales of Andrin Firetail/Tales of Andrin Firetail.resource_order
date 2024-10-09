@@ -10,7 +10,10 @@
     {"name":"obj_eq_crystal_incinerate","order":3,"path":"objects/obj_eq_crystal_incinerate/obj_eq_crystal_incinerate.yy",},
     {"name":"obj_overworld_enemy","order":1,"path":"objects/obj_overworld_enemy/obj_overworld_enemy.yy",},
     {"name":"scr_setTopDepth","order":1,"path":"scripts/scr_setTopDepth/scr_setTopDepth.yy",},
+    {"name":"spr_lifeBarFiller","order":7,"path":"sprites/spr_lifeBarFiller/spr_lifeBarFiller.yy",},
+    {"name":"spr_lifeBarOutline","order":8,"path":"sprites/spr_lifeBarOutline/spr_lifeBarOutline.yy",},
     {"name":"spr_logBackground","order":5,"path":"sprites/spr_logBackground/spr_logBackground.yy",},
+    {"name":"spr_testCombatStatBackground","order":6,"path":"sprites/spr_testCombatStatBackground/spr_testCombatStatBackground.yy",},
     {"name":"spr_testFadeIn","order":1,"path":"sprites/spr_testFadeIn/spr_testFadeIn.yy",},
   ],
 }

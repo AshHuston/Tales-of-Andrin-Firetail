@@ -27,7 +27,7 @@ paused = false
 
 destinationCoords = [x, y]
 
-HP = 5000;
+HP = 50;
 combatSpeed = 40;
 armor = 10;
 magicResist = 6;

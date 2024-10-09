@@ -4,8 +4,13 @@ var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
 
+//@TODO Make this value changed when a spell/ability is selected but is illegal. Probably in the combatMenu.
+if input("Y"){
+	shakeSecondBarFrames = 15
+}
+
 //@TODO Decide actual input for combatLog
-if keyboard_check_pressed(vk_alt) or input("Y"){
+if keyboard_check_pressed(vk_alt){
 	if !hideCombatLog{hideCombatLog = true}
 	else {hideCombatLog = false}
 }
@@ -75,17 +80,21 @@ if waitFrames<1{
 				}
 			}
 			if stillAreMonsters == false{
-				view_set_xport(overworldViewport, overworldCameraX)
-				view_set_yport(overworldViewport, overworldCameraY)
-				view_visible[overworldViewport] = true
-				view_visible[combatViewport] = false
 				if instance_exists(obj_combat_menu){
 					instance_destroy(menu);	
 				}
-				lootAndExp = {
-					// @TODO Should be filling this in. What are we giving them? How much EXP?
+				var overworld_details = {
+					overworldViewport: overworldViewport,
+					overworldCameraX: overworldCameraX,
+					overworldCameraY: overworldCameraY,
+					combatViewport: combatViewport,
+					overworld_mob: overworld_mob
 				}
-				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {lootAndExp: lootAndExp})
+				var experience = 0
+				for (var i=0 ; i<array_length(combatants); i++) {
+					experience += combatants[i].rewardExp
+				}
+				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {loot: lootToDrop, experience: experience, overworldDetails: overworld_details})
 				instance_destroy(self);
 			}else{
 				show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))
@@ -93,7 +102,7 @@ if waitFrames<1{
 		
 			//Iterate, comparing speed to highestSpeed.
 			var fastestRemainingCombatant = canStillGo[0];
-			//@TODO Determine how to handle ties on speed.
+			//@TODO Determine how to handle ties on speed. Right now it just gives it to the first one that is read.
 			for (var i=0;i<array_length(canStillGo);i++;){
 				if 	canStillGo[i].totalSpeed > fastestRemainingCombatant.totalSpeed{
 					fastestRemainingCombatant = canStillGo[i];
@@ -102,9 +111,10 @@ if waitFrames<1{
 	
 			activeCombatant = fastestRemainingCombatant;
 		
-			// This line just for testing rn. Because of the diff in sprite sizes. Probably will remove.
-			if object_get_parent(activeCombatant.object_index) == obj_enemy{activeCombatantScale = 1.2} else {activeCombatantScale = 1.6}
-		
+			// @TODO This line just for testing rn. Because of the diff in sprite sizes. Probably will remove.
+			if object_get_parent(activeCombatant.object_index) == obj_enemy{activeCombatantScale = 1.3} else {activeCombatantScale = 1.7}
+			
+			// Notes active combatant by making them larger
 			originalScaleX = activeCombatant.image_xscale;
 			originalScaleY = activeCombatant.image_yscale;
 			activeCombatant.image_xscale = originalScaleX * activeCombatantScale;

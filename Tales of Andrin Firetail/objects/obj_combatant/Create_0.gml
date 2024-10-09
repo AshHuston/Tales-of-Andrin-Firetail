@@ -10,6 +10,10 @@ defaultSprite = sprite_index;
 damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
 combatName = "UNNAMED COMBATANT"
 combatLogColor = c_white
+secondaryDisplayBar = "none"
+//DisplayStats 
+secondaryDisplayBarMax = 0
+secondaryDisplayBarCurrent = 0
 
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.

@@ -145,5 +145,5 @@ width = clamp(width, minMenuWidth, maxMenuWidth)
 //Relocate the menu
 var camXBuffer = 10
 var camYBuffer = 10
-x = camX + camXBuffer
-y = camY + (camHeight/2) - camYBuffer - height/2
+//x = camX + camXBuffer
+//y = camY + (camHeight/2) - camYBuffer - height/2

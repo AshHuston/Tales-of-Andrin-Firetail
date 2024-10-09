@@ -26,6 +26,7 @@ if step == "Select targets" && drawSelector{
 	}
 }
 
+#region Combat Logs
 // ----------------------------------------------------------------  DRAW COMBAT LOGS  ------------------------------------------------------------------
 function get_full_log_entry_width(logEntry, spacing=2){ /// ====================== USE THIS =================
 	var logTextWidth = 0
@@ -142,4 +143,128 @@ for (var i=0; i<array_length(combatLogEntries); i++){
 	var logText = get_log_entry_seperate_words(combatLogEntries[i].text)
 	draw_log_entry_multicolor(logText, currentX, fullLogOriginY+(logEntrySpacing*i), 1, fullLogtextWidth, true)
 }
+#endregion
 
+#region Character huds
+// Define coords for cells
+var boxWidth = 60
+var boxHeight = 30
+var hudCellsXOffset = 18
+var hudCellsYOffset = camera_get_view_height(cam)/4
+var hudCellsXAnchor = camera_get_view_x(cam) + hudCellsXOffset
+var hudCellsYAnchor = camera_get_view_y(cam) + hudCellsYOffset
+var hudCellCoords = [
+	[hudCellsXAnchor,
+	hudCellsYAnchor],
+	[hudCellsXAnchor,
+	hudCellsYAnchor + boxHeight*1.25], // All these will need to be manually offset, maybe changed based on party size.
+	[hudCellsXAnchor,
+	hudCellsYAnchor + boxHeight*2.50],
+	[hudCellsXAnchor,
+	hudCellsYAnchor + boxHeight*3.75]
+]
+
+// Loop through the characters and get their bar stats
+var charStats = []
+for(var i=0; i<array_length(combatants); i++){
+	if object_get_parent(combatants[i].object_index) != obj_enemy{
+		var stats = {
+			name: combatants[i].combatName, 
+			maxHp: combatants[i].baseHP, 
+			currentHP: combatants[i].currentHP, 
+			otherBar: combatants[i].secondaryDisplayBar, 
+			maxOtherBar: combatants[i].secondaryDisplayBarMax, 
+			currentOtherBar: combatants[i].secondaryDisplayBarCurrent
+			}
+		array_push(charStats, stats)
+	}
+}
+
+#region Party info
+var testX = hudCellCoords[0][0]
+var testY = hudCellCoords[0][1]
+var boxXScale = boxWidth/sprite_get_width(spr_testCombatStatBackground)
+var boxYScale = boxHeight/sprite_get_height(spr_testCombatStatBackground)
+for(var i=0; i<array_length(charStats); i++){
+	if fadingHP[i] == 0{array_set(fadingHP, i, charStats[i].currentHP)}
+	if fadingSecondStat[i] == 0{array_set(fadingSecondStat, i, charStats[i].currentOtherBar)}
+	
+	//Box
+	var boxX = hudCellCoords[i][0]
+	var boxY = hudCellCoords[i][1]
+	draw_sprite_ext(spr_testCombatStatBackground, 0, boxX, boxY, boxXScale, boxYScale, 0, c_white, 1)
+
+	//Name
+	var nameXbuffer = 3
+	var nameYbuffer = 3
+	var nameX = boxX + nameXbuffer
+	var nameY = boxY + nameYbuffer
+	draw_text_color(nameX, nameY, charStats[i].name, c_white, c_white, c_white, c_white, 1)
+
+	//HP bar
+	var barWidth = boxWidth - (nameXbuffer*2)
+	var barHeight = sprite_get_height(spr_lifeBarOutline)
+	var barXScale = barWidth/sprite_get_width(spr_lifeBarOutline)
+	var barYScale = barHeight/sprite_get_height(spr_lifeBarOutline)
+	var maxFill = charStats[i].maxHp
+	var barX = nameX
+	var barY = nameY+nameYbuffer+string_height(charStats[i].name)
+	draw_sprite_ext(spr_lifeBarOutline, 0, barX, barY, barXScale, barYScale, 0, c_white, 1)
+	//Add white health
+	var catchupSpd = 0.25 //Must land on every integer. So no 0.3s or 0.7s etc.
+	if fadingHP[i] > charStats[i].currentHP{fadingHP[i]-=catchupSpd}
+	if fadingHP[i] < charStats[i].currentHP{fadingHP[i]+=catchupSpd}
+	var filledWidthFade = barWidth-2
+	var fillPercentFade = fadingHP[i]/charStats[i].maxHp
+	var fillWidthFade = fillPercentFade*filledWidthFade
+	var fillXScaleFade = fillWidthFade/sprite_get_height(spr_lifeBarFiller)
+	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScaleFade, barYScale, 0, c_white, 1)
+	//Add red health
+	var filledWidth = barWidth-2
+	var fillPercent = charStats[i].currentHP/charStats[i].maxHp
+	var fillWidth = fillPercent*filledWidth
+	var fillXScale = fillWidth/sprite_get_height(spr_lifeBarFiller)
+	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScale, barYScale, 0, c_red, 1)
+
+	//other bar
+	var secondStatColor = c_white
+	switch (string_lower(charStats[i].otherBar)){
+		case "mp": secondStatColor = c_teal break;
+		case "energy": secondStatColor = #FFD700 break;
+	}
+	var secondBarWidth = boxWidth - (nameXbuffer*2)
+	var secondBarHeight = sprite_get_height(spr_lifeBarOutline)
+	var secondBarXScale = secondBarWidth/sprite_get_width(spr_lifeBarOutline)
+	var secondBarYScale = secondBarHeight/sprite_get_height(spr_lifeBarOutline)
+	var otherMaxFill = charStats[i].maxOtherBar
+	var secondBarX = nameX
+	var secondBarY = barY+(nameYbuffer*2)
+	
+	if shakeSecondBarFrames>0 && activeCombatant.combatName == charStats[i].name{
+		var shakeWeight = 0.4
+		secondBarX += (random_range(-shakeSecondBarFrames, shakeSecondBarFrames)*shakeWeight)
+		secondBarY += (random_range(-shakeSecondBarFrames, shakeSecondBarFrames)*shakeWeight)
+		shakeSecondBarFrames--
+	}
+	
+	draw_sprite_ext(spr_lifeBarOutline, 0, secondBarX, secondBarY, secondBarXScale, secondBarYScale, 0, c_white, 1)
+	//Fadestat
+	if fadingSecondStat[i] > charStats[i].currentOtherBar{fadingSecondStat[i]-=catchupSpd}
+	if fadingSecondStat[i] < charStats[i].currentOtherBar{fadingSecondStat[i]+=catchupSpd}
+	var secondFilledWidthFade = barWidth-2
+	var secondFillPercentFade = fadingSecondStat[i]/charStats[i].maxOtherBar
+	var secondFillWidthFade = secondFillPercentFade*secondFilledWidthFade
+	var secondFillXScaleFade = secondFillWidthFade/sprite_get_height(spr_lifeBarFiller)
+	draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScaleFade, secondBarYScale, 0, c_white, 1)
+
+	//other stat
+	var secondFilledWidth = barWidth-2
+	var secondFillPercent = charStats[i].currentOtherBar/charStats[i].maxOtherBar
+	var secondFillWidth = secondFillPercent*secondFilledWidth
+	var secondFillXScale = secondFillWidth/sprite_get_height(spr_lifeBarFiller)
+	draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, secondStatColor, 1)
+}
+
+
+#endregion
+#endregion

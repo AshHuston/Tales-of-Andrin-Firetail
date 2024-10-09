@@ -2,6 +2,9 @@ event_inherited()
 
 instance_create_depth(0, 0, 0, obj_combatFadeOut)
 
+fadingHP = [0,0,0,0,0,0,0,0,0,0,0,0]
+fadingSecondStat = [0,0,0,0,0,0,0,0,0,0,0,0]
+
 entrySpacing = 0	// Value overridden on Draw
 totalLines = 0		// Value overridden on Draw
 longestTextWidth = 0// Value overridden on Draw
@@ -13,6 +16,7 @@ setCurrentToOffScreen = true
 combatLogEntries = []			// Each entry should have {text:"Words", color:c_white}
 combatLogEntriesOnDisplay = []	// Should have {text:"Words", color:c_white, frames:default_frames, alpha:for_fade_out}
 waitFrames = 3
+shakeSecondBarFrames = 0
 
 drawSelector = true
 preDesignatedTargets = ["all enemies", "all"] // Targets that will not require selection.
