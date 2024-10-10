@@ -97,7 +97,7 @@ var shoot = {
 		]
 };
 
-if addAttacks{ //Just for some test attacks, remove later.
+if addAttacks{ //Just for some test attacks, remove later. @TESTING
 	addAttacks = false
 	array_push(attacks, bite)
 	array_push(attacks, stab)

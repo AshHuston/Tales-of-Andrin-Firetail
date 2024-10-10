@@ -46,7 +46,7 @@ combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
 
 
 
-// ---------------------------------------- MONSTER RELOCATION --------------------------------------------------
+#region MONSTER RELOCATION
 monsters = [
 	mob1,
 	mob2,
@@ -81,7 +81,7 @@ for(var i=0; i<array_length(monsterCoords); i++;){
 	monsters[i].x = monsterCoords[i][X]
 	monsters[i].y = monsterCoords[i][Y]
 }
-// -----------------------------------------------------------------------------------------------------------
+#endregion
 
 
 
@@ -93,7 +93,6 @@ for(var i=0; i<array_length(monsterCoords); i++;){
 function createPartyCombatObjects(partyIDs){
 	var combatObjectIDs = [];
 	var combatCharID
-	
 	for (var i=0; i<array_length(partyIDs); i++;){
 		//show_debug_message(partyIDs[i]);
 		if i==0 {combatCharID = instance_create_depth(x,y, 0, obj_combat_aaron, {associatedCharacterID:partyIDs[i]});}
@@ -190,8 +189,6 @@ function createPartyCombatObjects(partyIDs){
 			array_push(combatants, partyIDs[i]);
 		}
 		
-		
-		
 	//Start combat clock
 	step = "Determine active combatant";
 	activeCombatant = combatants[0];
@@ -204,5 +201,4 @@ function createPartyCombatObjects(partyIDs){
 	originalScaleY = 0;
 	activeCombatantScale = 1.2;
 	
-	//global.COMBATANTS = combatants;
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))

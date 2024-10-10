@@ -12,7 +12,10 @@
     "name":"OverworldCharacters",
     "path":"folders/Objects/OverworldCharacters.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_overworld_party_member",
+    "path":"objects/obj_overworld_party_member/obj_overworld_party_member.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

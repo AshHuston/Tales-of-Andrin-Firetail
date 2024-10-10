@@ -2,13 +2,6 @@
 
 event_inherited();
 
-combatName = "Roy"
-combatLogColor = c_olive
-secondaryDisplayBar = "Energy"
-secondaryDisplayBarMax = 45
-secondaryDisplayBarCurrent =10
-
-
 addAttacks = true //Just for some test attacks, remove later.
 
 
@@ -16,7 +9,7 @@ damageAnimationSprite = sprite_index;
 
 menuTexture = ""; //@TODO Add menu texture per character.
 
-baseHP = associatedCharacterID.HP;
+baseHP = associatedCharacterID.maxHp;
 baseSpeed = associatedCharacterID.combatSpeed;
 baseArmor = associatedCharacterID.armor;
 baseMagicResist = associatedCharacterID.magicResist;

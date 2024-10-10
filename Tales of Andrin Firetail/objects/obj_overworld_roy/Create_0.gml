@@ -1,17 +1,6 @@
-HP = 5000;
-combatSpeed = 2;
-armor = 12;
-magicResist = 6;
-evasion = 10;
-skillRanged = 18;		//@TODO These are just dummy/placeholder stats
-skillMelee = 25;		//		to test the Overworld --> Combat object conversion.
-skillEdged = 50;
-skillMagic = 5;
+event_inherited()
 
-resistances = []
-immunities = []
-inventory = []
-
-activeEffects = [
-{name:"bonus magic resist", value:-12}
-]
+name = "Roy"
+secondaryDisplayBar = "Energy"
+secondaryDisplayBarMax = 45
+secondaryDisplayBarCurrent = 45

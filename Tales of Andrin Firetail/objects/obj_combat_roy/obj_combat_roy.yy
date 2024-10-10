@@ -1,20 +1,19 @@
 {
   "$GMObject":"",
-  "%Name":"obj_overworld_aaron",
+  "%Name":"obj_combat_roy",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_overworld_aaron",
+  "name":"obj_combat_roy",
   "overriddenProperties":[],
   "parent":{
-    "name":"OverworldCharacters",
-    "path":"folders/Objects/OverworldCharacters.yy",
+    "name":"CombatCharacters",
+    "path":"folders/Objects/Combat/CombatCharacters.yy",
   },
   "parentObjectId":{
-    "name":"obj_overworld_party_member",
-    "path":"objects/obj_overworld_party_member/obj_overworld_party_member.yy",
+    "name":"obj_combat_party_member",
+    "path":"objects/obj_combat_party_member/obj_combat_party_member.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -34,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_aaron_ovw",
-    "path":"sprites/spr_aaron_ovw/spr_aaron_ovw.yy",
+    "name":"spr_testRoy",
+    "path":"sprites/spr_testRoy/spr_testRoy.yy",
   },
   "spriteMaskId":null,
   "visible":true,

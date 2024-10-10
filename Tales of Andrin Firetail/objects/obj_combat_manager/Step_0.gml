@@ -52,6 +52,13 @@ function display_log_message(logMessage){
 	array_push(combatLogEntries, logMessage)
 }
 				
+function set_ovw_character_stats(){
+	for (var i=0 ; i<array_length(combatants); i++) {
+		if object_get_parent(combatants[i].object_index) != obj_enemy{
+			combatants[i].associatedCharacterID.currentHp = combatants[i].currentHp
+		}
+	}
+}				
 	//-------------------COMBAT CLOCK----------------------
 if waitFrames<1{
 	switch(step){
@@ -90,11 +97,14 @@ if waitFrames<1{
 					combatViewport: combatViewport,
 					overworld_mob: overworld_mob
 				}
-				var experience = 0
+				var experience = []
 				for (var i=0 ; i<array_length(combatants); i++) {
-					experience += combatants[i].rewardExp
+					if object_get_parent(combatants[i].object_index) == obj_enemy{
+						array_push(experience, {enemy: combatants[i].combatName, exp_value: combatants[i].rewardExp})
+					}
 				}
 				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {loot: lootToDrop, experience: experience, overworldDetails: overworld_details})
+				set_ovw_character_stats()
 				instance_destroy(self);
 			}else{
 				show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))

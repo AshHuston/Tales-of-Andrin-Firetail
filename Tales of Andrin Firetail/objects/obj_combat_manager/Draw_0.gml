@@ -147,8 +147,8 @@ for (var i=0; i<array_length(combatLogEntries); i++){
 
 #region Character huds
 // Define coords for cells
-var boxWidth = 60
-var boxHeight = 30
+var boxWidth = 75
+var boxHeight = 60
 var hudCellsXOffset = 18
 var hudCellsYOffset = camera_get_view_height(cam)/4
 var hudCellsXAnchor = camera_get_view_x(cam) + hudCellsXOffset
@@ -186,6 +186,7 @@ var testY = hudCellCoords[0][1]
 var boxXScale = boxWidth/sprite_get_width(spr_testCombatStatBackground)
 var boxYScale = boxHeight/sprite_get_height(spr_testCombatStatBackground)
 for(var i=0; i<array_length(charStats); i++){
+	charStats[i].currentHP = clamp(charStats[i].currentHP, 0, charStats[i].maxHp)
 	if fadingHP[i] == 0{array_set(fadingHP, i, charStats[i].currentHP)}
 	if fadingSecondStat[i] == 0{array_set(fadingSecondStat, i, charStats[i].currentOtherBar)}
 	
@@ -208,8 +209,12 @@ for(var i=0; i<array_length(charStats); i++){
 	var barYScale = barHeight/sprite_get_height(spr_lifeBarOutline)
 	var maxFill = charStats[i].maxHp
 	var barX = nameX
-	var barY = nameY+nameYbuffer+string_height(charStats[i].name)
+	var barY = nameY+nameYbuffer+string_height(charStats[i].name) + string_height("HP1234567890/")
 	draw_sprite_ext(spr_lifeBarOutline, 0, barX, barY, barXScale, barYScale, 0, c_white, 1)
+	var hpTextY = barY - 1 - string_height("HP1234567890/") //Just using each character that could be in the string to assure corect height.
+	var hpText = string(charStats[i].currentHP) + "/" + string(charStats[i].maxHp)+" HP" 
+	draw_text_color(barX, hpTextY, hpText, c_white, c_white, c_white, c_white, 1)
+	
 	//Add white health
 	var catchupSpd = 0.25 //Must land on every integer. So no 0.3s or 0.7s etc.
 	if fadingHP[i] > charStats[i].currentHP{fadingHP[i]-=catchupSpd}
@@ -219,6 +224,7 @@ for(var i=0; i<array_length(charStats); i++){
 	var fillWidthFade = fillPercentFade*filledWidthFade
 	var fillXScaleFade = fillWidthFade/sprite_get_height(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScaleFade, barYScale, 0, c_white, 1)
+	
 	//Add red health
 	var filledWidth = barWidth-2
 	var fillPercent = charStats[i].currentHP/charStats[i].maxHp
@@ -238,7 +244,11 @@ for(var i=0; i<array_length(charStats); i++){
 	var secondBarYScale = secondBarHeight/sprite_get_height(spr_lifeBarOutline)
 	var otherMaxFill = charStats[i].maxOtherBar
 	var secondBarX = nameX
-	var secondBarY = barY+(nameYbuffer*2)
+	var secondBarY = barY+(nameYbuffer*2)+string_height("HP1234567890/")+2//spacing
+	//Text
+	var barTextY = secondBarY - 1 - string_height("HP1234567890/") //Just using each character that could be in the string to assure corect height.
+	var barText = string(charStats[i].currentOtherBar) + "/" + string(charStats[i].maxOtherBar)+" "+charStats[i].otherBar
+	draw_text_color(barX, barTextY, barText, c_white, c_white, c_white, c_white, 1)
 	
 	if shakeSecondBarFrames>0 && activeCombatant.combatName == charStats[i].name{
 		var shakeWeight = 0.4

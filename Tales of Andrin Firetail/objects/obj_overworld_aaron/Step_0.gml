@@ -6,7 +6,16 @@ if input("E"){
 		instance_destroy(instance_find(obj_eq_menu,0))
 	}
 }
+//Party menu testing
+if input("Y"){
+	if instance_number(obj_party_menu) == 0{
+		instance_create_depth(0,0,depth-1,obj_party_menu)
+	}else{
+		instance_destroy(instance_find(obj_party_menu,0))
+	}
+}
 
+show_debug_message(global.OVERWORLD_ID_AARON == id)
 
 function moveSprite(directionToMove){
 		acceptingMovementCommand = false
@@ -69,20 +78,7 @@ function interact(){
 		}
 }
 
-if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
-
-//Check for instance of combat object. if none, make one.
-if !instance_exists(obj_combat_aaron){
-	//instance_create_depth(x,y,0,obj_combat_aaron);
-}
-
-
-if !instance_exists(obj_combat_manager) && framecount >= 40{
-	instance_create_depth(x,y,0,obj_combat_manager, {mob1:instance_find(obj_enemy, 0), mob2:instance_find(obj_enemy, 1), mob3:instance_find(obj_enemy, 2), mob4:instance_find(obj_enemy, 3), mob5:instance_find(obj_enemy, 4)});
-}
-//Spawns combat manager \/
-//framecount++
-
+#region Movement
 if !paused{
 	if input("enter"){ 
 		interact()
@@ -109,7 +105,6 @@ if !paused{
 			}
 	}
 }
-
 
 if  destinationCoords[0] != x || destinationCoords[1] != y{
 	notAtDestination = true
@@ -138,9 +133,10 @@ if facingDir == LEFT{
 	image_xscale = manualImageScaleX
 }
 
-
 if lastX == x && lastY == y {image_index = 0}
 lastX = x
 lastY = y
+#endregion
 
+if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
 paused = global.GAME_IS_PAUSED

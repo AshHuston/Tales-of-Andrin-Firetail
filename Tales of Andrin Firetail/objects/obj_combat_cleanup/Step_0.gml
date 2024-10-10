@@ -6,11 +6,17 @@ function close_combat(){
 }
 
 //This may need to exist in the Create event and just poop out a struct with all the deets.
-function get_character_fight_exp(character){
+function get_character_fight_exp(character, expereince = experience){
 	// Should total monster EXP, check any modifiers for EXP and return the total.
-	// Could possibly return for example {exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
+	var totalExp = {base_exp: 0, bonus_exp: 0}
+	for (var i=0 ; i<array_length(experience); i++) {
+		totalExp.base_exp += experience[i].exp_value
+		// Should also check for bonus EXP too. However we do that.
+	}
+		
+	// Could possibly return for example {base_exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
+	return totalExp.base_exp
 }
-
 
 
 //This should display loot, add it to the player inventory, give EXP, and handle levelups.

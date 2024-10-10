@@ -1,4 +1,4 @@
-
+event_inherited()
 //For temporary sprite reasons
 manualImageScaleX = 16/sprite_width
 image_yscale = manualImageScaleX
@@ -27,7 +27,8 @@ paused = false
 
 destinationCoords = [x, y]
 
-HP = 50;
+maxHp = 50;
+currentHp = self.maxHp
 combatSpeed = 40;
 armor = 10;
 magicResist = 6;
@@ -41,9 +42,12 @@ resistances = []
 immunities = []
 crystal_inventory = global.CRYSTAL_INVENTORY
 
+name = "Aaron"
+secondaryDisplayBar = "MP"
+secondaryDisplayBarMax = 0
+secondaryDisplayBarCurrent = 0
 
-
-//test crystals
+//@TESTING eq crystals
 testCrystal1 = {
 	name : "Guard",
 	sprite : spr_crystal_1,
@@ -84,11 +88,7 @@ testCrystal3 = {
 }
 array_push(crystal_inventory, testCrystal1, testCrystal2, testCrystal3)
 
-
-
-
-framecount = 0; //Remove this later
-
+#region @TESTING Items
 potion = {name:"Healing Potion", 
 		quantity: 5, 
 		use: function healUser(targetID){
@@ -117,7 +117,6 @@ elixir = {name:"Elixir",
 		animation_index: "None"
 		}
 		
-
 herb = {name:"Cleansing Herb", 
 		quantity: 2, 
 		use: function removeNegetiveStatusEffects(targetID){
@@ -182,9 +181,11 @@ textTest = {name:"Text box test",
 		bonus_targetID: "",
 		animation_index: "None"
 		}
-
+#endregion
 inventory = [potion, herb, elixir, textTest]
 
 activeEffects = [
-{name:"bonus magic resist", bonusMagicResist:12},{name:"bonusSpeed", value:25}, {name:"hungry", state: true}
+{name:"bonus magic resist", bonusMagicResist:12},
+{name:"bonusSpeed", value:25}, 
+{name:"hungry", state: true}
 ]
