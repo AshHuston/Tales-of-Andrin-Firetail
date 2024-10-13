@@ -20,7 +20,7 @@ if step == "Select targets" && drawSelector{
 		break;
 		
 		default:
-			if hovering >=0 && hovering < array_length(combatants){
+			if hovering >=0 && hovering < array_length(combatants) && combatants[hovering].isConcious{
 				draw_sprite(spr_targetIndicator, -1, combatants[hovering].x, combatants[hovering].y-25);
 			}
 	}
@@ -90,7 +90,9 @@ var cam = camera_get_active()
 var popUpLogScreenBorder = 22
 var popUpLogX = camera_get_view_x(cam) + popUpLogScreenBorder*0.8
 var popUpLogY = camera_get_view_y(cam) + (camera_get_view_height(cam) - popUpLogScreenBorder)
+
 for (var i=0; i<array_length(combatLogEntriesOnDisplay); i++){
+	if typeof(combatLogEntriesOnDisplay[i]) == "array"{show_debug_message(combatLogEntriesOnDisplay[i])}
 	combatLogEntriesOnDisplay[i].frames--
 	var fadeFrames = 15
 	if combatLogEntriesOnDisplay[i].frames <= fadeFrames{

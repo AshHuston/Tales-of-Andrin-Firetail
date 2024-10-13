@@ -15,8 +15,6 @@ if input("Y"){
 	}
 }
 
-show_debug_message(global.OVERWORLD_ID_AARON == id)
-
 function moveSprite(directionToMove){
 		acceptingMovementCommand = false
 		deltaX = 0
@@ -140,3 +138,4 @@ lastY = y
 
 if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
 paused = global.GAME_IS_PAUSED
+//show_debug_message(global.OVERWORLD_ID_A)

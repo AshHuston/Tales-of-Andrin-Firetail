@@ -11,13 +11,22 @@ down_key_tap = false;
 //For readability
 X = 0
 Y = 1
-op_border = 8
-op_space = 16;
-baseX = 20
-baseY = 20
+
+#region Screen positioning
+function setHudPosition(){
+	cam = view_get_camera(camera_get_active())
+	hudXOffset = camera_get_view_width(cam)/2.75
+	hudYOffset = camera_get_view_height(cam)/3
+	baseX = camera_get_view_x(cam) + hudXOffset
+	baseY = camera_get_view_y(cam) + hudYOffset
+	listX = baseX + 5//a buffer
+	listY = baseY
+}
+setHudPosition()
+#endregion
 
 // Slot spacing refers to the X and Y spacing in pixels. Minimum of 24 due to the size of the sprite.
-slot_spacing = 23
+slot_spacing = 23	//??-->	 									     ^ ?????
 
 //[XgridPos, YgridPos].
 slot_coordinates = [
@@ -66,6 +75,9 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 		tallest_crystal_name_height = this_height	
 	}
 }
+op_borderX = 8
+op_borderY = 6
+op_space = tallest_crystal_name_height + 3;
 noCrystal = {name : "none", sprite : spr_slot, coords: [6,0], other_filled_slots: []}
 heldCrystal = noCrystal
 isHoldingCrystal = false

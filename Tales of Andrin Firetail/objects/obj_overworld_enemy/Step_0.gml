@@ -1,3 +1,9 @@
+function periodicallyFlip(oneInXFrames=75){
+	var num
+	num = random(oneInXFrames)
+	if num <=1{ image_xscale*=-1 }
+}
+
 function benchThisMonster(){
 	x = global.DEFAULT_OVERWORLD_MONSTER_BENCH[0]
 	y = global.DEFAULT_OVERWORLD_MONSTER_BENCH[1]

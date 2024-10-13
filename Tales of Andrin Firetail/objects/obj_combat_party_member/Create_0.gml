@@ -4,8 +4,17 @@ event_inherited();
 
 addAttacks = true //Just for some test attacks, remove later.
 
+sprite_index = associatedCharacterID.combatBaseSprite
+combatName = associatedCharacterID.combatName
+combatLogColor = associatedCharacterID.combatLogColor 
+secondaryDisplayBar = associatedCharacterID.secondaryDisplayBar
+secondaryDisplayBarMax = associatedCharacterID.secondaryDisplayBarMax
+secondaryDisplayBarCurrent = associatedCharacterID.secondaryDisplayBarCurrent
 
 damageAnimationSprite = sprite_index;
+try{
+	damageAnimationSprite = associatedCharacterID.combatDamageSprite	
+}
 
 menuTexture = ""; //@TODO Add menu texture per character.
 

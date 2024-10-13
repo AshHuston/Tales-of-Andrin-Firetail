@@ -1,7 +1,7 @@
 event_inherited()
 
-combatName = "Roy"
-combatLogColor = c_olive
+combatName = associatedCharacterID.combatName
+combatLogColor = associatedCharacterID.combatLogColor
 //DisplayStats 
 secondaryDisplayBar = associatedCharacterID.secondaryDisplayBar
 secondaryDisplayBarMax = associatedCharacterID.secondaryDisplayBarMax

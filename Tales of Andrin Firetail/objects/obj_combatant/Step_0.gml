@@ -13,3 +13,7 @@ if isTakingDamage{
 else{
 	startedDamageSFX = false;	
 }
+
+if !isConcious{
+	image_index = 0	
+}

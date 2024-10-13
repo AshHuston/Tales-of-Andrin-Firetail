@@ -1,3 +1,5 @@
+setHudPosition()
+
 if input("start"){instance_destroy(self)}
 
 function flipAlphas(){
@@ -209,3 +211,4 @@ if in_crystal_list{
 	}
 }
 if heldCrystal == noCrystal {isHoldingCrystal = false}
+

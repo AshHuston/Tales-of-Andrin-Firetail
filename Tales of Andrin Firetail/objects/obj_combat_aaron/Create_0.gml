@@ -2,7 +2,6 @@ event_inherited()
 
 combatName = "Aaron"
 combatLogColor = c_aqua
-
 damageSoundEffect = snd_agh
 
 for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){

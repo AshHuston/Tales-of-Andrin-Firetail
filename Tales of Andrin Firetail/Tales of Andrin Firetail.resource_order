@@ -20,5 +20,6 @@
     {"name":"spr_testCombatStatBackground","order":6,"path":"sprites/spr_testCombatStatBackground/spr_testCombatStatBackground.yy",},
     {"name":"spr_testFadeIn","order":1,"path":"sprites/spr_testFadeIn/spr_testFadeIn.yy",},
     {"name":"Sprite38","order":1,"path":"sprites/Sprite38/Sprite38.yy",},
+    {"name":"Sprite39","order":2,"path":"sprites/Sprite39/Sprite39.yy",},
   ],
 }

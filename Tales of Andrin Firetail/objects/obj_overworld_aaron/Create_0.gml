@@ -44,8 +44,13 @@ crystal_inventory = global.CRYSTAL_INVENTORY
 
 name = "Aaron"
 secondaryDisplayBar = "MP"
-secondaryDisplayBarMax = 0
-secondaryDisplayBarCurrent = 0
+secondaryDisplayBarMax = 50 //@TODO Will eventuqlly pull from a saved json or somthing along with every other saved stat.
+secondaryDisplayBarCurrent = 50
+combatName = ""			//Left intentionally blank
+combatLogColor = c_white//Left intentionally blank
+combatBaseSprite = sprite_index
+combatDamageSprite = sprite_index
+
 
 //@TESTING eq crystals
 testCrystal1 = {

@@ -14,7 +14,7 @@ secondaryDisplayBar = "none"
 //DisplayStats 
 secondaryDisplayBarMax = 0
 secondaryDisplayBarCurrent = 0
-
+isConcious = true
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.
 /// @description              Runs the attack. Calculating if hit, adjusting target HP, applying effects, etc.

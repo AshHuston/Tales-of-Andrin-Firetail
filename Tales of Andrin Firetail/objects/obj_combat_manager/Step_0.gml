@@ -185,8 +185,8 @@ if waitFrames<1{
 				if up_key{hovering--;}
 				if hovering>=combatantsLength{hovering=0};
 				if hovering<0 {hovering=combatantsLength-1};
-				for (var i=0;i<3;i++){
-					if object_get_parent(combatants[hovering].object_index) != obj_enemy{	
+				for (var i=0;i<combatantsLength;i++){
+					if object_get_parent(combatants[hovering].object_index) != obj_enemy || !combatants[hovering].isConcious{	
 						if down_key{hovering++}
 						else{hovering--}	
 					}
@@ -302,6 +302,7 @@ if waitFrames<1{
 							break;
 					}
 				}
+				show_debug_message(results.logMessage)
 				display_log_message(logMessage)
 				//array_push(combatLogEntriesOnDisplay, logMessage)
 				//array_push(combatLogEntries, logMessage)
@@ -349,25 +350,24 @@ if waitFrames<1{
 		case "Bring our yer dead":
 		//Check for anyone below 0HP.
 			for (var i=0;i<array_length(combatants);i++;){
-				if combatants[i].currentHP <= 0{
-					if object_get_parent(combatants[i].object_index) == obj_enemy{
-						combatants[i].image_angle = 270;
-						array_delete(combatants, i, 1)
-						array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))
+				if combatants[i].currentHP <= 0 && combatants[i].isConcious{
+					combatants[i].isConcious = false
+					combatants[i].image_angle = 270;	
+					combatants[i].isConscious = false;
+					combatants[i].currentHP = 0;
+					var deathMessage = [
+						{text: combatants[i].combatName, color: combatants[i].combatLogColor},
+						{text: "has been defeated.", color: c_white},
+						]
+					deathMessage = {
+						text:  deathMessage,	
+						color: c_white,
+						frames: 90, //How many frames message is on screen
+						alpha: 1
 					}
-					else{
-						combatants[i].isConscious = false;
-						combatants[i].currentHP = 0;
-						var deathMessage = [
-							{text: combatants[i].combatName, color: combatants[i].combatLogColor},
-							{text: "has been defeated.", color: c_white},
-							]
-						display_log_message(deathMessage)
-						//array_push(combatLogEntries, deathMessage)
-						//array_push(combatLogEntriesOnDisplay, deathMessage)
-					}
-					array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
+					display_log_message(deathMessage)
 				}
+					array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 			}
 		
 		
@@ -386,11 +386,11 @@ if waitFrames<1{
 		case "Reset check":
 		//Check if everyone has gone,
 			var resetCycle = false;
-			var totActed = 0
+			var readyForNextRound = 0
 			for (var i=0;i<array_length(combatants);i++;){
-				if combatants[i].hasActed == true{
-					totActed++;
-					if totActed == array_length(combatants){
+				if combatants[i].hasActed == true || !combatants[i].isConcious{
+					readyForNextRound++;
+					if readyForNextRound == array_length(combatants){
 						resetCycle = true;
 					}
 				}

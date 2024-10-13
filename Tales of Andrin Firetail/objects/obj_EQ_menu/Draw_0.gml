@@ -35,11 +35,20 @@ if isHoldingCrystal && !in_crystal_list{
 	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX+shakeX, hoveringCrystalYShadow+shakeY, 1, 1, 0, c_black, 0.3)
 	draw_sprite_ext(heldCrystal.sprite, 0, hoveringCrystalX+shakeX, hoveringCrystalY+shakeY, 1, 1, 0, c_white, 1)
 	}
-// Crystal list
-var listX = 200		//Arbitrary for testing
-var listY = baseY	//Arbitrary for testing
-var width = longest_crystal_name_length + (op_border*2)
-var height = (tallest_crystal_name_height*num_of_crystals) + op_border
+#region Crystal list
+var width = longest_crystal_name_length + (op_borderX*2)
+var height = (op_space*num_of_crystals) + (op_borderY*2)
+listX += slot_spacing*3 + width/2
+listY -= height/2
+if numOfSlots<=4{
+	listY += slot_spacing*1.5
+}else if numOfSlots<=7{
+	listY += slot_spacing*3
+}else{
+	listY += slot_spacing*3
+	listX += slot_spacing*2
+}
+
 var xScale = width/sprite_get_width(spr_menu)
 var yScale = height/sprite_get_height(spr_menu)
 draw_sprite_ext(spr_menu, 0, listX, listY, xScale, yScale, 0, c_white, listAlpha)
@@ -48,7 +57,7 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 	var fade = .5
 	if hoveredCrystal == i && !(listAlpha < slotsAlpha) && !isHoldingCrystal {fade = 0}
 	if string(crystal_inventory[i].coords) != string(noCrystal.coords){_c = c_ltgray}
-	draw_text_color(listX+op_border, listY+op_border + op_space*i, crystal_inventory[i].name, _c, _c, _c, _c, listAlpha-fade);	
+	draw_text_color(listX+op_borderX, listY+op_borderY + op_space*i, crystal_inventory[i].name, _c, _c, _c, _c, listAlpha-fade);	
 	if isHoldingCrystal{
 		if isHoldingCrystal && in_crystal_list{
 		draw_sprite_ext(heldCrystal.sprite, 0, listX+(width/2), listY+(height/2), 1, 1, 0, c_white, 1)
@@ -56,12 +65,12 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 	}
 }
 if in_crystal_list && !isHoldingCrystal{
-	var previewCrystalX = listX + width + 65//Arbitrary for testing
+	var previewCrystalX = listX + width + 65//Arbitrary for testing @TODO
 	var previewCrystalY = listY + 80		//Arbitrary for testing
 	var previewCrystalScaleY = 1.5			//Arbitrary for testing
 	var previewCrystalScaleX = 1.5			//Arbitrary for testing
 	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
 }
-
-//Testing equipped crystals
-draw_text_ext_transformed(50, baseY+150, string(global.EQUIPPED_CRYSTALS), 17, 1200, .25, .25, 0)
+#endregion
+//@TESTING Equipped crystals
+//draw_text_ext_transformed(50, baseY+150, string(global.EQUIPPED_CRYSTALS), 17, 1200, .25, .25, 0)
