@@ -59,12 +59,15 @@ function set_ovw_character_stats(){
 		}
 	}
 }				
-	//-------------------COMBAT CLOCK----------------------
+
+#region Combat clock
+// This allows us to manually enter an amount of frames to wait after any given thing before the combat clock 
+// moves onto the next thing. Animations will persist though so thats good
 if waitFrames<1{
 	switch(step){
 		case "Awaiting player input":
 		break;
-	
+	#region Determine active combatant
 		case "Determine active combatant":
 		//Determine who’s turn it is. 
 			//List all combatants that are not 0HP and have not yet acted this round.
@@ -79,7 +82,6 @@ if waitFrames<1{
 			//see if we done here
 			var stillAreMonsters = false
 			for (var i=0 ; i<array_length(combatants); i++) {
-				//show_debug_message(object_get_parent(combatants[i].object_index))
 				if object_get_parent(combatants[i].object_index) == obj_enemy{
 					if combatants[i].currentHP > 0{
 						stillAreMonsters = true
@@ -107,7 +109,7 @@ if waitFrames<1{
 				set_ovw_character_stats()
 				instance_destroy(self);
 			}else{
-				show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))
+				//show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))
 				}
 		
 			//Iterate, comparing speed to highestSpeed.
@@ -132,7 +134,8 @@ if waitFrames<1{
 		
 			step = "Open menu";
 		break;
-	
+	#endregion
+	#region Open Menu
 		case "Open menu":
 		//On a turn:
 			targets = [];
@@ -167,8 +170,9 @@ if waitFrames<1{
 				if action.bonus_targetID != ""{array_push(targets, action.bonus_targetID);}
 				step = "Do action";
 			}
-	break;
-	
+		break;
+	#endregion
+	#region Select Targets
 		case "Select targets":
 			//show_debug_message(typeof(targets))
 			//show_debug_message(targets[0])
@@ -186,7 +190,7 @@ if waitFrames<1{
 				if hovering>=combatantsLength{hovering=0};
 				if hovering<0 {hovering=combatantsLength-1};
 				for (var i=0;i<combatantsLength;i++){
-					if object_get_parent(combatants[hovering].object_index) != obj_enemy || !combatants[hovering].isConcious{	
+					if object_get_parent(combatants[hovering].object_index) != obj_enemy || !combatants[hovering].isConscious{	
 						if down_key{hovering++}
 						else{hovering--}	
 					}
@@ -206,7 +210,8 @@ if waitFrames<1{
 					}
 			}
 		break;
-	
+	#endregion
+	#region Do Action
 		case "Do action":
 		activeCombatant.spendResource(action)
 		function doAction(theseTargets){
@@ -328,10 +333,12 @@ if waitFrames<1{
 				step = "Running animation";
 			}
 		break;
-	
+	#endregion
+	#region Running Animation
 		case "Running animation":
 			var damageAnimationsAreRunning = false;
 			for (var i =0; i<array_length(combatants); i++;){
+				show_debug_message(string(combatants[i].combatName) + "------  taking damage?: " + string(combatants[i].isTakingDamage))
 				if combatants[i].isTakingDamage{
 					damageAnimationsAreRunning = true;	
 				}
@@ -346,13 +353,12 @@ if waitFrames<1{
 				waitFrames = 5
 			}
 		break;
-		
+		#endregion
+	#region Check for dead
 		case "Bring our yer dead":
 		//Check for anyone below 0HP.
 			for (var i=0;i<array_length(combatants);i++;){
-				if combatants[i].currentHP <= 0 && combatants[i].isConcious{
-					combatants[i].isConcious = false
-					combatants[i].image_angle = 270;	
+				if combatants[i].currentHP <= 0 && combatants[i].isConscious{
 					combatants[i].isConscious = false;
 					combatants[i].currentHP = 0;
 					var deathMessage = [
@@ -382,13 +388,14 @@ if waitFrames<1{
 		
 			step = "Reset check";
 		break;
-	
+	#endregion
+	#region Reset Check
 		case "Reset check":
 		//Check if everyone has gone,
 			var resetCycle = false;
 			var readyForNextRound = 0
 			for (var i=0;i<array_length(combatants);i++;){
-				if combatants[i].hasActed == true || !combatants[i].isConcious{
+				if combatants[i].hasActed == true || !combatants[i].isConscious{
 					readyForNextRound++;
 					if readyForNextRound == array_length(combatants){
 						resetCycle = true;
@@ -408,6 +415,8 @@ if waitFrames<1{
 			
 			step = "Determine active combatant";
 	}
+	#endregion
 }else{
 	waitFrames--
 }
+#endregion

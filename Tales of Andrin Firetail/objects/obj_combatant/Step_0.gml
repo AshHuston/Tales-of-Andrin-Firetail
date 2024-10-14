@@ -14,6 +14,7 @@ else{
 	startedDamageSFX = false;	
 }
 
-if !isConcious{
+if !isConscious && !isTakingDamage{
 	image_index = 0	
+	image_angle = 270
 }

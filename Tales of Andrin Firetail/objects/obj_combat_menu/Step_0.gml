@@ -135,9 +135,10 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	var statCurrentVal = 0
 	
 	switch(type){
-		case "MP": statCurrentVal = activeCombatant.currentMana break;
+		//@TODO If i dont remove this then ill have to work out various "seconday stats" and whatnot. 
+		case "MP @TESTING PROBABLY REMOVE THIS WHOLE SWITCH CASE STATEMENT": statCurrentVal = activeCombatant.currentMana break;
 	}
-	show_debug_message("Type: " + string(statCurrentVal))
+	statCurrentVal = activeCombatant.secondaryDisplayBarCurrent
 	if  cost == 0 || statCurrentVal >= cost{
 		combatManagerID.action = selectedAction;
 		combatManagerID.targets = chosenTargets;

@@ -1,6 +1,6 @@
 hasActed = false;
 isActive = false;
-inConscious = true;
+isConscious = true;
 statusEffects = [];
 isTakingDamage = false;
 startedDamageSFX = false;
@@ -14,7 +14,7 @@ secondaryDisplayBar = "none"
 //DisplayStats 
 secondaryDisplayBarMax = 0
 secondaryDisplayBarCurrent = 0
-isConcious = true
+
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.
 /// @description              Runs the attack. Calculating if hit, adjusting target HP, applying effects, etc.
@@ -172,6 +172,6 @@ function doAction(detailStruct){
 	
 function spendResource(details){
 	switch(details.actionType){
-		case "spell": currentMana -= details.cost_value break;	
+		case "spell": secondaryDisplayBarCurrent -= details.cost_value break;	
 	}
 }

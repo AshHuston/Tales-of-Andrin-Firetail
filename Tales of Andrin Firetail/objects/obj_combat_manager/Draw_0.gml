@@ -20,7 +20,7 @@ if step == "Select targets" && drawSelector{
 		break;
 		
 		default:
-			if hovering >=0 && hovering < array_length(combatants) && combatants[hovering].isConcious{
+			if hovering >=0 && hovering < array_length(combatants) && combatants[hovering].isConscious{
 				draw_sprite(spr_targetIndicator, -1, combatants[hovering].x, combatants[hovering].y-25);
 			}
 	}
