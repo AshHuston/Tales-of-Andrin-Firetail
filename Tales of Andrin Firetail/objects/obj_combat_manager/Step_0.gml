@@ -54,8 +54,9 @@ function display_log_message(logMessage){
 				
 function set_ovw_character_stats(){
 	for (var i=0 ; i<array_length(combatants); i++) {
-		if object_get_parent(combatants[i].object_index) != obj_enemy{
-			combatants[i].associatedCharacterID.currentHp = combatants[i].currentHp
+		if object_get_parent(combatants[i].object_index) == obj_combat_party_member{
+			var hp = combatants[i].currentHp
+			combatants[i].associatedCharacterID.currentHp = hp
 		}
 	}
 }				
@@ -74,7 +75,7 @@ if waitFrames<1{
 			canStillGo = [];
 			array_copy(canStillGo, -1, combatants, 0, array_length(combatants))
 			for (var i=array_length(canStillGo)-1;i>=0;i--;){
-				if 	canStillGo[i].currentHP <= 0 || canStillGo[i].hasActed{
+				if 	canStillGo[i].currentHp <= 0 || canStillGo[i].hasActed{
 					array_delete(canStillGo, i, 1);	
 				}
 			}
@@ -83,7 +84,7 @@ if waitFrames<1{
 			var stillAreMonsters = false
 			for (var i=0 ; i<array_length(combatants); i++) {
 				if object_get_parent(combatants[i].object_index) == obj_enemy{
-					if combatants[i].currentHP > 0{
+					if combatants[i].currentHp > 0{
 						stillAreMonsters = true
 					}
 				}
@@ -227,7 +228,7 @@ if waitFrames<1{
 				switch(action.targetID)
 				{
 					case "self":
-					targetStartHP = activeCombatant.currentHP;
+					targetStartHP = activeCombatant.currentHp;
 					break;
 				
 					case "all":
@@ -236,12 +237,12 @@ if waitFrames<1{
 					break;
 				
 					default:
-					targetStartHP = action.targetID.currentHP;
+					targetStartHP = action.targetID.currentHp;
 				}
 			
 				if array_length(theseTargets) == 2 {
 					action.bonus_targetID = theseTargets[1];
-					bonusTargetStartHP = action.bonus_targetID.currentHP;
+					bonusTargetStartHP = action.bonus_targetID.currentHp;
 					}
 			
 				var results = activeCombatant.doAction(action);
@@ -250,7 +251,7 @@ if waitFrames<1{
 				switch(action.targetID)
 				{
 					case "self":
-					targetEndHP = activeCombatant.currentHP;
+					targetEndHP = activeCombatant.currentHp;
 					break;
 				
 					case "all":
@@ -260,7 +261,7 @@ if waitFrames<1{
 					break;
 				
 					default:
-					targetEndHP = action.targetID.currentHP;
+					targetEndHP = action.targetID.currentHp;
 				}
 			
 				if targetEndHP < targetStartHP{
@@ -268,7 +269,7 @@ if waitFrames<1{
 					}
 			
 				if array_length(theseTargets) == 2 {
-					bonusTargetEndHP = action.bonus_targetID.currentHP;
+					bonusTargetEndHP = action.bonus_targetID.currentHp;
 					if bonusTargetEndHP < bonusTargetStartHP{
 						action.bonus_targetID.isTakingDamage = true;
 					}
@@ -358,9 +359,9 @@ if waitFrames<1{
 		case "Bring our yer dead":
 		//Check for anyone below 0HP.
 			for (var i=0;i<array_length(combatants);i++;){
-				if combatants[i].currentHP <= 0 && combatants[i].isConscious{
+				if combatants[i].currentHp <= 0 && combatants[i].isConscious{
 					combatants[i].isConscious = false;
-					combatants[i].currentHP = 0;
+					combatants[i].currentHp = 0;
 					var deathMessage = [
 						{text: combatants[i].combatName, color: combatants[i].combatLogColor},
 						{text: "has been defeated.", color: c_white},

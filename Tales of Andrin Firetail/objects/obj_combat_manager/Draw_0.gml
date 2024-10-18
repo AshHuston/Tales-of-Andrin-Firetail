@@ -172,8 +172,8 @@ for(var i=0; i<array_length(combatants); i++){
 	if object_get_parent(combatants[i].object_index) != obj_enemy{
 		var stats = {
 			name: combatants[i].combatName, 
-			maxHp: combatants[i].baseHP, 
-			currentHP: combatants[i].currentHP, 
+			maxHp: combatants[i].baseHp, 
+			currentHp: combatants[i].currentHp, 
 			otherBar: combatants[i].secondaryDisplayBar, 
 			maxOtherBar: combatants[i].secondaryDisplayBarMax, 
 			currentOtherBar: combatants[i].secondaryDisplayBarCurrent
@@ -188,8 +188,8 @@ var testY = hudCellCoords[0][1]
 var boxXScale = boxWidth/sprite_get_width(spr_testCombatStatBackground)
 var boxYScale = boxHeight/sprite_get_height(spr_testCombatStatBackground)
 for(var i=0; i<array_length(charStats); i++){
-	charStats[i].currentHP = clamp(charStats[i].currentHP, 0, charStats[i].maxHp)
-	if fadingHP[i] == 0{array_set(fadingHP, i, charStats[i].currentHP)}
+	charStats[i].currentHp = clamp(charStats[i].currentHp, 0, charStats[i].maxHp)
+	if fadingHP[i] == 0{array_set(fadingHP, i, charStats[i].currentHp)}
 	if fadingSecondStat[i] == 0{array_set(fadingSecondStat, i, charStats[i].currentOtherBar)}
 	
 	//Box
@@ -214,13 +214,13 @@ for(var i=0; i<array_length(charStats); i++){
 	var barY = nameY+nameYbuffer+string_height(charStats[i].name) + string_height("HP1234567890/")
 	draw_sprite_ext(spr_lifeBarOutline, 0, barX, barY, barXScale, barYScale, 0, c_white, 1)
 	var hpTextY = barY - 1 - string_height("HP1234567890/") //Just using each character that could be in the string to assure corect height.
-	var hpText = string(charStats[i].currentHP) + "/" + string(charStats[i].maxHp)+" HP" 
+	var hpText = string(charStats[i].currentHp) + "/" + string(charStats[i].maxHp)+" HP" 
 	draw_text_color(barX, hpTextY, hpText, c_white, c_white, c_white, c_white, 1)
 	
 	//Add white health
 	var catchupSpd = 0.25 //Must land on every integer. So no 0.3s or 0.7s etc.
-	if fadingHP[i] > charStats[i].currentHP{fadingHP[i]-=catchupSpd}
-	if fadingHP[i] < charStats[i].currentHP{fadingHP[i]+=catchupSpd}
+	if fadingHP[i] > charStats[i].currentHp{fadingHP[i]-=catchupSpd}
+	if fadingHP[i] < charStats[i].currentHp{fadingHP[i]+=catchupSpd}
 	var filledWidthFade = barWidth-2
 	var fillPercentFade = fadingHP[i]/charStats[i].maxHp
 	var fillWidthFade = fillPercentFade*filledWidthFade
@@ -229,7 +229,7 @@ for(var i=0; i<array_length(charStats); i++){
 	
 	//Add red health
 	var filledWidth = barWidth-2
-	var fillPercent = charStats[i].currentHP/charStats[i].maxHp
+	var fillPercent = charStats[i].currentHp/charStats[i].maxHp
 	var fillWidth = fillPercent*filledWidth
 	var fillXScale = fillWidth/sprite_get_height(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScale, barYScale, 0, c_red, 1)

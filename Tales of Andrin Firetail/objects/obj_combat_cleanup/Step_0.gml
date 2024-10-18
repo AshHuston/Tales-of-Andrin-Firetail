@@ -3,6 +3,9 @@ function close_combat(){
 	view_set_yport(overworldDetails.overworldViewport, overworldDetails.overworldCameraY)
 	view_visible[overworldDetails.overworldViewport] = true
 	view_visible[overworldDetails.combatViewport] = false	
+	
+	//Destroy self?
+	instance_destroy(self)
 }
 
 //This may need to exist in the Create event and just poop out a struct with all the deets.
@@ -12,18 +15,19 @@ function get_character_fight_exp(character, expereince = experience){
 	for (var i=0 ; i<array_length(experience); i++) {
 		totalExp.base_exp += experience[i].exp_value
 		// Should also check for bonus EXP too. However we do that.
-	}
-		
+	}	
 	// Could possibly return for example {base_exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
 	return totalExp.base_exp
 }
 
-
 //This should display loot, add it to the player inventory, give EXP, and handle levelups.
 
 //    Display all loot gained
+
+//    Add gained EXP
 	
 //    Animate EXP bars going up
+//		Handle animating the start of the NEW level bar when 
 	
 //    Handle levelups whatever that means...
 

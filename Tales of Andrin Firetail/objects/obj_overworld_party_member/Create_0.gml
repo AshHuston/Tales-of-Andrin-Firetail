@@ -1,5 +1,5 @@
 maxHp = 75;
-currentHp = self.maxHp;
+currentHp = maxHp;
 combatSpeed = 2;
 armor = 12;
 magicResist = 6;

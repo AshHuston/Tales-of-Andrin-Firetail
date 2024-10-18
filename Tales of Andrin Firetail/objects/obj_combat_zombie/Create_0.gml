@@ -1,5 +1,5 @@
-baseHP = round(random_range(55,95));
-currentHP = baseHP;
+baseHp = round(random_range(55,95));
+currentHp = baseHp;
 statusEffect = [];
 resistances = ["physical", "poison"];
 immunities = ["poison", "tired"];

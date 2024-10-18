@@ -28,7 +28,7 @@ paused = false
 destinationCoords = [x, y]
 
 maxHp = 50;
-currentHp = self.maxHp
+currentHp = maxHp
 combatSpeed = 40;
 armor = 10;
 magicResist = 6;

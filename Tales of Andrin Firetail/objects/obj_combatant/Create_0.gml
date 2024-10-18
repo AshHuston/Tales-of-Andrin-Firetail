@@ -17,7 +17,7 @@ secondaryDisplayBarCurrent = 0
 
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.
-/// @description              Runs the attack. Calculating if hit, adjusting target HP, applying effects, etc.
+/// @description              Runs the attack. Calculating if hit, adjusting target Hp, applying effects, etc.
 function attack(details){
 // Struct should contain: targetID, bonus_targetID, dmg_type, min_dmg, max_dmg, hit_chance, effect_chance, effect_type. 	
 //Ensure struct elements are present
@@ -86,7 +86,7 @@ function attack(details){
 		dmg = round(dmg)
 		
 		//Apply damage
-		details.targetID.currentHP -= dmg;
+		details.targetID.currentHp -= dmg;
 		results.mainDmg = dmg;
 		results.mainType = details.dmg_type;
 		results.hit = true;

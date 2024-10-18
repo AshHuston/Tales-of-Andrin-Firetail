@@ -18,7 +18,7 @@ try{
 
 menuTexture = ""; //@TODO Add menu texture per character.
 
-baseHP = associatedCharacterID.maxHp;
+baseHp = associatedCharacterID.maxHp;
 baseSpeed = associatedCharacterID.combatSpeed;
 baseArmor = associatedCharacterID.armor;
 baseMagicResist = associatedCharacterID.magicResist;
@@ -142,13 +142,13 @@ effectBonusArmor = getEffectBonus("armor");
 effectBonusMagicResist = getEffectBonus("magic resist");
 effectBonusEvasion = getEffectBonus("evasion");
 
-totalHP = baseHP + itemBonusHP + effectBonusHP;
+totalHP = baseHp + itemBonusHP + effectBonusHP;
 totalSpeed = baseSpeed + itemBonusSpeed + effectBonusSpeed;
 totalArmor = baseArmor + itemBonusArmor+ effectBonusArmor;
 totalMagicResist = baseMagicResist + itemBonusMagicResist + effectBonusMagicResist;
 totalEvasion = baseEvasion + itemBonusEvasion + effectBonusEvasion;
 
-currentHP = totalHP;
+currentHp = totalHP;
 
 
 
