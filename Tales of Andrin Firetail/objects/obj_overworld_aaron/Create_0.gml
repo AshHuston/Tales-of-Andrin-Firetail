@@ -43,6 +43,7 @@ immunities = []
 crystal_inventory = global.CRYSTAL_INVENTORY
 
 name = "Aaron"
+combatName = "Aaron"
 secondaryDisplayBar = "MP"
 secondaryDisplayBarMax = 50 //@TODO Will eventuqlly pull from a saved json or somthing along with every other saved stat.
 secondaryDisplayBarCurrent = 50
@@ -159,8 +160,6 @@ herb = {name:"Cleansing Herb",
 				}
 				outputMessage = string_trim(outputMessage ,[", "]);
 				outputMessage = string_concat(outputMessage, ".");
-			
-				show_debug_message(outputMessage)
 				return {animation_index: "None", logText: outputMessage};
 		}, 
 		description:"Removes all negetive status effects.", 

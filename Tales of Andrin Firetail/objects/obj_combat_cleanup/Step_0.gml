@@ -21,14 +21,21 @@ function get_character_fight_exp(character, expereince = experience){
 }
 
 //This should display loot, add it to the player inventory, give EXP, and handle levelups.
-
 //    Display all loot gained
-
 //    Add gained EXP
-	
+show_debug_message(partyMemberIDs)
+for (var i=0 ; i<array_length(partyMemberIDs); i++) {
+	show_debug_message(partyMemberIDs[i].name)
+	show_debug_message(partyMemberIDs[i].totalExp)
+	partyMemberIDs[i].totalExp += get_character_fight_exp(partyMemberIDs[i])
+	show_debug_message(partyMemberIDs[i].totalExp)
+}
+
 //    Animate EXP bars going up
 //		Handle animating the start of the NEW level bar when 
 	
 //    Handle levelups whatever that means...
-
 //      Probably means showing a levelup animation and allowing the player to make any choices they may need to 
+
+
+close_combat()

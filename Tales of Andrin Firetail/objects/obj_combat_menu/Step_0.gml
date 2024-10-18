@@ -131,7 +131,6 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 		cost = 0
 		type = ""
 	}
-	show_debug_message("COST: " + string(cost))
 	var statCurrentVal = 0
 	
 	switch(type){

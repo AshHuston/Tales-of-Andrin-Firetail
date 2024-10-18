@@ -8,7 +8,8 @@ skillRanged = 18;		//@TODO These are just dummy/placeholder stats
 skillMelee = 25;		//		to test the Overworld --> Combat object conversion.
 skillEdged = 50;
 skillMagic = 5;
-
+level = 1
+totalExp = 0
 resistances = []
 immunities = []
 inventory = []

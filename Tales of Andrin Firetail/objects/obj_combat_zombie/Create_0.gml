@@ -64,7 +64,6 @@ function getAction(){
 	
 	// Pick attack
 	bite.targetID = target;
-	show_debug_message("Used " + bite.name + " targeting " + string(target.combat_name));
 	return bite;
 }
 

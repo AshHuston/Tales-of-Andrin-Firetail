@@ -95,7 +95,7 @@ function attack(details){
 		if isEffected{
 			//Apply the effect to the target
 			array_push(target.activeEffects, {name: details.effect_type, value: true});
-			show_debug_message(target.combat_name + " effected with " + details.effect_type)
+			//show_debug_message(target.combat_name + " effected with " + details.effect_type)
 			results.isEffected = true;
 			results.effect = details.effect_type;
 		}
@@ -134,7 +134,6 @@ function attack(details){
 
 function castSpell(details){
 	if details.spellType == "attack"{
-		show_debug_message("Mana cost: " + string(details.cost_value))
 		return attack(details)
 	}else{
 		//@TODO Figure this out	

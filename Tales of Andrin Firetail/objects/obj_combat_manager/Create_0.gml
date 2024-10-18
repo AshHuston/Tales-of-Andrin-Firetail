@@ -150,7 +150,6 @@ function createPartyCombatObjects(partyIDs){
 		}
 	
 		for (var i=0;i<array_length(IDorder);i++;){
-			show_debug_message(IDorder[i])
 			if IDorder[i] == 0{ continue }
 			switch(i){
 				case 0:

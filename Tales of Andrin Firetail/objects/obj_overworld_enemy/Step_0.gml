@@ -12,8 +12,8 @@ function benchThisMonster(){
 
 function generateLoot(){
 	var loot = {}
-	// @TODO Figure out how to generate loot from mob to mob	
-	loot = {gold: 13} // Completley arbitrary. For testing.
+	// @TODO Figure out how to generate loot from mob to mob. This method should usually be overridden.
+	loot = {gold: 13} //@TESTING Completley arbitrary. For testing.
 	return loot
 }
 
@@ -33,13 +33,12 @@ function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
 }
 
 if hasStartedCombat && !instance_exists(obj_combatFadeIn){
-	show_debug_message("BENCH")
 	x = global.DEFAULT_OVERWORLD_MONSTER_BENCH[0]
 	y = global.DEFAULT_OVERWORLD_MONSTER_BENCH[1]
 	benchThisMonster()
 	instance_create_depth(0,0,0,obj_combat_manager, {
 		overworld_mob:id, 
-		lootToDrop: generateLoot(),
+		lootToDrop: lootForCombat,
 		mob1: mobs[0], 
 		mob2: mobs[1], 
 		mob3: mobs[2], 

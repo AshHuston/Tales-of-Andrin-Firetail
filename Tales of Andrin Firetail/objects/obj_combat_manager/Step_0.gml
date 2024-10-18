@@ -89,6 +89,7 @@ if waitFrames<1{
 					}
 				}
 			}
+	#region Combat cleanup
 			if stillAreMonsters == false{
 				if instance_exists(obj_combat_menu){
 					instance_destroy(menu);	
@@ -101,14 +102,28 @@ if waitFrames<1{
 					overworld_mob: overworld_mob
 				}
 				var experience = []
+				var partyMemberIds = []
 				for (var i=0 ; i<array_length(combatants); i++) {
 					if object_get_parent(combatants[i].object_index) == obj_enemy{
-						array_push(experience, {enemy: combatants[i].combatName, exp_value: combatants[i].rewardExp})
+						array_push(experience, {
+							enemy: combatants[i].combatName, 
+							exp_value: combatants[i].rewardExp
+							})
+					}
+					if object_get_parent(combatants[i].object_index) == obj_combat_party_member || combatants[i].object_index == obj_combat_party_member{
+						show_debug_message("added " + string(combatants[i].combatName))
+						array_push(partyMemberIds, combatants[i].associatedCharacterID)
 					}
 				}
-				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {loot: lootToDrop, experience: experience, overworldDetails: overworld_details})
+				instance_create_depth(0, 0, depth-1, obj_combat_cleanup, {
+					loot: lootToDrop, 
+					experience: experience, 
+					overworldDetails: overworld_details,
+					partyMemberIDs: partyMemberIds
+					})
 				set_ovw_character_stats()
 				instance_destroy(self);
+		#endregion
 			}else{
 				//show_debug_message("There are this many enemies remaining: " + string(instance_number(obj_enemy)))
 				}
@@ -308,7 +323,6 @@ if waitFrames<1{
 							break;
 					}
 				}
-				show_debug_message(results.logMessage)
 				display_log_message(logMessage)
 				//array_push(combatLogEntriesOnDisplay, logMessage)
 				//array_push(combatLogEntries, logMessage)
@@ -339,7 +353,6 @@ if waitFrames<1{
 		case "Running animation":
 			var damageAnimationsAreRunning = false;
 			for (var i =0; i<array_length(combatants); i++;){
-				show_debug_message(string(combatants[i].combatName) + "------  taking damage?: " + string(combatants[i].isTakingDamage))
 				if combatants[i].isTakingDamage{
 					damageAnimationsAreRunning = true;	
 				}
