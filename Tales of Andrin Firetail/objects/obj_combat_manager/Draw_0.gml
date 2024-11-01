@@ -172,7 +172,7 @@ for(var i=0; i<array_length(combatants); i++){
 	if object_get_parent(combatants[i].object_index) != obj_enemy{
 		var stats = {
 			name: combatants[i].combatName, 
-			maxHp: combatants[i].baseHp, 
+			maxHp: combatants[i].baseStats.hp, 
 			currentHp: combatants[i].currentHp, 
 			otherBar: combatants[i].secondaryDisplayBar, 
 			maxOtherBar: combatants[i].secondaryDisplayBarMax, 

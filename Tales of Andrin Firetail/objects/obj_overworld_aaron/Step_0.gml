@@ -4,9 +4,23 @@ if input("E"){
 		instance_create_depth(0,0,depth-1,obj_eq_menu)
 	}else{
 		instance_destroy(instance_find(obj_eq_menu,0))
+		#region EQ Stats
+		for(var i=0; i<array_length(activeEffects); i++){
+			if activeEffects[i].effectSource == "Ephrin's Queen"{
+				array_delete(activeEffects, i, 1)
+				i--
+			}
+		}	
+		for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){
+			if global.EQUIPPED_CRYSTALS[i].effectType == "buff"{
+				array_push(activeEffects, global.EQUIPPED_CRYSTALS[i].effect)
+			}
+		}
+		#endregion
+	show_debug_message("set vals")
 	}
 }
-//Party menu testing
+//Party menu testing. Arbitrary button rn.
 if input("Y"){
 	if instance_number(obj_party_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_party_menu)
@@ -136,6 +150,7 @@ lastX = x
 lastY = y
 #endregion
 
+#region Pausing
 if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
 paused = global.GAME_IS_PAUSED
-//show_debug_message(global.OVERWORLD_ID_A)
+#endregion

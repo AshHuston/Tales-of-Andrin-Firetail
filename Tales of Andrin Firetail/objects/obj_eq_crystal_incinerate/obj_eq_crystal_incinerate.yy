@@ -2,7 +2,7 @@
   "$GMObject":"",
   "%Name":"obj_eq_crystal_incinerate",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_eq_crystal_incinerate",
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_crystal_2",
-    "path":"sprites/spr_crystal_2/spr_crystal_2.yy",
+    "name":"spr_crystal_6",
+    "path":"sprites/spr_crystal_6/spr_crystal_6.yy",
   },
   "spriteMaskId":null,
   "visible":true,

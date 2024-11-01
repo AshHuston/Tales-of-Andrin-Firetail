@@ -4,6 +4,7 @@ combatName = "Aaron"
 combatLogColor = c_aqua
 damageSoundEffect = snd_agh
 
+#region EQ attacks/spells
 for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){
 	if global.EQUIPPED_CRYSTALS[i].effectType == "attack"{
 		array_push(attacks, global.EQUIPPED_CRYSTALS[i].effect)
@@ -12,5 +13,5 @@ for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){
 		array_push(spells, global.EQUIPPED_CRYSTALS[i].effect)
 	}
 }
-
+#endregion
 image_xscale = -1 //flip sprite the right way

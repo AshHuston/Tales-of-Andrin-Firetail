@@ -52,48 +52,6 @@ combatLogColor = c_white//Left intentionally blank
 combatBaseSprite = sprite_index
 combatDamageSprite = sprite_index
 
-
-//@TESTING eq crystals
-testCrystal1 = {
-	name : "Guard",
-	sprite : spr_crystal_1,
-	coords: [6,0],
-	slave_cells: [],
-	other_filled_slots: [], //Left intentionally empty
-	effectType: "buff",
-	effect: {
-		effectSource: "Ephrin's Queen",
-		name:"Guard crystal",
-		bonusArmor: 15
-		}
-}
-testCrystal2 = {
-	name : "Smackdown",
-	sprite : spr_crystal_3,
-	coords: [6,0],
-	slave_cells: [[1,1]],
-	other_filled_slots: [], //Left intentionally empty
-	effectType: "buff",
-	effect: {
-		effectSource: "Ephrin's Queen",
-		name:"Smackdown crystal",
-		skillMelee: 15}
-}
-testCrystal3 = {
-	name : "Speedy",
-	sprite : spr_crystal_3,
-	coords: [6,0],
-	slave_cells: [[1,1]],
-	other_filled_slots: [], //Left intentionally empty
-	effectType: "buff",
-	effect: {
-		effectSource: "Ephrin's Queen",
-		name:"Speedy crystal",
-		combatSpeed: 15
-		}
-}
-array_push(crystal_inventory, testCrystal1, testCrystal2, testCrystal3)
-
 #region @TESTING Items
 potion = {name:"Healing Potion", 
 		quantity: 5, 
@@ -188,8 +146,4 @@ textTest = {name:"Text box test",
 #endregion
 inventory = [potion, herb, elixir, textTest]
 
-activeEffects = [
-{name:"bonus magic resist", bonusMagicResist:12},
-{name:"bonusSpeed", value:25}, 
-{name:"hungry", state: true}
-]
+activeEffects = []

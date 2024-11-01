@@ -2,7 +2,7 @@ event_inherited()
 
 itemInfo = {
 	name : "Incinerate",
-	sprite : spr_crystal_2,
+	sprite : spr_crystal_6,
 	coords: [6,0],
 	slave_cells: [[1,1], [2,0]],
 	other_filled_slots: [], //Left intentionally empty

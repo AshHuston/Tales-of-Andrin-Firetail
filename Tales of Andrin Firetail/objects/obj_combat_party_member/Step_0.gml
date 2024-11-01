@@ -100,9 +100,9 @@ var shoot = {
 if addAttacks{ //Just for some test attacks, remove later. @TESTING
 	addAttacks = false
 	array_push(attacks, bite)
-	array_push(attacks, stab)
-	array_push(attacks, shoot)
-	array_push(attacks, slash)
+	//array_push(attacks, stab)
+	//array_push(attacks, shoot)
+	//array_push(attacks, slash)
 }
 //-------------TESTS ONLY -> DELETE LATER-------------------
 //var results = inventory[0].use(self);

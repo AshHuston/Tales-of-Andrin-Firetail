@@ -18,16 +18,20 @@ try{
 
 menuTexture = ""; //@TODO Add menu texture per character.
 
-baseHp = associatedCharacterID.maxHp;
-baseSpeed = associatedCharacterID.combatSpeed;
-baseArmor = associatedCharacterID.armor;
-baseMagicResist = associatedCharacterID.magicResist;
-baseEvasion = associatedCharacterID.evasion;
+baseStats = {
+	hp: associatedCharacterID.currentHp,
+	spd: associatedCharacterID.combatSpeed,
+	armor: associatedCharacterID.armor,
+	magicResist: associatedCharacterID.magicResist,
+	evasion: associatedCharacterID.evasion,
+}
 
-skillRanged = associatedCharacterID.skillRanged;
-skillMelee = associatedCharacterID.skillMelee;
-skillEdged = associatedCharacterID.skillEdged;
-skillMagic = associatedCharacterID.skillMagic;
+combatSkills = {
+	ranged: associatedCharacterID.skillRanged,
+	melee: associatedCharacterID.skillMelee,
+	edged: associatedCharacterID.skillEdged,
+	magic: associatedCharacterID.skillMagic
+}
 
 inventory = associatedCharacterID.inventory;
 activeEffects = associatedCharacterID.activeEffects;
@@ -128,37 +132,43 @@ function getEffectBonus(stat){
 	return sum;
 }
 
+itemBonuses = {
+	hp: getItemBonus("hp"),
+	spd: getItemBonus("speed"),
+	armor: getItemBonus("armor"),
+	magicResist: getItemBonus("magic resist"),
+	evasion: getItemBonus("evasion"),
+}
 
+effectBonuses = {
+	hp: getEffectBonus("hp"),
+	spd: getEffectBonus("speed"),
+	armor: getEffectBonus("armor"),
+	magicResist: getEffectBonus("magic resist"),
+	evasion: getEffectBonus("evasion"),
+}
 
-itemBonusHP = getItemBonus("hp");
-itemBonusSpeed = getItemBonus("speed");
-itemBonusArmor = getItemBonus("armor");
-itemBonusMagicResist = getItemBonus("magic resist");
-itemBonusEvasion = getItemBonus("evasion");
+totalHP = baseStats.hp + itemBonuses.hp + effectBonuses.hp;
+totalSpeed = baseStats.spd + itemBonuses.spd + effectBonuses.spd;
+totalArmor = baseStats.armor + itemBonuses.armor + effectBonuses.armor;
+totalMagicResist = baseStats.magicResist + itemBonuses.magicResist + effectBonuses.magicResist;
+totalEvasion = baseStats.evasion + itemBonuses.evasion + effectBonuses.evasion;
 
-effectBonusHP = getEffectBonus("hp");
-effectBonusSpeed = getEffectBonus("speed");
-effectBonusArmor = getEffectBonus("armor");
-effectBonusMagicResist = getEffectBonus("magic resist");
-effectBonusEvasion = getEffectBonus("evasion");
-
-totalHP = baseHp + itemBonusHP + effectBonusHP;
-totalSpeed = baseSpeed + itemBonusSpeed + effectBonusSpeed;
-totalArmor = baseArmor + itemBonusArmor+ effectBonusArmor;
-totalMagicResist = baseMagicResist + itemBonusMagicResist + effectBonusMagicResist;
-totalEvasion = baseEvasion + itemBonusEvasion + effectBonusEvasion;
-
+maxHp = associatedCharacterID.maxHp
 currentHp = totalHP;
 
-
-
 attacks = [];
-	//@TODO Add a for loop adding attacks. Attacks should be a struct detailing at minimum, 'Name', 'damage', and "hitChance'.
-
 spells = [];
+specialActions = []; 
+	//@TODO Add a for loop adding attacks. Attacks should be a struct detailing at minimum, 'Name', 'damage', and "hitChance'.
+	for (var i=0; i<array_length(inventory);i++;){
+		if variable_struct_exists(inventory[i], "attack"){
+			array_push(attacks, inventory[i].attack);
+		}
+	}
 	//@TODO Add a for loop adding spells. Spells should be a struct detailing at minimum, 'Name' and other important spell stuff.
-
-specialActions = []; //@TODO Special action names. Will figure this out later.
+	//@TODO Special action names. Will figure this out later.
+	//@TODO Actually just have these all be the same loops probably.
 
 function listAttacks(){
 	return attacks;	
@@ -171,7 +181,7 @@ function listSpecialActions(){
 function listItems(){
 	var outputItems = [];
 	for (var i=0; i<array_length(inventory);i++;){
-		if inventory[i].combatMenu == true{
+		if variable_struct_exists(inventory[i], "combatMenu") && inventory[i].combatMenu == true{
 			array_push(outputItems, inventory[i]);
 		}
 	}

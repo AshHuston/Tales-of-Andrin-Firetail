@@ -21,7 +21,6 @@ secondaryDisplayBarCurrent = 0
 function attack(details){
 // Struct should contain: targetID, bonus_targetID, dmg_type, min_dmg, max_dmg, hit_chance, effect_chance, effect_type. 	
 //Ensure struct elements are present
-	
 	//@TODO Insert try catch block checking it and returning an error if something is missing.	
 	
 	
@@ -64,7 +63,7 @@ function attack(details){
 		animation_index: details.animation_index, 
 		effect: "", 
 		isEffected: false,
-		logMessage: "DEFAULT LOG MESSAGE"
+		logMessage:{text: "DEFAULT LOG MESSAGE", color: c_white},
 		};
 	if variable_struct_exists(details, "logMessage"){
 		results.logMessage = details.logMessage
