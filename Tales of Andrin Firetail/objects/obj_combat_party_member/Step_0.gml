@@ -73,15 +73,15 @@ var slash = {
 		]
 };
 
-var shoot = {
-	name: "Shoot",	//Only really needed for playable characters. Will show up on menu.
+var kill = {
+	name: "INSTAKILL",	//Only really needed for playable characters. Will show up on menu.
 	description: "Shoots at target.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
 	dmg_type: "physical", 
-	min_dmg: 100, 
-	max_dmg: 130, 
-	hit_chance: 75, 
+	min_dmg: 9999, 
+	max_dmg: 9999, 
+	hit_chance: 110, 
 	effect_chance: 0, 
 	effect_type: "",
 	frequency: 5,
@@ -101,8 +101,6 @@ if addAttacks{ //Just for some test attacks, remove later. @TESTING
 	addAttacks = false
 	array_push(attacks, bite)
 	//array_push(attacks, stab)
-	//array_push(attacks, shoot)
+	array_push(attacks, kill)
 	//array_push(attacks, slash)
 }
-//-------------TESTS ONLY -> DELETE LATER-------------------
-//var results = inventory[0].use(self);

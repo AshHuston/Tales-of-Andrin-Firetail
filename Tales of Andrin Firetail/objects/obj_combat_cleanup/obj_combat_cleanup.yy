@@ -31,10 +31,11 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"loot","filters":[],"listItems":[],"multiselect":false,"name":"loot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"{}","varType":4,},
+    {"$GMObjectProperty":"v1","%Name":"loot","filters":[],"listItems":[],"multiselect":false,"name":"loot","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"{}","varType":6,},
     {"$GMObjectProperty":"v1","%Name":"overworldDetails","filters":[],"listItems":[],"multiselect":false,"name":"overworldDetails","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"{}","varType":4,},
     {"$GMObjectProperty":"v1","%Name":"experience","filters":[],"listItems":[],"multiselect":false,"name":"experience","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"{}","varType":4,},
     {"$GMObjectProperty":"v1","%Name":"partyMemberIDs","filters":[],"listItems":[],"multiselect":false,"name":"partyMemberIDs","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":6,},
+    {"$GMObjectProperty":"v1","%Name":"cam","filters":[],"listItems":[],"multiselect":false,"name":"cam","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",

@@ -17,6 +17,16 @@ function generateLoot(){
 	return loot
 }
 
+function cleanUpLoot(loot){
+	for (var i = 0; i<array_length(loot); i++){
+		if variable_struct_exists(loot[i], "itemInfo"){
+			loot[i].itemInfo.name = loot[i].name
+			loot[i].itemInfo.quantity = loot[i].qty
+		}
+	}
+	return loot
+}
+
 function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
 	numberOfMonsters = clamp(numberOfMonsters, 1, 5)
 	if typeof(certainMonsters) != "array" {certainMonsters = [certainMonsters]}
@@ -46,3 +56,5 @@ if hasStartedCombat && !instance_exists(obj_combatFadeIn){
 		mob5: mobs[4], 
 		})
 }
+	
+	

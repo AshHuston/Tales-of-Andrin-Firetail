@@ -3,39 +3,35 @@ function close_combat(){
 	view_set_yport(overworldDetails.overworldViewport, overworldDetails.overworldCameraY)
 	view_visible[overworldDetails.overworldViewport] = true
 	view_visible[overworldDetails.combatViewport] = false	
-	
-	//Destroy self?
+	for (var i=0 ; i<array_length(global.COMBATANTS); i++) {
+		instance_destroy(global.COMBATANTS[i])	
+	}
 	instance_destroy(self)
 }
 
-//This may need to exist in the Create event and just poop out a struct with all the deets.
-function get_character_fight_exp(character, expereince = experience){
-	// Should total monster EXP, check any modifiers for EXP and return the total.
-	var totalExp = {base_exp: 0, bonus_exp: 0}
-	for (var i=0 ; i<array_length(experience); i++) {
-		totalExp.base_exp += experience[i].exp_value
-		// Should also check for bonus EXP too. However we do that.
-	}	
-	// Could possibly return for example {base_exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
-	return totalExp.base_exp
-}
 
-//This should display loot, add it to the player inventory, give EXP, and handle levelups.
-//    Display all loot gained
-//    Add gained EXP
-show_debug_message(partyMemberIDs)
-for (var i=0 ; i<array_length(partyMemberIDs); i++) {
-	show_debug_message(partyMemberIDs[i].name)
-	show_debug_message(partyMemberIDs[i].totalExp)
-	partyMemberIDs[i].totalExp += get_character_fight_exp(partyMemberIDs[i])
-	show_debug_message(partyMemberIDs[i].totalExp)
-}
 
-//    Animate EXP bars going up
-//		Handle animating the start of the NEW level bar when 
-	
-//    Handle levelups whatever that means...
+
+//    Animate EXP bars going up		@TODO
+//		Handle animating the start of the NEW level bar when leveling
+
+//    Handle levelups whatever that means...		@TODO
 //      Probably means showing a levelup animation and allowing the player to make any choices they may need to 
 
 
+
+
+//If everything is done processing then it will close combat.
+var keys = variable_struct_get_names(isAnimating);
+for (var i = 0; i < array_length(keys); i++) {
+    var key = keys[i];
+    var value = variable_struct_get(isAnimating, key);
+	if value == true{
+		continue	
+	}
+	close_combat()
+}
+
+if keyboard_check_pressed(vk_space){
 close_combat()
+}

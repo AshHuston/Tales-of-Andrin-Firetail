@@ -6,6 +6,8 @@ image_xscale = manualImageScaleX
 
 depth = -6
 
+gold = 0
+
 movementspacesize = 16
 movementSpeed = 3
 facingDir = LEFT

@@ -119,7 +119,8 @@ if waitFrames<1{
 					loot: lootToDrop, 
 					experience: experience, 
 					overworldDetails: overworld_details,
-					partyMemberIDs: partyMemberIds
+					partyMemberIDs: partyMemberIds,
+					cam: view_get_camera(combatViewport)
 					})
 				set_ovw_character_stats()
 				instance_destroy(self);
