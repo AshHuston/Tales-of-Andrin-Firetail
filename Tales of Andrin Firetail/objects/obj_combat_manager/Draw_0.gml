@@ -211,7 +211,7 @@ for(var i=0; i<array_length(charStats); i++){
 	var barYScale = barHeight/sprite_get_height(spr_lifeBarOutline)
 	var maxFill = charStats[i].maxHp
 	var barX = nameX
-	var barY = nameY+nameYbuffer+string_height(charStats[i].name) + string_height("HP1234567890/")
+	var barY = nameY + nameYbuffer + string_height(charStats[i].name) + string_height("HP1234567890/")
 	draw_sprite_ext(spr_lifeBarOutline, 0, barX, barY, barXScale, barYScale, 0, c_white, 1)
 	var hpTextY = barY - 1 - string_height("HP1234567890/") //Just using each character that could be in the string to assure corect height.
 	var hpText = string(charStats[i].currentHp) + "/" + string(charStats[i].maxHp)+" HP" 

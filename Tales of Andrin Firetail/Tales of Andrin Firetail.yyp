@@ -100,6 +100,7 @@
     {"id":{"name":"scr_get_dialogue","path":"scripts/scr_get_dialogue/scr_get_dialogue.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},
     {"id":{"name":"scr_input_manager","path":"scripts/scr_input_manager/scr_input_manager.yy",},},
+    {"id":{"name":"scr_levelScale","path":"scripts/scr_levelScale/scr_levelScale.yy",},},
     {"id":{"name":"scr_macros","path":"scripts/scr_macros/scr_macros.yy",},},
     {"id":{"name":"scr_misc_functions","path":"scripts/scr_misc_functions/scr_misc_functions.yy",},},
     {"id":{"name":"scr_pause","path":"scripts/scr_pause/scr_pause.yy",},},

@@ -1,6 +1,5 @@
 event_inherited()
 
-
 X = 0
 Y = 1
 overworldViewport = overworldDetails.overworldViewport
@@ -17,7 +16,7 @@ isAnimating = {
 	lootDisplay : true,
 	
 }
-
+/*
 show_debug_message("-----------------------------------------------------------------------------------------")
 show_debug_message("ovw details")
 show_debug_message(overworldDetails)
@@ -25,10 +24,11 @@ show_debug_message(overworldDetails)
 show_debug_message("-----------------------------------------------------------------------------------------")
 show_debug_message("loot")
 show_debug_message(loot)
-
+*/
 show_debug_message("-----------------------------------------------------------------------------------------")
 show_debug_message("experience")
 show_debug_message(experience)
+//*/
 
 function get_character_fight_exp(character, expereince = experience){
 	// Should total monster EXP, check any modifiers for EXP and return the total.
@@ -40,17 +40,23 @@ function get_character_fight_exp(character, expereince = experience){
 	// Could possibly return for example {base_exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
 	return totalExp.base_exp
 }
-#region Add EXP
-originalExp = []
+
+characterDisplayVals = []
 for (var i=0 ; i<array_length(partyMemberIDs); i++) {
 	var thisCharStuff = {
 		name : partyMemberIDs[i].name,
 		characterID : partyMemberIDs[i],
-		startExp : 0 + partyMemberIDs[i].totalExp
+		startExp : partyMemberIDs[i].totalExp - global.EXP_SCALE[partyMemberIDs[i].level],
+		endExp : 0, //Edits in a few lines.
+		currentLevel : partyMemberIDs[i].level,
+		expForLevelup : 0
 	}
 	partyMemberIDs[i].totalExp += get_character_fight_exp(partyMemberIDs[i])
+	thisCharStuff.endExp = partyMemberIDs[i].totalExp - global.EXP_SCALE[partyMemberIDs[i].level]
+	thisCharStuff.expForLevelup = global.EXP_SCALE[partyMemberIDs[i].level+1] - global.EXP_SCALE[partyMemberIDs[i].level]
+	array_push(characterDisplayVals, thisCharStuff)
 }
-#endregion
+
 #region Add loot
 var inventory = global.OVERWORLD_ID_AARON.inventory
 for (var i=0 ; i<array_length(loot); i++) {
@@ -58,7 +64,9 @@ for (var i=0 ; i<array_length(loot); i++) {
 		global.OVERWORLD_ID_AARON.gold += loot[i].qty
 	}else{
 		var item = loot[i].itemInfo
-		array_push(inventory, item) //@TODO Currently doesnt check if theres existing copies of the item in the inventory... shoudl add that.
+		array_push(inventory, item) //@TODO Currently doesnt check if theres existing copies of the item in the inventory... should add that.
 	}
 }
 #endregion
+
+print(characterDisplayVals[0])

@@ -10,6 +10,7 @@ skillEdged = 50;
 skillMagic = 5;
 level = 1
 totalExp = 0
+expForLevelup = 100 //@TODO 100% abitrary. Figure this out.
 resistances = []
 immunities = []
 inventory = []
