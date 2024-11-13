@@ -1,5 +1,6 @@
 event_inherited()
 
+shading = 0
 X = 0
 Y = 1
 overworldViewport = overworldDetails.overworldViewport
@@ -9,12 +10,8 @@ combatViewport = overworldDetails.combatViewport
 overworld_mob = overworldDetails.overworld_mob
 image_speed = 0.1
 isAnimating = {
-	expBar1 : true,
-	expBar2 : true,
-	expBar3 : true,
-	expBar4 : true,
+	expBars : true,
 	lootDisplay : true,
-	
 }
 /*
 show_debug_message("-----------------------------------------------------------------------------------------")

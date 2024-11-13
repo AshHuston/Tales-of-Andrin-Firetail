@@ -13,21 +13,29 @@ var anchor = [
 var scalePixels = 30				//@DIAL
 var itemSpacing = scalePixels*1.3	//@DIAL
 var itemXbuff = 0					//@DIAL
-var itemYbuff = 0					//@DIAL
-var barWidth = 40					//@DIAL
+var itemYbuff = camHeight * 2/6		//@DIAL
+var barWidth = 80					//@DIAL
+var shadeAlpha = 0.65				//@DIAL
+var shadeFrames = 12				//@DIAL
+var belowCenter = camY + (camHeight*0.6)
+var charPanelXOffset = - (camWidth/8) - (barWidth/2)
 var characterAnchors = [
-	anchor,//[0,0],
-	[0,0],
-	[0,0],
-	[0,0],
+	[camX+charPanelXOffset+(camWidth*2/4), belowCenter],
+	[camX+charPanelXOffset+(camWidth*3/4), belowCenter],
+	[camX+charPanelXOffset+(camWidth*1/4), belowCenter],
+	[camX+charPanelXOffset+(camWidth*4/4), belowCenter],
 ]
 #endregion
 
-
+#region shade/display stuff
+var alpha = shadeAlpha*(shading/shadeFrames)
+print(alpha)
+draw_sprite_ext(spr_solidSquare, 1, anchor[X], anchor[Y], 30, 30, 0, c_black, alpha)
+if shading>=shadeFrames{
 #region Display loot
 for (var i=0; i<array_length(loot); i++) {
 	if loot[i].qty > 0 {
-		continue // @TESTING 
+		//continue // @TESTING -------------------------------------------------------------------------
 		var itemX = anchor[X] + itemXbuff + (itemSpacing*i) 
 		var itemY = anchor[Y] + itemYbuff
 		var xScale = scalePixels/sprite_get_width(loot[i].sprite)
@@ -43,20 +51,11 @@ for (var i=0; i<array_length(loot); i++) {
 }
 #endregion
 
-#region PC exp
-/*
-var thisCharStuff = {
-		name : partyMemberIDs[i].name,
-		characterID : partyMemberIDs[i],
-		startExp : partyMemberIDs[i].totalExp - global.EXP_SCALE[partyMemberIDs[i].level],
-		endExp: 0, //Edits in a few lines.
-		currentLevel: partyMemberIDs[i].level,
-	}
-*/
-
+#region PC exp and models
+//isAnimating.expBars = false //Assume false, will adjust a bit lower.
 for (var i=0; i<array_length(characterDisplayVals); i++) { 
 	//EXP bar
-	var barHeight = sprite_get_height(spr_lifeBarOutline)
+	var barHeight = sprite_get_height(spr_lifeBarOutline) //@DIAL
 	var barXScale = barWidth/sprite_get_width(spr_lifeBarOutline)
 	var barYScale = barHeight/sprite_get_height(spr_lifeBarOutline)
 	var maxFill = characterDisplayVals[i].expForLevelup
@@ -71,8 +70,27 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 	var fillXScale = fillWidth/sprite_get_width(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScale, barYScale, 0, c_aqua, 1)
 	
-	var fillSpeed = 0.5 //@DIAL The way is cuurently is, its gonna slow down a lot as levels get higher. So maybe it should work differntly.
-	if characterDisplayVals[i].startExp < characterDisplayVals[i].endExp{ characterDisplayVals[i].startExp += fillSpeed }
+	//Draw sprites
+	var sprite = characterDisplayVals[i].characterID.sprite_index
+	var spriteHeight = 64
+	var spriteXscale = spriteHeight/sprite_get_height(sprite)
+	var spriteX = barX + barWidth/2
+	var spriteY = barY - string_height("QWERTYUIOPASDFGHJKLZXCVBNM!@#$%^&*()?1234567890/qwertyuiopasdfghjklzxcvbnm") - 5 //@DIAL
+	draw_sprite_ext(sprite, image_index, spriteX, spriteY, spriteXscale, spriteXscale, 0, c_white, 1)
+	
+	//Draw text
+	var expText = "lvl"+string(characterDisplayVals[i].currentLevel)+ "    +" + string(round(characterDisplayVals[i].startExp))+"exp"// + "/" + string(characterDisplayVals[i].expForLevelup)
+	//expText = 
+	draw_text_transformed(barX, barY-(string_height(expText))-1, expText, 1, 1, 0)
+	
+	//Animate filling bar
+	var fillSpeed = 1 //@DIAL The way is currently is, its gonna slow down a lot as levels get higher. So maybe it should work differntly.
+	if characterDisplayVals[i].startExp < characterDisplayVals[i].endExp{ 
+		characterDisplayVals[i].startExp += fillSpeed 
+		isAnimating.expBars = true;
+		}
+	
+	//Adjust to new level
 	if characterDisplayVals[i].startExp == characterDisplayVals[i].expForLevelup {
 		var newLvl = characterDisplayVals[i].currentLevel + 1
 		characterDisplayVals[i].startExp = 0
@@ -82,4 +100,8 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 	}
 }
 
+#endregion
+}else{
+	shading++	
+}
 #endregion
