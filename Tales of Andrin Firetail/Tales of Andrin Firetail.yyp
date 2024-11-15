@@ -42,7 +42,9 @@
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Z TESTING ASSETS AND STUFF","folderPath":"folders/Z TESTING ASSETS AND STUFF.yy","name":"Z TESTING ASSETS AND STUFF","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "IncludedFiles":[],
+  "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"testDialogue.txt","CopyToMask":-1,"filePath":"datafiles","name":"testDialogue.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
+  ],
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{

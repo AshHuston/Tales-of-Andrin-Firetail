@@ -11,32 +11,41 @@ function hasAnyValues(struct){
 	return has_values
 }
 
-charactersToType += 2
-options = variable_struct_get_names(dialogueBlurb.response_options)
-
+var charsPerFrame = 2 //@DIAL
+charactersToType += charsPerFrame
 fullLineText = dialogueBlurb.text
+#region option setup
+options = variable_struct_get_names(dialogueBlurb.response_options)
+for (var i = array_length(options)-1; i>=0; i--;){
+	var option = variable_struct_get(dialogueBlurb.response_options, options[i])
+	if typeof(option) == "number"{
+		array_delete(options, i, 1)
+		print("deleted")
+	}
+}
+#endregion
 
-switch (dialogueBlurb.voiceoverID){
+#region Voiceover stuff
+switch (dialogueBlurb.voiceover_id){
 	case "":
 	case "none":
 	case "nothing":
 	case "silence":
 		voiceover =  asset_get_index("snd_dialogue_silence")
-		//show_debug_message(getDialogue("testjson"))
 		break;
 	default:
-		voiceover = asset_get_index("snd_dialogue_"+dialogueBlurb.voiceoverID)
+		voiceover = asset_get_index("snd_dialogue_"+dialogueBlurb.voiceover_id)
 }
 
 if audio_is_playing(previousVoiceOver){
 	audio_stop_sound(previousVoiceOver)
 }
 
-
 if playVoiceover{
 	audio_play_sound(voiceover, 1, false)	
 	playVoiceover = false
 }
+#endregion
 
 //Check if text is printed
 if charactersToType >= string_length(fullLineText){
@@ -45,31 +54,31 @@ if charactersToType >= string_length(fullLineText){
 	stopYappingDelay += 1
 }
 
-
 if textIsAllPrinted == false && input("enter"){
 	charactersToType = string_length(fullLineText)
 }
 
-//Select hovered option
-	if optionsAreDisplayed{
-		//Code to select option
-		hoveredOption = variable_struct_get(dialogueBlurb.response_options, options[hoveredIndex])
+#region Select hovered option
+if optionsAreDisplayed{
+	//Code to select option
+	hoveredOption = variable_struct_get(dialogueBlurb.response_options, options[hoveredIndex])
 	
-		if input("down"){
-			hoveredIndex --;
-		}
-		if input("up"){
-			hoveredIndex ++;
-		}
-		if hoveredIndex < 0{
-			hoveredIndex = array_length(options) - 1;
-		}
-		if hoveredIndex == array_length(options){
-			hoveredIndex = 0;
-		}
+	if input("down"){
+		hoveredIndex --;
 	}
+	if input("up"){
+		hoveredIndex ++;
+	}
+	if hoveredIndex < 0{
+		hoveredIndex = array_length(options) - 1;
+	}
+	if hoveredIndex == array_length(options){
+		hoveredIndex = 0;
+	}
+}
+#endregion
 
-// Move to next dialogue step
+#region Move to next dialogue step
 if textIsAllPrinted && input("enter"){
 	
 	continueIndicatorAnimationFrame = 0
@@ -97,3 +106,4 @@ if textIsAllPrinted && input("enter"){
 		instance_destroy(self);
 	}
 }
+#endregion

@@ -7,8 +7,13 @@ function getSpeakerSprite(){
 			spriteIndex = allSprites[i].spriteID;	
 		}
 	}
-	if typeof(spriteIndex) == "string" { return asset_get_index(spriteIndex) }
-	else{ return spriteIndex }
+	if spriteIndex == "" { //If the sprite is listed wrong or blank on JSON.
+		var defaultSprite = spr_wall
+		return asset_get_index(string(defaultSprite))
+	}else{
+		return asset_get_index(spriteIndex) 
+	}
+	
 }
 
 function getSpeakerSpriteYappingSpeed(){
@@ -17,23 +22,22 @@ function getSpeakerSpriteYappingSpeed(){
 	var yapSpeed = 0
 	for (var i = 0; i<array_length(allSprites); i++;){
 		if allSprites[i].name == speakerName{
-			yapSpeed = allSprites[i].yappingSpeed;	
+			yapSpeed = allSprites[i].yapping_speed;	
 		}
 	}
 	return yapSpeed;	
 }
 
-
-
-//----------------------------------------- Draw the text box ---------------------------------
-var textBoxOffsetX = 350
-var textBoxOffsetY = 185
+#region Draw the text box 
+var textBoxOffsetX = 350					//@DIAL
+var textBoxOffsetY = 185					//@DIAL
+var textboxWidth = 300						//@DIAL
+var textboxHeight = 125						//@DIAL
 var textBoxX = camera_get_view_x(camera_get_active()) + textBoxOffsetX
 var textBoxY = camera_get_view_y(camera_get_active()) + textBoxOffsetY
-var textboxWidth = 300
-var textboxHeight = 125
 
 draw_sprite_ext(sprite_index, 0, textBoxX, textBoxY, textboxWidth/sprite_width, textboxHeight/sprite_height, 0, c_white, 1);
+#endregion
 
 #region Draw speaker 
 //print(wholeDialogueStruct)
@@ -41,7 +45,7 @@ var speakerSprite = getSpeakerSprite()
 //print(speakerSprite)
 var originalHeight = sprite_get_height(speakerSprite)
 var originalWidth = sprite_get_width(speakerSprite)
-var spriteHightInPixels = 65
+var spriteHightInPixels = 65				//@DIAL
 var scaledHeightRatio = spriteHightInPixels/originalHeight
 var scaledWidthRatio = scaledHeightRatio * -1 //flip inward. Find a better way to do this.
 var scaledWidth = originalWidth*scaledWidthRatio
@@ -49,13 +53,13 @@ var scaledWidth = originalWidth*scaledWidthRatio
 // Display speaker name
 var speakerName = dialogueBlurb.speaker;
 var namePlateSprite = sprite_index
-var nameBoxPaddingX = 6
-var nameBoxPaddingY = 4
+var nameBoxPaddingX = 6				//@DIAL
+var nameBoxPaddingY = 4				//@DIAL
 var nameBoxHeight = (string_height(speakerName) + 2*nameBoxPaddingY)
 var nameBoxWidth = (string_width(speakerName) + 2*nameBoxPaddingX)
 var minNamePlateWidth = scaledWidth + 2*nameBoxPaddingX
 if nameBoxWidth < minNamePlateWidth {nameBoxWidth = minNamePlateWidth}
-var nameBoxRightEdgeSpacing = 15
+var nameBoxRightEdgeSpacing = 15				//@DIAL
 var nameBoxOffsetX = (textboxWidth/2) - (nameBoxWidth/2) - nameBoxRightEdgeSpacing
 
 //@TODO Find better condition to test for left side
@@ -81,8 +85,8 @@ if round(animationFrame) >= sprite_get_number(speakerSprite){
 	animationFrame = 0
 }
 
-var speakerSpriteOffsetX = 0
-var speakerSpriteOffsetY = -(spriteHightInPixels/2) - 5
+var speakerSpriteOffsetX = 0				//@DIAL
+var speakerSpriteOffsetY = -(spriteHightInPixels/2) - 5	//@DIAL
 var speakerSpriteX = nameBoxX + speakerSpriteOffsetX
 var speakerSpriteY = nameBoxY + speakerSpriteOffsetY
 
