@@ -1,5 +1,7 @@
 event_inherited()
 
+fadeout = noone
+fadeoutFinished = false
 shading = 0
 X = 0
 Y = 1
@@ -34,7 +36,7 @@ function get_character_fight_exp(character, expereince = experience){
 		totalExp.base_exp += experience[i].exp_value
 		// Should also check for bonus EXP too. However we do that.
 	}	
-	// Could possibly return for example {base_exp: 45, bonus_exp: 15}. If we want the animation to be slightly different for those with a bonus to EXP.
+	// Could return: {base_exp: 45, bonus_exp: 15}. For special animation for bonus EXP.
 	return totalExp.base_exp
 }
 
@@ -46,9 +48,12 @@ for (var i=0 ; i<array_length(partyMemberIDs); i++) {
 		startExp : partyMemberIDs[i].totalExp - global.EXP_SCALE[partyMemberIDs[i].level],
 		endExp : 0, //Edits in a few lines.
 		currentLevel : partyMemberIDs[i].level,
-		expForLevelup : 0
+		expForLevelup : 0,
+		alreadyAdded : 0,
+		totalAdded : get_character_fight_exp(partyMemberIDs[i])
+		
 	}
-	partyMemberIDs[i].totalExp += get_character_fight_exp(partyMemberIDs[i])
+	partyMemberIDs[i].totalExp += thisCharStuff.totalAdded
 	thisCharStuff.endExp = partyMemberIDs[i].totalExp - global.EXP_SCALE[partyMemberIDs[i].level]
 	thisCharStuff.expForLevelup = global.EXP_SCALE[partyMemberIDs[i].level+1] - global.EXP_SCALE[partyMemberIDs[i].level]
 	array_push(characterDisplayVals, thisCharStuff)
@@ -61,9 +66,17 @@ for (var i=0 ; i<array_length(loot); i++) {
 		global.OVERWORLD_ID_AARON.gold += loot[i].qty
 	}else{
 		var item = loot[i].itemInfo
-		array_push(inventory, item) //@TODO Currently doesnt check if theres existing copies of the item in the inventory... should add that.
+		var itemExists = false
+		for (var n=0 ; n<array_length(inventory); n++) {
+			if inventory[n].name = item.name{
+				itemExists = true
+				inventory[n].quantity += item.qty
+			}
+		}
+		
+		if !itemExists{
+			array_push(inventory, item)
+		}
 	}
 }
 #endregion
-
-print(characterDisplayVals[0])

@@ -7,7 +7,8 @@ function getSpeakerSprite(){
 			spriteIndex = allSprites[i].spriteID;	
 		}
 	}
-	return asset_get_index(spriteIndex);	
+	if typeof(spriteIndex) == "string" { return asset_get_index(spriteIndex) }
+	else{ return spriteIndex }
 }
 
 function getSpeakerSpriteYappingSpeed(){
@@ -16,7 +17,7 @@ function getSpeakerSpriteYappingSpeed(){
 	var yapSpeed = 0
 	for (var i = 0; i<array_length(allSprites); i++;){
 		if allSprites[i].name == speakerName{
-			yapSpeed = allSprites[i].yapping_speed;	
+			yapSpeed = allSprites[i].yappingSpeed;	
 		}
 	}
 	return yapSpeed;	
@@ -32,15 +33,12 @@ var textBoxY = camera_get_view_y(camera_get_active()) + textBoxOffsetY
 var textboxWidth = 300
 var textboxHeight = 125
 
-//testing purposes only. please remove.
-//draw_sprite_ext(spr_a_press, 0, textBoxX, textBoxY, 1000, 1000, 0, c_teal, 1)
-
-
 draw_sprite_ext(sprite_index, 0, textBoxX, textBoxY, textboxWidth/sprite_width, textboxHeight/sprite_height, 0, c_white, 1);
 
-
-//------------------------------------------ Draw speaker ---------------------
+#region Draw speaker 
+//print(wholeDialogueStruct)
 var speakerSprite = getSpeakerSprite()
+//print(speakerSprite)
 var originalHeight = sprite_get_height(speakerSprite)
 var originalWidth = sprite_get_width(speakerSprite)
 var spriteHightInPixels = 65
@@ -60,7 +58,7 @@ if nameBoxWidth < minNamePlateWidth {nameBoxWidth = minNamePlateWidth}
 var nameBoxRightEdgeSpacing = 15
 var nameBoxOffsetX = (textboxWidth/2) - (nameBoxWidth/2) - nameBoxRightEdgeSpacing
 
-//Find better condition to test for left side
+//@TODO Find better condition to test for left side
 if speakerName == "Aaron"{nameBoxOffsetX = -nameBoxOffsetX}
 	
 var nameBoxOffsetY = -(textboxHeight/2)
@@ -92,6 +90,7 @@ var speakerSpriteY = nameBoxY + speakerSpriteOffsetY
 draw_sprite_ext(speakerSprite, round(animationFrame), speakerSpriteX, speakerSpriteY, scaledWidthRatio, scaledHeightRatio, 0, c_white, 1)
 draw_sprite_ext(namePlateSprite, 0, nameBoxX, nameBoxY, nameBoxWidth/sprite_get_width(namePlateSprite), nameBoxHeight/sprite_get_height(namePlateSprite), 0, c_white, alpha)
 draw_text_ext_color(nameTextX, nameTextY, speakerName, 0, 1500, c_black, c_black, c_black, c_black, alpha)
+#endregion
 
 //--------------------------------------------- Draw text ---------------------
 //Write text

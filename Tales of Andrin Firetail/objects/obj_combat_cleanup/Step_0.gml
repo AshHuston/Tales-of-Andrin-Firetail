@@ -6,32 +6,30 @@ function close_combat(){
 	for (var i=0 ; i<array_length(global.COMBATANTS); i++) {
 		instance_destroy(global.COMBATANTS[i])	
 	}
+	//instance_create_depth(x, y, 0, obj_combatFadeOut)
 	instance_destroy(self)
 }
 
-
-
-
-//    Animate EXP bars going up		@TODO
-//		Handle animating the start of the NEW level bar when leveling
+var up_key = input("up");
+var down_key = input("down");
+var accept_key = input("enter");
+var back_key = input("back");
 
 //    Handle levelups whatever that means...		@TODO
 //      Probably means showing a levelup animation and allowing the player to make any choices they may need to 
 
 
-
-
-//If everything is done processing then it will close combat.
+//If everything is done processing/animating then it will allow a button-press to close combat.
+var animations_done = true
 var keys = variable_struct_get_names(isAnimating);
-for (var i = 0; i < array_length(keys); i++) {
-    var key = keys[i];
-    var value = variable_struct_get(isAnimating, key);
-	if value == true{
-		continue	
+for (var i = 0; i < array_length(keys); i++){
+	if variable_struct_get(isAnimating, keys[i]){
+		animations_done = false
 	}
-	close_combat()
 }
 
-if keyboard_check_pressed(vk_space){
-close_combat()
+if animations_done{
+	if accept_key{
+		fadeout = instance_create_depth(x, y, 0, obj_combatFadeInOut)
+	}
 }

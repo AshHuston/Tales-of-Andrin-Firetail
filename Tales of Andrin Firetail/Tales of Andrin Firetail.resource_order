@@ -9,6 +9,7 @@
     {"name":"obj_combat_party_member","order":1,"path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},
     {"name":"obj_combat_roy","order":2,"path":"objects/obj_combat_roy/obj_combat_roy.yy",},
     {"name":"obj_combatFadeIn","order":2,"path":"objects/obj_combatFadeIn/obj_combatFadeIn.yy",},
+    {"name":"obj_combatFadeInOut","order":9,"path":"objects/obj_combatFadeInOut/obj_combatFadeInOut.yy",},
     {"name":"obj_combatFadeOut","order":3,"path":"objects/obj_combatFadeOut/obj_combatFadeOut.yy",},
     {"name":"obj_eq_crystal_armorup","order":2,"path":"objects/obj_eq_crystal_armorup/obj_eq_crystal_armorup.yy",},
     {"name":"obj_eq_crystal_incinerate","order":3,"path":"objects/obj_eq_crystal_incinerate/obj_eq_crystal_incinerate.yy",},

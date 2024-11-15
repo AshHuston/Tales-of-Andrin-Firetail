@@ -82,7 +82,7 @@ function interact(){
 		var target = instance_place(checklocation.xcoord, checklocation.ycoord, all)
 		if target != noone{
 			if variable_instance_exists(target, "interactable"){
-				show_debug_message(object_get_name(target.object_index))
+				//show_debug_message(object_get_name(target.object_index))
 				if target.interactable == true{
 					target.interact()	
 				}

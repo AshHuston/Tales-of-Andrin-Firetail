@@ -5,7 +5,7 @@ function hasAnyValues(struct){
 		//var key = keys[i]
 		if (string(struct[$ keys[i]]) != "NaN"){ 
 			has_values = true 
-			show_debug_message(string(struct[$ keys[i]]))
+			//show_debug_message(string(struct[$ keys[i]]))
 			}
 	}
 	return has_values
@@ -16,7 +16,7 @@ options = variable_struct_get_names(dialogueBlurb.response_options)
 
 fullLineText = dialogueBlurb.text
 
-switch (dialogueBlurb.voiceover_id){
+switch (dialogueBlurb.voiceoverID){
 	case "":
 	case "none":
 	case "nothing":
@@ -25,7 +25,7 @@ switch (dialogueBlurb.voiceover_id){
 		//show_debug_message(getDialogue("testjson"))
 		break;
 	default:
-		voiceover = asset_get_index("snd_dialogue_"+dialogueBlurb.voiceover_id)
+		voiceover = asset_get_index("snd_dialogue_"+dialogueBlurb.voiceoverID)
 }
 
 if audio_is_playing(previousVoiceOver){

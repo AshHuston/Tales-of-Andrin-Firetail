@@ -17,6 +17,8 @@ var itemYbuff = camHeight * 2/6		//@DIAL
 var barWidth = 80					//@DIAL
 var shadeAlpha = 0.65				//@DIAL
 var shadeFrames = 12				//@DIAL
+var fadeoutFrames = 12				//@DIAL
+var blackScreenFrames = 1			//@DIAL  May remove this.
 var belowCenter = camY + (camHeight*0.6)
 var charPanelXOffset = - (camWidth/8) - (barWidth/2)
 var characterAnchors = [
@@ -29,13 +31,12 @@ var characterAnchors = [
 
 #region shade/display stuff
 var alpha = shadeAlpha*(shading/shadeFrames)
-print(alpha)
 draw_sprite_ext(spr_solidSquare, 1, anchor[X], anchor[Y], 30, 30, 0, c_black, alpha)
 if shading>=shadeFrames{
 #region Display loot
+isAnimating.lootDisplay = false //@TESTING Currently has no animations.
 for (var i=0; i<array_length(loot); i++) {
 	if loot[i].qty > 0 {
-		//continue // @TESTING -------------------------------------------------------------------------
 		var itemX = anchor[X] + itemXbuff + (itemSpacing*i) 
 		var itemY = anchor[Y] + itemYbuff
 		var xScale = scalePixels/sprite_get_width(loot[i].sprite)
@@ -52,7 +53,7 @@ for (var i=0; i<array_length(loot); i++) {
 #endregion
 
 #region PC exp and models
-//isAnimating.expBars = false //Assume false, will adjust a bit lower.
+isAnimating.expBars = false
 for (var i=0; i<array_length(characterDisplayVals); i++) { 
 	//EXP bar
 	var barHeight = sprite_get_height(spr_lifeBarOutline) //@DIAL
@@ -70,7 +71,7 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 	var fillXScale = fillWidth/sprite_get_width(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, barX+1, barY+1, fillXScale, barYScale, 0, c_aqua, 1)
 	
-	//Draw sprites
+	//Draw character sprites
 	var sprite = characterDisplayVals[i].characterID.sprite_index
 	var spriteHeight = 64
 	var spriteXscale = spriteHeight/sprite_get_height(sprite)
@@ -79,29 +80,44 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 	draw_sprite_ext(sprite, image_index, spriteX, spriteY, spriteXscale, spriteXscale, 0, c_white, 1)
 	
 	//Draw text
-	var expText = "lvl"+string(characterDisplayVals[i].currentLevel)+ "    +" + string(round(characterDisplayVals[i].startExp))+"exp"// + "/" + string(characterDisplayVals[i].expForLevelup)
-	//expText = 
+	var totAddedExp = characterDisplayVals[i].totalAdded
+	var displayExp = string(clamp(round(characterDisplayVals[i].startExp+characterDisplayVals[i].alreadyAdded), 0, totAddedExp))
+	var expText = "lvl"+string(characterDisplayVals[i].currentLevel)+ "    +" + displayExp +"exp"
 	draw_text_transformed(barX, barY-(string_height(expText))-1, expText, 1, 1, 0)
 	
 	//Animate filling bar
-	var fillSpeed = 1 //@DIAL The way is currently is, its gonna slow down a lot as levels get higher. So maybe it should work differntly.
+	var fillSpeedConstants = [	//@DIAL
+		0.75, //Added flat
+		0.025 //Multipled by the expForTheLevelup
+		]
+	var fillSpeed = fillSpeedConstants[0] + (characterDisplayVals[i].expForLevelup * fillSpeedConstants[1])
 	if characterDisplayVals[i].startExp < characterDisplayVals[i].endExp{ 
 		characterDisplayVals[i].startExp += fillSpeed 
 		isAnimating.expBars = true;
 		}
 	
 	//Adjust to new level
-	if characterDisplayVals[i].startExp == characterDisplayVals[i].expForLevelup {
+	if characterDisplayVals[i].startExp >= characterDisplayVals[i].expForLevelup {
 		var newLvl = characterDisplayVals[i].currentLevel + 1
+		characterDisplayVals[i].alreadyAdded += characterDisplayVals[i].startExp
 		characterDisplayVals[i].startExp = 0
 		characterDisplayVals[i].currentLevel = newLvl	
 		characterDisplayVals[i].endExp = characterDisplayVals[i].characterID.totalExp - global.EXP_SCALE[newLvl]
 		characterDisplayVals[i].expForLevelup = global.EXP_SCALE[newLvl+1] - global.EXP_SCALE[newLvl]
+	
 	}
 }
 
 #endregion
 }else{
-	shading++	
+	shading++	//Shades the background before showing the loot and exp animations
+}
+#endregion
+
+#region Fadeout 
+if fadeout != noone{
+	if fadeout.image_index == sprite_get_number(fadeout.sprite_index)-1{
+		close_combat()
+	}
 }
 #endregion

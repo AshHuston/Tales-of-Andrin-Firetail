@@ -21,7 +21,7 @@ global.DIALGUE_STRUCT = {
 	chatSpriteIDs:[
 	{
 	name:"Aaron", 
-	spriteID: spr_smiley,
+	spriteID: spr_aaron_dialogue,
 	yappingSpeed : 0.6
 	}, 
 	{name:"Big Boss man MARIO MARIO",
