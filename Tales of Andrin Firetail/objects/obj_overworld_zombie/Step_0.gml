@@ -5,8 +5,8 @@ function generateLoot(){
 	var loot = []
 	// @TODO Figure out how to generate loot from mob to mob	
 	loot = [
-		{name: "gold", qty: round(random(25)), sprite: spr_gold_coins},
-		{name: "Zombie brain", qty: round(random(10)), itemInfo: {
+		{name: "gold", quantity: round(random(25)), sprite: spr_gold_coins},
+		{name: "Zombie brain", quantity: round(random(10)), itemInfo: {
 			name: "", 
 			quantity: 0, 
 			use: function healUser(targetID){

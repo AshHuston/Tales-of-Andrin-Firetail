@@ -98,6 +98,7 @@
     {"id":{"name":"rm_test_overworld","path":"rooms/rm_test_overworld/rm_test_overworld.yy",},},
     {"id":{"name":"rm_titleScreen","path":"rooms/rm_titleScreen/rm_titleScreen.yy",},},
     {"id":{"name":"scr_allGametext","path":"scripts/scr_allGametext/scr_allGametext.yy",},},
+    {"id":{"name":"scr_characterStats","path":"scripts/scr_characterStats/scr_characterStats.yy",},},
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_combat_position_macros","path":"scripts/scr_combat_position_macros/scr_combat_position_macros.yy",},},
     {"id":{"name":"scr_get_dialogue","path":"scripts/scr_get_dialogue/scr_get_dialogue.yy",},},

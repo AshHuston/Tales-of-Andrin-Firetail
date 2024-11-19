@@ -21,7 +21,7 @@ function cleanUpLoot(loot){
 	for (var i = 0; i<array_length(loot); i++){
 		if variable_struct_exists(loot[i], "itemInfo"){
 			loot[i].itemInfo.name = loot[i].name
-			loot[i].itemInfo.quantity = loot[i].qty
+			loot[i].itemInfo.quantity = loot[i].quantity
 		}
 	}
 	return loot

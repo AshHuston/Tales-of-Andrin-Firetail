@@ -19,6 +19,7 @@
     {"name":"obj_overworld_enemy","order":1,"path":"objects/obj_overworld_enemy/obj_overworld_enemy.yy",},
     {"name":"obj_overworld_party_member","order":1,"path":"objects/obj_overworld_party_member/obj_overworld_party_member.yy",},
     {"name":"obj_party_menu","order":1,"path":"objects/obj_party_menu/obj_party_menu.yy",},
+    {"name":"scr_characterStats","order":5,"path":"scripts/scr_characterStats/scr_characterStats.yy",},
     {"name":"scr_levelScale","order":4,"path":"scripts/scr_levelScale/scr_levelScale.yy",},
     {"name":"scr_misc_functions","order":3,"path":"scripts/scr_misc_functions/scr_misc_functions.yy",},
     {"name":"scr_saveLoad","order":2,"path":"scripts/scr_saveLoad/scr_saveLoad.yy",},

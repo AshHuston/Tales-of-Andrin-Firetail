@@ -1,9 +1,6 @@
 event_inherited()
-
 name = "Roy"
-secondaryDisplayBar = "Energy"
-secondaryDisplayBarMax = 45
-secondaryDisplayBarCurrent = 45
+setBaseStats()
 
 combatName = "Roy"
 combatLogColor = c_olive

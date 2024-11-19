@@ -8,6 +8,8 @@ global.COMBATANTS = [];
 global.DEFAULT_OVERWORLD_MONSTER_BENCH = [-1000, -1000]
 global.CRYSTAL_INVENTORY = []
 global.EQUIPPED_CRYSTALS = []
+global.PLAYER_INVENTORY = []
+global.PLAYER_GOLD = 0
 
 // Honestly idk if this is the right place for this or not. 
 // Right now im more concerned with making the global work.

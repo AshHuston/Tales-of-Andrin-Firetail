@@ -1,15 +1,13 @@
 event_inherited()
-//For temporary sprite reasons
+//@TESTING For temporary sprite reasons
 manualImageScaleX = 16/sprite_width
 image_yscale = manualImageScaleX
 image_xscale = manualImageScaleX
 
 depth = -6
 
-gold = 0
-
-movementspacesize = 16
-movementSpeed = 3
+movementspacesize = 16	//@DIAL
+movementSpeed = 3		//@DIAL
 facingDir = LEFT
 lastFacingDir = LEFT
 lastX = 0
@@ -17,8 +15,6 @@ lastY = 0
 acceptingMovementCommand = true
 notAtDestination = false
 
-//x = 168
-//y = 168
 prevDestinationX = x
 prevDestinationY = y
 
@@ -29,27 +25,12 @@ paused = false
 
 destinationCoords = [x, y]
 
-maxHp = 50;
-currentHp = maxHp
-combatSpeed = 40;
-armor = 10;
-magicResist = 6;
-evasion = 7;
-skillRanged = 250;		//@TODO These are just dummy/placeholder stats
-skillMelee = 20;		//		to test the Overworld --> Combat object conversion.
-skillEdged = 5;
-skillMagic = 5;
-
-resistances = []
-immunities = []
 crystal_inventory = global.CRYSTAL_INVENTORY
 
 name = "Aaron"
+loadGame()
+setBaseStats()
 combatName = "Aaron"
-secondaryDisplayBar = "MP"
-secondaryDisplayBarMax = 50 //@TODO Will eventuqlly pull from a saved json or somthing along with every other saved stat.
-secondaryDisplayBarCurrent = 50
-combatName = ""			//Left intentionally blank
 combatLogColor = c_white//Left intentionally blank
 combatBaseSprite = sprite_index
 combatDamageSprite = sprite_index
@@ -146,6 +127,7 @@ textTest = {name:"Text box test",
 		animation_index: "None"
 		}
 #endregion
-inventory = [potion, herb, elixir, textTest]
+inventory = global.PLAYER_INVENTORY
+//array_push(inventory, potion, herb, elixir, textTest) //@TESTING @TODO Remove these items.
 
 activeEffects = []

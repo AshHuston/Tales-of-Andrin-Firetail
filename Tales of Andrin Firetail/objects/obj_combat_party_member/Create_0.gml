@@ -19,7 +19,7 @@ try{
 menuTexture = ""; //@TODO Add menu texture per character.
 
 baseStats = {
-	hp: associatedCharacterID.currentHp,
+	hp: associatedCharacterID.maxHp,
 	spd: associatedCharacterID.combatSpeed,
 	armor: associatedCharacterID.armor,
 	magicResist: associatedCharacterID.magicResist,
@@ -27,10 +27,10 @@ baseStats = {
 }
 
 combatSkills = {
-	ranged: associatedCharacterID.skillRanged,
-	melee: associatedCharacterID.skillMelee,
-	edged: associatedCharacterID.skillEdged,
-	magic: associatedCharacterID.skillMagic
+	ranged: associatedCharacterID.combatSkills.ranged,
+	melee: associatedCharacterID.combatSkills.melee,
+	edged: associatedCharacterID.combatSkills.edged,
+	magic: associatedCharacterID.combatSkills.magic
 }
 
 inventory = associatedCharacterID.inventory;
@@ -155,7 +155,7 @@ totalMagicResist = baseStats.magicResist + itemBonuses.magicResist + effectBonus
 totalEvasion = baseStats.evasion + itemBonuses.evasion + effectBonuses.evasion;
 
 maxHp = associatedCharacterID.maxHp
-currentHp = totalHP;
+currentHp = associatedCharacterID.currentHp
 
 attacks = [];
 spells = [];

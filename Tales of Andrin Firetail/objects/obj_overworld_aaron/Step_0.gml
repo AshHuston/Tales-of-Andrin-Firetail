@@ -1,5 +1,7 @@
 //EQ Menu testing
 if input("E"){
+	saveGame()
+	/*
 	if instance_number(obj_eq_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_eq_menu)
 	}else{
@@ -19,7 +21,9 @@ if input("E"){
 		#endregion
 	show_debug_message("set vals")
 	}
+	*/
 }
+
 //Party menu testing. Arbitrary button rn.
 if input("Y"){
 	if instance_number(obj_party_menu) == 0{

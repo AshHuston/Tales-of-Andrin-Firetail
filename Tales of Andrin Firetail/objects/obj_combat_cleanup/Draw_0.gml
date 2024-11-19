@@ -36,12 +36,12 @@ if shading>=shadeFrames{
 #region Display loot
 isAnimating.lootDisplay = false //@TESTING Currently has no animations.
 for (var i=0; i<array_length(loot); i++) {
-	if loot[i].qty > 0 {
+	if loot[i].quantity > 0 {
 		var itemX = anchor[X] + itemXbuff + (itemSpacing*i) 
 		var itemY = anchor[Y] + itemYbuff
 		var xScale = scalePixels/sprite_get_width(loot[i].sprite)
 		var yScale = scalePixels/sprite_get_height(loot[i].sprite)
-		var qtyString = "x"+string(loot[i].qty)
+		var qtyString = "x"+string(loot[i].quantity)
 		var qtyCoords = [
 			itemX - (scalePixels/2),
 			itemY + (scalePixels/2)
@@ -99,6 +99,7 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 	//Adjust to new level
 	if characterDisplayVals[i].startExp >= characterDisplayVals[i].expForLevelup {
 		var newLvl = characterDisplayVals[i].currentLevel + 1
+		characterDisplayVals[i].characterID.level++ //@TESTING Maybe move this actual levelup.
 		characterDisplayVals[i].alreadyAdded += characterDisplayVals[i].startExp
 		characterDisplayVals[i].startExp = 0
 		characterDisplayVals[i].currentLevel = newLvl	

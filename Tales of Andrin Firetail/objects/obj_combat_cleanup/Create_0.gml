@@ -63,14 +63,15 @@ for (var i=0 ; i<array_length(partyMemberIDs); i++) {
 var inventory = global.OVERWORLD_ID_AARON.inventory
 for (var i=0 ; i<array_length(loot); i++) {
 	if loot[i].name == "gold" {
-		global.OVERWORLD_ID_AARON.gold += loot[i].qty
+		global.PLAYER_GOLD += loot[i].quantity
 	}else{
 		var item = loot[i].itemInfo
 		var itemExists = false
 		for (var n=0 ; n<array_length(inventory); n++) {
 			if inventory[n].name = item.name{
+				print(item)
 				itemExists = true
-				inventory[n].quantity += item.qty
+				inventory[n].quantity += item.quantity
 			}
 		}
 		
