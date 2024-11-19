@@ -93,10 +93,4 @@ global.CHARACTER_STATS = {
 										magic: 15
 									},
 	},
-	
-	gi : {},
-	
-	biv : {},
-	
-	mourice : {},
 }

@@ -28,7 +28,7 @@ destinationCoords = [x, y]
 crystal_inventory = global.CRYSTAL_INVENTORY
 
 name = "Aaron"
-loadGame()
+//loadGame() //@TESTING
 setBaseStats()
 combatName = "Aaron"
 combatLogColor = c_white//Left intentionally blank
