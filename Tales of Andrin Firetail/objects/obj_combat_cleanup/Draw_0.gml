@@ -105,7 +105,7 @@ for (var i=0; i<array_length(characterDisplayVals); i++) {
 		characterDisplayVals[i].currentLevel = newLvl	
 		characterDisplayVals[i].endExp = characterDisplayVals[i].characterID.totalExp - global.EXP_SCALE[newLvl]
 		characterDisplayVals[i].expForLevelup = global.EXP_SCALE[newLvl+1] - global.EXP_SCALE[newLvl]
-		instance_create_depth(x, y, 0, obj_lvlup_stat_displayer, {name:characterDisplayVals[i].name})
+		instance_create_depth(x, y, 0, obj_lvlup_stat_displayer, {name:characterDisplayVals[i].name, anchor:[spriteX, spriteY]})
 	}
 }
 
