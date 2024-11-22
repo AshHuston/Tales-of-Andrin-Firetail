@@ -40,12 +40,6 @@ view_set_visible(combatViewport, true)
 combatCameraX = camera_get_view_x(view_get_camera(combatViewport)) 
 combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
 
-
-
-
-
-
-
 #region MONSTER RELOCATION
 monsters = [
 	mob1,
@@ -82,8 +76,6 @@ for(var i=0; i<array_length(monsterCoords); i++;){
 	monsters[i].y = monsterCoords[i][Y]
 }
 #endregion
-
-
 
 /**
  * Creates the combat characters for party members.
@@ -189,7 +181,8 @@ function createPartyCombatObjects(partyIDs){
 		}
 		
 	//Start combat clock
-	step = "Determine active combatant";
+	instance_create_depth(x,y,0, obj_combat_intro, {anchor:[combatCameraX, combatCameraY], combatViewport:combatViewport})
+	step = "waiting for intro";
 	activeCombatant = combatants[0];
 	action = {name:"empty"};
 	targets = [];

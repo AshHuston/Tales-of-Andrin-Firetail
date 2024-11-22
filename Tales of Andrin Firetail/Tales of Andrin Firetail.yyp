@@ -57,6 +57,7 @@
     {"id":{"name":"obj_collectable","path":"objects/obj_collectable/obj_collectable.yy",},},
     {"id":{"name":"obj_combat_aaron","path":"objects/obj_combat_aaron/obj_combat_aaron.yy",},},
     {"id":{"name":"obj_combat_cleanup","path":"objects/obj_combat_cleanup/obj_combat_cleanup.yy",},},
+    {"id":{"name":"obj_combat_intro","path":"objects/obj_combat_intro/obj_combat_intro.yy",},},
     {"id":{"name":"obj_combat_manager","path":"objects/obj_combat_manager/obj_combat_manager.yy",},},
     {"id":{"name":"obj_combat_menu","path":"objects/obj_combat_menu/obj_combat_menu.yy",},},
     {"id":{"name":"obj_combat_party_member","path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},},

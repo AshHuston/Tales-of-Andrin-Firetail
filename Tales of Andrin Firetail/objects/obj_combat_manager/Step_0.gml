@@ -3,6 +3,10 @@ var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
+print(step)
+if step == "waiting for intro" && !instance_exists(obj_combat_intro){
+	step = "Determine active combatant";
+}
 
 //@TODO Make this value changed when a spell/ability is selected but is illegal. Probably in the combatMenu.
 if input("Y"){
@@ -10,7 +14,7 @@ if input("Y"){
 }
 
 //@TODO Decide actual input for combatLog
-if keyboard_check_pressed(vk_alt){
+if keyboard_check_pressed(vk_alt){	//@DIAL
 	if !hideCombatLog{hideCombatLog = true}
 	else {hideCombatLog = false}
 }

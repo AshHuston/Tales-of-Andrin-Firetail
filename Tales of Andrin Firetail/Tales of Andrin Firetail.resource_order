@@ -6,6 +6,7 @@
     {"name":"obj_collectabale_crystal","order":4,"path":"objects/obj_collectabale_crystal/obj_collectabale_crystal.yy",},
     {"name":"obj_collectable","order":1,"path":"objects/obj_collectable/obj_collectable.yy",},
     {"name":"obj_combat_cleanup","order":4,"path":"objects/obj_combat_cleanup/obj_combat_cleanup.yy",},
+    {"name":"obj_combat_intro","order":11,"path":"objects/obj_combat_intro/obj_combat_intro.yy",},
     {"name":"obj_combat_party_member","order":1,"path":"objects/obj_combat_party_member/obj_combat_party_member.yy",},
     {"name":"obj_combat_roy","order":2,"path":"objects/obj_combat_roy/obj_combat_roy.yy",},
     {"name":"obj_combatFadeIn","order":2,"path":"objects/obj_combatFadeIn/obj_combatFadeIn.yy",},

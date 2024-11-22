@@ -1,0 +1,1 @@
+draw_text_ext_transformed(x, y, displayText, 0, 10000, textScale, textScale, 0)
