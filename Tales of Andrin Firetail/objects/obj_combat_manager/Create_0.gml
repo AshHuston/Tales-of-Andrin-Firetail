@@ -40,6 +40,54 @@ view_set_visible(combatViewport, true)
 combatCameraX = camera_get_view_x(view_get_camera(combatViewport)) 
 combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
 
+#region Combatant positions
+combat_positions = { //Values should be changed to best line up on combat screen
+	oneCharacter:[
+		[150, 180]
+	],
+	twoCharacters:[
+		[150, 180], 
+		[150, 80]
+	],
+	threeCharacters:[
+		[150, 180], 
+		[150, 80], 
+		[75, 130]
+	],
+	fourCharacters:[
+		[150, 180], 
+		[150, 80], 
+		[75, 130], 
+		[75, 230]
+	],
+	oneMonster:[
+		[335, 45]
+	],
+	twoMonsters:[
+		[335, 45],
+		[255, 95]
+	],
+	threeMonsters:[
+		[335, 45],
+		[255, 95],
+		[335, 145]
+	],
+	fourMonsters:[
+		[335, 45],
+		[255, 95],
+		[335, 145],
+		[255, 195]
+	],
+	fiveMonsters:[
+		[335, 45],
+		[255, 95],
+		[335, 145],
+		[255, 195],
+		[335, 245]
+	]
+}
+#endregion
+
 #region MONSTER RELOCATION
 monsters = [
 	mob1,
@@ -48,27 +96,29 @@ monsters = [
 	mob4,
 	mob5
 ]
-X = 0
-Y = 1
-monsterCoords = [[],[],[],[],[]]
 
 for(var i=array_length(monsters)-1; i>=0; i--;){
 	if monsters[i] == noone{array_delete(monsters, i, 1)}
 }
 
+monsterCoords = []
+presetCoords = []
 switch(array_length(monsters)){
-	
 		case 1:
-			monsterCoords = global.COMBAT_POSITIONING.oneMonster	break;
+			presetCoords = combat_positions.oneMonster break;
 		case 2:
-			monsterCoords = global.COMBAT_POSITIONING.twoMonsters	break;
+			presetCoords = combat_positions.twoMonsters break;
 		case 3:
-			monsterCoords = global.COMBAT_POSITIONING.threeMonsters	break;
+			presetCoords = combat_positions.threeMonsters break;
 		case 4:
-			monsterCoords = global.COMBAT_POSITIONING.fourMonsters	break;
+			presetCoords = combat_positions.fourMonsters break;
 		case 5:
-			monsterCoords = global.COMBAT_POSITIONING.fiveMonsters	break;	
+			presetCoords = combat_positions.fiveMonsters break;
 	}		
+array_copy(monsterCoords, -1, presetCoords, 0, array_length(presetCoords))
+
+X = 0
+Y = 1
 for(var i=0; i<array_length(monsterCoords); i++;){
 	monsterCoords[i][X] += combatCameraX
 	monsterCoords[i][Y] += combatCameraY
@@ -145,23 +195,23 @@ function createPartyCombatObjects(partyIDs){
 			if IDorder[i] == 0{ continue }
 			switch(i){
 				case 0:
-					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[0][0] + combatCameraX;
-					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[0][1] + combatCameraY;
+					partyIDs[i].x = combat_positions.fourCharacters[0][0] + combatCameraX;
+					partyIDs[i].y = combat_positions.fourCharacters[0][1] + combatCameraY;
 					break;
 					
 				case 1: 
-					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[1][0] + combatCameraX;
-					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[1][1] + combatCameraY;
+					partyIDs[i].x = combat_positions.fourCharacters[1][0] + combatCameraX;
+					partyIDs[i].y = combat_positions.fourCharacters[1][1] + combatCameraY;
 					break;				
 			
 				case 2: 
-					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[2][0] + combatCameraX;
-					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[2][1] + combatCameraY;
+					partyIDs[i].x = combat_positions.fourCharacters[2][0] + combatCameraX;
+					partyIDs[i].y = combat_positions.fourCharacters[2][1] + combatCameraY;
 					break;
 					
 				case 3: 
-					partyIDs[i].x = global.COMBAT_POSITIONING.fourCharacters[3][0] + combatCameraX;
-					partyIDs[i].y = global.COMBAT_POSITIONING.fourCharacters[3][1] + combatCameraY;
+					partyIDs[i].x = combat_positions.fourCharacters[3][0] + combatCameraX;
+					partyIDs[i].y = combat_positions.fourCharacters[3][1] + combatCameraY;
 					break;
 			}
 		}
@@ -193,4 +243,5 @@ function createPartyCombatObjects(partyIDs){
 	originalScaleY = 0;
 	activeCombatantScale = 1.2;
 	
+	global.COMBATANTS = []
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))

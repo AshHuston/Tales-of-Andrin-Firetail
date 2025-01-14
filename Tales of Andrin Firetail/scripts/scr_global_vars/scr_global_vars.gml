@@ -10,16 +10,3 @@ global.CRYSTAL_INVENTORY = []
 global.EQUIPPED_CRYSTALS = []
 global.PLAYER_INVENTORY = []
 global.PLAYER_GOLD = 0
-
-// Honestly idk if this is the right place for this or not. 
-// Right now im more concerned with making the global work.
-// It could just go in it's own script.
-function getCombatPartyIDs(){
-		outArr =[]
-		for (var i=0;i<array_length(global.COMBATANTS);i++;){
-			if object_get_parent(global.COMBATANTS[i].object_index) != obj_enemy{
-			array_push(outArr, global.COMBATANTS[i]);
-			}
-		}
-		return outArr;	
-	}

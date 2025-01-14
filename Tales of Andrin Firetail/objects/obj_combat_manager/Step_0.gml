@@ -3,7 +3,7 @@ var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
-print(step)
+//print(step)
 if step == "waiting for intro" && !instance_exists(obj_combat_intro){
 	step = "Determine active combatant";
 }
@@ -20,6 +20,7 @@ if keyboard_check_pressed(vk_alt){	//@DIAL
 }
 
 function displayActionAnimation(targetsArr, results){
+	if typeof(targetsArr) != "array"{ targetsArr = [targetsArr] }
 	target = targetsArr[0];
 	if results.animation_index != "None" && results.mainDmg != -1{
 		instance_create_depth(target.x, target.y, -100, obj_action_animation, {image_speed: 1.5, sprite_index: results.animation_index});
@@ -267,7 +268,10 @@ if waitFrames<1{
 			
 				var results = activeCombatant.doAction(action);
 				displayActionAnimation(theseTargets, results);
-			
+				
+				//@TESTING
+				//print(results)
+				
 				switch(action.targetID)
 				{
 					case "self":
@@ -329,8 +333,29 @@ if waitFrames<1{
 					}
 				}
 				display_log_message(logMessage)
-				//array_push(combatLogEntriesOnDisplay, logMessage)
-				//array_push(combatLogEntries, logMessage)
+				
+				//Diplay effect message
+				if results.isEffected {
+					var effect_color = c_white
+					//@TODO Add cases
+					switch(results.effect){
+						case "poison": effect_color = c_purple break;	
+						case "burn": effect_color = c_orange break;	
+						case "frozen": effect_color = c_aqua break;	
+					}
+					
+					var effectMessage = {
+						text:[
+							{text: action.targetID.combatName, color: action.targetID.combatLogColor},
+							{text: " was effected by ", color: c_white},
+							{text: results.effect, color: effect_color}
+						],
+						color: c_white,
+						frames: 90, //How many frames message is on screen
+						alpha: 1
+					}
+					display_log_message(effectMessage)
+				}
 		}
 			if action.name != "empty" && array_length(targets) != 0{
 				if string_lower(targets[0]) == "all"{
@@ -342,6 +367,14 @@ if waitFrames<1{
 				else if string_lower(targets[0]) == "all enemies"{
 					for (var i=0; i<array_length(combatants); i++){
 						if object_get_parent(combatants[i].object_index) == obj_enemy{
+							doAction(combatants[i])
+						}
+					}
+					action.targetID = "all enemies"
+				}
+				else if string_lower(targets[0]) == "all players"{
+					for (var i=0; i<array_length(combatants); i++){
+						if object_get_parent(combatants[i].object_index) == obj_combat_party_member{
 							doAction(combatants[i])
 						}
 					}
@@ -392,7 +425,7 @@ if waitFrames<1{
 					}
 					display_log_message(deathMessage)
 				}
-					array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
+					//array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 			}
 		
 		
@@ -405,6 +438,19 @@ if waitFrames<1{
 			activeCombatant.image_xscale = originalScaleX; //Seemed like the best place to put this I guess.
 			activeCombatant.image_yscale = originalScaleY;
 		
+		
+			step = "Run conditions";
+		break;
+	#endregion
+	#region Run conditions
+		case "Run conditions":
+		print("statuses v")
+			for (var i=0;i<array_length(activeCombatant.statusEffects);i++;){
+				if activeCombatant.statusEffects[i].value == true{
+					action = global.STATUS_ATTACKS[$ activeCombatant.statusEffects[i].name]
+					doAction(activeCombatant)
+				}
+			}
 			step = "Reset check";
 		break;
 	#endregion

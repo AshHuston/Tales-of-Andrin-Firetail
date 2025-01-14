@@ -49,6 +49,7 @@ function attack(details){
 	var isEffected = false;
 	if immune{effectPercent -= 100;}
 	if resistant{effectPercent -= 50;}
+	//Check if effects
 	if random_range(1, 100) <= effectPercent{
 		isEffected = true;
 	}
@@ -79,7 +80,7 @@ function attack(details){
 		//Determine damage
 		var dmg = random_range(details.min_dmg, details.max_dmg);
 		
-		//Apply armor/magic-resist							// @TODO Potentially rework how armor and magic resist effects total damage
+		//Apply armor/magic-resist		// @TODO Potentially rework how armor and magic resist effects total damage
 		defenseStat = defenseStat*random_range(0.90, 1.10);
 		dmg = dmg - (dmg*defenseStat)/100;
 		dmg = round(dmg)
@@ -93,8 +94,8 @@ function attack(details){
 		//If effected, apply effect.
 		if isEffected{
 			//Apply the effect to the target
-			array_push(target.activeEffects, {name: details.effect_type, value: true});
-			//show_debug_message(target.combat_name + " effected with " + details.effect_type)
+			array_push(target.statusEffects, {name: details.effect_type, value: true});
+			//print(target.combat_name + " effected with " + details.effect_type)
 			results.isEffected = true;
 			results.effect = details.effect_type;
 		}
