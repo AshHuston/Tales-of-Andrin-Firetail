@@ -3,6 +3,7 @@ event_inherited()
 itemInfo = {
 	name: "Longsword",
 	skillType: "melee",
+	menuPage: "equipment",
 	tags:["weapon"],
 	attack: {
 		name: "Longsword",	//Only really needed for playable characters. Will show up on menu.

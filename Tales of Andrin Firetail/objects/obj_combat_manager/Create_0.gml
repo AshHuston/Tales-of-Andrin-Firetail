@@ -245,3 +245,5 @@ function createPartyCombatObjects(partyIDs){
 	
 	global.COMBATANTS = []
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))
+	waitingForEvent = false
+	

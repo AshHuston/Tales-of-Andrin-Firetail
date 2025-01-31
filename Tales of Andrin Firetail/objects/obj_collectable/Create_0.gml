@@ -1,6 +1,7 @@
 itemInfo = {
 		name:"none", 
-		quantity: 1, 
+		quantity: 1,
+		stackable: true,
 		use: show_debug_message("BLANK ITEM"), 
 		description:"BLANK ITEM", 
 		}

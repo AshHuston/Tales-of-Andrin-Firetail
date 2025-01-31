@@ -3,17 +3,12 @@ var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
-//print(step)
+
 if step == "waiting for intro" && !instance_exists(obj_combat_intro){
 	step = "Determine active combatant";
 }
 
-//@TODO Make this value changed when a spell/ability is selected but is illegal. Probably in the combatMenu.
-if input("Y"){
-	shakeSecondBarFrames = 15
-}
-
-//@TODO Decide actual input for combatLog
+//@TODO Decide actual input for opening combatLog
 if keyboard_check_pressed(vk_alt){	//@DIAL
 	if !hideCombatLog{hideCombatLog = true}
 	else {hideCombatLog = false}
@@ -66,10 +61,55 @@ function set_ovw_character_stats(){
 	}
 }				
 
-#region Combat clock
+function checkForEvents(){ // @TODO Need to figure out how to handle multiple events triggering.
+	function conditionIsMet(condition){
+		//Check condition.
+		// condition = {type: type, goal: goal, targetVal: targetVal}
+		return true
+	}
+	function doEffect(effectData){
+		var content = effectData.content
+		var type = string_lower(effectData.eventType)
+		var pauseCombat = effectData.pauseCombat
+		var pausingObjectId = 0
+		switch(type){
+			case "dialogue":
+				instance_create_depth(0,0,0, obj_dialogue_manager, {wholeDialogueStruct: content})
+			break;
+			case "popup":
+				instance_create_depth(0,0,0, obj_splash_textbox, {fullLineText: content})
+			break;
+			case "environment":
+			
+			break;
+			case "phase change":
+			
+			break;
+			default: print("combat event type not found")
+		}
+		if pauseCombat{
+			waitingForEvent = true
+			instance_create_depth(0,0,0, obj_combat_manager_event_waiter, {pairedObjId: pausingObjectId, combatManagerId: id})
+		}
+	}
+	
+	for (var i=0; i<array_length(specialEvents); i++){
+		if !specialEvents[i].completed{
+			if conditionIsMet(specialEvents[i].trigger){
+				doEffect(specialEvents[i].content)
+				specialEvents[i].completed = true
+			}
+		}
+	}
+}
+
+if !waitingForEvent{ checkForEvents() }
+if  waitingForEvent{ waitFrames++ } // This keeps it in parody
+#region Combat step clock
 // This allows us to manually enter an amount of frames to wait after any given thing before the combat clock 
 // moves onto the next thing. Animations will persist though so thats good
 if waitFrames<1{
+	checkForEvents()
 	switch(step){
 		case "Awaiting player input":
 		break;
@@ -202,6 +242,7 @@ if waitFrames<1{
 			else if array_contains(preDesignatedTargets, string_lower(targets[0])){
 				if accept_key{
 					step = "Do action";
+					waitFrames = 5
 					break;	
 				}
 			}
@@ -223,11 +264,14 @@ if waitFrames<1{
 				if accept_key{
 					targets[0] = combatants[hovering];
 					step = "Do action";
+					waitFrames = 5
 					}
 				if action.actionType = "item"{
 					if action.canTarget = "self"{
 						targets[0] = "self";
 						step = "Do action";
+						waitFrames = 5
+
 						}
 					}
 			}
@@ -444,7 +488,6 @@ if waitFrames<1{
 	#endregion
 	#region Run conditions
 		case "Run conditions":
-		print("statuses v")
 			for (var i=0;i<array_length(activeCombatant.statusEffects);i++;){
 				if activeCombatant.statusEffects[i].value == true{
 					action = global.STATUS_ATTACKS[$ activeCombatant.statusEffects[i].name]
@@ -471,11 +514,7 @@ if waitFrames<1{
 			if resetCycle == true{
 				for (var i=0;i<array_length(combatants);i++;){
 					combatants[i].hasActed = false;
-				}
-		
-				//@TODO Check for any round count events from struct. (i.e. a round-limited battle.)
-					// if roundEvents[] not empty, check for trigger rounds.
-		
+				}	
 			}
 			
 			step = "Determine active combatant";

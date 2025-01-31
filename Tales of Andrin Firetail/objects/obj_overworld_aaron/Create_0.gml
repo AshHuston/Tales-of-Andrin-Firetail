@@ -38,12 +38,16 @@ combatDamageSprite = sprite_index
 #region @TESTING Items
 potion = {name:"Healing Potion", 
 		quantity: 5, 
+		menuPage: "consumables",
 		use: function healUser(targetID){
-			var healAmt = round(random_range(15, 30));
-			targetID.currentHP += healAmt;
-			return {animation_index: "None", hpRestored: healAmt};
+			var healAmt = 30;
+			var startHp = targetID.currentHp
+			targetID.currentHp += healAmt;
+			if targetID.currentHp > targetID.maxHp{targetID.currentHp = targetID.maxHp}
+			healAmt = targetID.currentHp - startHp
+			return {animation_index: "None", hpRestored: healAmt, can_use:(startHp < targetID.maxHp)};
 		   	}, 
-		description:"Heals user for 15-30 HP", 
+		description:"Heals user for 30 HP", 
 		canTarget:"self",
 		actionType:"item",
 		combatMenu:true,
@@ -128,6 +132,6 @@ textTest = {name:"Text box test",
 		}
 #endregion
 inventory = global.PLAYER_INVENTORY
-//array_push(inventory, potion, herb, elixir, textTest) //@TESTING @TODO Remove these items.
+array_push(inventory, potion, herb, elixir, textTest) //@TESTING @TODO Remove these items.
 
 activeEffects = []

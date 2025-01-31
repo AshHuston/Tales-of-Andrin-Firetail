@@ -53,7 +53,8 @@ if hasStartedCombat && !instance_exists(obj_combatFadeIn){
 		mob2: mobs[1], 
 		mob3: mobs[2], 
 		mob4: mobs[3], 
-		mob5: mobs[4], 
+		mob5: mobs[4],
+		specialEvents: combatSpecialEvents
 		})
 }
 	

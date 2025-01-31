@@ -16,6 +16,16 @@ var hudCellCoords = [
 	[hudCellsXAnchor,
 	hudCellsYAnchor + boxHeight*3.75]
 ]
+var hoverArrowOffsetY = -15
+var hoverArrowOffsetX = round(boxWidth/2)
+var toneDown = 3
+if shakeSelectorFrames>0{
+	var shakeY = random_range(-shakeSelectorFrames, shakeSelectorFrames)/toneDown
+	var shakeX = random_range(-shakeSelectorFrames, shakeSelectorFrames)/toneDown
+	hoverArrowOffsetY += shakeY
+	hoverArrowOffsetX += shakeX
+	shakeSelectorFrames --
+}
 
 // Loop through the characters and get their bar stats
 var charStats = []
@@ -24,10 +34,10 @@ for(var i=0; i<array_length(party); i++){
 		var stats = {
 			name: party[i].name, 
 			maxHp: party[i].maxHp, 
-			currentHp: party[i].currentHp, 
+			currentHp: displayVals[i].displayHp, 
 			otherBar: party[i].secondaryDisplayBar, 
 			maxOtherBar: party[i].secondaryDisplayBarMax, 
-			currentOtherBar: party[i].secondaryDisplayBarCurrent
+			currentOtherBar: displayVals[i].displayOtherBar
 			}
 		array_push(charStats, stats)
 	}
@@ -99,6 +109,11 @@ for(var i=0; i<array_length(charStats); i++){
 	var secondFillWidth = secondFillPercent*secondFilledWidth
 	var secondFillXScale = secondFillWidth/sprite_get_height(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, secondStatColor, 1)
+
+	// Hover arrow 
+	if i == selectionIndex && isInSelectionMode{
+		draw_sprite_ext(spr_targetIndicator, 0, boxX+hoverArrowOffsetX, boxY+hoverArrowOffsetY, 1, 1, 0, c_white, 1)
+	}
 }
 #endregion
 #endregion

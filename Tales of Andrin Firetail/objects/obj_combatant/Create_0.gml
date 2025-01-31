@@ -20,13 +20,18 @@ secondaryDisplayBarCurrent = 0
 /// @description              Runs the attack. Calculating if hit, adjusting target Hp, applying effects, etc.
 function attack(details){
 // Struct should contain: targetID, bonus_targetID, dmg_type, min_dmg, max_dmg, hit_chance, effect_chance, effect_type. 	
-//Ensure struct elements are present
-	//@TODO Insert try catch block checking it and returning an error if something is missing.	
+#region Ensure struct elements are present
+	// @TODO Varify the details struct has everything it needs.
+	var defaultVals = {
+		crit_chance_percent : 5,
+		crit_dmg_mod : 1.5
+	}
+	if !variable_struct_exists(details, "crit_chance_percent"){details.crit_chance_percent = defaultVals.crit_chance_percent}
+	if !variable_struct_exists(details, "crit_dmg_mod"){details.crit_dmg_mod = defaultVals.crit_dmg_mod}
+#endregion
 	
-	
+#region Defense stat
 	var target = details.targetID;
-	
-//Grabs appropriate defense stat from the target
 	var defenseStat = 0
 	if details.dmg_type == "magic"{
 		defenseStat = target.totalMagicResist;
@@ -34,27 +39,23 @@ function attack(details){
 	if details.dmg_type == "physical"{
 		defenseStat = target.totalArmor;
 	}
-	
-//Check if effect will apply.
-	//Check if target is resistant.
+#endregion
+
+#region Effects
 	var resistant = false
-	if string_pos(details.dmg_type, target.resistances) != 0 {resistant = true}
-	
-	//Check if target is immune.
 	var immune = false
-	if string_pos(details.dmg_type, target.immunities) != 0 {immune = true}
-	
-	//Adjust the chance.
-	var effectPercent = details.effect_chance;
 	var isEffected = false;
+	if string_pos(details.dmg_type, target.resistances) != 0 {resistant = true}
+	if string_pos(details.dmg_type, target.immunities) != 0 {immune = true}
+	var effectPercent = details.effect_chance;
 	if immune{effectPercent -= 100;}
 	if resistant{effectPercent -= 50;}
-	//Check if effects
 	if random_range(1, 100) <= effectPercent{
 		isEffected = true;
 	}
-	
-//Checks if attack hits. If so, resolve the attack.
+#endregion
+
+#region Hit calculation
 	var results = {
 		mainDmg:0, 
 		mainType:"", 
@@ -64,7 +65,8 @@ function attack(details){
 		animation_index: details.animation_index, 
 		effect: "", 
 		isEffected: false,
-		logMessage:{text: "DEFAULT LOG MESSAGE", color: c_white},
+		isCrit: false,
+		logMessage:[{text: "DEFAULT LOG MESSAGE", color: c_white}],
 		};
 	if variable_struct_exists(details, "logMessage"){
 		results.logMessage = details.logMessage
@@ -76,28 +78,30 @@ function attack(details){
 		hitPercent = minmumPossibleHitPercent;
 	}
 	
-	if round(random_range(0, 100)) <= hitPercent{
-		//Determine damage
+	if round(random_range(0, 100)) <= details.crit_chance_percent{ results.isCrit = true }
+	
+	if round(random_range(0, 100)) <= hitPercent{ // Attack hits		
 		var dmg = random_range(details.min_dmg, details.max_dmg);
 		
-		//Apply armor/magic-resist		// @TODO Potentially rework how armor and magic resist effects total damage
+		//Apply armor/magic-resist
 		defenseStat = defenseStat*random_range(0.90, 1.10);
 		dmg = dmg - (dmg*defenseStat)/100;
+		if round(random_range(0, 100)) <= results.isCrit{ dmg *= details.crit_dmg_mod }
 		dmg = round(dmg)
 		
-		//Apply damage
 		details.targetID.currentHp -= dmg;
 		results.mainDmg = dmg;
 		results.mainType = details.dmg_type;
 		results.hit = true;
 		
-		//If effected, apply effect.
 		if isEffected{
-			//Apply the effect to the target
-			array_push(target.statusEffects, {name: details.effect_type, value: true});
-			//print(target.combat_name + " effected with " + details.effect_type)
-			results.isEffected = true;
-			results.effect = details.effect_type;
+			print("effected")
+			var statusEffect = {name: details.effect_type, value: true}
+			if !array_contains(target.statusEffects, statusEffect){ //@TODO Currently fails to notice the valiue is already there.
+				array_push(target.statusEffects, statusEffect);
+				results.isEffected = true;
+				results.effect = details.effect_type;
+			}
 		}
 	}
 	else{
@@ -105,14 +109,13 @@ function attack(details){
 		results.logMessage =[
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "missed", color: c_white},
-		{text: "*TARGET", color: c_olive} //"MISS" //@TODO Flesh this out
+		{text: "*TARGET", color: c_olive}
 		]
 	}
+#endregion
 
-//Apply attack to the bonus target.
+#region Bonus target
 	if details.bonus_targetID != ""{
-		
-		//Adjust targets.
 		var bonusHitDetails = {
 			targetID: details.bonus_targetID, 
 			bonus_targetID: "", 
@@ -121,16 +124,17 @@ function attack(details){
 			max_dmg: details.max_dmg, 
 			hit_chance: details.hit_chance, 
 			effect_chance: details.effect_chance, 
-			effect_type: details.effect_type
+			effect_type: details.effect_type,
+			crit_chance_percent : details.crit_chance_percent,
+			crit_dmg_mod : details.crit_dmg_mod,
 		}
-		
-		//Recur the function for the bonus hit.
 		var secondaryAttack = attack(bonusHitDetails);
 		results.secondaryDmg = secondaryAttack.mainDmg;
 		results.secondaryType = secondaryAttack.mainType;
 	}
 	return results;
 }
+#endregion
 
 function castSpell(details){
 	if details.spellType == "attack"{

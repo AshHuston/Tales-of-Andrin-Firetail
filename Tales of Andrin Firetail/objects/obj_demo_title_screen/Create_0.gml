@@ -7,4 +7,4 @@ if gamepad_is_connected(0){
 
 incrimentValue = 0.025
 alpha = 1
-displayText = "Thank you for participating in the Tales of Andrin: Firetail playtest v1.1.\nAfter you play it please take a few minutes to fill out the survey. (QR code or press \"S\")"
+displayText = "Thank you for participating in the Tales of Andrin: Firetail playtest v1.1.\nAfter you play it please take a few minutes to fill out the survey. (QR code or press \"S\")\n\nI sugest using a USB gamepad if you have one."

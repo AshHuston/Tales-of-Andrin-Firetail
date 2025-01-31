@@ -1,6 +1,5 @@
 event_inherited()
 
-
 function generateLoot(){
 	var loot = []
 	// @TODO Figure out how to generate loot from mob to mob	
@@ -33,7 +32,21 @@ if !hasStartedCombat && place_meeting(x, y, obj_overworld_aaron){
 	hasStartedCombat = true
 	var quantities = [1, 1, 1, 2, 2, 2, 2, 2, 3] //@TESTING One way to get a number of zombies
 	var numberOfMobs = array_shuffle(quantities)[0]
-	//numberOfMobs = 1 //@TESTING Overriding the random number of zombies
+	//numberOfMobs = 1 //@TESTING Overriding the random number of mobs
 	startCombat(numberOfMobs, obj_combat_rat)
 	lootForCombat = generateLoot()
+	var event = {
+		completed: false,
+		trigger: {
+			type: "round", 
+			goal: 0, 
+			targetVal: "round_counter"
+			},
+		content: {
+			eventType: "popup",
+			pauseCombat: true,
+			content: "TEST TEXT. HAIIIII!"
+			}
+		}
+	array_push(combatSpecialEvents, event)
 }

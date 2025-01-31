@@ -1,17 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_party_menu",
+  "%Name":"obj_splash_textbox",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_party_menu",
+  "name":"obj_splash_textbox",
   "overriddenProperties":[],
   "parent":{
-    "name":"Menu system",
-    "path":"folders/Objects/Menu system.yy",
+    "name":"Combat",
+    "path":"folders/Objects/Combat.yy",
   },
   "parentObjectId":{
     "name":"obj_pauser",
@@ -31,12 +31,15 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"isInSelectionMode","filters":[],"listItems":[],"multiselect":false,"name":"isInSelectionMode","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v1","%Name":"fullLineText","filters":[],"listItems":[],"multiselect":false,"name":"fullLineText","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"","varType":2,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_menu_1",
+    "path":"sprites/spr_menu_1/spr_menu_1.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
