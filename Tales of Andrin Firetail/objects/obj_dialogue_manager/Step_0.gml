@@ -20,7 +20,6 @@ for (var i = array_length(options)-1; i>=0; i--;){
 	var option = variable_struct_get(dialogueBlurb.response_options, options[i])
 	if typeof(option) == "number"{
 		array_delete(options, i, 1)
-		print("deleted")
 	}
 }
 #endregion

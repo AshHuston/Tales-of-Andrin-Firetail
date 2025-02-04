@@ -27,7 +27,33 @@ function cleanUpLoot(loot){
 	return loot
 }
 
+function addTutorialCombat(){
+	if false == getFlag("demo.combatTutorialFinished"){
+		var combatTutorial = {
+		completed: false,
+		waitFrames: 20,
+		trigger: {
+			type: "round", 
+			goal: 0, 
+			targetVal: "round_counter"
+			},
+		content: {
+			eventType: "dialogue",
+			pauseCombat: true,
+			content: getDialogue("DEMO 3")
+			}
+		}
+		print("Before setting:")
+		print(getFlag("demo.combatTutorialFinished"))
+		array_push(combatSpecialEvents, combatTutorial)	
+		setFlag("demo.combatTutorialFinished", true)
+		print("After setting:")
+		print(getFlag("demo.combatTutorialFinished"))
+	}
+}
+
 function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
+	addTutorialCombat() //Not really sure the best place to put this... It doesnt really belong here i feel.
 	numberOfMonsters = clamp(numberOfMonsters, 1, 5)
 	if typeof(certainMonsters) != "array" {certainMonsters = [certainMonsters]}
 	if array_length(possibleMonsters) == 0 {array_copy(possibleMonsters, 0, certainMonsters, 0, array_length(certainMonsters))}

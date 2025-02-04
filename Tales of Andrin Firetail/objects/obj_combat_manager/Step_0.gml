@@ -74,37 +74,38 @@ function checkForEvents(){ // @TODO Need to figure out how to handle multiple ev
 		var pausingObjectId = 0
 		switch(type){
 			case "dialogue":
-				instance_create_depth(0,0,0, obj_dialogue_manager, {wholeDialogueStruct: content})
-			break;
+				pausingObjectId = instance_create_depth(0,0,0, obj_dialogue_manager, {wholeDialogueStruct: content})
+				break;
 			case "popup":
-				instance_create_depth(0,0,0, obj_splash_textbox, {fullLineText: content})
-			break;
+				pausingObjectId = instance_create_depth(0,0,0, obj_splash_textbox, {fullLineText: content})
+				break;
 			case "environment":
 			
-			break;
+				break;
 			case "phase change":
 			
-			break;
+				break;
 			default: print("combat event type not found")
 		}
 		if pauseCombat{
-			waitingForEvent = true
 			instance_create_depth(0,0,0, obj_combat_manager_event_waiter, {pairedObjId: pausingObjectId, combatManagerId: id})
-		}
+		}else{waitingForEvent = false}
 	}
-	
+		
 	for (var i=0; i<array_length(specialEvents); i++){
-		if !specialEvents[i].completed{
-			if conditionIsMet(specialEvents[i].trigger){
+		if !specialEvents[i].completed && conditionIsMet(specialEvents[i].trigger){
+			waitingForEvent = true
+			if specialEvents[i].waitFrames <= 0{
 				doEffect(specialEvents[i].content)
 				specialEvents[i].completed = true
-			}
+			}else{specialEvents[i].waitFrames--}
 		}
 	}
 }
 
-if !waitingForEvent{ checkForEvents() }
-if  waitingForEvent{ waitFrames++ } // This keeps it in parody
+checkForEvents()
+if waitingForEvent{ waitFrames++ }	// This keeps it in parody
+
 #region Combat step clock
 // This allows us to manually enter an amount of frames to wait after any given thing before the combat clock 
 // moves onto the next thing. Animations will persist though so thats good

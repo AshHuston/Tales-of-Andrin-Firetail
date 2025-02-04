@@ -1,0 +1,64 @@
+{
+    "dialogueID": 3,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_left",
+            "yapping_speed": 0.5
+        }
+    ],
+    "dialogue": {
+        "voiceover_id": "none",
+        "display_text": "",
+        "speaker": "Aaron",
+        "speaker_side": "LEFT",
+        "text": "So much for that plan.",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "none",
+                "display_text": "",
+                "speaker": "Kylah",
+                "speaker_side": "RIGHT",
+                "text": "Ugh, I guess we have to deal with them.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "none",
+                        "display_text": "",
+                        "speaker": "Kylah",
+                        "speaker_side": "RIGHT",
+                        "text": "Hey, how about you shoot one with your pistol?\nSelect attacks, then pistol. After that just aim at one and shoot!\nI'll use a spell.",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": NaN,
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

@@ -35,18 +35,4 @@ if !hasStartedCombat && place_meeting(x, y, obj_overworld_aaron){
 	//numberOfMobs = 1 //@TESTING Overriding the random number of mobs
 	startCombat(numberOfMobs, obj_combat_rat)
 	lootForCombat = generateLoot()
-	var event = {
-		completed: false,
-		trigger: {
-			type: "round", 
-			goal: 0, 
-			targetVal: "round_counter"
-			},
-		content: {
-			eventType: "popup",
-			pauseCombat: true,
-			content: "TEST TEXT. HAIIIII!"
-			}
-		}
-	array_push(combatSpecialEvents, event)
 }

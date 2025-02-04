@@ -16,7 +16,7 @@ file_text_close(file)
 global.DIALGUE_STRUCT = json_parse(jsonstring)
 
 
-print(global.DIALGUE_STRUCT)
+//print(global.DIALGUE_STRUCT)
 /*
 global.DIALGUE_STRUCT = {
 	chatSpriteIDs:[

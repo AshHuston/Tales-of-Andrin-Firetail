@@ -43,6 +43,7 @@
     {"$GMFolder":"","%Name":"Z TESTING ASSETS AND STUFF","folderPath":"folders/Z TESTING ASSETS AND STUFF.yy","name":"Z TESTING ASSETS AND STUFF","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "IncludedFiles":[
+    {"$GMIncludedFile":"","%Name":"DEMO 3.txt","CopyToMask":-1,"filePath":"datafiles","name":"DEMO 3.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"testDialogue.txt","CopyToMask":-1,"filePath":"datafiles","name":"testDialogue.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
   ],
   "isEcma":false,
@@ -117,6 +118,7 @@
     {"id":{"name":"scr_charLvlUpStatTables","path":"scripts/scr_charLvlUpStatTables/scr_charLvlUpStatTables.yy",},},
     {"id":{"name":"scr_combat_order","path":"scripts/scr_combat_order/scr_combat_order.yy",},},
     {"id":{"name":"scr_combat_position_macros","path":"scripts/scr_combat_position_macros/scr_combat_position_macros.yy",},},
+    {"id":{"name":"scr_gameFlags","path":"scripts/scr_gameFlags/scr_gameFlags.yy",},},
     {"id":{"name":"scr_get_dialogue","path":"scripts/scr_get_dialogue/scr_get_dialogue.yy",},},
     {"id":{"name":"scr_getCombatPartyIDs","path":"scripts/scr_getCombatPartyIDs/scr_getCombatPartyIDs.yy",},},
     {"id":{"name":"scr_global_vars","path":"scripts/scr_global_vars/scr_global_vars.yy",},},

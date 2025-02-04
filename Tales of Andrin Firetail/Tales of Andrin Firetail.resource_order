@@ -41,6 +41,7 @@
     {"name":"obj_title_menu","order":5,"path":"objects/obj_title_menu/obj_title_menu.yy",},
     {"name":"scr_characterStats","order":5,"path":"scripts/scr_characterStats/scr_characterStats.yy",},
     {"name":"scr_charLvlUpStatTables","order":6,"path":"scripts/scr_charLvlUpStatTables/scr_charLvlUpStatTables.yy",},
+    {"name":"scr_gameFlags","order":9,"path":"scripts/scr_gameFlags/scr_gameFlags.yy",},
     {"name":"scr_getCombatPartyIDs","order":7,"path":"scripts/scr_getCombatPartyIDs/scr_getCombatPartyIDs.yy",},
     {"name":"scr_levelScale","order":4,"path":"scripts/scr_levelScale/scr_levelScale.yy",},
     {"name":"scr_misc_functions","order":3,"path":"scripts/scr_misc_functions/scr_misc_functions.yy",},
