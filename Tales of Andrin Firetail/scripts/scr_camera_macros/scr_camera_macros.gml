@@ -1,0 +1,1 @@
+#macro combatCam (7)

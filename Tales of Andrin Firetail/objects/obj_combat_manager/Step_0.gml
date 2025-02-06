@@ -61,6 +61,11 @@ function set_ovw_character_stats(){
 	}
 }				
 
+function createGameOver(){
+	print("Lol u died")	
+	instance_create_depth(x,y, 0, obj_game_over_manager)//, {textTarget:[combatCenter[X], combatCenter[Y]]})
+}
+
 function checkForEvents(){ // @TODO Need to figure out how to handle multiple events triggering.
 	function conditionIsMet(condition){
 		//Check condition.
@@ -114,7 +119,7 @@ if waitingForEvent{ waitFrames++ }	// This keeps it in parody
 #region Combat step clock
 // This allows us to manually enter an amount of frames to wait after any given thing before the combat clock 
 // moves onto the next thing. Animations will persist though so thats good
-if waitFrames<1{
+if waitFrames<1 && !gameIsOver{
 	checkForEvents()
 	switch(step){
 		case "Awaiting player input":
@@ -522,7 +527,28 @@ if waitFrames<1{
 				round_counter++
 			}
 			
-			step = "Determine active combatant";
+			step = "Gameover Check";
+		break;
+	#endregion
+	#region Check for gameover
+		case "Gameover Check":
+			// Check for gameover
+			if !gameIsOver{
+				var partyIsDown = true
+				for (var i=0 ; i<array_length(combatants); i++) {
+					if object_get_parent(combatants[i].object_index) == obj_combat_party_member{
+						if combatants[i].currentHp > 0{
+							partyIsDown = false
+						}
+					}
+				}
+				gameIsOver = partyIsDown
+			}
+			if gameIsOver{
+				step = "Awaiting player input"
+				createGameOver()
+			}else{ step = "Determine active combatant" }
+		break;
 	}
 	#endregion
 }else{

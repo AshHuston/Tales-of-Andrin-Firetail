@@ -27,7 +27,7 @@ var back_key
 overworldViewport = 0
 overworldCameraX = 0
 overworldCameraY = 0
-combatViewport = 7
+combatViewport = combatCam
 for (var i=0; i<7; i++;){
 	if view_get_visible(i){
 		overworldViewport = i
@@ -39,6 +39,12 @@ for (var i=0; i<7; i++;){
 view_set_visible(combatViewport, true)
 combatCameraX = camera_get_view_x(view_get_camera(combatViewport)) 
 combatCameraY = camera_get_view_y(view_get_camera(combatViewport))
+combatCenter = [	//////////////////////////////////////////////////////// @TESTING This is so horribly ducktaped together.
+
+	
+	camera_get_view_x(view_get_camera(combatViewport)) + camera_get_view_width(combatViewport)/6, 
+	camera_get_view_y(view_get_camera(combatViewport)) + camera_get_view_height(combatViewport)/4, 
+]
 
 #region Combatant positions
 combat_positions = { //Values should be changed to best line up on combat screen
@@ -247,4 +253,4 @@ function createPartyCombatObjects(partyIDs){
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))
 	waitingForEvent = false
 	round_counter = 1
-	
+	gameIsOver = false
