@@ -31,10 +31,10 @@ function addTutorialCombat(){
 	if false == getFlag("demo.combatTutorialFinished"){
 		var combatTutorial = {
 		completed: false,
-		waitFrames: 20,
+		waitFrames: 25,
 		trigger: {
 			type: "round", 
-			goal: 0, 
+			goal: 1, 
 			targetVal: "round_counter"
 			},
 		content: {
@@ -43,12 +43,24 @@ function addTutorialCombat(){
 			content: getDialogue("DEMO 3")
 			}
 		}
-		print("Before setting:")
-		print(getFlag("demo.combatTutorialFinished"))
-		array_push(combatSpecialEvents, combatTutorial)	
+		var logToggleMessage = {
+			completed: false,
+			waitFrames: 15,
+			trigger: {
+				type: "round", 
+				goal: 2, 
+				targetVal: "round_counter"
+				},
+			content: {
+				eventType: "popup",
+				pauseCombat: true,
+				content: "Press left ALT to toggle the full combat log."
+				}
+		}
+		var logButton = "Y"
+		if gamepad_is_connected(0){logToggleMessage.content.content = "Press "+logButton+" to toggle the full combat log."}
+		array_push(combatSpecialEvents, combatTutorial, logToggleMessage)	
 		setFlag("demo.combatTutorialFinished", true)
-		print("After setting:")
-		print(getFlag("demo.combatTutorialFinished"))
 	}
 }
 

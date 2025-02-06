@@ -39,3 +39,5 @@ shakeSelectorFrames = 0
 function shakeSelector(){
 	shakeSelectorFrames = 15
 }
+
+setTopDepth(id)

@@ -8,7 +8,7 @@
         },
         {
             "name": "Kylah",
-            "spriteID": "spr_test_left",
+            "spriteID": "spr_test_kylah_dialogue",
             "yapping_speed": 0.5
         }
     ],

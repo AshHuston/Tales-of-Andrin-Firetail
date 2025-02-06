@@ -65,7 +65,12 @@ function checkForEvents(){ // @TODO Need to figure out how to handle multiple ev
 	function conditionIsMet(condition){
 		//Check condition.
 		// condition = {type: type, goal: goal, targetVal: targetVal}
-		return true
+		switch(condition.type){
+			case "round":
+			case "":
+				if variable_instance_get(id, condition.targetVal) == condition.goal{return true}
+		}
+		return false
 	}
 	function doEffect(effectData){
 		var content = effectData.content
@@ -313,10 +318,8 @@ if waitFrames<1{
 			
 				var results = activeCombatant.doAction(action);
 				displayActionAnimation(theseTargets, results);
-				
-				//@TESTING
-				//print(results)
-				
+				//waitFrames = 50
+								
 				switch(action.targetID)
 				{
 					case "self":
@@ -442,18 +445,17 @@ if waitFrames<1{
 			}
 		 
 			if !damageAnimationsAreRunning && !instance_exists(obj_action_animation){
-			//&& !instance_exists(obj_damage_value_animation){			
+			//&& !instance_exists(obj_damage_value_animation)			
 				activeCombatant.hasActed = true;	
 				action = {name:"empty"};
 				targets = [];
 				step = "Bring our yer dead";
-				waitFrames = 5
+				waitFrames = 15
 			}
 		break;
 		#endregion
 	#region Check for dead
 		case "Bring our yer dead":
-		//Check for anyone below 0HP.
 			for (var i=0;i<array_length(combatants);i++;){
 				if combatants[i].currentHp <= 0 && combatants[i].isConscious{
 					combatants[i].isConscious = false;
@@ -465,12 +467,12 @@ if waitFrames<1{
 					deathMessage = {
 						text:  deathMessage,	
 						color: c_white,
-						frames: 90, //How many frames message is on screen
+						frames: 90,
 						alpha: 1
 					}
 					display_log_message(deathMessage)
+					waitFrames = 10
 				}
-					//array_copy(global.COMBATANTS, -1, canStillGo, 0, array_length(canStillGo))
 			}
 		
 		
@@ -493,6 +495,7 @@ if waitFrames<1{
 				if activeCombatant.statusEffects[i].value == true{
 					action = global.STATUS_ATTACKS[$ activeCombatant.statusEffects[i].name]
 					doAction(activeCombatant)
+					waitFrames = 10
 				}
 			}
 			step = "Reset check";
@@ -516,6 +519,7 @@ if waitFrames<1{
 				for (var i=0;i<array_length(combatants);i++;){
 					combatants[i].hasActed = false;
 				}	
+				round_counter++
 			}
 			
 			step = "Determine active combatant";

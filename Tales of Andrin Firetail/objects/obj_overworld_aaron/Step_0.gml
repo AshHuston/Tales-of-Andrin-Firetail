@@ -21,12 +21,20 @@ if input("E"){
 	}
 }
 
-//Party menu testing. Arbitrary button rn.
-if input("Y"){
+
+if input("Y"){ //Party menu 
 	if instance_number(obj_party_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_party_menu)
 	}else{
 		instance_destroy(instance_find(obj_party_menu,0))
+	}
+}
+
+if input("I"){ //Inventory menu
+	if instance_number(obj_inventory_menu) == 0{
+		instance_create_depth(0,0,depth-1,obj_inventory_menu)
+	}else{
+		instance_destroy(instance_find(obj_inventory_menu,0))
 	}
 }
 

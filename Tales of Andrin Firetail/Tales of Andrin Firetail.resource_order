@@ -64,6 +64,7 @@
     {"name":"spr_red_potion","order":10,"path":"sprites/spr_red_potion/spr_red_potion.yy",},
     {"name":"spr_solidSquare","order":1,"path":"sprites/spr_solidSquare/spr_solidSquare.yy",},
     {"name":"spr_test_attack_poison","order":1,"path":"sprites/spr_test_attack_poison/spr_test_attack_poison.yy",},
+    {"name":"spr_test_kylah_dialogue","order":4,"path":"sprites/spr_test_kylah_dialogue/spr_test_kylah_dialogue.yy",},
     {"name":"spr_testCombatStatBackground","order":6,"path":"sprites/spr_testCombatStatBackground/spr_testCombatStatBackground.yy",},
     {"name":"spr_testFadeIn","order":1,"path":"sprites/spr_testFadeIn/spr_testFadeIn.yy",},
     {"name":"spr_zombie_brain","order":3,"path":"sprites/spr_zombie_brain/spr_zombie_brain.yy",},
@@ -73,6 +74,7 @@
     {"name":"Sprite51","order":8,"path":"sprites/Sprite51/Sprite51.yy",},
     {"name":"Sprite52","order":9,"path":"sprites/Sprite52/Sprite52.yy",},
     {"name":"Sprite56","order":12,"path":"sprites/Sprite56/Sprite56.yy",},
+    {"name":"Sprite58","order":13,"path":"sprites/Sprite58/Sprite58.yy",},
     {"name":"testTexture","order":4,"path":"sprites/testTexture/testTexture.yy",},
   ],
 }

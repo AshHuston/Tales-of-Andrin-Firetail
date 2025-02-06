@@ -15,11 +15,11 @@ Y = 1
 #region Screen positioning
 function setHudPosition(){
 	cam = view_get_camera(camera_get_active())
-	hudXOffset = camera_get_view_width(cam)/2.75
-	hudYOffset = camera_get_view_height(cam)/3
+	hudXOffset = (camera_get_view_width(cam)/2)  - 145//@DIAL
+	hudYOffset = (camera_get_view_height(cam)/2) - 65//@DIAL
 	baseX = camera_get_view_x(cam) + hudXOffset
 	baseY = camera_get_view_y(cam) + hudYOffset
-	listX = baseX + 5//a buffer
+	listX = baseX + 15//a buffer
 	listY = baseY
 }
 setHudPosition()

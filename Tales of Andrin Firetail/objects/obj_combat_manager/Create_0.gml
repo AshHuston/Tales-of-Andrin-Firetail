@@ -241,10 +241,10 @@ function createPartyCombatObjects(partyIDs){
 	canStillGo = []
 	originalScaleX = 0;
 	originalScaleY = 0;
-	activeCombatantScale = 1.2;
+	activeCombatantScale = 1.2; //@DIAL
 	
 	global.COMBATANTS = []
 	array_copy(global.COMBATANTS, -1, combatants, 0, array_length(combatants))
 	waitingForEvent = false
-	eventWaitFrames = 0
+	round_counter = 1
 	
