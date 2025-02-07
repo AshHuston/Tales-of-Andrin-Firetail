@@ -21,6 +21,7 @@ if input("E"){
 	}
 }
 
+if input("A"){ saveGame()}
 
 if input("Y"){ //Party menu 
 	if instance_number(obj_party_menu) == 0{

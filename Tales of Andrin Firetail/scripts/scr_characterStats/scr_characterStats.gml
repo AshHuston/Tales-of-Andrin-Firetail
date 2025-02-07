@@ -39,7 +39,7 @@ function updateSavedStats(){
 			global.CHARACTER_STATS[$ charNames[i]] = characterData
 		}
 	}
-	print("CHarcaters updated")
+	//print("CHarcaters updated")
 }
 
 // THESE STATS ARE ARBITRARY AND NEED TO BE WORKED OUT
@@ -63,13 +63,34 @@ global.CHARACTER_STATS = {
 		secondaryDisplayBarCurrent: 45,
 		combatSkills:				{
 										edged: 25,
-										ranged: 3,
+										ranged:15,
 										melee: 20,
 										magic: 15
 									},
 	},
 	
-	kylah : {},
+	kylah : {
+		maxHp:						35,
+		level:						1,
+		armor:						3,
+		evasion:					5,
+		totalExp:					0,
+		currentHp:					35,
+		immunities:					[],
+		magicResist:				1,
+		combatSpeed:				4,
+		resistances:				["fire"],
+		activeEffects:				[],
+		secondaryDisplayBar:		"MP",
+		secondaryDisplayBarMax:		45,
+		secondaryDisplayBarCurrent: 45,
+		combatSkills:				{
+										edged:  5,
+										ranged: 5,
+										melee: 10,
+										magic: 35
+									},
+		},
 	
 	roy : {
 		maxHp:						65,

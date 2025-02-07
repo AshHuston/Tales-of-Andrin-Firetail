@@ -110,7 +110,8 @@ function saveGame(){
 	#endregion
 	#region EQ Equipped				X
 	#endregion
-	#region Game flags				X
+	#region Game flags				
+	saveData.gameFlags = global.ALL_GAME_FLAGS
 	#endregion
 	#region settings				X
 	#endregion
@@ -171,7 +172,7 @@ function loadGame(){
 	#endregion
 	#region characterBaseStats		
 	global.CHARACTER_STATS = saveData.characterBaseStats
-	print(global.CHARACTER_STATS)
+																print(global.CHARACTER_STATS)
 	#endregion
 	#region inventory				
 	global.PLAYER_INVENTORY = saveData.inventory
@@ -186,7 +187,8 @@ function loadGame(){
 	#endregion
 	#region EQ Equipped				X
 	#endregion
-	#region Game flags				X
+	#region Game flags				
+	global.ALL_GAME_FLAGS = saveData.gameFlags
 	#endregion
 	#region settings				X
 	#endregion
