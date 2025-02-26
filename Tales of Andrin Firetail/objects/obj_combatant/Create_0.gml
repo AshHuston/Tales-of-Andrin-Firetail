@@ -66,7 +66,7 @@ function attack(details){
 		effect: "", 
 		isEffected: false,
 		isCrit: false,
-		logMessage:[{text: "DEFAULT LOG MESSAGE", color: c_white}],
+		logMessage:[{text: "DEFAULT LOG MESSAGE - ATTACK", color: c_white}],
 		};
 	if variable_struct_exists(details, "logMessage"){
 		results.logMessage = details.logMessage
@@ -141,6 +141,7 @@ function castSpell(details){
 		return attack(details)
 	}else{
 		//@TODO Figure this out	
+		splash_text("Spells only work as attacks lol. Go to obj_combatatant create ln:144")
 	}
 }
 
@@ -152,6 +153,7 @@ function useItem(details){
 	else{
 		result = details.use(targetID, details.bonus_targetID);	
 	}
+	if !variable_struct_exists(results, "logMessage"){ results.logMessage = [{text: "DEFAULT LOG MESSAGE - ITEM", color: c_white}]}
 	return result;
 }
 

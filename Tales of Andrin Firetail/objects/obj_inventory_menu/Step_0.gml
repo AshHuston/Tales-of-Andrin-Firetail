@@ -22,14 +22,12 @@ function removeItemFromInventory(item){
 up_key = false
 down_key = false
 accept_key = false
-back_key = false
-
+back_key = input("back");
 // Pause menu interaction if awaiting result from a char-select submenu
 if !instance_exists(obj_party_menu){
 	up_key = input("up");
 	down_key = input("down");
 	accept_key = input("enter");
-	back_key = input("back");
 }
 
 //Store num of options in current menu
@@ -44,9 +42,14 @@ if pos<0 {pos=op_length-1}
 
 // Back button
 if back_key{
-	if menu_level == 0 { instance_destroy(self) }
-	menu_level = 0;
-	op_length = array_length(option[menu_level]);
+	if !instance_exists(obj_party_menu){
+		if menu_level == 0 { instance_destroy(self) }
+		menu_level = 0;
+		op_length = array_length(option[menu_level]);
+	}else{
+		instance_destroy(instance_find(obj_party_menu,0))
+		continuingOperation = false
+	}
 }
 #region Press select	
 if (accept_key) || (continuingOperation)
@@ -170,7 +173,7 @@ if (accept_key) || (continuingOperation)
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
-height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_length*2
+height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_border
 width = 0
 for (var i=0; i<op_length; i++){
 	var minTextWidth = string_width(option[menu_level][i].name+" x10")

@@ -10,8 +10,8 @@
   "name":"obj_splash_textbox",
   "overriddenProperties":[],
   "parent":{
-    "name":"Combat",
-    "path":"folders/Objects/Combat.yy",
+    "name":"Misc",
+    "path":"folders/Objects/Misc.yy",
   },
   "parentObjectId":{
     "name":"obj_pauser",

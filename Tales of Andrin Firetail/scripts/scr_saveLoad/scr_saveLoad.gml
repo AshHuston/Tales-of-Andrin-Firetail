@@ -44,6 +44,8 @@ function decrypt(cipherText){
 }
 
 function saveGame(){
+	updateSavedStats()
+	var indicator = instance_create_depth(0,0,0, obj_saving_indicator)
 	var saveData = {}
 	var overworldIDs = [
 	global.OVERWORLD_ID_AARON,
@@ -95,7 +97,6 @@ function saveGame(){
 	}
 	*/
 	saveData.characterBaseStats = global.CHARACTER_STATS
-	print(global.CHARACTER_STATS)
 	#endregion
 	#region inventory
 	saveData.inventory = global.PLAYER_INVENTORY
@@ -108,14 +109,17 @@ function saveGame(){
 	#region EQinventory
 	saveData.EQinventory = global.CRYSTAL_INVENTORY
 	#endregion
-	#region EQ Equipped				X
+	#region EQ Equipped				
+	saveData.EQEquipped = global.EQUIPPED_CRYSTALS
 	#endregion
 	#region Game flags				
 	saveData.gameFlags = global.ALL_GAME_FLAGS
 	#endregion
 	#region settings				X
 	#endregion
-	#region Save location			X
+	#region Save location			
+	saveData.roomId = room_get_name(room)
+	saveData.aaronCoords = [global.OVERWORLD_ID_AARON.x, global.OVERWORLD_ID_AARON.y]
 	#endregion
 	#region State of loaded area	X
 	#endregion
@@ -131,6 +135,7 @@ function saveGame(){
 		file_text_write_string(file, jsonString)
 		file_text_close(file)
 		print("Game saved!!!")
+		indicator.selfDestruct(20)
 	}else{
 		// Handle said error.
 	}
@@ -138,6 +143,18 @@ function saveGame(){
 }
 
 function loadGame(){
+	function spawn_ovw_party_member(name){
+		var allStats = global.CHARACTER_STATS
+		var objId = noone
+		var stats = {}
+		switch(string_lower(name)){
+			case "kylah":	objId = obj_overworld_kylah; stats = allStats.kylah break;
+			case "roy":	objId = obj_overworld_roy; stats = allStats.roy break;
+			default:
+		}
+		if objId != noone{ instance_create_depth(0,0,0, objId, stats) }
+	}
+	
 	#region Determine file
 	var filename = "TEST_FILE.txt"
 	var file = file_text_open_read(filename)
@@ -166,13 +183,12 @@ function loadGame(){
 	global.OVERWORLD_ID_C,
 	]
 	
-	#region partyMembers			X
+	#region partyMembers			
 	var partyMembers = saveData.partyMembers
-	// Needs to actually apply them to the party too.
 	#endregion
 	#region characterBaseStats		
 	global.CHARACTER_STATS = saveData.characterBaseStats
-																print(global.CHARACTER_STATS)
+	for (var i=0; i<array_length(partyMembers); i++){ spawn_ovw_party_member(partyMembers[i]) }
 	#endregion
 	#region inventory				
 	global.PLAYER_INVENTORY = saveData.inventory
@@ -185,17 +201,21 @@ function loadGame(){
 	#region EQinventory				
 	global.CRYSTAL_INVENTORY = saveData.EQinventory
 	#endregion
-	#region EQ Equipped				X
+	#region EQ Equipped				
+	global.EQUIPPED_CRYSTALS = saveData.EQEquipped
 	#endregion
 	#region Game flags				
 	global.ALL_GAME_FLAGS = saveData.gameFlags
 	#endregion
 	#region settings				X
 	#endregion
-	#region Save location			X
+	#region Save location			
+	room_goto(asset_get_index(saveData.roomId))
+	global.OVERWORLD_ID_AARON.x = saveData.aaronCoords[0]
+	global.OVERWORLD_ID_AARON.y = saveData.aaronCoords[1]
 	#endregion
 	#region State of loaded area	X
 	#endregion
 
-	
+	print("Game loaded!")
 }

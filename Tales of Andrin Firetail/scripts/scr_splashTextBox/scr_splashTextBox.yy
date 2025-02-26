@@ -1,9 +1,9 @@
 {
   "$GMScript":"",
-  "%Name":"scr_macros",
+  "%Name":"scr_splashTextBox",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_macros",
+  "name":"scr_splashTextBox",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

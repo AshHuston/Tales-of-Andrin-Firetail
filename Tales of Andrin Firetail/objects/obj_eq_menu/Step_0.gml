@@ -1,6 +1,6 @@
 setHudPosition()
 
-if input("start"){instance_destroy(self)}
+//if input("start"){instance_destroy(self)}
 
 function flipAlphas(){
 	var buffSlotAlpha = listAlpha
@@ -151,64 +151,66 @@ for (var slot=0; slot<array_length(slot_coordinates); slot++){
 }
 
 
-// Pick up and place crystals
-if in_crystal_list{
-	if up_key_tap && noLastPress{
-		hoveredCrystal--	
-	}
-	if down_key_tap && noLastPress{
-		hoveredCrystal++	
-	}
-	if hoveredCrystal >= num_of_crystals {hoveredCrystal=0}
-	if hoveredCrystal < 0 {hoveredCrystal = num_of_crystals-1}
-	if accept_key{
-		if isHoldingCrystal{
-			heldCrystal = noCrystal
-		}else if string(crystal_inventory[hoveredCrystal].coords) == string(noCrystal.coords){
-			heldCrystal = crystal_inventory[hoveredCrystal]	
+#region Pick up and place crystals
+if num_of_crystals>0{
+	if in_crystal_list{
+		if up_key_tap && noLastPress{
+			hoveredCrystal--	
 		}
-	}
-}else{
-	if isHoldingCrystal && accept_key && noLastPress {
-		// Check that there are no filled slots in our way
-		var canPlaceCrystal = true
-		if isHoldingCrystal{
-			if slot_states[getSlotByCoords(hoveredCoords)] == FILLED {canPlaceCrystal = false}
-			var slaveCells = heldCrystal.slave_cells
-			for (var i=0; i<array_length(slaveCells); i++){
-				var slaveCoords = []
-				array_copy(slaveCoords, 0, slaveCells[i], 0, array_length(slaveCells[i]))
-				slaveCoords[0] += hoveredCoords[0]
-				slaveCoords[1] += hoveredCoords[1]
-				try{
-					if slot_states[getSlotByCoords(slaveCoords)] == FILLED {canPlaceCrystal = false}
-				}catch(_exception){
-					canPlaceCrystal = false
-				}
+		if down_key_tap && noLastPress{
+			hoveredCrystal++	
+		}
+		if hoveredCrystal >= num_of_crystals {hoveredCrystal=0}
+		if hoveredCrystal < 0 {hoveredCrystal = num_of_crystals-1}
+		if accept_key{
+			if isHoldingCrystal{
+				heldCrystal = noCrystal
+			}else if string(crystal_inventory[hoveredCrystal].coords) == string(noCrystal.coords){
+				heldCrystal = crystal_inventory[hoveredCrystal]	
 			}
 		}
-		if canPlaceCrystal{
-			for (var i=0; i<array_length(crystal_inventory); i++){
-				//Set held crystal coords to the hovered slot.
-				if crystal_inventory[i].name == heldCrystal.name{
-					crystal_inventory[i].coords[0] = hoveredCoords[0]
-					crystal_inventory[i].coords[1] = hoveredCoords[1]
+	}else{
+		if isHoldingCrystal && accept_key && noLastPress {
+			// Check that there are no filled slots in our way
+			var canPlaceCrystal = true
+			if isHoldingCrystal{
+				if slot_states[getSlotByCoords(hoveredCoords)] == FILLED {canPlaceCrystal = false}
+				var slaveCells = heldCrystal.slave_cells
+				for (var i=0; i<array_length(slaveCells); i++){
+					var slaveCoords = []
+					array_copy(slaveCoords, 0, slaveCells[i], 0, array_length(slaveCells[i]))
+					slaveCoords[0] += hoveredCoords[0]
+					slaveCoords[1] += hoveredCoords[1]
+					try{
+						if slot_states[getSlotByCoords(slaveCoords)] == FILLED {canPlaceCrystal = false}
+					}catch(_exception){
+						canPlaceCrystal = false
+					}
 				}
 			}
-			heldCrystal = noCrystal
-		}else{
-		shakeHeldCrystalFrames = 15	
+			if canPlaceCrystal{
+				for (var i=0; i<array_length(crystal_inventory); i++){
+					//Set held crystal coords to the hovered slot.
+					if crystal_inventory[i].name == heldCrystal.name{
+						crystal_inventory[i].coords[0] = hoveredCoords[0]
+						crystal_inventory[i].coords[1] = hoveredCoords[1]
+					}
+				}
+				heldCrystal = noCrystal
+			}else{
+			shakeSelector()
+			}
 		}
-	}
-	if !isHoldingCrystal && accept_key && noLastPress{
-		// Pick up the crystal currently at hoveredCoords
-		var crystalNum = getCrystalByCoords(hoveredCoords)
-		if crystalNum != -1{
-			heldCrystal = crystal_inventory[crystalNum]
-			hoveredCoords = heldCrystal.coords//moves hover to master cell of the crystal so it doesnt move
-			heldCrystal.coords = [6,0] //moves the crystal off the board
+		if !isHoldingCrystal && accept_key && noLastPress{
+			// Pick up the crystal currently at hoveredCoords
+			var crystalNum = getCrystalByCoords(hoveredCoords)
+			if crystalNum != -1{
+				heldCrystal = crystal_inventory[crystalNum]
+				hoveredCoords = heldCrystal.coords//moves hover to master cell of the crystal so it doesnt move
+				heldCrystal.coords = [6,0] //moves the crystal off the board
+			}
 		}
 	}
 }
 if heldCrystal == noCrystal {isHoldingCrystal = false}
-
+#endregion

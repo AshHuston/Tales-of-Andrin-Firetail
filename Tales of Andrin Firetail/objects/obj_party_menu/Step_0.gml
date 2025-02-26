@@ -1,19 +1,62 @@
 if isInSelectionMode{
 	#region menu traversal
-	// I feel like this should operate as a matrix 
-	// rather than a list but its fine for the demo.
 	up_key = input("up")
 	down_key = input("down")
 	accept_key = input("enter")
 	right_key = input("right")
 	left_key = input("left")
 	back_key = input("back");
-	if up_key {selectionIndex-=2}
-	if down_key {selectionIndex+=2}
-	if left_key {selectionIndex--}
-	if right_key {selectionIndex++}
-	if selectionIndex>=array_length(party){selectionIndex = 0}
-	if selectionIndex<0{selectionIndex = array_length(party)-1}
+	var prevSelectedIndex = selectionIndex
+	if right_key{X++}
+	if left_key{X--}
+	if down_key{Y++}
+	if up_key{Y--}
+	if X==2{X = 0}
+	if Y==2{Y = 0}
+	if X==-1{X = 1}
+	if Y==-1{Y = 1}
+	var coords = [X,Y]
+	var one = [0,0]
+	var two = [0,1]
+	var three = [1,0]
+	var four = [1,1]
+	switch(array_length(party)){ //Set the selection index
+		case 1:
+			selectionIndex = 0
+		break;
+		case 2:
+			selectionIndex = 0+Y 
+		break;
+		case 3:
+			if array_equals(coords, one)  { selectionIndex = 0 }
+			if array_equals(coords, two)  { selectionIndex = 1 }
+			if array_equals(coords, three){ selectionIndex = 2 }
+		break;
+		case 4:
+			if array_equals(coords, one)  { selectionIndex = 0 }
+			if array_equals(coords, two)  { selectionIndex = 1 }
+			if array_equals(coords, three){ selectionIndex = 2 }
+			if array_equals(coords, four ){ selectionIndex = 3 }
+		break;
+	}
+	
+	//Ensure the hover is legal, if not, revert to the last one.
+	if coords != prevCoords{
+		var presetCoords = [
+		string(one), 
+		string(two), 
+		string(three), 
+		string(four)
+		]
+		var legalCoords = []
+		array_copy(legalCoords, 0, presetCoords, 0, array_length(party))
+		if !array_contains(legalCoords, string(coords)){
+			X = prevCoords[0];
+			Y = prevCoords[1]; 
+			//shakeSelector()
+		}
+	}
+	prevCoords = [X,Y]
 	#endregion
 	hoveredCharacterId = party[selectionIndex]
 	if accept_key { selectedCharacterId = hoveredCharacterId }
@@ -61,5 +104,3 @@ if closeWhenAccurate && !barsWereAdjusted{
 	}
 	closeOutFrameDelay--
 }
-
-//if closeWhenAccurate{print("Closing")}

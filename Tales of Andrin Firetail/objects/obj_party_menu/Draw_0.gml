@@ -2,21 +2,36 @@
 // Define coords for cells
 var boxWidth = 75
 var boxHeight = 60
-var hudCellsXOffset = 18
-var hudCellsYOffset = camera_get_view_height(cam)/4
+var hudSpacingX = boxWidth*1.25
+var hudSpacingY = boxHeight*1.25
+var hudCellsXOffset = 100
+var hudCellsYOffset = camera_get_view_height(cam)/4 - boxHeight*0.5
+if isInSelectionMode{ 
+	hudCellsXOffset = 185; 
+	hudCellsYOffset = camera_get_view_height(cam)/4 - boxHeight*0.5 + 15; 
+	hudSpacingX = boxWidth*1.05 
+	hudSpacingY = boxHeight*1.15
+}
 var hudCellsXAnchor = camera_get_view_x(cam) + hudCellsXOffset
 var hudCellsYAnchor = camera_get_view_y(cam) + hudCellsYOffset
 var hudCellCoords = [
+	// Aaron
 	[hudCellsXAnchor,
-	hudCellsYAnchor],
+	 hudCellsYAnchor],
+	
+	// Party Member 1
 	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*1.25], // All these will need to be manually offset, maybe changed based on party size.
-	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*2.50],
-	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*3.75]
+	 hudCellsYAnchor + hudSpacingY], // All these will need to be manually offset, maybe changed based on party size.
+	
+	// Party Member 2
+	[hudCellsXAnchor + hudSpacingX,
+	 hudCellsYAnchor],
+	
+	// Party Member 3
+	[hudCellsXAnchor + hudSpacingX,
+	 hudCellsYAnchor + hudSpacingY]
 ]
-var hoverArrowOffsetY = -15
+var hoverArrowOffsetY = -7
 var hoverArrowOffsetX = round(boxWidth/2)
 var toneDown = 3
 if shakeSelectorFrames>0{
@@ -112,7 +127,7 @@ for(var i=0; i<array_length(charStats); i++){
 
 	// Hover arrow 
 	if i == selectionIndex && isInSelectionMode{
-		draw_sprite_ext(spr_targetIndicator, 0, boxX+hoverArrowOffsetX, boxY+hoverArrowOffsetY, 1, 1, 0, c_white, 1)
+		draw_sprite_ext(spr_targetIndicator, image_index, boxX+hoverArrowOffsetX, boxY+hoverArrowOffsetY, 1, 1, 0, c_white, 1)
 	}
 }
 #endregion

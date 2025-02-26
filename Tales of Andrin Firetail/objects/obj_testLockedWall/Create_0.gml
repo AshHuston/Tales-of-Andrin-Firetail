@@ -35,5 +35,5 @@ function interact(){
 			//fogofwarID.fadeOut = true
 		}
 		instance_destroy(self)
-	}
+	}else{splash_text("Door is locked", true)}
 }

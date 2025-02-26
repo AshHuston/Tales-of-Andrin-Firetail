@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_playErrorSound",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_playErrorSound",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -4,8 +4,10 @@ camX = camera_get_view_x(cam)
 camY = camera_get_view_y(cam)
 camWidth = camera_get_view_width(cam)
 camHeight = camera_get_view_height(cam)
-x = camX + (camWidth/2) //@TODO @DIAL Arbitrary for now. Will change when organizing the uis
-y = camY + (camHeight/2)
+pauseMenuWidth = 73 // This obviously isnt pulling the data dynamically buit it should never change after we set it.
+spaceFromPauseMenu = 3
+x = camX + (camWidth/20) + pauseMenuWidth + spaceFromPauseMenu 
+y = camY + (camHeight/20)
 
 setTopDepth(id)
 

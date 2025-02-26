@@ -1,8 +1,0 @@
-event_inherited()
-
-combatName = associatedCharacterID.combatName
-combatLogColor = associatedCharacterID.combatLogColor
-//DisplayStats 
-secondaryDisplayBar = associatedCharacterID.secondaryDisplayBar
-secondaryDisplayBarMax = associatedCharacterID.secondaryDisplayBarMax
-secondaryDisplayBarCurrent = associatedCharacterID.secondaryDisplayBarCurrent

@@ -21,8 +21,11 @@ if input("E"){
 	}
 }
 
-if input("A"){ saveGame()}
-
+if input("A"){ 
+	splash_text("This\nIs\nTest text!", true)
+	//saveGame()
+	}
+/*
 if input("Y"){ //Party menu 
 	if instance_number(obj_party_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_party_menu)
@@ -38,7 +41,13 @@ if input("I"){ //Inventory menu
 		instance_destroy(instance_find(obj_inventory_menu,0))
 	}
 }
+*/
 
+if input("I"){ //Pause menu
+	if instance_number(obj_pause_menu) == 0{
+		instance_create_depth(0,0,0,obj_pause_menu, {triggeringInput: "I"})
+	}
+}
 function moveSprite(directionToMove){
 		acceptingMovementCommand = false
 		deltaX = 0
@@ -71,33 +80,35 @@ function moveSprite(directionToMove){
 
 function interact(){
 	var checklocation = {"xcoord":0, "ycoord":0}
+	var checklocation = {"xcoord":0, "ycoord":0}
+	var lookDist = movementspacesize
 	switch(facingDir){
-			case(RIGHT):
-				checklocation = {"xcoord":x+movementspacesize, "ycoord":y}
-				break;
+		case(RIGHT):
+			checklocation = {"xcoord":x+lookDist, "ycoord":y}
+			break;
 			
-			case(DOWN):
-				checklocation = {"xcoord":x, "ycoord":y+movementspacesize}
-				break;
+		case(DOWN):
+			checklocation = {"xcoord":x, "ycoord":y+lookDist}
+			break;
 				
-			case(LEFT):
-				checklocation = {"xcoord":x-movementspacesize, "ycoord":y}
-				break;
+		case(LEFT):
+			checklocation = {"xcoord":x-lookDist, "ycoord":y}
+			break;
 				
-			case(UP):
-				checklocation = {"xcoord":x, "ycoord":y-movementspacesize}
-				break;
-		}
-	
-		var target = instance_place(checklocation.xcoord, checklocation.ycoord, all)
-		if target != noone{
-			if variable_instance_exists(target, "interactable"){
-				//show_debug_message(object_get_name(target.object_index))
-				if target.interactable == true{
-					target.interact()	
-				}
+		case(UP):
+			checklocation = {"xcoord":x, "ycoord":y-lookDist}
+			break;
+	}
+// *********************** CUURENTLY ONLV WORKS ON WALLS!!! ************************
+	var target = instance_place(checklocation.xcoord, checklocation.ycoord, obj_wall)
+	if target != noone{
+		print(object_get_name(target.object_index))
+		if variable_instance_exists(target, "interactable"){
+			if target.interactable == true{
+				target.interact()	
 			}
 		}
+	}
 }
 
 #region Movement
@@ -123,7 +134,7 @@ if !paused{
 	
 		if (input("up_cont")||input("up")) && (!input("down_cont")||input("down")){
 			moveSprite(UP)
-			facingDir = DOWN
+			facingDir = UP
 			}
 	}
 }

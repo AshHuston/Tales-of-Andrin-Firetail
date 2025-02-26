@@ -80,6 +80,14 @@ function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
 	instance_create_depth(x, y, 0, obj_combatFadeIn)
 }
 
+// This kinda sucks because the movement is different than the player's movement. But tbh I think imma change the player mvmnt anyway so idk.
+function stepTowards(targetID, stepSpeed = 1){
+	if targetID.x > x { x += stepSpeed }
+	else if x > targetID.x {x -= stepSpeed }
+	if targetID.y > y { y += stepSpeed }
+	else if y > targetID.y {y -= stepSpeed }
+}
+
 if hasStartedCombat && !instance_exists(obj_combatFadeIn){
 	x = global.DEFAULT_OVERWORLD_MONSTER_BENCH[0]
 	y = global.DEFAULT_OVERWORLD_MONSTER_BENCH[1]
@@ -96,4 +104,4 @@ if hasStartedCombat && !instance_exists(obj_combatFadeIn){
 		})
 }
 	
-	
+if chasePlayer && !global.GAME_IS_PAUSED{ stepTowards(global.OVERWORLD_ID_AARON) }

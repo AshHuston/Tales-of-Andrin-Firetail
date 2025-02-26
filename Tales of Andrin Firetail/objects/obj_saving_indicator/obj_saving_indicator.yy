@@ -1,20 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_combat_roy",
+  "%Name":"obj_saving_indicator",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_combat_roy",
+  "name":"obj_saving_indicator",
   "overriddenProperties":[],
   "parent":{
-    "name":"CombatCharacters",
-    "path":"folders/Objects/Combat/CombatCharacters.yy",
+    "name":"Misc",
+    "path":"folders/Objects/Misc.yy",
   },
-  "parentObjectId":{
-    "name":"obj_combat_party_member",
-    "path":"objects/obj_combat_party_member/obj_combat_party_member.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -33,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_testRoy",
-    "path":"sprites/spr_testRoy/spr_testRoy.yy",
+    "name":"spr_save_indicator",
+    "path":"sprites/spr_save_indicator/spr_save_indicator.yy",
   },
   "spriteMaskId":null,
   "visible":true,

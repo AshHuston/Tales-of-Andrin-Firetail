@@ -29,9 +29,11 @@ function generateLoot(){
 
 periodicallyFlip(60)
 
-if !hasStartedCombat && place_meeting(x, y, obj_overworld_aaron){
-	hasStartedCombat = true
-	var numberOfMobs = 1
-	startCombat(numberOfMobs, obj_combat_boss_rat)
-	lootForCombat = generateLoot()
+function interact(){
+	if !hasStartedCombat{// && place_meeting(x, y, obj_overworld_aaron){
+		hasStartedCombat = true
+		var numberOfMobs = 1
+		startCombat(numberOfMobs, obj_combat_boss_rat)
+		lootForCombat = generateLoot()
+	}
 }

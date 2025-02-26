@@ -36,6 +36,7 @@ global.ALL_GAME_FLAGS ={
 	demo:{
 		combatTutorialFinished: false,
 		hasDiscussedRats: false,
-		hasDiscussedMagicRats: false
+		hasDiscussedMagicRats: false,
+		eqExplained: false
 	}
 }

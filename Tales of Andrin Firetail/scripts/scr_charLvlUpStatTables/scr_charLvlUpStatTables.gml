@@ -17,7 +17,23 @@ global.LEVELUP_STAT_TABLES = {
 		levelSpecificBonuses: {}
 	},
 	
-	kylah : {},
+	kylah : {
+		maxHp:						2,
+		currentHp:					2,
+		armor:						0,
+		evasion:					2,
+		magicResist:				2,
+		combatSpeed:				3,
+		secondaryDisplayBarMax:		5,
+		secondaryDisplayBarCurrent: 5,
+		combatSkills:				{
+										edged: 0,
+										ranged: 2,
+										melee: 1,
+										magic: 3
+									},
+		levelSpecificBonuses: {}
+	},
 	
 	roy : {
 		maxHp:						4,

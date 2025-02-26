@@ -14,9 +14,11 @@ Y = 1
 
 #region Screen positioning
 function setHudPosition(){
+	pauseMenuWidth = 73 // This obviously isnt pulling the data dynamically buit it should never change after we set it.
+	spaceFromPauseMenu = 10
 	cam = view_get_camera(camera_get_active())
-	hudXOffset = (camera_get_view_width(cam)/2)  - 145//@DIAL
-	hudYOffset = (camera_get_view_height(cam)/2) - 65//@DIAL
+	hudXOffset = (camera_get_view_width(cam)/20)  + pauseMenuWidth + spaceFromPauseMenu
+	hudYOffset = (camera_get_view_height(cam)/20) 
 	baseX = camera_get_view_x(cam) + hudXOffset
 	baseY = camera_get_view_y(cam) + hudYOffset
 	listX = baseX + 15//a buffer
@@ -81,4 +83,10 @@ op_space = tallest_crystal_name_height + 3;
 noCrystal = {name : "none", sprite : spr_slot, coords: [6,0], other_filled_slots: []}
 heldCrystal = noCrystal
 isHoldingCrystal = false
-shakeHeldCrystalFrames = 0
+
+setTopDepth(id)
+
+function shakeSelector(){
+	shakeHeldCrystalFrames = 15
+	playErrorSound()
+}

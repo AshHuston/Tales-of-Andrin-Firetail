@@ -12,7 +12,7 @@ global.OVERWORLD_ID_A,
 global.OVERWORLD_ID_B,
 global.OVERWORLD_ID_C,
 ]
-selectionIndex = 0
+selectionIndex = -1
 hoveredCharacterId = 0
 selectedCharacterId = 0
 cam = view_get_camera(camera_get_active())
@@ -38,6 +38,13 @@ party = actualParty
 shakeSelectorFrames = 0
 function shakeSelector(){
 	shakeSelectorFrames = 15
+	playErrorSound()
 }
 
 setTopDepth(id)
+
+image_speed = image_speed*0.6
+
+X = 0
+Y = 0
+prevCoords = [0,0]

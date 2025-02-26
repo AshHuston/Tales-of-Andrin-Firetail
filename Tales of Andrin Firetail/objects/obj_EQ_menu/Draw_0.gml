@@ -65,12 +65,12 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 	}
 }
 if in_crystal_list && !isHoldingCrystal{
-	var previewCrystalX = listX + (width/2) + 75//Arbitrary for testing @TODO
-	var previewCrystalY = listY + 10		//Arbitrary for testing
-	var previewCrystalScaleY = 1.5			//Arbitrary for testing
-	var previewCrystalScaleX = 1.5			//Arbitrary for testing
-	draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
+	if num_of_crystals>0{
+		var previewCrystalX = listX + (width/2) + 75//Arbitrary for testing @TODO
+		var previewCrystalY = listY + 10		//Arbitrary for testing
+		var previewCrystalScaleY = 1.5			//Arbitrary for testing
+		var previewCrystalScaleX = 1.5			//Arbitrary for testing
+		draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
+	}
 }
 #endregion
-//@TESTING Equipped crystals
-//draw_text_ext_transformed(50, baseY+150, string(global.EQUIPPED_CRYSTALS), 17, 1200, .25, .25, 0)

@@ -10,6 +10,6 @@ itemInfo = {
 	effect: {
 		effectSource: "Ephrin's Queen",
 		name:"Speedy crystal",
-		bonusSpeed: 15
+		bonusSpeed: 25
 		}
 	}

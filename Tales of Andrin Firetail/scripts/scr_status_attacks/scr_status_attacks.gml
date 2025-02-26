@@ -38,5 +38,4 @@ global.STATUS_ATTACKS = {
 			]
 		},
 	
-
 }

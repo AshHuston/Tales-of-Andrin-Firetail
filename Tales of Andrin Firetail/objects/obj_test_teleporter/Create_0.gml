@@ -1,0 +1,1 @@
+lastFrameContact = place_meeting(x, y, obj_overworld_aaron)

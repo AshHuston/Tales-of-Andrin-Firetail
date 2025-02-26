@@ -158,17 +158,22 @@ maxHp = associatedCharacterID.maxHp
 currentHp = associatedCharacterID.currentHp
 
 attacks = [];
-spells = [];
+spells = []
 specialActions = []; 
 	//@TODO Add a for loop adding attacks. Attacks should be a struct detailing at minimum, 'Name', 'damage', and "hitChance'.
 	for (var i=0; i<array_length(inventory);i++;){
 		if variable_struct_exists(inventory[i], "attack"){
 			array_push(attacks, inventory[i].attack);
 		}
+//@TESTING vvvvv idk if this is how we are doing it or naw. vvvvv
+		if variable_struct_exists(inventory[i], "specialAction"){
+			array_push(attacks, inventory[i].specialAction);
+		}
 	}
-	//@TODO Add a for loop adding spells. Spells should be a struct detailing at minimum, 'Name' and other important spell stuff.
-	//@TODO Special action names. Will figure this out later.
-	//@TODO Actually just have these all be the same loops probably.
+	try{
+		spells = associatedCharacterID.spells	
+	}catch(err){ spells = [] }
+	
 
 function listAttacks(){
 	return attacks;	

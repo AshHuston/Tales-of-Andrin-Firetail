@@ -87,7 +87,7 @@ function checkForEvents(){ // @TODO Need to figure out how to handle multiple ev
 				pausingObjectId = instance_create_depth(0,0,0, obj_dialogue_manager, {wholeDialogueStruct: content})
 				break;
 			case "popup":
-				pausingObjectId = instance_create_depth(0,0,0, obj_splash_textbox, {fullLineText: content})
+				pausingObjectId = splash_text(content)
 				break;
 			case "environment":
 			
@@ -479,17 +479,10 @@ if waitFrames<1 && !gameIsOver{
 					waitFrames = 10
 				}
 			}
-		
-		
-			//We could toy around with being unconcious but having HP means you may wake up.
-			//If so, animate death/down.
-				//@TODO Figure out how to do this. 
-				//Probably setting the sprite to a death animation then a speed/index to do the last frame.
-		
-		
-			activeCombatant.image_xscale = originalScaleX; //Seemed like the best place to put this I guess.
+			
+			//Seemed like the best place to put this I guess.
+			activeCombatant.image_xscale = originalScaleX; 
 			activeCombatant.image_yscale = originalScaleY;
-		
 		
 			step = "Run conditions";
 		break;
@@ -532,11 +525,10 @@ if waitFrames<1 && !gameIsOver{
 	#endregion
 	#region Check for gameover
 		case "Gameover Check":
-			// Check for gameover
 			if !gameIsOver{
 				var partyIsDown = true
 				for (var i=0 ; i<array_length(combatants); i++) {
-					if object_get_parent(combatants[i].object_index) == obj_combat_party_member{
+					if combatants[i].object_index == obj_combat_party_member || object_get_parent(combatants[i].object_index) == obj_combat_party_member{
 						if combatants[i].currentHp > 0{
 							partyIsDown = false
 						}
