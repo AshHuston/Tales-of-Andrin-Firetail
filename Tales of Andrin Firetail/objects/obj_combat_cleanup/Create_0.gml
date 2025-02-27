@@ -15,19 +15,6 @@ isAnimating = {
 	expBars : true,
 	lootDisplay : true,
 }
-/*
-show_debug_message("-----------------------------------------------------------------------------------------")
-show_debug_message("ovw details")
-show_debug_message(overworldDetails)
-
-show_debug_message("-----------------------------------------------------------------------------------------")
-show_debug_message("loot")
-show_debug_message(loot)
-*/
-show_debug_message("-----------------------------------------------------------------------------------------")
-show_debug_message("experience")
-show_debug_message(experience)
-//*/
 
 function get_character_fight_exp(character, expereince = experience){
 	// Should total monster EXP, check any modifiers for EXP and return the total.

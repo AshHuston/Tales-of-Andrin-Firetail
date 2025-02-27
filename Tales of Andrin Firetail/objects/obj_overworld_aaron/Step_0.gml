@@ -1,4 +1,5 @@
 //EQ Menu testing
+/*
 if input("E"){
 	if instance_number(obj_eq_menu) == 0{
 		instance_create_depth(0,0,depth-1,obj_eq_menu)
@@ -20,28 +21,11 @@ if input("E"){
 	show_debug_message("set vals")
 	}
 }
+*/
 
 if input("A"){ 
-	splash_text("This\nIs\nTest text!", true)
-	//saveGame()
+	splash_text("This is\nTest text!", true)
 	}
-/*
-if input("Y"){ //Party menu 
-	if instance_number(obj_party_menu) == 0{
-		instance_create_depth(0,0,depth-1,obj_party_menu)
-	}else{
-		instance_destroy(instance_find(obj_party_menu,0))
-	}
-}
-
-if input("I"){ //Inventory menu
-	if instance_number(obj_inventory_menu) == 0{
-		instance_create_depth(0,0,depth-1,obj_inventory_menu)
-	}else{
-		instance_destroy(instance_find(obj_inventory_menu,0))
-	}
-}
-*/
 
 if input("I"){ //Pause menu
 	if instance_number(obj_pause_menu) == 0{
@@ -80,7 +64,6 @@ function moveSprite(directionToMove){
 
 function interact(){
 	var checklocation = {"xcoord":0, "ycoord":0}
-	var checklocation = {"xcoord":0, "ycoord":0}
 	var lookDist = movementspacesize
 	switch(facingDir){
 		case(RIGHT):
@@ -99,10 +82,13 @@ function interact(){
 			checklocation = {"xcoord":x, "ycoord":y-lookDist}
 			break;
 	}
-// *********************** CUURENTLY ONLV WORKS ON WALLS!!! ************************
-	var target = instance_place(checklocation.xcoord, checklocation.ycoord, obj_wall)
+
+	var target = noone 
+	for (var i =0; i<instance_number(all); i++){
+		var object = instance_id[i]
+		if object.object_index != obj_fogOfWar && place_meeting(checklocation.xcoord, checklocation.ycoord, object){ target = object }
+	}
 	if target != noone{
-		print(object_get_name(target.object_index))
 		if variable_instance_exists(target, "interactable"){
 			if target.interactable == true{
 				target.interact()	

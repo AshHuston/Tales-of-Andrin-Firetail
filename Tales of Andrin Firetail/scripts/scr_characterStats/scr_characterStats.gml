@@ -7,6 +7,8 @@ function updateSavedStats(){
 		]
 	var partyMembers = ["", "", "", ""]
 	for (var i=0; i<array_length(overworldIDs); i++){
+		//print(overworldIDs[i])
+		//print(object_get_name(overworldIDs[i].object_index))
 		if overworldIDs[i] != 0 {partyMembers[i] = string_lower(overworldIDs[i].name)}
 	}
 	var charNames = struct_get_names(global.CHARACTER_STATS)
@@ -39,7 +41,7 @@ function updateSavedStats(){
 			global.CHARACTER_STATS[$ charNames[i]] = characterData
 		}
 	}
-	//print("CHarcaters updated")
+	print("Charcaters updated")
 }
 
 // THESE STATS ARE ARBITRARY AND NEED TO BE WORKED OUT

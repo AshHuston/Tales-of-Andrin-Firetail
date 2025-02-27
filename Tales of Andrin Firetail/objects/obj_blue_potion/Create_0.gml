@@ -5,13 +5,13 @@ itemInfo = {name:"Mana Potion",
 		use: function healUser(targetID){
 			var refillAmt = 20;
 			var canUse = false
-			if targetID.secondaryDisplaybar == "MP"{
-				if targetID.secondaryDisplaybarCurrent < targetID.secondaryDisplaybarMax{
-					targetID.secondaryDisplaybarCurrent+= healAmt
+			if targetID.secondaryDisplayBar == "MP"{
+				if targetID.secondaryDisplayBarCurrent < targetID.secondaryDisplayBarMax{
+					targetID.secondaryDisplayBarCurrent+= healAmt
 					canUse = true
-					if targetID.secondaryDisplaybarCurrent > targetID.secondaryDisplaybarMax{
-						refillAmt -= targetID.secondaryDisplaybarCurrent - targetID.secondaryDisplaybarMax
-						targetID.secondaryDisplaybarCurrent = targetID.secondaryDisplaybarMax
+					if targetID.secondaryDisplayBarCurrent > targetID.secondaryDisplaybarMax{
+						refillAmt -= targetID.secondaryDisplayBarCurrent - targetID.secondaryDisplayBarMax
+						targetID.secondaryDisplayBarCurrent = targetID.secondaryDisplayBarMax
 					}
 				}
 			}

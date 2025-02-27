@@ -31,6 +31,11 @@ for (var i=0; i<array_length(party); i++){
 		}
 		array_push(displayVals, data)
 		array_push(actualParty, party[i])
+		
+		print(party[i].name)
+		print(party[i].secondaryDisplayBarMax)
+		print(party[i].secondaryDisplayBarCurrent)
+		print("-----------")
 	}
 }
 party = actualParty

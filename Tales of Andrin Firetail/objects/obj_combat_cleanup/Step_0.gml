@@ -6,7 +6,6 @@ function close_combat(){
 	for (var i=0 ; i<array_length(global.COMBATANTS); i++) {
 		instance_destroy(global.COMBATANTS[i])	
 	}
-	//instance_create_depth(x, y, 0, obj_combatFadeOut)
 	instance_destroy(self)
 }
 
@@ -14,10 +13,6 @@ var up_key = input("up");
 var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
-
-//    Handle levelups whatever that means...		@TODO
-//      Probably means showing a levelup animation and allowing the player to make any choices they may need to 
-
 
 //If everything is done processing/animating then it will allow a button-press to close combat.
 var animations_done = true
