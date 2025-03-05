@@ -1,13 +1,12 @@
-//width = 175;
-//height = 100;
-
 var cam = view_get_camera(combatManagerID.combatViewport)
 camX = camera_get_view_x(cam)
 camY = camera_get_view_y(cam)
 camWidth = camera_get_view_width(cam)
 camHeight = camera_get_view_height(cam)
-x = camX + (camWidth/2) //@TODO Arbitrary for now. Will change when organizing the combat uis
-y = camY + (camHeight/2)
+xPadding = 30
+xBase = camX + xPadding
+x = xBase
+yBase = camY + (camHeight/2)
 
 setTopDepth(id)
 
@@ -50,3 +49,4 @@ accept_btn = gamepad_button_value(0, gp_face1);
 
 selectedAction = {name:"empty"}; 
 chosenTargets = [];
+continuingOperation = false

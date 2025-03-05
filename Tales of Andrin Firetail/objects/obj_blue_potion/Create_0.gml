@@ -2,14 +2,15 @@ itemInfo = {name:"Mana Potion",
 		quantity: 1,
 		stackable: true,
 		menuPage: "consumables",
+		can_use: function canHealUser(targetID){return targetID.secondaryDisplayBarCurrent < targetID.secondaryDisplayBarMax},
 		use: function healUser(targetID){
 			var refillAmt = 20;
 			var canUse = false
 			if targetID.secondaryDisplayBar == "MP"{
 				if targetID.secondaryDisplayBarCurrent < targetID.secondaryDisplayBarMax{
-					targetID.secondaryDisplayBarCurrent+= healAmt
+					targetID.secondaryDisplayBarCurrent += refillAmt
 					canUse = true
-					if targetID.secondaryDisplayBarCurrent > targetID.secondaryDisplaybarMax{
+					if targetID.secondaryDisplayBarCurrent > targetID.secondaryDisplayBarMax{
 						refillAmt -= targetID.secondaryDisplayBarCurrent - targetID.secondaryDisplayBarMax
 						targetID.secondaryDisplayBarCurrent = targetID.secondaryDisplayBarMax
 					}

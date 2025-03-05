@@ -33,7 +33,8 @@ combatSkills = {
 	magic: associatedCharacterID.combatSkills.magic
 }
 
-inventory = associatedCharacterID.inventory;
+//inventory = associatedCharacterID.inventory;
+inventory = global.OVERWORLD_ID_AARON.inventory;
 activeEffects = associatedCharacterID.activeEffects;
 resistances = associatedCharacterID.resistances;
 immunities = associatedCharacterID.immunities;

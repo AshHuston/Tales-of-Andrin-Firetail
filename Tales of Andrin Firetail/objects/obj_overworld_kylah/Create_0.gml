@@ -22,7 +22,7 @@ etherealBolt = {
 		combatMenu: true,
 		actionType: "spell",
 		spellType: "attack",
-		animation_index: spr_test_attack_flame,
+		animation_index: spr_test_attack_flame, //@TODO change spell animaton
 		cost_type: "MP",
 		cost_value: 5,
 		logMessage: [

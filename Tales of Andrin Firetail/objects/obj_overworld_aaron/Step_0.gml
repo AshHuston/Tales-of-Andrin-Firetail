@@ -1,32 +1,3 @@
-//EQ Menu testing
-/*
-if input("E"){
-	if instance_number(obj_eq_menu) == 0{
-		instance_create_depth(0,0,depth-1,obj_eq_menu)
-	}else{
-		instance_destroy(instance_find(obj_eq_menu,0))
-		#region EQ Stats
-		for(var i=0; i<array_length(activeEffects); i++){
-			if activeEffects[i].effectSource == "Ephrin's Queen"{
-				array_delete(activeEffects, i, 1)
-				i--
-			}
-		}	
-		for(var i=0; i<array_length(global.EQUIPPED_CRYSTALS); i++){
-			if global.EQUIPPED_CRYSTALS[i].effectType == "buff"{
-				array_push(activeEffects, global.EQUIPPED_CRYSTALS[i].effect)
-			}
-		}
-		#endregion
-	show_debug_message("set vals")
-	}
-}
-*/
-
-if input("A"){ 
-	splash_text("This is\nTest text!", true)
-	}
-
 if input("I"){ //Pause menu
 	if instance_number(obj_pause_menu) == 0{
 		instance_create_depth(0,0,0,obj_pause_menu, {triggeringInput: "I"})

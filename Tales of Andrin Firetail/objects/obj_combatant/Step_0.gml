@@ -1,6 +1,10 @@
+var defaultSprite = sprite_index;
+var damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
+
+
 if isTakingDamage{
 	sprite_index = damageAnimationSprite;
-	if image_index == image_number-1{
+	if round(image_index) == image_number-1{
 		sprite_index = defaultSprite;
 		isTakingDamage = false;
 	}

@@ -2,7 +2,12 @@ up_key = input("up");
 down_key = input("down");
 accept_key = input("enter");
 back_key = input("back");
-
+if instance_exists(obj_inventory_menu){ 
+	up_key     = false
+	down_key   = false
+	back_key   = false
+	accept_key = false
+	}
 
 //Store num of options in current menu
 op_length = array_length(option[menu_level]);
@@ -13,14 +18,23 @@ if up_key{pos--}
 if pos>=op_length{pos=0}
 if pos<0 {pos=op_length-1}
 
-// Back button
+//Back button
 if back_key{
-	menu_level = 0;
-	op_length = array_length(option[menu_level]);
+	if !instance_exists(obj_party_menu){
+		if menu_level == 0 { instance_destroy(self) }
+		menu_level = 0;
+		op_length = array_length(option[menu_level]);
+	}else{
+		instance_destroy(instance_find(obj_party_menu,0))
+		continuingOperation = false
+	}
 }
+
+if instance_exists(obj_inventory_menu){ accept_key = false; }// print("inv menu exists")}
+
 #region Press select
 chosenTargets = [];	
-if (accept_key) 
+if (accept_key) || (continuingOperation)
 {
 	var _sml = menu_level;
 	switch(menu_level)
@@ -46,7 +60,8 @@ if (accept_key)
 		
 		//INVENTORY
 			case 3:
-			menu_level = 4;
+			if !instance_exists(obj_inventory_menu){ instance_create_depth(0,0,0, obj_inventory_menu, {combatMenuID:id, combatManagerID:combatManagerID, activeCombatant:activeCombatant})}
+			//menu_level = 4;
 			break;
 		
 		//NOTHING		
@@ -101,7 +116,11 @@ if (accept_key)
 		
 		//Inventory menu
 		case 4:
+			if !instance_exists(obj_inventory_menu){ instance_create_depth(0,0,0, obj_inventory_menu, {combatManagerID:combatManagerID, activeCombatant:activeCombatant})}
+		break;
+		/*
 		switch (pos){
+			
 				case 0:
 					menu_level = 0;
 					break;
@@ -111,7 +130,7 @@ if (accept_key)
 				chosenTargets = [];				 //Temporary line of code? // = slectedAction.cantarget
 				array_push(chosenTargets, selectedAction.targetID)
 		}
-		break;
+		break; */
 		
 	}	
 	//prep for next menu
@@ -133,16 +152,14 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	}
 	var statCurrentVal = 0
 	
-	switch(type){
-		//@TODO If i dont remove this then ill have to work out various "seconday stats" and whatnot. 
-		case "MP @TESTING PROBABLY REMOVE THIS WHOLE SWITCH CASE STATEMENT": statCurrentVal = activeCombatant.currentMana break;
-	}
+	
 	statCurrentVal = activeCombatant.secondaryDisplayBarCurrent
 	if  cost == 0 || statCurrentVal >= cost{
 		combatManagerID.action = selectedAction;
 		combatManagerID.targets = chosenTargets;
 		combatManagerID.step = "Select targets";
 		instance_destroy(self);
+		instance_destroy(instance_find(obj_inventory_menu, 0))
 	}else{
 		var shakeFrames = 15 //@TODO Fairly arbitrary number here.
 		combatManagerID.shakeSecondBarFrames = shakeFrames
@@ -154,6 +171,7 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
 height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_length*2
+
 width = 0
 for (var i=0; i<op_length; i++){
 	if string_width(option[menu_level][i].name) > width{
@@ -166,7 +184,5 @@ var maxMenuWidth = 175
 width = clamp(width, minMenuWidth, maxMenuWidth)
 
 //Relocate the menu
-var camXBuffer = 10
-var camYBuffer = 10
-//x = camX + camXBuffer
-//y = camY + (camHeight/2) - camYBuffer - height/2
+x = xBase
+y = yBase - (height/2)

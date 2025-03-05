@@ -4,8 +4,8 @@ statusEffect = [];
 resistances = [];
 immunities = [];
 totalArmor = round(random_range(3,5));
-totalMagicResist = round(random_range(5,9));
-totalSpeed = round(random_range(3, 5));
+totalMagicResist = round(random_range(4,5));
+totalSpeed = 1;
 totalEvasion = 1;
 monsterLevel = 5
 event_inherited();
@@ -18,8 +18,8 @@ swipe = {
 	targetID: "", 
 	bonus_targetID: "", 
 	dmg_type: "physical", 
-	min_dmg: 1, 
-	max_dmg: 3, 
+	min_dmg: 3, 
+	max_dmg: 8, 
 	hit_chance: 90, 
 	effect_chance: 0, 
 	effect_type: "",
@@ -42,12 +42,12 @@ flames = {
 	targetID: "all players", //Should be "all", "all enemies", or whatever the combat system's equivilent is.
 	bonus_targetID: "", 
 	dmg_type: "fire", 
-	min_dmg: 5, 
-	max_dmg: 15, 
+	min_dmg: 3, 
+	max_dmg: 6, 
 	hit_chance: 85, 
 	effect_chance: 0, 
 	effect_type: "",
-	frequency: 5,
+	frequency: 3,
 	combatMenu: true,
 	actionType: "spell",
 	spellType: "attack",
@@ -74,9 +74,8 @@ function getAction(){
 		}
 	}
 	actions = array_shuffle(actions)
-	print(actions)
 	var selectedAction = actions[0]
-	
+
 	if selectedAction.targetID == ""{
 	var partyIDs = getCombatPartyIDs();
 	var targetIndex = round(random_range(0, array_length(partyIDs)-1));
@@ -88,4 +87,4 @@ function getAction(){
 }
 
 damageAnimationSprite = sprite_index;
-damageSoundEffect = snd_zombie_blah
+damageSoundEffect = snd_zombie_blah //@TODO Change this sound effect

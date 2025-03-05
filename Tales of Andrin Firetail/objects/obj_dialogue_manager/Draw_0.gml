@@ -29,20 +29,23 @@ function getSpeakerSpriteYappingSpeed(){
 }
 
 #region Draw the text box 
-var textBoxOffsetX = 350					//@DIAL
-var textBoxOffsetY = 185					//@DIAL
-var textboxWidth = 300						//@DIAL
-var textboxHeight = 125						//@DIAL
-var textBoxX = camera_get_view_x(camera_get_active()) + textBoxOffsetX
-var textBoxY = camera_get_view_y(camera_get_active()) + textBoxOffsetY
+var cam = camera_get_active()
+var camX = camera_get_view_x(cam)
+var camY = camera_get_view_y(cam)
+var camHeight = camera_get_view_height(cam)
+var camWidth = camera_get_view_width(cam)
+var textboxWidth = camWidth*0.7				//@DIAL
+var textboxHeight = camHeight*0.2			//@DIAL
+var textBoxOffsetX = camWidth/2				//@DIAL
+var textBoxOffsetY = camHeight* 3/4			//@DIAL
+var textBoxX = camX + textBoxOffsetX
+var textBoxY = camY + textBoxOffsetY
 
 draw_sprite_ext(sprite_index, 0, textBoxX, textBoxY, textboxWidth/sprite_width, textboxHeight/sprite_height, 0, c_white, 1);
 #endregion
 
 #region Draw speaker 
-//print(wholeDialogueStruct)
 var speakerSprite = getSpeakerSprite()
-//print(speakerSprite)
 var originalHeight = sprite_get_height(speakerSprite)
 var originalWidth = sprite_get_width(speakerSprite)
 var spriteHightInPixels = 65				//@DIAL
@@ -61,10 +64,7 @@ var minNamePlateWidth = scaledWidth + 2*nameBoxPaddingX
 if nameBoxWidth < minNamePlateWidth {nameBoxWidth = minNamePlateWidth}
 var nameBoxRightEdgeSpacing = 15				//@DIAL
 var nameBoxOffsetX = (textboxWidth/2) - (nameBoxWidth/2) - nameBoxRightEdgeSpacing
-
-//@TODO Find better condition to test for left side
-if speakerName == "Aaron"{nameBoxOffsetX = -nameBoxOffsetX}
-	
+if dialogueBlurb.speaker_side == "LEFT"{nameBoxOffsetX = -nameBoxOffsetX}	
 var nameBoxOffsetY = -(textboxHeight/2)
 var nameBoxX = textBoxX + nameBoxOffsetX
 var nameBoxY = textBoxY + nameBoxOffsetY
@@ -183,14 +183,14 @@ if textIsAllPrinted{
 		indicatorSprite = spr_a_press
 		indicatorColor = c_green
 		}
-	
-	var indicatorOffsetX = 95
-	var indicatorOffsetY = 25
+	var cornerSpacing = 3 //@DIAL
+	var indicatorOffsetX = textboxWidth/2 - sprite_get_width(indicatorSprite) + cornerSpacing
+	var indicatorOffsetY = textboxHeight/2 - sprite_get_height(indicatorSprite) + cornerSpacing
 	var indicatorX = textBoxX + indicatorOffsetX
 	var indicatorY =  textBoxY + indicatorOffsetY
 	var indicatorScaleX = 1
 	var indicatorScaleY = 1
-	alpha = 1
+	var alpha = 1
 	draw_sprite_ext(indicatorSprite, round(continueIndicatorAnimationFrame), indicatorX, indicatorY, indicatorScaleX, indicatorScaleY, 0, indicatorColor, alpha)
 }
 

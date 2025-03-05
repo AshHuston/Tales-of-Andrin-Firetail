@@ -41,7 +41,7 @@ function updateSavedStats(){
 			global.CHARACTER_STATS[$ charNames[i]] = characterData
 		}
 	}
-	print("Charcaters updated")
+	//print("Charcaters updated")
 }
 
 // THESE STATS ARE ARBITRARY AND NEED TO BE WORKED OUT
@@ -95,6 +95,29 @@ global.CHARACTER_STATS = {
 		},
 	
 	roy : {
+		maxHp:						65,
+		level:						1,
+		armor:						3,
+		evasion:					5,
+		totalExp:					0,
+		currentHp:					65,
+		immunities:					[],
+		magicResist:				0,
+		combatSpeed:				5,
+		resistances:				[],
+		activeEffects:				[],
+		secondaryDisplayBar:		"Energy",
+		secondaryDisplayBarMax:		45,
+		secondaryDisplayBarCurrent: 45,
+		combatSkills:				{
+										edged: 25,
+										ranged: 3,
+										melee: 20,
+										magic: 15
+									},
+	},
+	
+	titus : {
 		maxHp:						65,
 		level:						1,
 		armor:						3,

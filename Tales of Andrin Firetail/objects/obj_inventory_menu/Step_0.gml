@@ -19,6 +19,15 @@ function removeItemFromInventory(item){
 	getItemsFromAaron()
 }
 
+function findCombatant(ovwID){
+	var foundCombatant = 0
+	var allCombatants = combatManagerID.combatants
+	for (var i=0; i<array_length(allCombatants); i++){
+		try{ if allCombatants[i].associatedCharacterID == ovwID{ foundCombatant = allCombatants[i] } }catch(err){}
+	}
+	return foundCombatant	
+}
+
 up_key = false
 down_key = false
 accept_key = false
@@ -105,9 +114,23 @@ if (accept_key) || (continuingOperation)
 			
 				// Wait for selection to be made.
 				if charSelectMenu.selectedCharacterId != 0{
-					var results = selectedItem.use(charSelectMenu.selectedCharacterId)
-					if results.can_use{
-						removeItemFromInventory(selectedItem) //THIS IS LITERALLY ADDING NEW ITEMS???
+					var can_use = false
+					var target = charSelectMenu.selectedCharacterId
+					if combatMenuID != 0 {target = findCombatant(target)}
+					try{ can_use = selectedItem.can_use(target) }catch(err){print(err)}
+					if combatMenuID != 0 && can_use{ 
+						selectedAction = selectedItem
+						selectedAction.targetID = target
+						array_push(combatMenuID.chosenTargets, selectedAction.targetID)
+						combatMenuID.selectedAction = selectedAction
+					
+					}else{ 
+						selectedItem.use(charSelectMenu.selectedCharacterId)
+						splash_text("Used " + selectedItem.name)
+						}
+					
+					if can_use{
+						removeItemFromInventory(selectedItem)
 						charSelectMenu.closeWhenAccurate = true
 						pos = 0
 						continuingOperation = false
@@ -116,7 +139,7 @@ if (accept_key) || (continuingOperation)
 						charSelectMenu.selectedCharacterId = 0
 					}
 				}
-				if charSelectMenu.closeWhenAccurate{continuingOperation = false}
+				//if charSelectMenu.closeWhenAccurate{continuingOperation = false}
 			}
 		break;
 		

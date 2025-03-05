@@ -54,15 +54,16 @@ function display_log_message(logMessage){
 				
 function set_ovw_character_stats(){
 	for (var i=0 ; i<array_length(combatants); i++) {
-		if object_get_parent(combatants[i].object_index) == obj_combat_party_member{
+		if object_get_parent(combatants[i].object_index) == obj_combat_party_member || combatants[i].object_index == obj_combat_party_member{
 			var hp = combatants[i].currentHp
 			combatants[i].associatedCharacterID.currentHp = hp
+			var secondStat = combatants[i].secondaryDisplayBarCurrent
+			combatants[i].associatedCharacterID.secondaryDisplayBarCurrent = secondStat
 		}
 	}
 }				
 
 function createGameOver(){
-	print("Lol u died")	
 	instance_create_depth(x,y, 0, obj_game_over_manager)//, {textTarget:[combatCenter[X], combatCenter[Y]]})
 }
 
@@ -121,6 +122,7 @@ if waitingForEvent{ waitFrames++ }	// This keeps it in parody
 // moves onto the next thing. Animations will persist though so thats good
 if waitFrames<1 && !gameIsOver{
 	checkForEvents()
+	
 	switch(step){
 		case "Awaiting player input":
 		break;
@@ -388,6 +390,7 @@ if waitFrames<1 && !gameIsOver{
 				display_log_message(logMessage)
 				
 				//Diplay effect message
+				if !variable_struct_exists(results, "isEffected"){ results.isEffected = false }
 				if results.isEffected {
 					var effect_color = c_white
 					//@TODO Add cases
@@ -448,9 +451,7 @@ if waitFrames<1 && !gameIsOver{
 					damageAnimationsAreRunning = true;	
 				}
 			}
-		 
 			if !damageAnimationsAreRunning && !instance_exists(obj_action_animation){
-			//&& !instance_exists(obj_damage_value_animation)			
 				activeCombatant.hasActed = true;	
 				action = {name:"empty"};
 				targets = [];

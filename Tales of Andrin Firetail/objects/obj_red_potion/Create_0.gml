@@ -1,6 +1,8 @@
 itemInfo = {name:"Healing Potion", 
 		quantity: 1,
 		stackable: true,
+		menuPage: "consumables",
+		can_use: function canHealUser(targetID){print("RED POTION CAN_USE FUNCTION"); return targetID.currentHp < targetID.maxHp},
 		use: function healUser(targetID){
 			var healAmt = 30;
 			var startHp = targetID.currentHp

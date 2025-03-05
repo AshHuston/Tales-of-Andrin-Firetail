@@ -14,12 +14,13 @@ combatLogColor = c_red
 
 swipe = {
 	display_name: "Swipe",
+	name: "Swipe",
 	description: "Swpies at target with claws.",	//Only really needed for playable characters. Will show up on menu.
 	targetID: "", 
 	bonus_targetID: "", 
 	dmg_type: "physical", 
-	min_dmg: 1, 
-	max_dmg: 3, 
+	min_dmg: 2, 
+	max_dmg: 4, 
 	hit_chance: 90, 
 	effect_chance: 0, 
 	effect_type: "",
@@ -46,9 +47,9 @@ bite = {
 	min_dmg: 1, 
 	max_dmg: 2, 
 	hit_chance: 80, 
-	effect_chance: 30, 
+	effect_chance: 20, 
 	effect_type: "poison",
-	frequency: round(random_range(4,8)),
+	frequency: round(random_range(1,4)),
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
 	logMessage: [
@@ -63,17 +64,24 @@ bite = {
 
 attacks = [swipe, bite]
 
-function getAction(){
-	//Pick target
-	var partyIDs = []
-		partyIDs = getCombatPartyIDs();
-	//var targetIndex = round(random_range(0,array_length(partyIDs)));
-	var targetIndex = 0;
+function getAction(){	
+	var actions = []
+	for(var i = 0; i<array_length(attacks); i++){
+		for(var n = 0; n<attacks[i].frequency; n++){
+			array_push(actions, attacks[i])
+		}
+	}
+	actions = array_shuffle(actions)
+	var selectedAction = actions[0]
+
+	if selectedAction.targetID == ""{
+	var partyIDs = getCombatPartyIDs();
+	var targetIndex = round(random_range(0, array_length(partyIDs)-1));
 	var target = partyIDs[targetIndex];
+	selectedAction.targetID = target
+	}
 	
-	// Pick attack
-	bite.targetID = target; //cuurently only returns bite lol.
-	return bite;
+	return selectedAction
 }
 
 damageAnimationSprite = sprite_index;

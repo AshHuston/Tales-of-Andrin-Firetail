@@ -9,22 +9,21 @@ itemInfo = {
 	effectType: "spell",
 	effect: {
 		name: "Incinerate",	//Only really needed for playable characters. Will show up on menu.
-		description: "Burns all enemies",	//Only really needed for playable characters. Will show up on menu.
+		description: "Casts fire at all enemies, may burn.",	//Only really needed for playable characters. Will show up on menu.
 		targetID: "all enemies", //Should be "all", "all enemies", or whatever the combat system's equivilent is.
 		bonus_targetID: "", 
 		dmg_type: "fire", 
-		min_dmg: 10, 
-		max_dmg: 30, 
+		min_dmg: 3, 
+		max_dmg: 7, 
 		hit_chance: 85, 
-		effect_chance: 0, 
-		effect_type: "",
-		frequency: 5,
+		effect_chance: 0, //@TODO addthis later
+		effect_type: "burn",
 		combatMenu: true,
 		actionType: "spell",
 		spellType: "attack",
 		animation_index: spr_test_attack_flame,
 		cost_type: "MP",
-		cost_value: 10,
+		cost_value: 20,
 		logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "burns", color: c_white},

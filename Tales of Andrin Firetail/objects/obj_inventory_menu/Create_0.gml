@@ -1,5 +1,6 @@
 event_inherited()
 cam = view_get_camera(camera_get_active())
+if combatManagerID != 0  { cam = view_get_camera(combatCam) }
 camX = camera_get_view_x(cam)
 camY = camera_get_view_y(cam)
 camWidth = camera_get_view_width(cam)

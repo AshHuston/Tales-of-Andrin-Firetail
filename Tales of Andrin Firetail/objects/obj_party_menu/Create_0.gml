@@ -1,4 +1,14 @@
 event_inherited()
+
+function findCombatant(ovwID){
+	var foundCombatant = 0
+	var allCombatants = instance_find(obj_combat_manager, 0).combatants
+	for (var i=0; i<array_length(allCombatants); i++){
+		try{ if allCombatants[i].associatedCharacterID == ovwID{ foundCombatant = allCombatants[i] } }catch(err){}
+	}
+	return foundCombatant	
+}
+
 up_key = false
 down_key = false
 accept_key = false
@@ -16,12 +26,24 @@ selectionIndex = -1
 hoveredCharacterId = 0
 selectedCharacterId = 0
 cam = view_get_camera(camera_get_active())
+isCombat = false
+if instance_exists(obj_combat_manager) { 
+	cam  = view_get_camera(combatCam)
+	isCombat = true
+	}
 closeWhenAccurate = false
 closeOutFrameDelay = 5
 
 displayVals = []
 actualParty = []
 for (var i=0; i<array_length(party); i++){
+	if isCombat{
+		var foundCombatant = findCombatant(party[i])
+		if foundCombatant != 0 {
+			party[i] = foundCombatant
+			party[i].name = party[i].combatName
+			}
+	}
 	if party[i] != 0{
 		var data = 	{
 		displayHp: party[i].currentHp,
@@ -31,11 +53,6 @@ for (var i=0; i<array_length(party); i++){
 		}
 		array_push(displayVals, data)
 		array_push(actualParty, party[i])
-		
-		print(party[i].name)
-		print(party[i].secondaryDisplayBarMax)
-		print(party[i].secondaryDisplayBarCurrent)
-		print("-----------")
 	}
 }
 party = actualParty

@@ -6,8 +6,6 @@ isTakingDamage = false;
 startedDamageSFX = false;
 damageSoundEffect = snd_no_sound
 damageAnimationCounter = 0;
-defaultSprite = sprite_index;
-damageAnimationSprite = defaultSprite;	//Will need to be changed to the dmg one
 combatName = "UNNAMED COMBATANT"
 combatLogColor = c_white
 secondaryDisplayBar = "none"
@@ -132,9 +130,9 @@ function attack(details){
 		results.secondaryDmg = secondaryAttack.mainDmg;
 		results.secondaryType = secondaryAttack.mainType;
 	}
+#endregion
 	return results;
 }
-#endregion
 
 function castSpell(details){
 	if details.spellType == "attack"{
@@ -153,7 +151,7 @@ function useItem(details){
 	else{
 		result = details.use(targetID, details.bonus_targetID);	
 	}
-	if !variable_struct_exists(results, "logMessage"){ results.logMessage = [{text: "DEFAULT LOG MESSAGE - ITEM", color: c_white}]}
+	if !variable_struct_exists(result, "logMessage"){ result.logMessage = [{text: "DEFAULT LOG MESSAGE - ITEM", color: c_white}]}
 	return result;
 }
 

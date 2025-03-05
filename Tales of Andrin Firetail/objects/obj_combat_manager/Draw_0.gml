@@ -87,7 +87,7 @@ function get_log_entry_seperate_words(logEntry, delimiters=[" "]){
 var cam = camera_get_active()
 
 // Popup logs
-var popUpLogScreenBorder = 22
+var popUpLogScreenBorder = 30
 var popUpLogX = camera_get_view_x(cam) + popUpLogScreenBorder*0.8
 var popUpLogY = camera_get_view_y(cam) + (camera_get_view_height(cam) - popUpLogScreenBorder)
 
@@ -150,20 +150,21 @@ for (var i=0; i<array_length(combatLogEntries); i++){
 #region Character huds
 // Define coords for cells
 var boxWidth = 75
-var boxHeight = 60
-var hudCellsXOffset = 18
-var hudCellsYOffset = camera_get_view_height(cam)/4
+var boxHeight = 47
+var boxSpacing = 5
+var hudCellsXOffset = 10
+var hudCellsYOffset = 7
 var hudCellsXAnchor = camera_get_view_x(cam) + hudCellsXOffset
 var hudCellsYAnchor = camera_get_view_y(cam) + hudCellsYOffset
 var hudCellCoords = [
 	[hudCellsXAnchor,
 	hudCellsYAnchor],
-	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*1.25], // All these will need to be manually offset, maybe changed based on party size.
-	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*2.50],
-	[hudCellsXAnchor,
-	hudCellsYAnchor + boxHeight*3.75]
+	[hudCellsXAnchor + (boxWidth+boxSpacing),
+	hudCellsYAnchor],
+	[hudCellsXAnchor + (boxWidth+boxSpacing)*2,
+	hudCellsYAnchor],
+	[hudCellsXAnchor + (boxWidth+boxSpacing)*3,
+	hudCellsYAnchor]
 ]
 
 // Loop through the characters and get their bar stats
@@ -195,7 +196,9 @@ for(var i=0; i<array_length(charStats); i++){
 	//Box
 	var boxX = hudCellCoords[i][0]
 	var boxY = hudCellCoords[i][1]
-	draw_sprite_ext(spr_testCombatStatBackground, 0, boxX, boxY, boxXScale, boxYScale, 0, c_white, 1)
+	var col = c_white
+	if charStats[i].name == activeCombatant.combatName { col = c_yellow}
+	draw_sprite_ext(spr_testCombatStatBackground, 0, boxX, boxY, boxXScale, boxYScale, 0, col, 1)
 
 	//Name
 	var nameXbuffer = 3
