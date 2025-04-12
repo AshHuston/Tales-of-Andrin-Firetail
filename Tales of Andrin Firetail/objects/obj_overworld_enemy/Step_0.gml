@@ -20,8 +20,10 @@ function generateLoot(){
 function cleanUpLoot(loot){
 	for (var i = 0; i<array_length(loot); i++){
 		if variable_struct_exists(loot[i], "itemInfo"){
-			loot[i].itemInfo.name = loot[i].name
-			loot[i].itemInfo.quantity = loot[i].quantity
+			if loot[i].quantity > 0 {
+				loot[i].itemInfo.name = loot[i].name
+				loot[i].itemInfo.quantity = loot[i].quantity 
+			}else{ array_delete(loot, i, 1) }
 		}
 	}
 	return loot
@@ -54,43 +56,45 @@ function addTutorialCombat(){
 			content: {
 				eventType: "popup",
 				pauseCombat: true,
-				content: "Press left ALT to toggle the full combat log."
+				content: "Press Y to toggle the full combat log."
 				}
 		}
-		var logButton = "Y"
-		if gamepad_is_connected(0){logToggleMessage.content.content = "Press "+logButton+" to toggle the full combat log."}
+		//var logButton = "Y"
+		//if gamepad_is_connected(0){logToggleMessage.content.content = "Press "+logButton+" to toggle the full combat log."}
 		array_push(combatSpecialEvents, combatTutorial, logToggleMessage)	
 		setFlag("demo.combatTutorialFinished", true)
 	}
 }
 
 function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
-	addTutorialCombat() //Not really sure the best place to put this... It doesnt really belong here i feel.
-	numberOfMonsters = clamp(numberOfMonsters, 1, 5)
-	if typeof(certainMonsters) != "array" {certainMonsters = [certainMonsters]}
-	if array_length(possibleMonsters) == 0 {array_copy(possibleMonsters, 0, certainMonsters, 0, array_length(certainMonsters))}
-	for (var i = 0; i<numberOfMonsters; i++){
-		if i<array_length(certainMonsters){
-			mobs[i] = instance_create_depth(0,0,0,certainMonsters[i])
-		}else{
-			possibleMonsters = array_shuffle(possibleMonsters)
-			mobs[i] = instance_create_depth(0,0,0,possibleMonsters[0])
+	if !instance_exists(obj_combat_manager) && !instance_exists(obj_combat_cleanup){
+		addTutorialCombat() //Not really sure the best place to put this... It doesnt really belong here i feel.
+		numberOfMonsters = clamp(numberOfMonsters, 1, 5)
+		if typeof(certainMonsters) != "array" {certainMonsters = [certainMonsters]}
+		if array_length(possibleMonsters) == 0 {array_copy(possibleMonsters, 0, certainMonsters, 0, array_length(certainMonsters))}
+		for (var i = 0; i<numberOfMonsters; i++){
+			if i<array_length(certainMonsters){
+				mobs[i] = instance_create_depth(0,0,0,certainMonsters[i])
+			}else{
+				possibleMonsters = array_shuffle(possibleMonsters)
+				mobs[i] = instance_create_depth(0,0,0,possibleMonsters[0])
+			}
 		}
+		instance_create_depth(x, y, 0, obj_combatFadeIn)
 	}
-	instance_create_depth(x, y, 0, obj_combatFadeIn)
 }
 
 // This kinda sucks because the movement is different than the player's movement. But tbh I think imma change the player mvmnt anyway so idk.
-function stepTowards(targetID, stepSpeed = 1){
-	if targetID.x > x { x += stepSpeed }
-	else if x > targetID.x {x -= stepSpeed }
-	if targetID.y > y { y += stepSpeed }
-	else if y > targetID.y {y -= stepSpeed }
+function stepTowards(targetID, range = 75, stepSpeed = 1){
+	if point_distance(x, y, targetID.x, targetID.y) <= range{
+		if targetID.x > x { x += stepSpeed; image_xscale = -1 }
+		else if x > targetID.x {x -= stepSpeed; image_xscale = 1 }
+		if targetID.y > y { y += stepSpeed }
+		else if y > targetID.y {y -= stepSpeed }
+	}
 }
 
-if hasStartedCombat && !instance_exists(obj_combatFadeIn){
-	x = global.DEFAULT_OVERWORLD_MONSTER_BENCH[0]
-	y = global.DEFAULT_OVERWORLD_MONSTER_BENCH[1]
+if hasStartedCombat && !instance_exists(obj_combatFadeIn) && !instance_exists(obj_combat_manager) && !instance_exists(obj_combat_cleanup){
 	benchThisMonster()
 	instance_create_depth(0,0,0,obj_combat_manager, {
 		overworld_mob:id, 
@@ -104,4 +108,6 @@ if hasStartedCombat && !instance_exists(obj_combatFadeIn){
 		})
 }
 	
-if chasePlayer && !global.GAME_IS_PAUSED{ stepTowards(global.OVERWORLD_ID_AARON) }
+if chasePlayer && !global.GAME_IS_PAUSED{ 
+	stepTowards(global.OVERWORLD_ID_AARON)
+	}

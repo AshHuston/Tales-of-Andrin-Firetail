@@ -1,32 +1,23 @@
 function removeItemFromInventory(item){
 	// Should remove 1x of the "item" from the original inventory.
-	aaron =  global.OVERWORLD_ID_AARON
-	for (var i=0; i<array_length(aaron.inventory); i++){
-		if item.name == aaron.inventory[i].name{
-			if aaron.inventory[i].quantity > 1 { 
-				aaron.inventory[i].quantity--
+	var inventory =  global.OVERWORLD_ID_AARON.inventory
+	for (var i=0; i<array_length(inventory); i++){
+		if item.name == inventory[i].name{
+			print(item.name)
+			if inventory[i].quantity > 1 { 
+				inventory[i].quantity--
+				print("Minus 1")
 			}
 			else{ 
-				array_delete( aaron.inventory, i, 1)
+				array_delete( inventory, i, 1)
+				print("Rem from invetory")
 			}
 		}	
 	}
 	// Update inv here
-	consumables = [{name:"<--Back"}]
-	equipment = [{name:"<--Back"}]
-	keyItems = [{name:"<--Back"}]
-	otherItems = [{name:"<--Back"}]
 	getItemsFromAaron()
 }
 
-function findCombatant(ovwID){
-	var foundCombatant = 0
-	var allCombatants = combatManagerID.combatants
-	for (var i=0; i<array_length(allCombatants); i++){
-		try{ if allCombatants[i].associatedCharacterID == ovwID{ foundCombatant = allCombatants[i] } }catch(err){}
-	}
-	return foundCombatant	
-}
 
 up_key = false
 down_key = false
@@ -116,20 +107,18 @@ if (accept_key) || (continuingOperation)
 				if charSelectMenu.selectedCharacterId != 0{
 					var can_use = false
 					var target = charSelectMenu.selectedCharacterId
-					if combatMenuID != 0 {target = findCombatant(target)}
 					try{ can_use = selectedItem.can_use(target) }catch(err){print(err)}
-					if combatMenuID != 0 && can_use{ 
-						selectedAction = selectedItem
-						selectedAction.targetID = target
-						array_push(combatMenuID.chosenTargets, selectedAction.targetID)
-						combatMenuID.selectedAction = selectedAction
-					
-					}else{ 
-						selectedItem.use(charSelectMenu.selectedCharacterId)
-						splash_text("Used " + selectedItem.name)
+					if can_use{	
+						if combatMenuID != 0{ 
+							selectedAction = selectedItem
+							selectedAction.targetID = target
+							array_push(combatMenuID.chosenTargets, selectedAction.targetID)
+							combatMenuID.selectedAction = selectedAction					
+						}else{ 
+							selectedItem.use(charSelectMenu.selectedCharacterId)
+							splash_text("Used " + selectedItem.name)
 						}
 					
-					if can_use{
 						removeItemFromInventory(selectedItem)
 						charSelectMenu.closeWhenAccurate = true
 						pos = 0
@@ -196,7 +185,8 @@ if (accept_key) || (continuingOperation)
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
-height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_border
+height = (op_length * op_space)+op_border
+
 width = 0
 for (var i=0; i<op_length; i++){
 	var minTextWidth = string_width(option[menu_level][i].name+" x10")
@@ -209,6 +199,3 @@ var minMenuWidth = 50
 var maxMenuWidth = 175
 width = clamp(width, minMenuWidth, maxMenuWidth)
 
-//Relocate the menu
-var camXBuffer = 10
-var camYBuffer = 10

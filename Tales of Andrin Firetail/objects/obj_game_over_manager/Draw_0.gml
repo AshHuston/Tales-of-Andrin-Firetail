@@ -11,7 +11,7 @@ if displayOptions{
 		var scale = 3
 		var menuX = screenCenter[X] - (0.5*string_width(menuText[i])*scale)
 		var menuYSpacing = 6 //@DIAL
-		var menuYBuffer = 15
+		var menuYBuffer = 30
 		var menuY = screenCenter[Y] + menuYBuffer + (((string_height(menuText[i])*scale) + menuYSpacing)*i)
 		
 		// Adjust alpha based on hovered

@@ -4,8 +4,9 @@ function close_combat(){
 	view_visible[overworldDetails.overworldViewport] = true
 	view_visible[overworldDetails.combatViewport] = false	
 	for (var i=0 ; i<array_length(global.COMBATANTS); i++) {
-		instance_destroy(global.COMBATANTS[i])	
+		instance_destroy(global.COMBATANTS[i])
 	}
+	instance_destroy(overworldDetails.overworld_mob)
 	instance_destroy(self)
 }
 

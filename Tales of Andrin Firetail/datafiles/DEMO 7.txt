@@ -1,0 +1,117 @@
+{
+    "dialogueID": 7,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_kylah_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Sergio",
+            "spriteID": "spr_sergio_dialogue",
+            "yapping_speed": 0.5
+        },
+    ],
+    "dialogue": {
+        "voiceover_id": "7_2",
+        "display_text": "",
+        "speaker": "Aaron",
+        "speaker_side": "LEFT",
+        "text": "It's a\u2026 literal gym rat.",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "7_3",
+                "display_text": "",
+                "speaker": "Sergio",
+                "speaker_side": "RIGHT",
+                "text": "Why am I only recognized for my beautiful body? My mind is far more gorgeous. I suppose I shouldn't expect lower life forms to understand me though.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "7_4",
+                        "display_text": "",
+                        "speaker": "Aaron",
+                        "speaker_side": "LEFT",
+                        "text": "Uh, what?",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": {
+                                "voiceover_id": "7_5",
+                                "display_text": "",
+                                "speaker": "Sergio",
+                                "speaker_side": "RIGHT",
+                                "text": "Yes, I am speaking about you, you little pest! You and all your kind only see us rats for what we are on the outside. You call us filthy and banish us from your homes, leaving us to fight over the scraps of your trash like animals. But, that will soon change.",
+                                "flag_id": "",
+                                "flag_value": false,
+                                "respondable": false,
+                                "response_options": {
+                                    "response_1": {
+                                        "voiceover_id": "7_6",
+                                        "display_text": "",
+                                        "speaker": "Kylah",
+                                        "speaker_side": "RIGHT",
+                                        "text": "W-where did you get that??",
+                                        "flag_id": "",
+                                        "flag_value": false,
+                                        "respondable": false,
+                                        "response_options": {
+                                            "response_1": {
+                                                "voiceover_id": "7_7",
+                                                "display_text": "",
+                                                "speaker": "Sergio",
+                                                "speaker_side": "RIGHT",
+                                                "text": "Some of your unruly compatriots decided to use the sewers as a trash heap, polluting our waters with their refuse. Fortunately for us, they mistakenly threw out these powerful objects as well. I was blessed with this power, and now, I give it to my brethren, so that we may rise as the superior species, and make you filthy humans the vermin of our world!",
+                                                "flag_id": "",
+                                                "flag_value": false,
+                                                "respondable": false,
+                                                "response_options": {
+                                                    "response_1": NaN,
+                                                    "response_2": NaN,
+                                                    "response_3": NaN,
+                                                    "response_4": NaN,
+                                                    "response_5": NaN
+                                                }
+                                            },
+                                            "response_2": NaN,
+                                            "response_3": NaN,
+                                            "response_4": NaN,
+                                            "response_5": NaN
+                                        }
+                                    },
+                                    "response_2": NaN,
+                                    "response_3": NaN,
+                                    "response_4": NaN,
+                                    "response_5": NaN
+                                }
+                            },
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

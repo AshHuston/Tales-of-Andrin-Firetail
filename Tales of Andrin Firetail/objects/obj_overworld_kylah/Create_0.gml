@@ -23,6 +23,7 @@ etherealBolt = {
 		actionType: "spell",
 		spellType: "attack",
 		animation_index: spr_test_attack_flame, //@TODO change spell animaton
+		soundEffectId: snd_magic_bolt,
 		cost_type: "MP",
 		cost_value: 5,
 		logMessage: [
@@ -50,6 +51,7 @@ flameSplash = {
 		actionType: "spell",
 		spellType: "attack",
 		animation_index: spr_test_attack_flame,
+		soundEffectId: snd_fire_spell,
 		cost_type: "MP",
 		cost_value: 10,
 		logMessage: [

@@ -9,14 +9,14 @@ var punch = {
 	dmg_type: "physical", 
 	min_dmg: 1, 
 	max_dmg: 2, 
-	hit_chance: 90, 
+	hit_chance: 95, 
 	effect_chance: 0, 
 	effect_type: "",
 	actionType: "attack",
 	animation_index: spr_test_attack_claw,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
-		{text: "bites", color: c_white},
+		{text: "punches", color: c_white},
 		{text: "*TARGET", color: c_olive},
 		{text: "dealing", color: c_white},
 		{text: "*DAMAGE", color: c_white},
@@ -97,8 +97,9 @@ var noDmg = { //@TESTING For testing attacks witout ending combat
 
 if addAttacks{ //Just for some test attacks, remove later. @TESTING
 	addAttacks = false
-	array_push(attacks, noDmg)
+	//array_push(attacks, noDmg)
 	//array_push(attacks, kill)
 	//array_push(attacks, slash)
+	array_push(attacks, punch)
 }
 inventory = global.OVERWORLD_ID_AARON.inventory;

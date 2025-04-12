@@ -20,6 +20,7 @@ if framesToFloat <= 0{
 	closeSplashBox = true
 }
 framesToFloat--
+if array_length(global.SPLASH_TEXT_QUEUE){ framesToFloat-- } //This just doubles the speed if theres a queue
 
 if closeSplashBox{
 	y+= getExpSpeed(y, destY)

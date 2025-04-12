@@ -1,3 +1,3 @@
 event_inherited()
 
-//chasePlayer = true
+chasePlayer = true

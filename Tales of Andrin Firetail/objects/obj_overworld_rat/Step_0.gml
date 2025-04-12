@@ -4,24 +4,30 @@ function generateLoot(){
 	var loot = []
 	// @TODO Figure out how to generate loot from mob to mob	
 	loot = [
-		{name: "gold", quantity: round(random(25)), sprite: spr_gold_coins},
-		{name: "Zombie brain", quantity: round(random(10)), itemInfo: {
-			name: "", 
-			quantity: 0, 
+		{name: "gold", quantity: round(random(10)), sprite: spr_gold_coins},
+		{name: "Rat Brain", quantity: round(random(2)), sprite: spr_zombie_brain, itemInfo: {
+			name:"Rat Brain", 
+			quantity: round(random(1)),
+			stackable: true,
+			menuPage: "consumables",
+			can_use: function canHealUser(targetID){return (targetID.currentHp < targetID.maxHp)},
 			use: function healUser(targetID){
-				var healAmt = round(random_range(5, 10));
-				targetID.currentHP += healAmt;
-				return {animation_index: "None", hpRestored: healAmt};
+				var healAmt = round(random(5))+5;
+				var startHp = targetID.currentHp
+				targetID.currentHp += healAmt;
+				if targetID.currentHp > targetID.maxHp{targetID.currentHp = targetID.maxHp}
+				healAmt = targetID.currentHp - startHp
+				return {animation_index: "None", hpRestored: healAmt, can_use:(startHp < targetID.maxHp)};
 			   	}, 
 			description:"Heals user for 5-10 HP", 
-			canTarget:"self",
+			canTarget:"party member",
 			actionType:"item",
 			combatMenu:true,
 			targetID:"",
 			bonus_targetID: "",
 			animation_index: "None"
 		
-			}, sprite: spr_zombie_brain}
+			}}
 		] // Completley arbitrary. For testing.
 	return cleanUpLoot(loot)
 }

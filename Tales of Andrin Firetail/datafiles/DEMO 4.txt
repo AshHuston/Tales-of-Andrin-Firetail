@@ -1,0 +1,112 @@
+{
+    "dialogueID": 4,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_kylah_dialogue",
+            "yapping_speed": 0.5
+        }
+    ],
+    "dialogue": {
+        "voiceover_id": "4_2",
+        "display_text": "",
+        "speaker": "Aaron",
+        "speaker_side": "LEFT",
+        "text": "Hey, what are those?",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "4_3",
+                "display_text": "",
+                "speaker": "Kylah",
+                "speaker_side": "RIGHT",
+                "text": "Some kind of crystals. They look like they've been sculpted. These aren't natural crystalline formations.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "4_4",
+                        "display_text": "",
+                        "speaker": "Aaron",
+                        "speaker_side": "LEFT",
+                        "text": "Hmm, the shape is kind of familiar... but I'm not sure where from.",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": {
+                                "voiceover_id": "none",
+                                "display_text": "",
+                                "speaker": "Kylah",
+                                "speaker_side": "RIGHT",
+                                "text": "......",
+                                "flag_id": "",
+                                "flag_value": false,
+                                "respondable": false,
+                                "response_options": {
+                                    "response_1": {
+                                        "voiceover_id": "4_6",
+                                        "display_text": "",
+                                        "speaker": "Kylah",
+                                        "speaker_side": "RIGHT",
+                                        "text": "Wait! What about your relic for that goddess? These look like they'd fit in there.",
+                                        "flag_id": "",
+                                        "flag_value": false,
+                                        "respondable": false,
+                                        "response_options": {
+                                            "response_1": {
+                                                "voiceover_id": "4_7",
+                                                "display_text": "",
+                                                "speaker": "Aaron",
+                                                "speaker_side": "LEFT",
+                                                "text": "Oh, you're right. Let's see...",
+                                                "flag_id": "",
+                                                "flag_value": false,
+                                                "respondable": false,
+                                                "response_options": {
+                                                    "response_1": NaN,
+                                                    "response_2": NaN,
+                                                    "response_3": NaN,
+                                                    "response_4": NaN,
+                                                    "response_5": NaN
+                                                }
+                                            },
+                                            "response_2": NaN,
+                                            "response_3": NaN,
+                                            "response_4": NaN,
+                                            "response_5": NaN
+                                        }
+                                    },
+                                    "response_2": NaN,
+                                    "response_3": NaN,
+                                    "response_4": NaN,
+                                    "response_5": NaN
+                                }
+                            },
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

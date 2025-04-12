@@ -16,7 +16,7 @@ itemInfo = {name:"Mana Potion",
 					}
 				}
 			}
-			return {can_use: canUse, animation_index: "None", restored: refillAmt};
+			return {can_use: canUse, animation_index: "None", restored: refillAmt, logMessage: [{text: "*TARGET", color: c_aqua},{text: "regains", color: c_white},{text: refillAmt, color: c_white},{text: "MP.", color: c_white}]};
 		   	}, 
 		description:"Restores the user for 20 MP", 
 		canTarget:"self",
@@ -24,7 +24,7 @@ itemInfo = {name:"Mana Potion",
 		combatMenu:true,
 		targetID:"",
 		bonus_targetID: "",
-		animation_index: "None"
+		animation_index: "None",
 		}
 		
 width = 8
@@ -34,5 +34,6 @@ yScale = height/sprite_get_height(sprite_index)
 scale = xScale
 if yScale < scale {scale = yScale}
 image_xscale = scale
-
-// @TODO THIS CURRENTLY WILL STILL CONSUME ITSELF FOR NON_MP USERS!!!
+image_yscale = scale
+x += width/2
+y += height/2

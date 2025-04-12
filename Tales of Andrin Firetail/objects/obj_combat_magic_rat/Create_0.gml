@@ -1,4 +1,4 @@
-baseHp = round(random_range(9,14));
+baseHp = round(random_range(16,25));
 currentHp = baseHp;
 statusEffect = [];
 resistances = [];
@@ -27,6 +27,7 @@ swipe = {
 	frequency: round(random_range(8,12)),	//@TODO Figure out what kind of frequency numbers actually make sense.
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_swipe,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "slashes", color: c_white},
@@ -52,6 +53,7 @@ bite = {
 	frequency: round(random_range(1,4)),
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_bite,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "bites", color: c_white},
@@ -72,7 +74,7 @@ function getAction(){
 		}
 	}
 	actions = array_shuffle(actions)
-	var selectedAction = actions[0]
+	var selectedAction = variable_clone(actions[0])
 
 	if selectedAction.targetID == ""{
 	var partyIDs = getCombatPartyIDs();

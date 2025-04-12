@@ -41,10 +41,16 @@ if displayOptions{
 		switch(pos){
 			// Load from last save
 			case 0: 
+			splash_text("Sorry, the save/load functionality is still in the works.", true)
+			break;
+			/*	Currently SaveLoad still in the works
 				var manager = instance_find(obj_combat_manager, 0)
-				instance_destroy(manager)
+				with (manager){ close_combat() } //@TESTING
+				//instance_destroy(manager)
 				loadGame()
+				instance_destroy(self)
 				break;
+			*/
 			// Exit to menu
 			case 1:
 				for (var i=0; i<instance_number(obj_pauser); i++){
@@ -52,7 +58,6 @@ if displayOptions{
 				}
 				room_goto(rm_titleScreen)
 				break;
-			
 		}
 	}
 		

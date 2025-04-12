@@ -36,25 +36,7 @@ combatBaseSprite = sprite_index
 combatDamageSprite = sprite_index
 
 #region @TESTING Items
-potion = {name:"Healing Potion", 
-		quantity: 5, 
-		menuPage: "consumables",
-		use: function healUser(targetID){
-			var healAmt = 30;
-			var startHp = targetID.currentHp
-			targetID.currentHp += healAmt;
-			if targetID.currentHp > targetID.maxHp{targetID.currentHp = targetID.maxHp}
-			healAmt = targetID.currentHp - startHp
-			return {animation_index: "None", hpRestored: healAmt, can_use:(startHp < targetID.maxHp)};
-		   	}, 
-		description:"Heals user for 30 HP", 
-		canTarget:"self",
-		actionType:"item",
-		combatMenu:true,
-		targetID:"",
-		bonus_targetID: "",
-		animation_index: "None"
-		}
+potion = instance_create_depth(0,0,1000, obj_red_potion).itemInfo
 		
 elixir = {name:"Elixir", 
 		quantity: 5, 
@@ -116,22 +98,9 @@ herb = {name:"Cleansing Herb",
 		animation_index: "None"
 		}
 
-textTest = {name:"Text box test", 
-		quantity: 5, 
-		use: function dumb(){
-			instance_create_depth(0, 0, -1000, obj_dialogue_manager, {wholeDialogueStruct: global.DIALGUE_STRUCT})
-			return {animation_index: "None", logText: "Testing text"}
-		}, 
-		description:"Heals user for 30 HP", 
-		canTarget:"self",
-		actionType:"item",
-		combatMenu:true,
-		targetID:"",
-		bonus_targetID: "",
-		animation_index: "None"
-		}
+
 #endregion
 inventory = global.PLAYER_INVENTORY
-array_push(inventory, potion, herb, elixir, textTest) //@TESTING @TODO Remove these items.
+//array_push(inventory, potion, herb, elixir, textTest) //@TESTING @TODO Remove these items.
 
 activeEffects = []

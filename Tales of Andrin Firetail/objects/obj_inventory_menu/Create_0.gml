@@ -1,6 +1,8 @@
 event_inherited()
+print("Inv menu " + string(random(50)))
 cam = view_get_camera(camera_get_active())
 if combatManagerID != 0  { cam = view_get_camera(combatCam) }
+print( combatManagerID)
 camX = camera_get_view_x(cam)
 camY = camera_get_view_y(cam)
 camWidth = camera_get_view_width(cam)
@@ -10,9 +12,23 @@ spaceFromPauseMenu = 3
 x = camX + (camWidth/20) + pauseMenuWidth + spaceFromPauseMenu 
 y = camY + (camHeight/20)
 
-setTopDepth(id)
+//Relocate the menu
+var camXBuffer = 10
+var camYBuffer = 10
 
-op_border = 8
+if combatManagerID != 0  {
+	camXBuffer = 15
+	x =combatMenuID.x + camXBuffer
+	camYBuffer = 10
+	y = combatMenuID.y - camYBuffer
+}
+
+
+setTopDepth(id)
+depth--
+selectedAction = {}
+
+op_border = 4
 op_space = 16;
 
 //Base Menu
@@ -36,6 +52,10 @@ function getItemsFromAaron(){
 	var aaron =  global.OVERWORLD_ID_AARON
 	var allItems = []
 	array_copy(allItems, 0, aaron.inventory, 0, array_length(aaron.inventory))
+	consumables = [{name:"<--Back"}]
+	equipment = [{name:"<--Back"}]
+	keyItems = [{name:"<--Back"}]
+	otherItems = [{name:"<--Back"}]
 	for (var i=0; i<array_length(allItems); i++){
 		var menuPage = ""
 		try{menuPage = allItems[i].menuPage}catch(err){menuPage = "Other"}
@@ -54,6 +74,10 @@ function getItemsFromAaron(){
 				break;
 		}
 	}
+	option[1] = consumables
+	option[2] = equipment
+	option[3] = keyItems
+	option[4] = otherItems
 }
 
 getItemsFromAaron()

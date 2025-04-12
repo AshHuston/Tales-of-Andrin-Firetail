@@ -9,7 +9,6 @@ y = camY + (camHeight/20)
 
 setTopDepth(id)
 
-
 op_border = 8
 op_space = 16;
 
@@ -23,6 +22,10 @@ option = [
 	 "Settings",
 	 "Main Menu"
  ]
+ 
+badOptions = []
+if !global.ALL_GAME_FLAGS.demo.eqExplained{array_push(badOptions, 3)} //EQ not unlocked.
+array_push(badOptions, 4) //SaveLoad still in the works. @TODO Remove this
 
 op_length = array_length(option);
 
@@ -51,6 +54,4 @@ objsThatWillPauseThis = [
 	obj_splash_textbox
 ]
 
-badOptions = []
-if !global.ALL_GAME_FLAGS.demo.eqExplained{array_push(badOptions, 3)}
 lastInput = ""

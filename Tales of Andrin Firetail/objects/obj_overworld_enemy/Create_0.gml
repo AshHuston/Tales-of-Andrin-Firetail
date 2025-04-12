@@ -2,5 +2,4 @@ hasStartedCombat = false
 mobs = [noone, noone, noone, noone, noone]
 lootForCombat = {}
 combatSpecialEvents = []
-
-chasePlayer = false
+//isAggroed = false

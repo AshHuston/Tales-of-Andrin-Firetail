@@ -1,0 +1,64 @@
+{
+    "dialogueID": 6,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_kylah_dialogue",
+            "yapping_speed": 0.5
+        }
+    ],
+    "dialogue": {
+        "voiceover_id": "6_2",
+        "display_text": "",
+        "speaker": "Aaron",
+        "speaker_side": "LEFT",
+        "text": "Uh Kylah, why are those rats sparkling? Do they have rabies or something?",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "6_3",
+                "display_text": "",
+                "speaker": "Kylah",
+                "speaker_side": "RIGHT",
+                "text": "No, it feels like they're radiating some sort of mana.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "6_4",
+                        "display_text": "",
+                        "speaker": "Aaron",
+                        "speaker_side": "LEFT",
+                        "text": "So, they have magic rabies. Great.",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": NaN,
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

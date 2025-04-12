@@ -8,10 +8,8 @@ if step == "waiting for intro" && !instance_exists(obj_combat_intro){
 	step = "Determine active combatant";
 }
 
-//@TODO Decide actual input for opening combatLog
-if keyboard_check_pressed(vk_alt){	//@DIAL
-	if !hideCombatLog{hideCombatLog = true}
-	else {hideCombatLog = false}
+if input("Y"){	//Full log   //@DIAL
+	hideCombatLog = !hideCombatLog
 }
 
 function displayActionAnimation(targetsArr, results){
@@ -219,6 +217,7 @@ if waitFrames<1 && !gameIsOver{
 				menu = instance_find(obj_combat_menu, 0)
 				instance_destroy(menu);	
 			}
+			
 			//Reduce their counters by 1. (Statuses/cooldowns)
 				//@TODO Figure this out.
 		
@@ -249,8 +248,6 @@ if waitFrames<1 && !gameIsOver{
 	#endregion
 	#region Select Targets
 		case "Select targets":
-			//show_debug_message(typeof(targets))
-			//show_debug_message(targets[0])
 			if back_key{step = "Open menu";}
 			else if array_contains(preDesignatedTargets, string_lower(targets[0])){
 				if accept_key{
@@ -284,7 +281,6 @@ if waitFrames<1 && !gameIsOver{
 						targets[0] = "self";
 						step = "Do action";
 						waitFrames = 5
-
 						}
 					}
 			}
@@ -298,7 +294,11 @@ if waitFrames<1 && !gameIsOver{
 				var targetStartHP = 0;
 				var bonusTargetEndHP = 0;
 				var targetEndHP = 0;
-			
+				
+				instance_destroy(obj_combat_menu)
+				instance_destroy(obj_inventory_menu)
+				instance_destroy(obj_party_menu)
+				
 				if typeof(theseTargets) != "array"{theseTargets = [theseTargets]}
 				action.targetID = theseTargets[0];	//Could be an objectID or "all" or "self" 
 												//@TODO Handle these non-ID cases. /\

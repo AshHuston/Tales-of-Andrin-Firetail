@@ -132,3 +132,5 @@ lastY = y
 if global.OVERWORLD_ID_AARON != id{global.OVERWORLD_ID_AARON = id;}
 paused = global.GAME_IS_PAUSED
 #endregion
+
+check_spash_text_queue()

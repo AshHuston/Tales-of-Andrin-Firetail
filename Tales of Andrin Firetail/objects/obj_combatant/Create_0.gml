@@ -131,6 +131,10 @@ function attack(details){
 		results.secondaryType = secondaryAttack.mainType;
 	}
 #endregion
+
+#region Sound effect
+	if variable_struct_exists(results, "soundEffectId") { audio_play_sound(result.soundEffectId, 1, false) }
+#endregion
 	return results;
 }
 
@@ -144,14 +148,20 @@ function castSpell(details){
 }
 
 function useItem(details){
+	print("TEST")
+	print(details)
 	var result;
 	if details.targetID == "self"{
 		result = details.use(self, details.bonus_targetID);	
 	}
 	else{
-		result = details.use(targetID, details.bonus_targetID);	
+		result = details.use(details.targetID, details.bonus_targetID);	
 	}
 	if !variable_struct_exists(result, "logMessage"){ result.logMessage = [{text: "DEFAULT LOG MESSAGE - ITEM", color: c_white}]}
+	
+	#region Sound effect
+		if variable_struct_exists(result, "soundEffectId") { audio_play_sound(result.soundEffectId, 1, false) }
+	#endregion
 	return result;
 }
 

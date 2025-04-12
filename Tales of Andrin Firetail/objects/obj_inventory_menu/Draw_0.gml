@@ -13,7 +13,7 @@ for(var i=0; i<op_length; i++)
 	{		
 		text = option[menu_level][i].name
 		if menu_level == 1 && i > 0{ 
-			text += "  x" + string(option[menu_level][ i].quantity);
+			text += "  x" + string(option[menu_level][i].quantity);
 		}
 		var _c = c_white;
 		if pos == i {_c = c_black;}

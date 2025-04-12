@@ -21,7 +21,6 @@ if pos<0 {pos=op_length-1}
 //Back button
 if back_key{
 	if !instance_exists(obj_party_menu){
-		if menu_level == 0 { instance_destroy(self) }
 		menu_level = 0;
 		op_length = array_length(option[menu_level]);
 	}else{
@@ -33,8 +32,7 @@ if back_key{
 if instance_exists(obj_inventory_menu){ accept_key = false; }// print("inv menu exists")}
 
 #region Press select
-chosenTargets = [];	
-if (accept_key) || (continuingOperation)
+if (accept_key)// || (continuingOperation)
 {
 	var _sml = menu_level;
 	switch(menu_level)
@@ -60,6 +58,7 @@ if (accept_key) || (continuingOperation)
 		
 		//INVENTORY
 			case 3:
+			pos = 0
 			if !instance_exists(obj_inventory_menu){ instance_create_depth(0,0,0, obj_inventory_menu, {combatMenuID:id, combatManagerID:combatManagerID, activeCombatant:activeCombatant})}
 			//menu_level = 4;
 			break;
@@ -80,7 +79,6 @@ if (accept_key) || (continuingOperation)
 					
 				default:
 				selectedAction = attacks[pos];
-				chosenTargets = [];
 				array_push(chosenTargets, selectedAction.targetID)
 			}
 			 
@@ -94,8 +92,7 @@ if (accept_key) || (continuingOperation)
 					break;
 				
 				default:
-				selectedAction = spells[pos];
-				chosenTargets = [];				 
+				selectedAction = spells[pos];			 
 				array_push(chosenTargets, selectedAction.targetID)
 			}
 		break;
@@ -108,8 +105,7 @@ if (accept_key) || (continuingOperation)
 					break;
 					
 				default:
-				selectedAction = spells[pos];
-				chosenTargets = [];				 
+				selectedAction = spells[pos];	 
 				array_push(chosenTargets, selectedAction.targetID)
 		}
 		break;
@@ -139,8 +135,10 @@ if (accept_key) || (continuingOperation)
 	op_length = array_length(option[menu_level]);
 } else {sel_btn_pressed_last = false;}
 
-
+//print(selectedAction)
+//print(array_length(chosenTargets))
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
+	print(selectedAction)
 	var cost = 0
 	var type = ""
 	try{
@@ -155,22 +153,28 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	
 	statCurrentVal = activeCombatant.secondaryDisplayBarCurrent
 	if  cost == 0 || statCurrentVal >= cost{
-		combatManagerID.action = selectedAction;
+		combatManagerID.action = variable_clone(selectedAction);
 		combatManagerID.targets = chosenTargets;
 		combatManagerID.step = "Select targets";
+		try{ 
+			if instance_exists(combatManagerID.targets[0]) { 
+				combatManagerID.step = "Do action"; 
+			}
+		}catch(err){}
 		instance_destroy(self);
 		instance_destroy(instance_find(obj_inventory_menu, 0))
 	}else{
 		var shakeFrames = 15 //@TODO Fairly arbitrary number here.
 		combatManagerID.shakeSecondBarFrames = shakeFrames
 		selectedAction = {name:"empty"}
+		chosenTargets = []
 	}
 }
 #endregion
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
-height = (op_length*(string_height(option[menu_level][0]) + op_border))+op_length*2
+height = (op_length * op_space)+op_border
 
 width = 0
 for (var i=0; i<op_length; i++){

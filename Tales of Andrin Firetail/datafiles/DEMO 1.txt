@@ -1,0 +1,80 @@
+{
+    "dialogueID": 1,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_kylah_dialogue",
+            "yapping_speed": 0.5
+        }
+    ],
+    "dialogue": {
+        "voiceover_id": "1_2",
+        "display_text": "",
+        "speaker": "Kylah",
+        "speaker_side": "RIGHT",
+        "text": "Do we really want to go down there? I've heard some... stories about these sewers.",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "1_3",
+                "display_text": "",
+                "speaker": "Aaron",
+                "speaker_side": "LEFT",
+                "text": "Well Marcus said there was something he wanted to show us.\nC'mon, I don't want to miss... whatever it is.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "1_4",
+                        "display_text": "",
+                        "speaker": "Kylah",
+                        "speaker_side": "RIGHT",
+                        "text": "Fine. But we need to make it back before this afternoon. There's a presenter coming that...",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": {
+                                "voiceover_id": "1_5",
+                                "display_text": "",
+                                "speaker": "Aaron",
+                                "speaker_side": "LEFT",
+                                "text": "We've got plenty of time. Come on already!",
+                                "flag_id": "",
+                                "flag_value": false,
+                                "respondable": false,
+                                "response_options": {
+                                    "response_1": NaN,
+                                    "response_2": NaN,
+                                    "response_3": NaN,
+                                    "response_4": NaN,
+                                    "response_5": NaN
+                                }
+                            },
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

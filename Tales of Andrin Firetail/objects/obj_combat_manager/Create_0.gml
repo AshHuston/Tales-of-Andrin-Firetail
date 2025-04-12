@@ -1,5 +1,7 @@
 event_inherited()
 
+print("COMBAT MANAGER")
+
 instance_create_depth(0, 0, 0, obj_combatFadeOut)
 
 fadingHP = [0,0,0,0,0,0,0,0,0,0,0,0]
@@ -49,47 +51,48 @@ combatCenter = [	//////////////////////////////////////////////////////// @TESTI
 #region Combatant positions
 combat_positions = { //Values should be changed to best line up on combat screen
 	oneCharacter:[
-		[240, 120]
+		[134, 75],  
 	],
 	twoCharacters:[
-		[240, 120], 
-		[240, 180]
+		[134, 75], 
+		[134, 125], 
 	],
 	threeCharacters:[
-		[240, 120], 
-		[240, 180], 
-		[180, 160]
+		[134, 75], 
+		[134, 125], 
+		[102, 95],  
 	],
 	fourCharacters:[
-		[240, 120], 
-		[240, 180], 
-		[180, 160], 
-		[180, 220]
+		[134, 75], 
+		[134, 125], 
+		[102, 95], 
+		[102, 145]
 	],
+	
 	oneMonster:[
-		[380, 120], 
+		[262, 115], 
 	],
 	twoMonsters:[
-		[380, 120], 
-		[380, 180]
+		[262, 115], 
+		[262, 65], 
 	],
 	threeMonsters:[
-		[380, 120], 
-		[380, 160], 
-		[460, 140]
+		[262, 115], 
+		[262, 65], 
+		[294, 85], 
 	],
 	fourMonsters:[
-		[380, 120], 
-		[380, 160], 
-		[460, 140], 
-		[460, 180]
+		[262, 115], 
+		[262, 65], 
+		[294, 85], 
+		[294, 135],
 	],
 	fiveMonsters:[
-		[380, 120], 
-		[380, 180], 
-		[460, 150], 
-		[460, 210],
-		[460, 90]
+		[262, 115], 
+		[262, 65], 
+		[294, 85], 
+		[294, 135],
+		[262, 165]
 	]
 }
 #endregion
@@ -153,11 +156,6 @@ function createPartyCombatObjects(partyIDs){
 
 
 //-------------------COMBAT START----------------------
-
-	//Begin transition animation
-
-	//move to combat room
-
 	//Create list of combat object IDs.
 		combatants = []
 		// Aaron + 0-3 party members.

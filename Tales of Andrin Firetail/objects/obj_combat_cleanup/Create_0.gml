@@ -56,7 +56,6 @@ for (var i=0 ; i<array_length(loot); i++) {
 		var itemExists = false
 		for (var n=0 ; n<array_length(inventory); n++) {
 			if inventory[n].name = item.name{
-				print(item)
 				itemExists = true
 				inventory[n].quantity += item.quantity
 			}

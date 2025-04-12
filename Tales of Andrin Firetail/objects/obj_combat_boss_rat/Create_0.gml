@@ -1,4 +1,4 @@
-baseHp = 80
+baseHp = 8
 currentHp = baseHp;
 statusEffect = [];
 resistances = [];
@@ -26,6 +26,7 @@ swipe = {
 	frequency: round(random_range(4,9)),	//@TODO Figure out what kind of frequency numbers actually make sense.
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_swipe,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "slashes", color: c_white},
@@ -54,6 +55,7 @@ flames = {
 	animation_index: spr_test_attack_flame,
 	cost_type: "MP",
 	cost_value: 10,
+	soundEffectId: snd_fire_spell,
 	logMessage: [
 	{text: "*ACTIVE", color: c_aqua},
 	{text: "burns", color: c_white},
@@ -74,7 +76,7 @@ function getAction(){
 		}
 	}
 	actions = array_shuffle(actions)
-	var selectedAction = actions[0]
+	var selectedAction = variable_clone(actions[0])
 
 	if selectedAction.targetID == ""{
 	var partyIDs = getCombatPartyIDs();

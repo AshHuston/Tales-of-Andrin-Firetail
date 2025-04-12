@@ -35,7 +35,16 @@ var camY = camera_get_view_y(cam)
 var camHeight = camera_get_view_height(cam)
 var camWidth = camera_get_view_width(cam)
 var textboxWidth = camWidth*0.7				//@DIAL
-var textboxHeight = camHeight*0.2			//@DIAL
+var minTextboxHeight = camHeight*0.2			//@DIAL
+var maxTextboxHeight = camHeight*0.6			//@DIAL
+var textBonusPadding = 10
+var lineSpacing = 10
+var textWrapLength = textboxWidth-(2*textBonusPadding)
+var displayText = string_copy(fullLineText, 1, round(charactersToType))
+var numOfLines = 1+floor(string_width(displayText)/textWrapLength)+string_count("\n",displayText)
+var lineHeight = lineSpacing//string_height(displayText)//+lineSpacing
+var textHeight = lineHeight*numOfLines
+var textboxHeight = clamp(textHeight+(textBonusPadding*2), minTextboxHeight, maxTextboxHeight)//@DIAL
 var textBoxOffsetX = camWidth/2				//@DIAL
 var textBoxOffsetY = camHeight* 3/4			//@DIAL
 var textBoxX = camX + textBoxOffsetX
@@ -99,16 +108,12 @@ draw_text_ext_color(nameTextX, nameTextY, speakerName, 0, 1500, c_black, c_black
 //--------------------------------------------- Draw text ---------------------
 //Write text
 var textBonusPadding = 10
+var textWrapLength = textboxWidth-(2*textBonusPadding)
 var textPaddingX = (textboxWidth*0.5) - textBonusPadding
 var textPaddingY = (textboxHeight*0.5) - textBonusPadding
 var textX = textBoxX - textPaddingX
 var textY = textBoxY - textPaddingY
-var textWrapLength = textboxWidth-(2*textBonusPadding)
-var displayText = ""
-for (var i = 0; i<=round(charactersToType); i++;){
-	displayText = string_copy(fullLineText, 1, i)
-}
-draw_text_ext_color(textX, textY, displayText, 10, textWrapLength, c_black, c_black, c_black, c_black, 1)
+draw_text_ext_color(textX, textY, displayText, lineSpacing, textWrapLength, c_black, c_black, c_black, c_black, 1)
 
 
 //------------------------------------------- Show responses if any ------------------

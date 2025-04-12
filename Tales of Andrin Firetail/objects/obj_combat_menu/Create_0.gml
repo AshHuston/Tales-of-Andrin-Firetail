@@ -3,14 +3,14 @@ camX = camera_get_view_x(cam)
 camY = camera_get_view_y(cam)
 camWidth = camera_get_view_width(cam)
 camHeight = camera_get_view_height(cam)
-xPadding = 30
+xPadding = 5
 xBase = camX + xPadding
 x = xBase
 yBase = camY + (camHeight/2)
 
 setTopDepth(id)
 
-op_border = 8
+op_border = 4
 op_space = 16;
 
 //Base Menu

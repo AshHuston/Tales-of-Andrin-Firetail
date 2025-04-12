@@ -1,0 +1,64 @@
+{
+    "dialogueID": 2,
+    "chatSpriteIDs": [
+        {
+            "name": "Aaron",
+            "spriteID": "spr_aaron_dialogue",
+            "yapping_speed": 0.5
+        },
+        {
+            "name": "Kylah",
+            "spriteID": "spr_test_kylah_dialogue",
+            "yapping_speed": 0.5
+        }
+    ],
+    "dialogue": {
+        "voiceover_id": "2_2",
+        "display_text": "",
+        "speaker": "Aaron",
+        "speaker_side": "LEFT",
+        "text": "What the heck are those?!?!",
+        "flag_id": "",
+        "flag_value": false,
+        "respondable": false,
+        "response_options": {
+            "response_1": {
+                "voiceover_id": "2_3",
+                "display_text": "",
+                "speaker": "Kylah",
+                "speaker_side": "RIGHT",
+                "text": "Those are the stories I was trying to tell you about.",
+                "flag_id": "",
+                "flag_value": false,
+                "respondable": false,
+                "response_options": {
+                    "response_1": {
+                        "voiceover_id": "2_4",
+                        "display_text": "",
+                        "speaker": "Aaron",
+                        "speaker_side": "LEFT",
+                        "text": "Well, let's just try to get past them.",
+                        "flag_id": "",
+                        "flag_value": false,
+                        "respondable": false,
+                        "response_options": {
+                            "response_1": NaN,
+                            "response_2": NaN,
+                            "response_3": NaN,
+                            "response_4": NaN,
+                            "response_5": NaN
+                        }
+                    },
+                    "response_2": NaN,
+                    "response_3": NaN,
+                    "response_4": NaN,
+                    "response_5": NaN
+                }
+            },
+            "response_2": NaN,
+            "response_3": NaN,
+            "response_4": NaN,
+            "response_5": NaN
+        }
+    }
+}

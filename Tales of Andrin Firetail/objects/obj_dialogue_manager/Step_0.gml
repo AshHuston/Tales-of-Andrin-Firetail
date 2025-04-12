@@ -41,7 +41,7 @@ if audio_is_playing(previousVoiceOver){
 }
 
 if playVoiceover{
-	audio_play_sound(voiceover, 1, false)	
+	try{audio_play_sound(voiceover, 1, false)}catch(err){}
 	playVoiceover = false
 }
 #endregion

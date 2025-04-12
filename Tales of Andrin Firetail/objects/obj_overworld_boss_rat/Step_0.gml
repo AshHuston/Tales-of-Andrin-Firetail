@@ -6,7 +6,7 @@ function generateLoot(){
 	// @TODO Figure out how to generate loot from mob to mob	
 	loot = [
 		{name: "gold", quantity: round(random(25)), sprite: spr_gold_coins},
-		{name: "Zombie brain", quantity: round(random(10)), itemInfo: {
+		{name: "Rat brain", quantity: 1, itemInfo: {
 			name: "", 
 			quantity: 0, 
 			use: function healUser(targetID){
@@ -30,10 +30,17 @@ function generateLoot(){
 periodicallyFlip(60)
 
 function interact(){
-	if !hasStartedCombat{// && place_meeting(x, y, obj_overworld_aaron){
-		hasStartedCombat = true
-		var numberOfMobs = 1
-		startCombat(numberOfMobs, obj_combat_boss_rat)
-		lootForCombat = generateLoot()
+	if !hasTalked{
+		hasTalked = true
+		instance_create_depth(0,0,0, obj_dialogue_manager, {wholeDialogueStruct: getDialogue("DEMO 7")})
 	}
 }
+
+if hasTalked && !instance_exists(obj_dialogue_manager) && !hasStartedCombat{
+	var numberOfMobs = 1
+	startCombat(numberOfMobs, obj_combat_boss_rat)
+	lootForCombat = generateLoot()
+	hasStartedCombat = true
+}
+
+//Its spamming combats

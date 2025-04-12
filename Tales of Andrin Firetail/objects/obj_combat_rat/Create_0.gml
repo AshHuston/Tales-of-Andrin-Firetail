@@ -1,4 +1,4 @@
-baseHp = round(random_range(7,11));
+baseHp = round(random_range(11,15));
 currentHp = baseHp;
 statusEffect = [];
 resistances = [];
@@ -28,6 +28,7 @@ swipe = {
 	frequency: round(random_range(8,12)),	//@TODO Figure out what kind of frequency numbers actually make sense.
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_swipe,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "slashes", color: c_white},
@@ -53,6 +54,7 @@ bite = {
 	frequency: 0,//round(random_range(2,4))+1200,//@TESTING
 	actionType:"attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_bite,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "bites", color: c_white},
@@ -73,14 +75,13 @@ function getAction(){
 		}
 	}
 	actions = array_shuffle(actions)
-	var selectedAction = actions[0]
+	var selectedAction = variable_clone(actions[0])
 	
 	if selectedAction.targetID == ""{
 		var partyIDs = getCombatPartyIDs();
 		var targetIndex = round(random_range(0, array_length(partyIDs)-1));
 		var target = partyIDs[targetIndex];
 		selectedAction.targetID = target
-		//selectedAction.targetID = partyIDs[1] // @TESTING Override
 	}
 	
 	return selectedAction

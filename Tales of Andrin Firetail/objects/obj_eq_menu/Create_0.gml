@@ -21,14 +21,14 @@ function setHudPosition(){
 	hudYOffset = (camera_get_view_height(cam)/20) 
 	baseX = camera_get_view_x(cam) + hudXOffset
 	baseY = camera_get_view_y(cam) + hudYOffset
-	listX = baseX + 15//a buffer
+	listX = baseX + 5//a buffer
 	listY = baseY
 }
 setHudPosition()
 #endregion
 
 // Slot spacing refers to the X and Y spacing in pixels. Minimum of 24 due to the size of the sprite.
-slot_spacing = 23	//??-->	 									     ^ ?????
+slot_spacing = 23	//??????  ----------------------------------->  ^????
 
 //[XgridPos, YgridPos].
 slot_coordinates = [
@@ -54,7 +54,7 @@ crystal_list_coordinates = [6,0]
 in_crystal_list = false
 bufferCoords = false
 bufferedCoords = []
-numOfSlots = 7 ///////////////////////////////////////////
+numOfSlots = 4 //This should probably be set dynamically with important game flags. //TODO
 range = 0.00
 hoveredCoords = [2,1]
 hoveredSlot = 0
@@ -77,14 +77,16 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 		tallest_crystal_name_height = this_height	
 	}
 }
-op_borderX = 8
-op_borderY = 6
+op_borderX = 4
+op_borderY = 4
 op_space = tallest_crystal_name_height + 3;
 noCrystal = {name : "none", sprite : spr_slot, coords: [6,0], other_filled_slots: []}
 heldCrystal = noCrystal
 isHoldingCrystal = false
 
 setTopDepth(id)
+
+shakeHeldCrystalFrames = 0
 
 function shakeSelector(){
 	shakeHeldCrystalFrames = 15

@@ -14,6 +14,9 @@ if place_meeting(x, y, obj_overworld_aaron){
 	}
 	
 	if addNew { array_push(aaron.inventory, item) }
-	
+	var article = "a"
+	if array_contains(["A","a","E","e","I","i","O","o","U","u"],string_char_at(item.name, 1)){ article = "an" }
+	var text = "Picked up " + article + " " + item.name + "."
+	splash_text(text, true)
 	instance_destroy(self)
 }

@@ -24,6 +24,7 @@ itemInfo = {
 		animation_index: spr_test_attack_flame,
 		cost_type: "MP",
 		cost_value: 20,
+		soundEffectId: snd_fire_spell,
 		logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "burns", color: c_white},

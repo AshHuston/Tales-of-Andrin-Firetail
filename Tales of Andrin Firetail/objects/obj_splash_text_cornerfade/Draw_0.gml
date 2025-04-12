@@ -9,6 +9,7 @@ var textPaddingX = (textboxWidth*0.5) - textBonusPadding
 var textPaddingY = (textboxHeight*0.5) - textBonusPadding
 var textX = textBoxX - textPaddingX
 var textY = textBoxY - textPaddingY
-
-draw_text_ext_color(textX, textY, fullLineText, textBonusPadding, textWrapLength, c_black, c_black, c_black, c_black, 1)
+var displayText = fullLineText
+//if array_length(global.SPLASH_TEXT_QUEUE)>0{ displayText += ".  ~" +string(array_length(global.SPLASH_TEXT_QUEUE)) }
+draw_text_ext_color(textX, textY, displayText, textBonusPadding, textWrapLength, c_black, c_black, c_black, c_black, 1)
 #endregion

@@ -66,10 +66,10 @@ for (var i=0; i<array_length(crystal_inventory); i++){
 }
 if in_crystal_list && !isHoldingCrystal{
 	if num_of_crystals>0{
-		var previewCrystalX = listX + (width/2) + 75//Arbitrary for testing @TODO
-		var previewCrystalY = listY + 10		//Arbitrary for testing
-		var previewCrystalScaleY = 1.5			//Arbitrary for testing
-		var previewCrystalScaleX = 1.5			//Arbitrary for testing
+		var previewCrystalX = listX + width + 25//Arbitrary for testing @TODO
+		var previewCrystalY = listY + (height/2)		//Arbitrary for testing
+		var previewCrystalScaleY = 1//.5			//Arbitrary for testing
+		var previewCrystalScaleX = 1//.5			//Arbitrary for testing
 		draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
 	}
 }

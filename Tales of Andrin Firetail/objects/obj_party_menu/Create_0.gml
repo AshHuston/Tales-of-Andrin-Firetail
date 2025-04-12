@@ -64,7 +64,7 @@ function shakeSelector(){
 }
 
 setTopDepth(id)
-
+depth -= 10
 image_speed = image_speed*0.6
 
 X = 0

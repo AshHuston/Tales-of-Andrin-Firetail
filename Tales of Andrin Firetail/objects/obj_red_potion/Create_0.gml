@@ -2,7 +2,7 @@ itemInfo = {name:"Healing Potion",
 		quantity: 1,
 		stackable: true,
 		menuPage: "consumables",
-		can_use: function canHealUser(targetID){print("RED POTION CAN_USE FUNCTION"); return targetID.currentHp < targetID.maxHp},
+		can_use: function canHealUser(targetID){print("\n\n\nRED POTION CAN_USE FUNCTION");print(targetID); return (targetID.currentHp < targetID.maxHp)},
 		use: function healUser(targetID){
 			var healAmt = 30;
 			var startHp = targetID.currentHp
@@ -12,7 +12,7 @@ itemInfo = {name:"Healing Potion",
 			return {animation_index: "None", hpRestored: healAmt, can_use:(startHp < targetID.maxHp)};
 		   	}, 
 		description:"Heals user for 30 HP", 
-		canTarget:"self",
+		canTarget:"party member",
 		actionType:"item",
 		combatMenu:true,
 		targetID:"",
@@ -28,3 +28,5 @@ scale = xScale
 if yScale < scale {scale = yScale}
 image_xscale = scale
 image_yscale = scale
+x += width/2
+y += height/2
