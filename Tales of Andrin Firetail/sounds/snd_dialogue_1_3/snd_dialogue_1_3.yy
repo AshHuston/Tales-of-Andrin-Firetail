@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"snd_dialogue_1_3",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":5.12,
+  "name":"snd_dialogue_1_3",
+  "parent":{
+    "name":"Dialogue 1",
+    "path":"folders/Sounds/DialogueAudio/DEMO/Dialogue 1.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_dialogue_1_3.wav",
+  "type":0,
+  "volume":1.0,
+}

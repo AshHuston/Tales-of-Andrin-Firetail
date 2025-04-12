@@ -13,7 +13,7 @@
         }
     ],
     "dialogue": {
-        "voiceover_id": "none",
+        "voiceover_id": "3_2",
         "display_text": "",
         "speaker": "Aaron",
         "speaker_side": "LEFT",
@@ -23,7 +23,7 @@
         "respondable": false,
         "response_options": {
             "response_1": {
-                "voiceover_id": "none",
+                "voiceover_id": "3_3",
                 "display_text": "",
                 "speaker": "Kylah",
                 "speaker_side": "RIGHT",
@@ -33,7 +33,7 @@
                 "respondable": false,
                 "response_options": {
                     "response_1": {
-                        "voiceover_id": "none",
+                        "voiceover_id": "3_4",
                         "display_text": "",
                         "speaker": "Kylah",
                         "speaker_side": "RIGHT",

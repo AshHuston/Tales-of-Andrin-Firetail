@@ -13,7 +13,7 @@
   "name":"snd_dialogue_0_2",
   "parent":{
     "name":"Dialogue 0",
-    "path":"folders/Sounds/DialogueAudio/Dialogue 0.yy",
+    "path":"folders/Sounds/DialogueAudio/DEMO/Dialogue 0.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

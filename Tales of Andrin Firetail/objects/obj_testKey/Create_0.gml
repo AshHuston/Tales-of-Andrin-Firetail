@@ -1,7 +1,7 @@
 event_inherited()
 
 itemInfo = {
-		name:"testKey", 
+		name:"Key", 
 		tags: ["key"],
 		quantity: 1, 
 		use: show_debug_message("Door Opened"), 
