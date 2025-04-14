@@ -10,3 +10,8 @@ y = cameraY + yOffset
 if image_number-1 == image_index{
 	instance_destroy(self)	
 }
+
+if image_index == 2{ 
+	print("stopped ovw music")
+	audio_stop_sound(global.OVERWORLD_MUSIC) 
+	}

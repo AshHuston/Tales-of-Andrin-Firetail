@@ -28,7 +28,7 @@ var pistol = {
 	effect_chance: 0, 
 	effect_type: "",
 	actionType: "attack",
-	animation_index: spr_test_attack_claw, //@TODO Add a new animation for this
+	animation_index: spr_musket_shot, //@TODO Add a new animation for this
 	soundEffectId: snd_musket,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},

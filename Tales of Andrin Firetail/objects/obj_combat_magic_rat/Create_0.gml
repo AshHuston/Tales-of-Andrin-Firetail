@@ -26,8 +26,8 @@ swipe = {
 	effect_type: "",
 	frequency: round(random_range(8,12)),	//@TODO Figure out what kind of frequency numbers actually make sense.
 	actionType:"attack",
-	animation_index: spr_test_attack_claw,
-	soundEffectId: snd_swipe,
+	animation_index: spr_bite,
+	soundEffectId: snd_bite,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "slashes", color: c_white},

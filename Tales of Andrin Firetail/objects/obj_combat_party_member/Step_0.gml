@@ -14,6 +14,7 @@ var punch = {
 	effect_type: "",
 	actionType: "attack",
 	animation_index: spr_test_attack_claw,
+	soundEffectId: snd_swipe,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},
 		{text: "punches", color: c_white},

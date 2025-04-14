@@ -67,6 +67,7 @@ function addTutorialCombat(){
 }
 
 function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
+	setFlag("general.isInCombat", true)
 	if !instance_exists(obj_combat_manager) && !instance_exists(obj_combat_cleanup){
 		addTutorialCombat() //Not really sure the best place to put this... It doesnt really belong here i feel.
 		numberOfMonsters = clamp(numberOfMonsters, 1, 5)

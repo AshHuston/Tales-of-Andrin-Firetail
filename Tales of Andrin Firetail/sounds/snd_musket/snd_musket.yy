@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":1.676417,
+  "duration":2.32075,
   "name":"snd_musket",
   "parent":{
     "name":"Sounds",

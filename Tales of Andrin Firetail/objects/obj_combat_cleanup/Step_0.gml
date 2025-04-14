@@ -7,6 +7,8 @@ function close_combat(){
 		instance_destroy(global.COMBATANTS[i])
 	}
 	instance_destroy(overworldDetails.overworld_mob)
+	setFlag("general.isInCombat", false)
+	
 	instance_destroy(self)
 }
 

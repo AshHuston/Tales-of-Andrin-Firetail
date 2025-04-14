@@ -4,7 +4,7 @@
         {
             "name": "Aaron",
             "spriteID": "spr_aaron_dialogue",
-            "yapping_speed": 0.5
+            "yapping_speed": 0.3
         },
         {
             "name": "Kylah",
@@ -38,8 +38,8 @@
                         "speaker": "Kylah",
                         "speaker_side": "RIGHT",
                         "text": "Fine. But we need to make it back before this afternoon. There's a presenter coming that...",
-                        "flag_id": "",
-                        "flag_value": false,
+                        "flag_id": "demo.readyForMovementPopup",
+                        "flag_value": true,
                         "respondable": false,
                         "response_options": {
                             "response_1": {
@@ -48,8 +48,8 @@
                                 "speaker": "Aaron",
                                 "speaker_side": "LEFT",
                                 "text": "We've got plenty of time. Come on already!",
-                                "flag_id": "",
-                                "flag_value": false,
+                                "flag_id": "demo.playDungeonMusic",
+                                "flag_value": "true",
                                 "respondable": false,
                                 "response_options": {
                                     "response_1": NaN,

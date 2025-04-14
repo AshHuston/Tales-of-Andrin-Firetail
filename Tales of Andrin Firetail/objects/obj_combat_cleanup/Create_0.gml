@@ -1,5 +1,8 @@
 event_inherited()
 
+audio_stop_sound(snd_battle)// Maybe should fadeout? 
+audio_play_sound(snd_victory, 1, false)
+
 fadeout = noone
 fadeoutFinished = false
 shading = 0

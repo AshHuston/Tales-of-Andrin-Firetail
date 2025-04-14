@@ -63,8 +63,8 @@ function getAction(){
 	var target = partyIDs[targetIndex];
 	
 	// Pick attack
-	bite.targetID = target;
-	return bite;
+	spr_bite.targetID = target;
+	return spr_bite;
 }
 
 damageAnimationSprite = dmg_zombie_sprite;

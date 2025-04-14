@@ -2,6 +2,8 @@ event_inherited()
 
 print("COMBAT MANAGER")
 
+audio_play_sound(snd_battle, 2, true, 0.7) //gain should be set by settings code. Probably a globalvar
+
 instance_create_depth(0, 0, 0, obj_combatFadeOut)
 
 fadingHP = [0,0,0,0,0,0,0,0,0,0,0,0]

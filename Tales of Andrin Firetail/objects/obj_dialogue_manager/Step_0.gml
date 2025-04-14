@@ -46,6 +46,12 @@ if playVoiceover{
 }
 #endregion
 
+#region Gameflags
+if dialogueBlurb.flag_id != ""{
+	setFlag(dialogueBlurb.flag_id, dialogueBlurb.flag_value)	
+}
+#endregion
+
 //Check if text is printed
 if charactersToType >= string_length(fullLineText){
 	charactersToType = string_length(fullLineText);

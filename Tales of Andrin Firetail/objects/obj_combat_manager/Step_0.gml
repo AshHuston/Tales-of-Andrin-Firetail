@@ -4,6 +4,7 @@ var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
 
+
 if step == "waiting for intro" && !instance_exists(obj_combat_intro){
 	step = "Determine active combatant";
 }
@@ -15,26 +16,29 @@ if input("Y"){	//Full log   //@DIAL
 function displayActionAnimation(targetsArr, results){
 	if typeof(targetsArr) != "array"{ targetsArr = [targetsArr] }
 	target = targetsArr[0];
-	if results.animation_index != "None" && results.mainDmg != -1{
-		instance_create_depth(target.x, target.y, -100, obj_action_animation, {image_speed: 1.5, sprite_index: results.animation_index});
+	if results.animation_index != "None"{
+		instance_create_depth(target.x, target.y, -100, obj_action_animation, {image_speed: 1.5, sprite_index: results.animation_index, target: target});
 		if array_length(targetsArr) == 2{
 			secondary_target = targetsArr[1];
-			instance_create_depth(secondary_target.x, secondary_target.y, -100, obj_action_animation, {sprite_index:results.animation_index});
+			instance_create_depth(secondary_target.x, secondary_target.y, -100, obj_action_animation, {sprite_index:results.animation_index, target: target});
 		}
 	}
 	
 	if struct_exists(results, "mainDmg"){
-		instance_create_depth(target.x, target.y, -100, obj_damage_value_animation, {dmgAmt: string(results.mainDmg)});	
-			
+		//if results.mainDmg != -1{
+			instance_create_depth(target.x, target.y, -100, obj_damage_value_animation, {dmgAmt: string(results.mainDmg)});	
+		//}
 	}
 	
 	//@TODO Add pause and then animate status effect if applied. //And probably not if aleady affected.
 	
 	
+	//I think this is redundant?
+	/*
 	if array_length(targetsArr) == 2{
 		secondary_target = targetsArr[1];
 		instance_create_depth(secondary_target.x, secondary_target.y, -100, obj_action_animation, {sprite_index:results.animation_index});
-	}
+	}*/
 }
 
 function display_log_message(logMessage){
@@ -325,7 +329,8 @@ if waitFrames<1 && !gameIsOver{
 			
 				var results = activeCombatant.doAction(action);
 				displayActionAnimation(theseTargets, results);
-				//waitFrames = 50
+				if variable_struct_exists(action, "soundEffectId"){ audio_play_sound(action.soundEffectId, 1, false) }
+				waitFrames = 15
 								
 				switch(action.targetID)
 				{

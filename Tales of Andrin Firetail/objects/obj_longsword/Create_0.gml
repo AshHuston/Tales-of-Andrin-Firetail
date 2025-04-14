@@ -14,6 +14,7 @@ itemInfo = {
 		max_dmg: 12, 
 		hit_chance: 90, 
 		actionType: "attack",
+		soundEffectId: snd_swipe,
 		animation_index: spr_test_attack_flame, //@TODO Add slashing animation
 		logMessage: [
 			{text: "*ACTIVE", color: c_aqua},

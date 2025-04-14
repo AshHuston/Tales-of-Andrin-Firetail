@@ -53,7 +53,7 @@ bite = {
 	effect_type: "poison",
 	frequency: 0,//round(random_range(2,4))+1200,//@TESTING
 	actionType:"attack",
-	animation_index: spr_test_attack_claw,
+	animation_index: spr_bite,
 	soundEffectId: snd_bite,
 	logMessage: [
 		{text: "*ACTIVE", color: c_aqua},

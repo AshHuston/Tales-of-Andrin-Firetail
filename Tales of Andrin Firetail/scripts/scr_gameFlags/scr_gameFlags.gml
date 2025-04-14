@@ -37,6 +37,11 @@ global.ALL_GAME_FLAGS ={
 		combatTutorialFinished: false,
 		hasDiscussedRats: false,
 		hasDiscussedMagicRats: false,
-		eqExplained: false
+		eqExplained: false,
+		playDungeonMusic: false,
+		readyForMovementPopup: false
+	},
+	general:{
+		isInCombat: false	
 	}
 }

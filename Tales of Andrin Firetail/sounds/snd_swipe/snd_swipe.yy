@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.144,
+  "duration":0.184625,
   "name":"snd_swipe",
   "parent":{
     "name":"Sounds",
