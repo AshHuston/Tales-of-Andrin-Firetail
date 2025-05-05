@@ -26,7 +26,7 @@ option[3] = specialActions;
 option[4] = inventory;
 
 for(var i=1; i<+array_length(option);i++){
-	array_insert(option[i], 0, {name:"<--Back"});	
+	array_push(option[i], {name:"<--Back"});	
 }
 
 op_length = 0;
@@ -50,3 +50,7 @@ accept_btn = gamepad_button_value(0, gp_face1);
 selectedAction = {name:"empty"}; 
 chosenTargets = [];
 continuingOperation = false
+
+descriptionX = 0
+descriptionY = 0
+seperator = 3

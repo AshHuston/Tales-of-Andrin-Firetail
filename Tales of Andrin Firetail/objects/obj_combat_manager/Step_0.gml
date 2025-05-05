@@ -3,7 +3,10 @@ var down_key = input("down");
 var accept_key = input("enter");
 var back_key = input("back");
 drawSelector = true
-
+#region Alpha fading
+if blinkAlpha >= 1 || blinkAlpha <=0 { blinkAlphaStepSize*=-1 }
+blinkAlpha += blinkAlphaStepSize
+#endregion
 
 if step == "waiting for intro" && !instance_exists(obj_combat_intro){
 	step = "Determine active combatant";
@@ -117,12 +120,12 @@ function checkForEvents(){ // @TODO Need to figure out how to handle multiple ev
 }
 
 checkForEvents()
-if waitingForEvent{ waitFrames++ }	// This keeps it in parody
+if waitingForEvent{ waitFrames++ }
 
 #region Combat step clock
 // This allows us to manually enter an amount of frames to wait after any given thing before the combat clock 
 // moves onto the next thing. Animations will persist though so thats good
-if waitFrames<1 && !gameIsOver{
+if !(waitFrames<1 && !gameIsOver) { waitFrames-- }else{
 	checkForEvents()
 	
 	switch(step){
@@ -549,7 +552,6 @@ if waitFrames<1 && !gameIsOver{
 		break;
 	}
 	#endregion
-}else{
-	waitFrames--
 }
 #endregion
+

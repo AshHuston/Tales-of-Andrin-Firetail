@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_status_attacks",
   "isCompatibility":false,
   "isDnD":false,

@@ -20,3 +20,21 @@ for(var i=0; i<op_length; i++)
 		if pos == i {_c = c_black;}
 		draw_text_color(x+op_border, y+op_border + (op_space*i), text, _c, _c, _c, _c, 1);
 	}
+	
+// Description background
+if !array_contains(["none", "<--Back", "empty"], combatManagerID.hoveredAction.name){
+	var descriptionText = ""
+	try{ descriptionText = combatManagerID.hoveredAction.description}catch(err){ descriptionText = "ERROR: ACTION HAS NO LISTED DESCRIPTION" }
+	var maxCharWidth = 100 //@DIAL
+	var sep = string_height("|") + 2//*op_border //@DIAL
+	var descriptionWidth = string_width_ext(descriptionText, sep, maxCharWidth) + (2*op_border)
+	var descriptionHeight = string_height_ext(descriptionText, sep, maxCharWidth)+(2*op_border)
+	draw_sprite_ext(sprite_index, image_index, descriptionX, descriptionY, descriptionWidth/sprite_width, descriptionHeight/sprite_height, 0, c_white, 1);
+
+	combatManagerID.actionStatsOrigin = [descriptionX, descriptionY+descriptionHeight+seperator]
+	
+	// Description text
+	var textX = descriptionX+op_border
+	var textY = descriptionY+op_border
+	draw_text_ext_color(textX, textY, descriptionText, sep, maxCharWidth, c_black, c_black, c_black, c_black, 1)
+}

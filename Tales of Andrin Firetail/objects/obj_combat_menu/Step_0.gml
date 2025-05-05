@@ -32,9 +32,10 @@ if back_key{
 if instance_exists(obj_inventory_menu){ accept_key = false; }// print("inv menu exists")}
 
 #region Press select
-if (accept_key)// || (continuingOperation)
+if (accept_key)
 {
 	var _sml = menu_level;
+	var back = 0
 	switch(menu_level)
 	{
 		//pause menu
@@ -72,62 +73,51 @@ if (accept_key)// || (continuingOperation)
 		
 		//Attacks menu
 		case 1:
+			back = array_length(attacks)-1
 			switch (pos){
-				case 0:
+				case back:
 					menu_level = 0;
 					break;
 					
 				default:
-				selectedAction = attacks[pos];
-				array_push(chosenTargets, selectedAction.targetID)
+					selectedAction = attacks[pos];
+					array_push(chosenTargets, selectedAction.targetID)
 			}
 			 
 		break;
 		
 		//Spells menu
 		case 2:
+			back = array_length(spells)-1
 			switch (pos){
-				case 0:
+				case back:
 					menu_level = 0;
 					break;
 				
 				default:
-				selectedAction = spells[pos];			 
-				array_push(chosenTargets, selectedAction.targetID)
+					selectedAction = spells[pos];			 
+					array_push(chosenTargets, selectedAction.targetID)
 			}
 		break;
 		
 		//Special Actions menu
 		case 3:
-		switch (pos){
-				case 0:
+			back = array_length(specialActions)-1
+			switch (pos){
+				case back:
 					menu_level = 0;
 					break;
 					
 				default:
-				selectedAction = spells[pos];	 
-				array_push(chosenTargets, selectedAction.targetID)
+					selectedAction = specialActions[pos];	 
+					array_push(chosenTargets, selectedAction.targetID)
 		}
 		break;
 		
 		//Inventory menu
 		case 4:
 			if !instance_exists(obj_inventory_menu){ instance_create_depth(0,0,0, obj_inventory_menu, {combatManagerID:combatManagerID, activeCombatant:activeCombatant})}
-		break;
-		/*
-		switch (pos){
-			
-				case 0:
-					menu_level = 0;
-					break;
-					
-				default:
-				selectedAction = inventory[pos];
-				chosenTargets = [];				 //Temporary line of code? // = slectedAction.cantarget
-				array_push(chosenTargets, selectedAction.targetID)
-		}
-		break; */
-		
+		break;		
 	}	
 	//prep for next menu
 	sel_btn_pressed_last = true;
@@ -135,8 +125,33 @@ if (accept_key)// || (continuingOperation)
 	op_length = array_length(option[menu_level]);
 } else {sel_btn_pressed_last = false;}
 
-//print(selectedAction)
-//print(array_length(chosenTargets))
+#region Hovered action manager
+var menuToRead = []
+switch(menu_level)
+	{
+	case 1:
+		menuToRead = attacks; break;
+		
+	case 2:
+		menuToRead = spells; break;
+		
+	case 3:
+		menuToRead = specialActions; break;
+		
+	case 4: //Inventory
+		//This one needs to be figured out. It may be left blank and handled in the inventory menu.
+	break;		
+}	
+
+switch (menu_level){
+	case 0:
+		combatManagerID.hoveredAction = {name:"none"}; break;
+	default:
+		combatManagerID.hoveredAction = menuToRead[pos];
+}
+#endregion
+
+
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	print(selectedAction)
 	var cost = 0
@@ -156,6 +171,7 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 		combatManagerID.action = variable_clone(selectedAction);
 		combatManagerID.targets = chosenTargets;
 		combatManagerID.step = "Select targets";
+		combatManagerID.hoveredAction = {name:"none"};
 		try{ 
 			if instance_exists(combatManagerID.targets[0]) { 
 				combatManagerID.step = "Do action"; 
@@ -171,6 +187,8 @@ if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
 	}
 }
 #endregion
+
+
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
 //adjust window
@@ -190,3 +208,7 @@ width = clamp(width, minMenuWidth, maxMenuWidth)
 //Relocate the menu
 x = xBase
 y = yBase - (height/2)
+
+seperator = 3 //Redundant line for legibikity
+descriptionX = xBase + width + seperator
+descriptionY = y

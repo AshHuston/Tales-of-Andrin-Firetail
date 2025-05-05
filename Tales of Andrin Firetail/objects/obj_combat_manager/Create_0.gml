@@ -9,6 +9,8 @@ instance_create_depth(0, 0, 0, obj_combatFadeOut)
 fadingHP = [0,0,0,0,0,0,0,0,0,0,0,0]
 fadingSecondStat = [0,0,0,0,0,0,0,0,0,0,0,0]
 
+actionStatsOrigin = [0,0]
+
 entrySpacing = 0	// Value overridden on Draw
 totalLines = 0		// Value overridden on Draw
 longestTextWidth = 0// Value overridden on Draw
@@ -21,6 +23,11 @@ combatLogEntries = []			// Each entry should have {text:"Words", color:c_white}
 combatLogEntriesOnDisplay = []	// Should have {text:"Words", color:c_white, frames:default_frames, alpha:for_fade_out}
 waitFrames = 3
 shakeSecondBarFrames = 0
+
+hoveredAction = {name:"none"}
+
+blinkAlpha = 1
+blinkAlphaStepSize = 0.075 //@DIAL
 
 drawSelector = true
 preDesignatedTargets = ["all enemies", "all"] // Targets that will not require selection.

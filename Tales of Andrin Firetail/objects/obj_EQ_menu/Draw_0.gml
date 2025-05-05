@@ -1,6 +1,7 @@
 var hoveringCrystalX = 0
 var hoveringCrystalYShadow = 0
 var hoveringCrystalY = 0
+			
 		
 for (var i = 0; i<numOfSlots; i++){ 
 	var frame = 0
@@ -73,4 +74,23 @@ if in_crystal_list && !isHoldingCrystal{
 		draw_sprite_ext(crystal_inventory[hoveredCrystal].sprite, 0, previewCrystalX, previewCrystalY, previewCrystalScaleX, previewCrystalScaleY, 0, c_white, 1)
 	}
 }
+#endregion
+
+#region Effect descriptions
+var maxWidth = 150 // @DIAL
+var boxPadding = 4 // @DIAL
+var breakWidth = maxWidth-boxPadding*2
+var sep = string_height("|")+2
+width = string_width_ext(displayText, sep, breakWidth) + boxPadding*2
+height = string_height_ext(displayText, sep, breakWidth) + boxPadding*2
+xScale = width/sprite_get_width(spr_menu)
+yScale = height/sprite_get_height(spr_menu)
+var boxSpacing = 5 // @DIAL
+var descriptionBoxY = listY-(height+boxSpacing)
+draw_sprite_ext(spr_menu, 0, listX, descriptionBoxY, xScale, yScale, 0, c_white, listAlpha)
+
+var color = c_black
+if string_split(displayText, " ")[0] == "Error"{ color = c_maroon}
+draw_text_ext_color(listX+boxPadding, descriptionBoxY+boxPadding, displayText, sep, breakWidth,color,color,color,color, 1)
+	
 #endregion

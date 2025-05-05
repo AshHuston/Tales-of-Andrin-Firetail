@@ -1,0 +1,1 @@
+print("Aaron's demo coordinates should be 761, 77.")

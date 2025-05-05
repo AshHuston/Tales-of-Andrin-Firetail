@@ -4,28 +4,100 @@ combatLogExtraLines = 0
 addExtraLine = false
 longestTextWidth = 0
 
-if step == "Select targets" && drawSelector{
-	switch(targets[0]){
+#region Target selection
+function drawArrows(allTargets, indicatorAlpha = 1){
+	function drawArrowOver(target, indicatorAlpha){
+		draw_sprite_ext(spr_targetIndicator, -1, target.x, target.y-25, 0.5, 0.5, 0, c_white, indicatorAlpha);	
+	}
+	
+	switch(allTargets){
 		case "all":
 			for (var i=0; i<array_length(combatants); i++){
-				draw_sprite(spr_targetIndicator, -1, combatants[i].x, combatants[i].y-25);
+				drawArrowOver(combatants[i], indicatorAlpha)
 			}
 		break;
 	
 		case "all enemies":
 			for (var i=0; i<array_length(combatants); i++){
 				if object_get_parent(combatants[i].object_index) == obj_enemy{
-					draw_sprite(spr_targetIndicator, -1, combatants[i].x, combatants[i].y-25);
+					drawArrowOver(combatants[i], indicatorAlpha)
 				}
 			}
 		break;
 		
-		default:
+		case "hovered":
 			if hovering >=0 && hovering < array_length(combatants) && combatants[hovering].isConscious{
-				draw_sprite(spr_targetIndicator, -1, combatants[hovering].x, combatants[hovering].y-25);
+				drawArrowOver(combatants[hovering], indicatorAlpha)
 			}
+		break;
+			
+		default:
+			drawArrowOver(allTargets, indicatorAlpha)
 	}
+
 }
+
+if step == "Select targets" && drawSelector {
+	var non_hovereds = ["all enemies", "all"]
+	if array_contains(non_hovereds, targets[0]) { drawArrows(targets[0]) }
+	else { drawArrows("hovered") }
+}
+#endregion
+
+#region Hovered action (1/2) All but the bar-indicator
+if hoveredAction.name != "none" && hoveredAction.name != "<--Back"{
+	#region Gather data
+	function getRightCostIcon(action){
+		if !variable_struct_exists(action, "cost_type"){ return spr_wall }
+		switch (string_lower(action.cost_type)){
+			case "mp": return spr_mana_icon;
+			case "energy": return spr_energy_icon
+		}
+	}
+	
+	function getDmgRange(action){
+		var displayThis = false
+		if action.actionType == "spell"{ if action.spellType == "attack"{ displayThis = true } }
+		if action.actionType == "attack"{ displayThis  = true}
+		
+		if displayThis{
+			return string(action.min_dmg)+"-"+string(action.min_dmg)
+		}else{ return "" }
+	}
+	
+	var aspectPadding = 3
+	var lines = [
+		{icon: spr_accuracy_icon, value: string(hoveredAction.hit_chance)+"%"},
+		{icon: spr_dmg_icon, value: getDmgRange(hoveredAction)}
+		]
+	if getRightCostIcon(hoveredAction) != spr_wall{
+		array_push(lines, {icon: getRightCostIcon(hoveredAction), value: hoveredAction.cost_value})
+	}
+	#endregion
+	
+	#region Box
+	var hovBoxWidth = aspectPadding*3 + string_width("W")*7
+	var hovBoxHeight = aspectPadding + (aspectPadding+string_height("|"))*array_length(lines)
+	draw_sprite_ext(spr_menu, image_index, actionStatsOrigin[0], actionStatsOrigin[1], hovBoxWidth/sprite_get_width(spr_menu), hovBoxHeight/sprite_get_height(spr_menu), 0, c_white, 1)
+	#endregion
+	
+	#region Icons/text
+	
+	#endregion
+	
+	#region Valid Targets
+	var validTargets = hoveredAction.targetID
+	if validTargets == ""{ //@TODO Sets to an enemy. Techniallywring because it could be a party-only effect.
+		for (var i=0; i<array_length(combatants); i++){
+			if object_get_parent(combatants[i].object_index) == obj_enemy{
+				validTargets = combatants[i]
+			}
+		}
+	}
+	drawArrows(validTargets, 0.5)
+	#endregion
+}
+#endregion
 
 #region Character huds
 // Define coords for cells
@@ -167,11 +239,28 @@ for(var i=0; i<array_length(charStats); i++){
 	var secondFillWidth = secondFillPercent*secondFilledWidth
 	var secondFillXScale = secondFillWidth/sprite_get_height(spr_lifeBarFiller)
 	draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, secondStatColor, 1)
+
+	#region Hovered action (2/2) Cost indicator
+	//Many of these variable are copied from above but hey it works.
+	try{
+		if hoveredAction.name !="none" && variable_struct_exists(hoveredAction, "cost_value"){// && charStats[i].name == activeCombatant.name{
+			draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, c_white, blinkAlpha)
+			var remainingWidth = charStats[i].currentOtherBar-hoveredAction.cost_value
+			//secondFillPercent = (charStats[i].currentOtherBar-remainingWidth)/charStats[i].maxOtherBar
+			secondFillPercent = remainingWidth/charStats[i].maxOtherBar
+			secondFillWidth = secondFillPercent*secondFilledWidth
+			secondFillXScale = secondFillWidth/sprite_get_height(spr_lifeBarFiller)
+			draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, secondStatColor, 1)
+		}
+	}catch(err){print(err)}
+	#endregion
 }
 
 
 #endregion
 #endregion
+
+
 
 #region Combat Logs
 

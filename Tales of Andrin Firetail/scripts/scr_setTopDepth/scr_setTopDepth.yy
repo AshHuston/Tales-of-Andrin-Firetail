@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_setTopDepth",
   "isCompatibility":false,
   "isDnD":false,

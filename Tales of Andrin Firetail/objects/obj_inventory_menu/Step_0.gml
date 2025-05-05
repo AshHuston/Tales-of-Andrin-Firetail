@@ -90,7 +90,7 @@ if (accept_key) || (continuingOperation)
 // ***************** BELOW NEEDS TO BE CHANGED TO MANAGE ITEM USAGE
 		// Consumables
 		case 1:
-			if pos == 0{ menu_level = 0 }
+			if consumables[pos].name == "<--Back"{ menu_level = 0; break; } 
 			else{
 				selectedPartyMember = "	"
 				selectedItem = consumables[pos]
@@ -132,46 +132,61 @@ if (accept_key) || (continuingOperation)
 			}
 		break;
 		
-		// Equipent
+		// Equipment
 		case 2:
-			switch (pos){
-				case 0:
-					menu_level = 0;
-					break;
+			if equipment[pos].name == "<--Back"{ menu_level = 0; break; } 
+			else{
+				// THIS WHOLE SECTION IS JUST COPY PASED FROM THE OTHER MENUS SO IT NEEDS TO BE REWORKED
+				switch (pos){
+					case 0:
+						menu_level = 0;
+						break;
 				
-				default:
-				selectedAction = spells[pos];
-				chosenTargets = [];				 
-				array_push(chosenTargets, selectedAction.targetID)
+					default:
+					selectedAction = equipment[pos];
+					chosenTargets = [];				 
+					array_push(chosenTargets, selectedAction.targetID)
+				}
 			}
 		break;
 		
 		// Key Items
 		case 3:
-		switch (pos){
-				case 0:
-					menu_level = 0;
-					break;
+			if keyItems[pos].name == "<--Back"{ menu_level = 0; break; } 
+			else{
+				// THIS WHOLE SECTION IS JUST COPY PASED FROM THE OTHER MENUS SO IT NEEDS TO BE REWORKED
+				switch (pos){
+						case 0:
+							menu_level = 0;
+							break;
 					
-				default:
-				selectedAction = spells[pos];
-				chosenTargets = [];				 
-				array_push(chosenTargets, selectedAction.targetID)
-		}
+						default:
+						selectedAction = keyItems[pos];
+						chosenTargets = [];				 
+						array_push(chosenTargets, selectedAction.targetID)
+				}
+			}
 		break;
 		
 		// Other
 		case 4:
-		switch (pos){
-				case 0:
-					menu_level = 0;
-					break;
-					
-				default:
-				selectedAction = inventory[pos];
-				chosenTargets = [];				 //Temporary line of code? // = slectedAction.cantarget
-				array_push(chosenTargets, selectedAction.targetID)
-		}
+			if otherItems[pos].name == "<--Back"{ menu_level = 0; break; } 
+			else{
+				// THIS WHOLE SECTION IS JUST COPY PASED FROM THE OTHER MENUS SO IT NEEDS TO BE REWORKED
+				var canUseItem = false
+				try{ if otherItems[pos].can_use(){ canUseItem = true }}
+				
+				if canUseItem{otherItems[pos].use()}
+				else{
+					playErrorSound()
+					textShakeFrames = 10
+				}
+				
+				
+				//selectedAction = otherItems[pos];
+				//chosenTargets = [];				 //Temporary line of code? // = slectedAction.cantarget
+				//array_push(chosenTargets, selectedAction.targetID)
+			}
 		break;
 		
 	}	
@@ -184,7 +199,7 @@ if (accept_key) || (continuingOperation)
 
 
 // ---------------------------- Placement and sizing ------------------------------------------------------
-//adjust window
+#region Adjust frame
 height = (op_length * op_space)+op_border
 
 width = 0
@@ -198,4 +213,4 @@ width += op_border*2
 var minMenuWidth = 50
 var maxMenuWidth = 175
 width = clamp(width, minMenuWidth, maxMenuWidth)
-
+#region

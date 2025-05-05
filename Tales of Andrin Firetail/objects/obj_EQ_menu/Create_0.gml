@@ -12,13 +12,15 @@ down_key_tap = false;
 X = 0
 Y = 1
 
+displayText = ""
+
 #region Screen positioning
 function setHudPosition(){
 	pauseMenuWidth = 73 // This obviously isnt pulling the data dynamically buit it should never change after we set it.
 	spaceFromPauseMenu = 10
 	cam = view_get_camera(camera_get_active())
 	hudXOffset = (camera_get_view_width(cam)/20)  + pauseMenuWidth + spaceFromPauseMenu
-	hudYOffset = (camera_get_view_height(cam)/20) 
+	hudYOffset = (camera_get_view_height(cam)/20) + 25 //@DIAL
 	baseX = camera_get_view_x(cam) + hudXOffset
 	baseY = camera_get_view_y(cam) + hudYOffset
 	listX = baseX + 5//a buffer

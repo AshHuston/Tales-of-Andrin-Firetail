@@ -212,5 +212,26 @@ if num_of_crystals>0{
 		}
 	}
 }
+
+#region Effect descriptions
 if heldCrystal == noCrystal {isHoldingCrystal = false}
+#endregion
+
+displayText = "Select a crystal to see what it does."
+var crystalToDescribe = noone
+if isHoldingCrystal { crystalToDescribe = heldCrystal }
+else if in_crystal_list { crystalToDescribe = crystal_inventory[hoveredCrystal] }
+else {
+	crystalIndex = getCrystalByCoords(hoveredCoords)
+	if crystalIndex>=0{ crystalToDescribe = crystal_inventory[crystalIndex] }
+	}
+
+if crystalToDescribe != noone{
+	try{
+		displayText = crystalToDescribe.effect.description
+	}catch(err){
+		print(err)
+		displayText = "Error with " + crystalToDescribe.name + "."
+	}
+}
 #endregion

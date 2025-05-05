@@ -52,10 +52,10 @@ function getItemsFromAaron(){
 	var aaron =  global.OVERWORLD_ID_AARON
 	var allItems = []
 	array_copy(allItems, 0, aaron.inventory, 0, array_length(aaron.inventory))
-	consumables = [{name:"<--Back"}]
-	equipment = [{name:"<--Back"}]
-	keyItems = [{name:"<--Back"}]
-	otherItems = [{name:"<--Back"}]
+	consumables = []
+	equipment = []
+	keyItems = []
+	otherItems = []
 	for (var i=0; i<array_length(allItems); i++){
 		var menuPage = ""
 		try{menuPage = allItems[i].menuPage}catch(err){menuPage = "Other"}
@@ -74,6 +74,7 @@ function getItemsFromAaron(){
 				break;
 		}
 	}
+	
 	option[1] = consumables
 	option[2] = equipment
 	option[3] = keyItems
@@ -84,7 +85,8 @@ getItemsFromAaron()
 
 
 for(var i=1; i<+array_length(option);i++){
-	array_insert(option[i], 0, {name:"<--Back"});	
+	//array_insert(option[i], 0, {name:"<--Back"}); //This would insert it at the TOP of the list. We would need to change the menu code to know what its selecting.
+	array_push(option[i],{name:"<--Back"});	
 }
 
 op_length = 0;
@@ -107,3 +109,5 @@ accept_btn = gamepad_button_value(0, gp_face1);
 
 selectedPartyMember = ""
 continuingOperation = false
+
+textShakeFrames = 0

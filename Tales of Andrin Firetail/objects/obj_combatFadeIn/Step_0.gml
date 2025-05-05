@@ -13,5 +13,5 @@ if image_number-1 == image_index{
 
 if image_index == 2{ 
 	print("stopped ovw music")
-	audio_stop_sound(global.OVERWORLD_MUSIC) 
-	}
+	try{ audio_stop_sound(global.OVERWORLD_MUSIC) }catch(err){}
+}

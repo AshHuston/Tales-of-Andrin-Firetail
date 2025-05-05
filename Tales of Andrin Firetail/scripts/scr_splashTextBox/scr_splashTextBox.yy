@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_splashTextBox",
   "isCompatibility":false,
   "isDnD":false,

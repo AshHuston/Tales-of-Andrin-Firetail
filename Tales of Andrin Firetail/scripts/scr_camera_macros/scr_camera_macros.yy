@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_camera_macros",
   "isCompatibility":false,
   "isDnD":false,

@@ -8,6 +8,7 @@ itemInfo = {
 	other_filled_slots: [], //Left intentionally empty
 	effectType: "buff",
 	effect: {
+		description: "Ups Aaron's speed by 25",
 		effectSource: "Ephrin's Queen",
 		name:"Speedy crystal",
 		bonusSpeed: 25
