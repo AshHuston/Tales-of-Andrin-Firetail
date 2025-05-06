@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_levelScale",
   "isCompatibility":false,
   "isDnD":false,

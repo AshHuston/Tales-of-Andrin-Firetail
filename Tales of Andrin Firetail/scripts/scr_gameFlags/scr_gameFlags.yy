@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_gameFlags",
   "isCompatibility":false,
   "isDnD":false,

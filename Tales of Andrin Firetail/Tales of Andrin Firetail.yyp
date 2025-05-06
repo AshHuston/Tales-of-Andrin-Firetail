@@ -1,5 +1,5 @@
 {
-  "$GMProject":"",
+  "$GMProject":"v1",
   "%Name":"Tales of Andrin Firetail",
   "AudioGroups":[
     {"$GMAudioGroup":"","%Name":"audiogroup_default","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
@@ -52,6 +52,7 @@
     {"$GMFolder":"","%Name":"Timelines","folderPath":"folders/Timelines.yy","name":"Timelines","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Z TESTING ASSETS AND STUFF","folderPath":"folders/Z TESTING ASSETS AND STUFF.yy","name":"Z TESTING ASSETS AND STUFF","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
+  "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"DEMO 1.txt","CopyToMask":-1,"filePath":"datafiles","name":"DEMO 1.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"DEMO 2.txt","CopyToMask":-1,"filePath":"datafiles","name":"DEMO 2.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
