@@ -1,5 +1,5 @@
 {
-  "$GMScript":"v1",
+  "$GMScript":"",
   "%Name":"scr_getCombatPartyIDs",
   "isCompatibility":false,
   "isDnD":false,
