@@ -86,13 +86,26 @@ function startCombat(numberOfMonsters, certainMonsters, possibleMonsters=[]){
 }
 
 // This kinda sucks because the movement is different than the player's movement. But tbh I think imma change the player mvmnt anyway so idk.
-function stepTowards(targetID, range = 75, stepSpeed = 1){
-	if point_distance(x, y, targetID.x, targetID.y) <= range{
-		if targetID.x > x { x += stepSpeed; image_xscale = -1 }
-		else if x > targetID.x {x -= stepSpeed; image_xscale = 1 }
-		if targetID.y > y { y += stepSpeed }
-		else if y > targetID.y {y -= stepSpeed }
+function stepTowards(targetID, range = 2147483647, stepSpeed = 1){
+	if typeof(targetID) == "ref"{
+		targetID = {
+			x: targetID.x,
+			y: targetID.y
+		}
 	}
+	
+	var isHomeLocation = false
+	if targetID.x == homeLocation.x && targetID.y == homeLocation.y {isHomeLocation = true}
+	if framesLeftInAggroCooldown>0 {framesLeftInAggroCooldown--;}
+	var moved = false
+	
+	if point_distance(x, y, targetID.x, targetID.y) <= range{
+		if targetID.x > x { x += stepSpeed; image_xscale = -1; moved = true }
+		else if x > targetID.x {x -= stepSpeed; image_xscale = 1; moved = true }
+		if targetID.y > y { y += stepSpeed; moved = true }
+		else if y > targetID.y {y -= stepSpeed; moved = true }
+	}
+	if moved && !isHomeLocation {framesLeftInAggroCooldown = maxWaitFrames}
 }
 
 if hasStartedCombat && !instance_exists(obj_combatFadeIn) && !instance_exists(obj_combat_manager) && !instance_exists(obj_combat_cleanup){
@@ -110,5 +123,6 @@ if hasStartedCombat && !instance_exists(obj_combatFadeIn) && !instance_exists(ob
 }
 	
 if chasePlayer && !global.GAME_IS_PAUSED{ 
-	stepTowards(global.OVERWORLD_ID_AARON)
-	}
+	stepTowards(global.OVERWORLD_ID_AARON, 75)
+	if framesLeftInAggroCooldown<=0 && !(x == homeLocation.x && y == homeLocation.y){stepTowards(homeLocation);}
+}

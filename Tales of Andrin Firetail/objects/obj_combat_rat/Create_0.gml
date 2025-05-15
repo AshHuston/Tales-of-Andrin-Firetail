@@ -67,6 +67,13 @@ bite = {
 
 attacks = [swipe, bite]
 
+function getRandomTarget(){
+	var partyIDs = getCombatPartyIDs(true);
+	var targetIndex = round(random_range(0, array_length(partyIDs)-1));
+	var target = partyIDs[targetIndex];	
+	return target
+}
+
 function getAction(){	
 	var actions = []
 	for(var i = 0; i<array_length(attacks); i++){
@@ -78,10 +85,8 @@ function getAction(){
 	var selectedAction = variable_clone(actions[0])
 	
 	if selectedAction.targetID == ""{
-		var partyIDs = getCombatPartyIDs();
-		var targetIndex = round(random_range(0, array_length(partyIDs)-1));
-		var target = partyIDs[targetIndex];
-		selectedAction.targetID = target
+		
+		selectedAction.targetID = getRandomTarget()
 	}
 	
 	return selectedAction

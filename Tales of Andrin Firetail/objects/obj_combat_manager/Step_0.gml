@@ -322,6 +322,7 @@ if !(waitFrames<1 && !gameIsOver) { waitFrames-- }else{
 					break;
 				
 					default:
+					print(action)
 					targetStartHP = action.targetID.currentHp;
 				}
 			

@@ -9,16 +9,18 @@ draw_set_halign(fa_left);
 var text = ""
 
 
-for(var i=0; i<op_length; i++)
+// I am aware that the retroactive addition of the lastUsedAction has been a nightmare.
+// I am truly sorry to whoever has to maintain this code later.
+var start = 0
+if activeCombatant.lastUsedAction.name != "none" && menu_level==0{ start = -1 }
+for(var i=start; i<op_length+start; i++)
 	{
-		
-		//if menu_level == 0{text = option[menu_level, i];}
-		//else{text = option[menu_level, i].name;}
-		text = option[menu_level, i].name;
+		if i == -1{ text = option[menu_level, array_length(option[menu_level])-1].name}
+		else{text = option[menu_level, i].name;}
 		
 		var _c = c_white;
 		if pos == i {_c = c_black;}
-		draw_text_color(x+op_border, y+op_border + (op_space*i), text, _c, _c, _c, _c, 1);
+		draw_text_color(x+op_border, y+op_border + (op_space*(i-start)), text, _c, _c, _c, _c, 1);
 	}
 	
 // Description background

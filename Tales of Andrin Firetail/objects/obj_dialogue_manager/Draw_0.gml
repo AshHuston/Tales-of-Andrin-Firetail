@@ -28,6 +28,8 @@ function getSpeakerSpriteYappingSpeed(){
 	return yapSpeed;	
 }
 
+
+
 #region Draw the text box 
 var cam = camera_get_active()
 var camX = camera_get_view_x(cam)
@@ -40,7 +42,15 @@ var maxTextboxHeight = camHeight*0.6			//@DIAL
 var textBonusPadding = 10
 var lineSpacing = 10
 var textWrapLength = textboxWidth-(2*textBonusPadding)
+#region var displayText
 var displayText = string_copy(fullLineText, 1, round(charactersToType))
+if pauseFrames==0{
+	if !textIsAllPrinted{
+		displayText = trimToSlowChar(displayText)
+	}
+}else{pauseFrames--}
+checkIfAllPrinted()
+#endregion
 var numOfLines = 1+floor(string_width(displayText)/textWrapLength)+string_count("\n",displayText)
 var lineHeight = lineSpacing//string_height(displayText)//+lineSpacing
 var textHeight = lineHeight*numOfLines
@@ -178,6 +188,7 @@ if (dialogueBlurb.respondable && textIsAllPrinted){
 
 if textIsAllPrinted{
 	//&& !optionsAreDisplayed{
+	charsThisFrame = 0
 	var continueIndicatorAnimationSpeed = 0.05
 	continueIndicatorAnimationFrame += continueIndicatorAnimationSpeed
 	//Draw indicator of pressing button to continue
@@ -198,4 +209,3 @@ if textIsAllPrinted{
 	var alpha = 1
 	draw_sprite_ext(indicatorSprite, round(continueIndicatorAnimationFrame), indicatorX, indicatorY, indicatorScaleX, indicatorScaleY, 0, indicatorColor, alpha)
 }
-

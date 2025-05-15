@@ -9,23 +9,23 @@ damageAnimationCounter = 0;
 combatName = "UNNAMED COMBATANT"
 combatLogColor = c_white
 secondaryDisplayBar = "none"
+try{
+	defaultSpriteName = sprite_get_name(associatedCharacterID.combatBaseSprite)
+}catch(err){
+	defaultSpriteName = sprite_get_name(sprite_index)
+}
 //DisplayStats 
 secondaryDisplayBarMax = 0
 secondaryDisplayBarCurrent = 0
 
+lastUsedAction = {name: "none"}
+
 /// @function                 attack(details);
 /// @param {struct}	details	  The details to be interpreted by the combat system.
 /// @description              Runs the attack. Calculating if hit, adjusting target Hp, applying effects, etc.
-function attack(details){
-// Struct should contain: targetID, bonus_targetID, dmg_type, min_dmg, max_dmg, hit_chance, effect_chance, effect_type. 	
+function attack(details){	
 #region Ensure struct elements are present
-	// @TODO Varify the details struct has everything it needs.
-	var defaultVals = {
-		crit_chance_percent : 5,
-		crit_dmg_mod : 1.5
-	}
-	if !variable_struct_exists(details, "crit_chance_percent"){details.crit_chance_percent = defaultVals.crit_chance_percent}
-	if !variable_struct_exists(details, "crit_dmg_mod"){details.crit_dmg_mod = defaultVals.crit_dmg_mod}
+	checkActionForVariables(details)
 #endregion
 	
 #region Defense stat
@@ -148,8 +148,6 @@ function castSpell(details){
 }
 
 function useItem(details){
-	print("TEST")
-	print(details)
 	var result;
 	if details.targetID == "self"{
 		result = details.use(self, details.bonus_targetID);	
@@ -165,14 +163,24 @@ function useItem(details){
 	return result;
 }
 
+function setNewLastAction(originalAction){
+	var details = variable_clone(originalAction)
+	if !array_contains(["all", "all enemies", "all party", "self"], details.targetID){
+		details.targetID = ""
+		details.bonus_targetID = ""
+	}
+	lastUsedAction = details
+}
+
 function doAction(detailStruct){
+	setNewLastAction(detailStruct)
+	if variable_struct_exists(detailStruct, "action_character_animation"){sprite_index = detailStruct.action_character_animation}
 	switch(detailStruct.actionType){
 	case "attack":
 		return attack(detailStruct);
 	
 	case "spell":
 		return castSpell(detailStruct);
-		break;
 	
 	case "item":
 		return useItem(detailStruct);

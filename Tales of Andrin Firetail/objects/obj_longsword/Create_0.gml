@@ -16,6 +16,7 @@ itemInfo = {
 		actionType: "attack",
 		soundEffectId: snd_swipe,
 		animation_index: spr_test_attack_flame, //@TODO Add slashing animation
+		bonus_targetID: "",
 		logMessage: [
 			{text: "*ACTIVE", color: c_aqua},
 			{text: "cleaves", color: c_white},

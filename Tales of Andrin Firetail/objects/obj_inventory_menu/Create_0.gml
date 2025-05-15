@@ -79,15 +79,14 @@ function getItemsFromAaron(){
 	option[2] = equipment
 	option[3] = keyItems
 	option[4] = otherItems
+	
+	for(var i=1; i<+array_length(option);i++){
+		array_push(option[i],{name:"<--Back"});	
+	}
 }
 
 getItemsFromAaron()
 
-
-for(var i=1; i<+array_length(option);i++){
-	//array_insert(option[i], 0, {name:"<--Back"}); //This would insert it at the TOP of the list. We would need to change the menu code to know what its selecting.
-	array_push(option[i],{name:"<--Back"});	
-}
 
 op_length = 0;
 menu_level = 0

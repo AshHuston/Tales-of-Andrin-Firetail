@@ -3,7 +3,6 @@ function removeItemFromInventory(item){
 	var inventory =  global.OVERWORLD_ID_AARON.inventory
 	for (var i=0; i<array_length(inventory); i++){
 		if item.name == inventory[i].name{
-			print(item.name)
 			if inventory[i].quantity > 1 { 
 				inventory[i].quantity--
 				print("Minus 1")
@@ -90,7 +89,7 @@ if (accept_key) || (continuingOperation)
 // ***************** BELOW NEEDS TO BE CHANGED TO MANAGE ITEM USAGE
 		// Consumables
 		case 1:
-			if consumables[pos].name == "<--Back"{ menu_level = 0; break; } 
+			if consumables[pos].name == "<--Back" { menu_level = 0; break; } 
 			else{
 				selectedPartyMember = "	"
 				selectedItem = consumables[pos]

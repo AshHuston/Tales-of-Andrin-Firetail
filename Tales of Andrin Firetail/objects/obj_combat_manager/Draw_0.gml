@@ -61,11 +61,11 @@ if hoveredAction.name != "none" && hoveredAction.name != "<--Back"{
 		if action.actionType == "attack"{ displayThis  = true}
 		
 		if displayThis{
-			return string(action.min_dmg)+"-"+string(action.min_dmg)
+			return string(action.min_dmg)+"-"+string(action.max_dmg)
 		}else{ return "" }
 	}
 	
-	var aspectPadding = 3
+	var aspectPadding = 3 //@DIAL
 	var lines = [
 		{icon: spr_accuracy_icon, value: string(hoveredAction.hit_chance)+"%"},
 		{icon: spr_dmg_icon, value: getDmgRange(hoveredAction)}
@@ -76,13 +76,26 @@ if hoveredAction.name != "none" && hoveredAction.name != "<--Back"{
 	#endregion
 	
 	#region Box
-	var hovBoxWidth = aspectPadding*3 + string_width("W")*7
+	function getAspectsMaxWidth(lines){
+		var longest = 0
+		for (var i=0; i<array_length(lines); i++){
+			var lineLength = sprite_get_width(lines[i].icon)+string_width(lines[i].value)
+			if longest<lineLength{longest=lineLength}
+		}
+		return longest
+	}
+	var hovBoxWidth = aspectPadding*3 + getAspectsMaxWidth(lines)
 	var hovBoxHeight = aspectPadding + (aspectPadding+string_height("|"))*array_length(lines)
 	draw_sprite_ext(spr_menu, image_index, actionStatsOrigin[0], actionStatsOrigin[1], hovBoxWidth/sprite_get_width(spr_menu), hovBoxHeight/sprite_get_height(spr_menu), 0, c_white, 1)
 	#endregion
 	
 	#region Icons/text
-	
+	var anchor = [actionStatsOrigin[0]+aspectPadding, actionStatsOrigin[1]+aspectPadding]
+	for (var i=0; i<array_length(lines); i++){
+		var lineY = anchor[1] + (aspectPadding+string_height("|"))*i
+		draw_sprite(lines[i].icon, image_index, anchor[0], lineY)
+		draw_text(anchor[0]+aspectPadding+sprite_get_width(lines[i].icon), lineY, lines[i].value)
+	}
 	#endregion
 	
 	#region Valid Targets
@@ -243,7 +256,7 @@ for(var i=0; i<array_length(charStats); i++){
 	#region Hovered action (2/2) Cost indicator
 	//Many of these variable are copied from above but hey it works.
 	try{
-		if hoveredAction.name !="none" && variable_struct_exists(hoveredAction, "cost_value"){// && charStats[i].name == activeCombatant.name{
+		if isActive && hoveredAction.name !="none" && variable_struct_exists(hoveredAction, "cost_value"){// && charStats[i].name == activeCombatant.name{
 			draw_sprite_ext(spr_lifeBarFiller, 0, secondBarX+1, secondBarY+1, secondFillXScale, secondBarYScale, 0, c_white, blinkAlpha)
 			var remainingWidth = charStats[i].currentOtherBar-hoveredAction.cost_value
 			//secondFillPercent = (charStats[i].currentOtherBar-remainingWidth)/charStats[i].maxOtherBar
@@ -255,7 +268,6 @@ for(var i=0; i<array_length(charStats); i++){
 	}catch(err){print(err)}
 	#endregion
 }
-
 
 #endregion
 #endregion

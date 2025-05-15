@@ -1,5 +1,5 @@
 if input("S"){
-	url_open("https://docs.google.com/forms/d/e/1FAIpQLSeIDT4ails4exxTRvIx12G7R3mIKZkuFD76v1V-hAZKopuAtg/viewform?usp=header")
+	url_open("https://docs.google.com/forms/d/e/1FAIpQLSeMK9dRW7HCzz08Uh2l-wJ5PlLywg76pn8uV-ykzmRv3ADJ8A/viewform?usp=header")
 }
 
 if input("enter"){

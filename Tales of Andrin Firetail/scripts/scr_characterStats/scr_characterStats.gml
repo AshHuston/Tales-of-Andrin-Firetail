@@ -77,7 +77,7 @@ global.CHARACTER_STATS = {
 		armor:						3,
 		evasion:					5,
 		totalExp:					0,
-		currentHp:					35,
+		currentHp:					5, //35,
 		immunities:					[],
 		magicResist:				1,
 		combatSpeed:				4,

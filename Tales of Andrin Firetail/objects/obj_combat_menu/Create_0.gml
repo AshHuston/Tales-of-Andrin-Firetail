@@ -18,6 +18,13 @@ option[0, 0] = {name: "Attacks"};
 option[0, 1] = {name: "Spells"};
 option[0, 2] = {name: "Special Actions"};
 option[0, 3] = {name: "Inventory"};
+option[0, 4] = {name: activeCombatant.lastUsedAction.name}
+
+menu_min = 0;
+if activeCombatant.lastUsedAction.name != "none"{ menu_min = -1;}
+else{ array_pop(option[0]) }
+
+pos = menu_min
 
 //Settings Menu
 option[1] = attacks;
@@ -37,8 +44,6 @@ height = 0;
 
 sel_btn_pressed_last = false;
 btn_pressed = false;
-
-pos = 0;
 
 up_key = keyboard_check(vk_up);
 down_key = keyboard_check(vk_down);

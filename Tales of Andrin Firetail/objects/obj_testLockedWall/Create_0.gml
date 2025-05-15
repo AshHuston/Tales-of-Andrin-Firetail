@@ -6,7 +6,7 @@ function interact(){
 	var _f = function(_element, _index){
 		var result = false
 		try{
-			if 	_element.name == "testKey"{
+			if 	_element.name == "Key"{
 				result = true
 			}
 		}

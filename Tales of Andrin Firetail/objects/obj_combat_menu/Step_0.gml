@@ -15,8 +15,8 @@ op_length = array_length(option[menu_level]);
 // Traverse the menu
 if down_key{pos++}
 if up_key{pos--}
-if pos>=op_length{pos=0}
-if pos<0 {pos=op_length-1}
+if pos>=op_length+menu_min{pos=menu_min}
+if pos<menu_min {pos=op_length-1}
 
 //Back button
 if back_key{
@@ -29,7 +29,7 @@ if back_key{
 	}
 }
 
-if instance_exists(obj_inventory_menu){ accept_key = false; }// print("inv menu exists")}
+if instance_exists(obj_inventory_menu){ accept_key = false; }
 
 #region Press select
 if (accept_key)
@@ -37,11 +37,16 @@ if (accept_key)
 	var _sml = menu_level;
 	var back = 0
 	switch(menu_level)
-	{
-		//pause menu
+	{		
 		case 0:
 		switch(pos)
 		{
+		//PREVIOUS ACTION
+			case -1:
+			selectedAction = activeCombatant.lastUsedAction
+			array_push(chosenTargets, selectedAction.targetID)
+			break;
+			
 		//ATTACKS
 			case 0:
 			menu_level = 1;
@@ -61,12 +66,6 @@ if (accept_key)
 			case 3:
 			pos = 0
 			if !instance_exists(obj_inventory_menu){ instance_create_depth(0,0,0, obj_inventory_menu, {combatMenuID:id, combatManagerID:combatManagerID, activeCombatant:activeCombatant})}
-			//menu_level = 4;
-			break;
-		
-		//NOTHING		
-			case 4:
-		
 			break;
 		}
 		break;
@@ -145,15 +144,20 @@ switch(menu_level)
 
 switch (menu_level){
 	case 0:
-		combatManagerID.hoveredAction = {name:"none"}; break;
+		if pos == -1{
+			combatManagerID.hoveredAction = activeCombatant.lastUsedAction
+		}else{
+			combatManagerID.hoveredAction = {name:"none"}; 
+		}
+		break;
 	default:
 		combatManagerID.hoveredAction = menuToRead[pos];
 }
 #endregion
 
+if combatManagerID.hoveredAction.name != "none" {checkActionForVariables(combatManagerID.hoveredAction)}
 
 if selectedAction != {name:"empty"} && array_length(chosenTargets) != 0 {
-	print(selectedAction)
 	var cost = 0
 	var type = ""
 	try{

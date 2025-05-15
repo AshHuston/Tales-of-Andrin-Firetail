@@ -261,3 +261,12 @@ function createPartyCombatObjects(partyIDs){
 	waitingForEvent = false
 	round_counter = 1
 	gameIsOver = false
+	
+	#region Check for unconsious
+	for (var i=0;i<array_length(combatants);i++;){
+		if combatants[i].currentHp <= 0 && combatants[i].isConscious{
+			combatants[i].isConscious = false;
+			combatants[i].currentHp = 0;
+		}
+	}
+	#endregion

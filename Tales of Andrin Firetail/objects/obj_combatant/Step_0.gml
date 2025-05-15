@@ -22,3 +22,7 @@ if !isConscious && !isTakingDamage{
 	image_index = 0	
 	image_angle = 270
 }
+
+if sprite_get_name(sprite_index) != defaultSpriteName && image_index >= sprite_get_number(sprite_index)-1.5{
+	sprite_index = asset_get_index(defaultSpriteName)
+}

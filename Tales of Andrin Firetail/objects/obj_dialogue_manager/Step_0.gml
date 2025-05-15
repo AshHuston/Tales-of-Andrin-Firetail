@@ -2,18 +2,16 @@ function hasAnyValues(struct){
 	var keys = struct_get_names(struct)
 	var has_values = false
 	for (var i = 0; i<array_length(keys); i++;){
-		//var key = keys[i]
 		if (string(struct[$ keys[i]]) != "NaN"){ 
 			has_values = true 
-			//show_debug_message(string(struct[$ keys[i]]))
 			}
 	}
 	return has_values
 }
 
-var charsPerFrame = 2 //@DIAL
-charactersToType += charsPerFrame
-fullLineText = dialogueBlurb.text
+if pauseFrames == 0 {charactersToType += typeSpeed}
+
+fullLineText = dialogueBlurb.text + "    "
 #region option setup
 options = variable_struct_get_names(dialogueBlurb.response_options)
 for (var i = array_length(options)-1; i>=0; i--;){
@@ -52,12 +50,8 @@ if dialogueBlurb.flag_id != ""{
 }
 #endregion
 
-//Check if text is printed
-if charactersToType >= string_length(fullLineText){
-	charactersToType = string_length(fullLineText);
-	textIsAllPrinted = true;
-	stopYappingDelay += 1
-}
+
+checkIfAllPrinted()
 
 if textIsAllPrinted == false && input("enter"){
 	charactersToType = string_length(fullLineText)
